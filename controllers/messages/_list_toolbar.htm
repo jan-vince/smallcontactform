@@ -1,0 +1,28 @@
+<div class="scoreboard">
+    <div data-control="toolbar">
+        <div class="scoreboard-item control-chart" data-control="chart-pie">
+            <ul>
+                <li data-color="#95b753"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.new_count')) ?> <span><?= $this->getRecordsStats('new_count'); ?></span></li>
+                <li data-color="#d1d1d1"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.read_count')) ?> <span><?= $this->getRecordsStats('read_count'); ?></span></li>
+            </ul>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.all_count')) ?></h4>
+            <p><?= $this->getRecordsStats('all_count'); ?></p>
+            <p class="description"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.all_description')) ?></p>
+        </div>
+
+
+        <div class="scoreboard-item title-value">
+            <h4><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.latest_record')) ?></h4>
+            <p class="oc-icon-user"><?= $this->getRecordsStats('latest_message_name'); ?></p>
+            <p class="description"><?= $this->getRecordsStats('latest_message_date'); ?></p>
+        </div>
+
+    </div>
+</div>
+
+
+<div data-control="toolbar">
+</div>

@@ -1,0 +1,17 @@
+{% if flashSuccess == false or ( flashSuccess and settingsGet('form_hide_after_success', 0) == 0 ) %}
+
+	{{ form_open(__SELF__.getFormAttributes) }}
+
+		{% for field in __SELF__.fields %}
+
+			{{ __SELF__.getFieldHtmlCode(field)|raw }}
+
+		{% endfor %}
+
+		{{ __SELF__.getAntispamFieldHtmlCode({})|raw }}
+
+		{{ __SELF__.getSubmitButtonHtmlCode({})|raw }}
+
+	{{ form_close() }}
+
+{% endif %}

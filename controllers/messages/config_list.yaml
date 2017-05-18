@@ -1,0 +1,43 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# Model List Column configuration
+list: $/janvince/smallcontactform/models/message/columns.yaml
+
+# Model Class name
+modelClass: JanVince\SmallContactForm\Models\Message
+
+# List Title
+title: "janvince.smallcontactform::lang.controllers.messages.list_title"
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+recordUrl: 'janvince/smallcontactform/messages/preview/:id'
+
+# Records to display per page
+recordsPerPage: 20
+
+# Displays the list column set up button
+showSetup: true
+
+# Displays the sorting link on each column
+showSorting: true
+
+# Default sorting column
+defaultSort:
+    column: created_at
+    direction: desc
+
+# Display checkboxes next to each record
+# showCheckboxes: true
+
+# Toolbar widget configuration
+toolbar:
+    # Partial for toolbar buttons
+    buttons: list_toolbar
+
+    # Search widget configuration
+    search:
+        prompt: backend::lang.list.search_prompt

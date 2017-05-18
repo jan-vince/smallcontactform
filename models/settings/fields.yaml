@@ -1,0 +1,431 @@
+fields: {  }
+tabs:
+    fields:
+
+        ## FORM
+
+        form_css_class:
+            label: 'janvince.smallcontactform::lang.settings.form.css_class'
+            span: left
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
+        form_success_msg:
+            label: 'janvince.smallcontactform::lang.settings.form.success_msg'
+            placeholder: 'janvince.smallcontactform::lang.settings.form.success_msg_placeholder'
+            span: left
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
+        form_error_msg:
+            label: 'janvince.smallcontactform::lang.settings.form.error_msg'
+            placeholder: 'janvince.smallcontactform::lang.settings.form.error_msg_placeholder'
+            span: right
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
+        form_hide_after_success:
+            label: 'janvince.smallcontactform::lang.settings.form.hide_after_success'
+            comment: 'janvince.smallcontactform::lang.settings.form.hide_after_success_comment'
+            span: left
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
+
+        section_ajax:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
+        form_allow_ajax:
+            label: 'janvince.smallcontactform::lang.settings.form.allow_ajax'
+            comment: 'janvince.smallcontactform::lang.settings.form.allow_ajax_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
+        form_allow_confirm_msg:
+            label: 'janvince.smallcontactform::lang.settings.form.allow_confirm_msg'
+            comment: 'janvince.smallcontactform::lang.settings.form.allow_confirm_msg_comment'
+            span: left
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: form_allow_ajax
+                condition: checked
+
+        form_send_confirm_msg:
+            label: 'janvince.smallcontactform::lang.settings.form.send_confirm_msg'
+            placeholder: 'janvince.smallcontactform::lang.settings.form.send_confirm_msg_placeholder'
+            span: right
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: form_allow_ajax
+                condition: checked
+
+
+        add_assets:
+            label: 'janvince.smallcontactform::lang.settings.form.add_assets'
+            comment: 'janvince.smallcontactform::lang.settings.form.add_assets_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
+        add_css_assets:
+            label: 'janvince.smallcontactform::lang.settings.form.add_css_assets'
+            comment: 'janvince.smallcontactform::lang.settings.form.add_css_assets_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_assets
+                condition: checked
+
+        add_js_assets:
+            label: 'janvince.smallcontactform::lang.settings.form.add_js_assets'
+            comment: 'janvince.smallcontactform::lang.settings.form.add_js_assets_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_assets
+                condition: checked
+
+
+        ## BUTTONS
+
+        send_btn_css_class:
+            label: 'janvince.smallcontactform::lang.settings.buttons.send_btn_css_class'
+            placeholder: 'janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder'
+            span: left
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.buttons'
+
+        send_btn_text:
+            label: 'janvince.smallcontactform::lang.settings.buttons.send_btn_text'
+            placeholder: 'janvince.smallcontactform::lang.settings.buttons.send_btn_text_placeholder'
+            span: left
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.buttons'
+
+
+
+
+        ## FORM FIELDS
+
+        form_fields:
+            prompt: 'janvince.smallcontactform::lang.settings.form_fields.prompt'
+            span: full
+            type: repeater
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form_fields'
+            form:
+                fields:
+                    name:
+                        span: full
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.name'
+                        comment: 'janvince.smallcontactform::lang.settings.form_fields.name_comment'
+                        type: text
+                        required: true
+                        # cssClass: 'bg-info'
+                    type:
+                        span: left
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.type'
+                        type: dropdown
+                        required: true
+                        cssClass: field-indent
+                    label:
+                        span: right
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.label'
+                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.label_placeholder'
+                        type: text
+                        cssClass: field-indent
+
+                    field_styling:
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.field_styling'
+                        comment: 'janvince.smallcontactform::lang.settings.form_fields.field_styling_comment'
+                        span: left
+                        type: checkbox
+                        tab: 'janvince.smallcontactform::lang.settings.tabs.form_fields'
+                        cssClass: field-indent
+
+                    autofocus:
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.autofocus'
+                        comment: 'janvince.smallcontactform::lang.settings.form_fields.autofocus_comment'
+                        span: right
+                        type: checkbox
+                        tab: 'janvince.smallcontactform::lang.settings.tabs.form_fields'
+                        cssClass: field-indent
+
+                    wrapper_css:
+                        span: left
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.wrapper_css'
+                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.wrapper_css_placeholder'
+                        type: text
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: field_styling
+                            condition: checked
+
+                    field_css:
+                        span: right
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.field_css'
+                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.field_css_placeholder'
+                        type: text
+                        trigger:
+                            action: show
+                            field: field_styling
+                            condition: checked
+
+                    section_validation:
+                        type: section
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: field_styling
+                            condition: checked
+
+
+                    field_validation:
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.field_validation'
+                        comment: 'janvince.smallcontactform::lang.settings.form_fields.field_validation_comment'
+                        span: full
+                        type: checkbox
+                        cssClass: field-indent
+
+                    validation:
+                        # label: 'janvince.smallcontactform::lang.settings.form_fields.validation'
+                        prompt: 'janvince.smallcontactform::lang.settings.form_fields.validation_prompt'
+                        span: full
+                        type: repeater
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: field_validation
+                            condition: checked
+                        form:
+                            fields:
+                                validation_type:
+                                    span: left
+                                    label: 'janvince.smallcontactform::lang.settings.form_fields.validation'
+                                    type: dropdown
+                                    emptyOption: 'janvince.smallcontactform::lang.settings.form_field_validation.select'
+                                validation_error:
+                                    span: right
+                                    label: 'janvince.smallcontactform::lang.settings.form_fields.validation_error'
+                                    # comment: 'janvince.smallcontactform::lang.settings.form_fields.validation_error_comment'
+                                    placeholder: 'janvince.smallcontactform::lang.settings.form_fields.validation_error_placeholder'
+                                    type: text
+
+                    section_end:
+                        type: section
+
+
+
+        ## ANTISPAM
+
+        add_antispam:
+            label: 'janvince.smallcontactform::lang.settings.antispam.add_antispam'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.add_antispam_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+
+        antispam_delay:
+            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'
+            span: left
+            type: number
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_antispam
+                condition: checked
+
+        antispam_delay_error_msg:
+            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder'
+            span: right
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_antispam
+                condition: checked
+
+
+        antispam_label:
+            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_label'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_label_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_label_placeholder'
+            span: left
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_antispam
+                condition: checked
+
+        antispam_error_msg:
+            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_error_msg'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_error_msg_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_error_msg_placeholder'
+            span: right
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_antispam
+                condition: checked
+
+
+        ## EMAILS
+
+        allow_email_queue:
+            label: 'janvince.smallcontactform::lang.settings.email.allow_email_queue'
+            comment: 'janvince.smallcontactform::lang.settings.email.allow_email_queue_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+
+        section_autoreply:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            trigger:
+                action: show
+                field: allow_autoreply
+                condition: checked
+
+        allow_autoreply:
+            label: 'janvince.smallcontactform::lang.settings.email.allow_autoreply'
+            comment: 'janvince.smallcontactform::lang.settings.email.allow_autoreply_comment'
+            span: left
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+
+        email_address_from:
+            label: 'janvince.smallcontactform::lang.settings.email.address_from'
+            span: left
+            type: text
+            placeholder: 'janvince.smallcontactform::lang.settings.email.address_from_placeholder'
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_autoreply
+                condition: checked
+
+        email_address_from_name:
+            label: 'janvince.smallcontactform::lang.settings.email.address_from_name'
+            span: right
+            type: text
+            placeholder: 'janvince.smallcontactform::lang.settings.email.address_from_name_placeholder'
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_autoreply
+                condition: checked
+
+        email_subject:
+            label: 'janvince.smallcontactform::lang.settings.email.subject'
+            comment: 'janvince.smallcontactform::lang.settings.email.comment'
+            span: full
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_autoreply
+                condition: checked
+
+
+        autoreply_email_field:
+            label: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field'
+            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field_comment'
+            span: left
+            type: dropdown
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field_empty_option'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_autoreply
+                condition: checked
+
+        autoreply_name_field:
+            label: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field'
+            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field_comment'
+            span: right
+            type: dropdown
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field_empty_option'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_autoreply
+                condition: checked
+
+        autoreply_message_field:
+            label: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field'
+            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field_comment'
+            span: left
+            type: dropdown
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field_empty_option'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_autoreply
+                condition: checked
+
+
+        section_notify:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            trigger:
+                action: show
+                field: allow_notifications
+                condition: checked
+
+
+        allow_notifications:
+            label: 'janvince.smallcontactform::lang.settings.email.allow_notifications'
+            comment: 'janvince.smallcontactform::lang.settings.email.allow_notifications_comment'
+            span: left
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+
+        notification_address_to:
+            label: 'janvince.smallcontactform::lang.settings.email.notification_address_to'
+            span: left
+            type: text
+            placeholder: 'janvince.smallcontactform::lang.settings.email.notification_address_to_placeholder'
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_notifications
+                condition: checked
+
+        section_assets:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+            trigger:
+                action: show
+                field: add_assets
+                condition: checked

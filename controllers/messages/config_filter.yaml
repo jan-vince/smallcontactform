@@ -1,0 +1,10 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+
+    date:
+        label: janvince.smallcontactform::lang.controller.filter.columns.date
+        type: daterange
+        conditions: date >= ':after' AND date <= ':before'

@@ -1,0 +1,45 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('janvince/smallcontactform/messages') ?>"><?= e(trans('janvince.smallcontactform::lang.controllers.messages.list_title')); ?></a></li>
+        <li><?= e(trans('janvince.smallcontactform::lang.controllers.messages.preview')); ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <div class="preview">
+
+		<h3><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.preview_title')) ); ?></h3>
+
+		<p><strong><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.preview_date')) ); ?></strong> <?php echo($message->created_at->format('j.n.Y H:i:s')); ?></p>
+
+		<br>
+
+		<p><strong><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.preview_content_title')) ); ?></strong></p>
+
+		<table>
+
+			<?php foreach($message->form_data as $key => $field) : ?>
+
+				<tr>
+					<th class="p-r-md" style="vertical-align: top;"><?php echo($key); ?></th>
+					<td><?php echo( nl2br(html_entity_decode($field)) ) ?></td>
+				</tr>
+
+			<?php endforeach ?>
+
+		</table>
+
+		<br><br>
+
+    </div>
+
+<?php else: ?>
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+<?php endif ?>
+
+<p>
+    <a href="<?= Backend::url('janvince/smallcontactform/messages') ?>" class="btn btn-default oc-icon-chevron-left">
+        <?= e(trans('backend::lang.form.return_to_list')) ?>
+    </a>
+</p>
