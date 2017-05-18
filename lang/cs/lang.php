@@ -155,7 +155,7 @@ return [
 			'field_validation' => 'Validační pravidla pole',
 			'field_validation_comment' => 'Povolí nastavení vlastních validačních pravidel',
 
-			'validation' => 'pravidlo',
+			'validation' => 'Pravidlo',
 			'validation_prompt' => 'Přidat pravidlo',
 
 			'validation_type' => 'Typ',
