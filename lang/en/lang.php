@@ -2,25 +2,26 @@
 
 return [
 	'plugin' => [
-		'name' => 'Small Contact form',
-		'description' => 'Simple contact form builder and sent messages database',
+		'name' => 'Contact form',
+		'description' => 'Simple but flexible contact form builder with custom fields, validation and passive antispam',
 		'category' => 'Small plugins',
 	],
 
 	'permissions' => [
 		'access_messages' => 'Show form messages',
+		'access_settings' => 'Show form settings',
 	],
 
 	'navigation' => [
 		'main_label' => 'Contact form',
-		'messages' => 'Sent messages',
+		'messages' => 'Messages',
 	],
 
 	'controller' => [
 
 		'contact_form' => [
 			'name' => 'Contact form',
-			'description' => 'Small contact form',
+			'description' => 'Insert contact form to the page',
 			'no_fields' => 'Please add some form fields in backend administration first (in Settings > Small Contact form > Fields)...',
 		],
 
@@ -139,7 +140,7 @@ return [
 			'label' => 'Label',
 			'label_placeholder' => 'Full name',
 
-			'field_styling' => 'Custom CSS styles',
+			'field_styling' => 'Custom CSS class',
 			'field_styling_comment' => 'Change default Bootstrap styles',
 
 			'autofocus' => 'Autofocus field',
