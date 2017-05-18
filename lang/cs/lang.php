@@ -213,7 +213,7 @@ return [
 			'autoreply_email_field_empty_option' => '-- Vyberte --',
 			'autoreply_email_field_comment' => 'Vyberte pole, které bude použito pro automatickou odpověď jako adresa odesílatele (musí to být pole typu Text). Uložte nastavení a znovu načtěte stránku, pokud ve výběru pole nevidíte.',
 
-			'autoreply_message_field' => 'POle formuláře, které obsahuje zprávu',
+			'autoreply_message_field' => 'Pole formuláře, které obsahuje zprávu',
 			'autoreply_message_field_empty_option' => '-- vyberte --',
 			'autoreply_message_field_comment' => 'Vyberte pole, které bude použito pro automatickou odpověď jako jméno odesílatele (musí to být pole typu Textarea). Uložte nastavení a znovu načtěte stránku, pokud ve výběru pole nevidíte.',
 
