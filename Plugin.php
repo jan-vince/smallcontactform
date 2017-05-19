@@ -29,7 +29,8 @@ class Plugin extends PluginBase {
 			'name' => 'janvince.smallcontactform::lang.plugin.name',
 			'description' => 'janvince.smallcontactform::lang.plugin.description',
 			'author' => 'Jan Vince',
-			'icon' => 'icon-users'
+			'icon' => 'icon-users',
+			'homepage' => 'https://github.com/jan-vince/smallcontactform'
 		];
 	}
 
