@@ -4,3 +4,5 @@
 1.0.1:
     - Fix form hiding after successful send
     - Fix in README.md
+1.0.2:
+    - Fix some typos and add LICENCE file (thank to Szabó Gergő)
