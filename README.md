@@ -125,7 +125,7 @@ You can click on a record to see all form data. The message will be marked as re
 ----
 > My thanks goes to:    
 > [OctoberCMS](http://www.octobercms.com) team members and supporters for this great system.   
-> [Andrew Measham](https://unsplash.com/@andrewmeasham) for his photo.   
+> [Cristina Gottardi](https://unsplash.com/@cristina_gottardi) for her photo.   
 > [Fon Awesome](http://fontawesome.io/icons/) for nice icons.
 
 

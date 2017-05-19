@@ -1,3 +1,6 @@
 1.0.0:
     - "First version of Small Contact Form plugin"
     - scf_tables.php
+1.0.1:
+    - Fix form hiding after successful send
+    - Fix in README.md

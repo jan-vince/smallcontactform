@@ -35,6 +35,8 @@ class SmallContactForm extends ComponentBase
 
 	public function onRun(){
 
+		$this->page['flashSuccess'] = Session::get('flashSuccess');
+
 		// Inject CSS assets if required
 		if(Settings::get('add_assets') && Settings::get('add_css_assets')){
 			$this->addCss('/modules/system/assets/css/framework.extras.css');
@@ -127,6 +129,7 @@ class SmallContactForm extends ComponentBase
 			} else {
 				$this->post = [];
 				$this->postData = [];
+				$this->page['flashSuccess'] = true;				
 			}
 
 		}
