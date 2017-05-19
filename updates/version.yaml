@@ -13,3 +13,5 @@
     - Added dashboard report widgets (Stats and New messages)
 1.2.1:
     - Mail templates now render values with {{ values|raw }}
+1.2.2:
+    - Mail templates convert new lines to <br> with {{ values|raw|nl2br }}
