@@ -11,3 +11,5 @@
     - Added permission to delete records
 1.2.0:
     - Added dashboard report widgets (Stats and New messages)
+1.2.1:
+    - Mail templates now render values with {{ values|raw }}
