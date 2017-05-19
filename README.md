@@ -94,7 +94,7 @@ The idea behind this is to check how fast is form send and if robots-catching fi
  * If JavaScritp is working, antispam field is automatically hidden and cleared.
 
 
- ### EMAIL
+### EMAIL
 
 Mails can be sent directly or queued ([OctoberCMS queue](https://octobercms.com/docs/services/queues) must be configured!).
 
