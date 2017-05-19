@@ -9,6 +9,7 @@ return [
 
 	'permissions' => [
 		'access_messages' => 'Zobrazit zprávy',
+		'delete_messages' => 'Smazat vybrané zprávy',
 		'access_settings' => 'Zobrazit nastavení',
 	],
 

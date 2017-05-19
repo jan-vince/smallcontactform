@@ -24,5 +24,22 @@
 </div>
 
 
-<div data-control="toolbar">
-</div>
+<?php if ($this->user->hasAccess('janvince.smallcontactform.delete_messages')): ?>
+    <div data-control="toolbar">
+        <button
+            class="btn btn-default oc-icon-trash-o"
+            disabled="disabled"
+            onclick="$(this).data('request-data', {
+                checked: $('.control-list').listWidget('getChecked')
+            })"
+            data-request="onDelete"
+            data-request-confirm="<?= e(trans('backend::lang.list.delete_selected_confirm')) ?>"
+            data-trigger-action="enable"
+            data-trigger=".control-list input[type=checkbox]"
+            data-trigger-condition="checked"
+            data-request-success="$(this).prop('disabled', true)"
+            data-stripe-load-indicator>
+            <?= e(trans('backend::lang.list.delete_selected')) ?>
+        </button>
+    </div>
+<?php endif ?>

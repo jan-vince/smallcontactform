@@ -9,6 +9,7 @@ return [
 
 	'permissions' => [
 		'access_messages' => 'Show form messages',
+		'delete_messages' => 'Delete stored messages',
 		'access_settings' => 'Show form settings',
 	],
 
