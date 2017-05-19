@@ -84,6 +84,37 @@ return [
 
 	],
 
+	'mail' => [
+
+		'templates' => [
+			'autoreply' => 'Zpráva automatické odpovědi z kontaktního formuláře',
+			'notification' => 'Notifikace z kontaktního formuláře',
+		]
+
+	],
+
+	'reportwidget' => [
+
+		'partials' => [
+
+			'messages' => [
+				'label' => 'Kontaktní formulář - Přehled zpráv',
+				'title' => 'Přehled zpráv',
+				'messages_all' => 'Vše',
+				'messages_new' => 'Nové',
+				'messages_read' => 'Přečtené',
+			],
+
+			'new_message' => [
+				'label' => 'Kontaktní formulář - Nové zprávy',
+				'title' => 'Nové zprávy',
+				'link_text' => 'Klikněte pro zobrazení přehledu zpráv',
+			],
+
+		],
+
+	],
+
 	'settings' => [
 
 		'form' => [

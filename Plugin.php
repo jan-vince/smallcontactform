@@ -108,8 +108,8 @@ class Plugin extends PluginBase {
 	public function registerMailTemplates()
 	{
 	    return [
-	        'janvince.smallcontactform::mail.autoreply' => 'Form auto reply message',
-	        'janvince.smallcontactform::mail.notification' => 'Form notification message',
+	        'janvince.smallcontactform::mail.autoreply' => 'janvince.smallcontactform::lang.mail.templates.autoreply',
+	        'janvince.smallcontactform::mail.notification' => 'janvince.smallcontactform::lang.mail.templates.notification',
 	    ];
 	}
 
@@ -147,6 +147,20 @@ class Plugin extends PluginBase {
 
                 if($value){ return "<img src='".$value->getThumb($width, $height)."' style='width: auto; height: auto; max-width: ".$width."px; max-height: ".$height."px'>"; }
             },
+	    ];
+	}
+
+	public function registerReportWidgets()
+	{
+	    return [
+	        'JanVince\SmallContactForm\ReportWidgets\Messages' => [
+	            'label'   => 'janvince.smallcontactform::lang.reportwidget.partials.messages.label',
+	            'context' => 'dashboard'
+	        ],
+	        'JanVince\SmallContactForm\ReportWidgets\NewMessage' => [
+	            'label'   => 'janvince.smallcontactform::lang.reportwidget.partials.new_message.label',
+	            'context' => 'dashboard'
+	        ],
 	    ];
 	}
 

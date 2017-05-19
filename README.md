@@ -122,6 +122,23 @@ If email, name and message fields are asigned on *Settings > Small contact form
 
 You can click on a record to see all form data. The message will be marked as read.
 
+
+## Dashboard report widgets
+
+There are available report widgets to be used on OctoberCMS dashboard.
+
+#### Messages stats
+
+Shows basic messages statistics.
+
+
+#### New messages
+
+Shows number of new messages. The color changes to green if there are any.
+
+You can simply click widget to open Messages list.
+
+
 ----
 > My thanks goes to:    
 > [OctoberCMS](http://www.octobercms.com) team members and supporters for this great system.   

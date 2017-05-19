@@ -9,3 +9,5 @@
 1.1.0:
     - Added function to delete records in Messages list
     - Added permission to delete records
+1.2.0:
+    - Added dashboard report widgets (Stats and New messages)

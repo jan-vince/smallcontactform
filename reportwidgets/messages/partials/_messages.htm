@@ -1,0 +1,15 @@
+<div class="report-widget">
+    <h3><?= e(trans('janvince.smallcontactform::lang.reportwidget.partials.messages.title')) ?></h3>
+
+    <div
+        class="control-chart"
+        data-control="chart-bar"
+        data-size="200"
+        data-center-text="180">
+        <ul>
+            <li data-color="orange"><?= e(trans('janvince.smallcontactform::lang.reportwidget.partials.messages.messages_all')) ?> <span><?php echo($this->getRecordsStats('all_count'));  ?></span></li>
+            <li data-color="#95b753"><?= e(trans('janvince.smallcontactform::lang.reportwidget.partials.messages.messages_new')) ?> <span><?php echo($this->getRecordsStats('new_count'));  ?></span></li>
+            <li data-color="#d1d1d1"><?= e(trans('janvince.smallcontactform::lang.reportwidget.partials.messages.messages_read')) ?> <span><?php echo($this->getRecordsStats('read_count'));  ?></span></li>
+        </ul>
+    </div>
+</div>

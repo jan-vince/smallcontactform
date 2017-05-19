@@ -1,0 +1,13 @@
+<div class="report-widget">
+    <h3><?= e(trans('janvince.smallcontactform::lang.reportwidget.partials.new_message.title')) ?></h3>
+
+    <a href="<?= Backend::url('janvince/smallcontactform/messages');?>">
+        <div class="scoreboard-item title-value">
+            <p <?= ($this->getRecordsStats('new_count') > 0 ? 'class="positive"' : 'style="color: #d1d1d1;"'); ?>">
+                    <span class="oc-icon-inbox oc-icon-2x"></span><strong><?= $this->getRecordsStats('new_count'); ?></strong>
+            </p>
+            <p class="description"><?= e(trans('janvince.smallcontactform::lang.reportwidget.partials.new_message.link_text')) ?></p>
+        </div>
+    </a>
+
+</div>

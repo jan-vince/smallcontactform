@@ -84,6 +84,37 @@ return [
 
 	],
 
+	'mail' => [
+
+		'templates' => [
+			'autoreply' => 'Form auto reply message',
+			'notification' => 'Form notification message',
+		]
+
+	],
+
+	'reportwidget' => [
+
+		'partials' => [
+
+			'messages' => [
+				'label' => 'Contact form - Messages stats',
+				'title' => 'Messages stats',
+				'messages_all' => 'All',
+				'messages_new' => 'New',
+				'messages_read' => 'Read',
+			],
+
+			'new_message' => [
+				'label' => 'Contact form - New messages',
+				'title' => 'New messages',
+				'link_text' => 'Click to show Messages list',
+			],
+
+		],
+
+	],
+
 	'settings' => [
 
 		'form' => [
