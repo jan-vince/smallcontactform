@@ -82,6 +82,14 @@ The idea is simple (and solution is so I hope):
  * Error messages will be shown above input field
 * You can reorder fields by drag and drop left circle (all fields can be collapsed by pressing Ctrl+click (Cmd+click on MacOS) on arrow in right top corners)
 
+### COLUMNS MAPPING
+
+System writes all form data in database, but for quick overview Name, Email and Message columns are visible separately in Messages list.
+
+But you have to help system to identify these columns by mapping to your form fields.
+
+These mappings are also used for auto reply emails where at least Email field mapping is important - if you allow this function in *Email* tab.
+
 
 ### ANTISPAM
 
@@ -118,7 +126,7 @@ A notification of sent form can be send to provided email address.
 
 All sent data from Contact form are saved and listed in backend Messages list.
 
-If email, name and message fields are asigned on *Settings > Small contact form > Email | Allow autoreply*, they will be saved in separate columns (you can make fields assignment and disallow autoreply if you don't need this function - but assignments will be preserved).
+If email, name and message fields are asigned on *Settings > Small contact form > Columns mapping*, they will be saved and shown in separate columns.
 
 You can click on a record to see all form data. The message will be marked as read.
 
@@ -143,7 +151,7 @@ You can simply click widget to open Messages list.
 > My thanks goes to:    
 > [OctoberCMS](http://www.octobercms.com) team members and supporters for this great system.   
 > [Andrew Measham](https://unsplash.com/@andrewmeasham) for his photo.   
-> [Fon Awesome](http://fontawesome.io/icons/) for nice icons.
+> [Font Awesome](http://fontawesome.io/icons/) for nice icons.
 
 
 Created by [Jan Vince](http://www.vince.cz), freelance web designer from Czech Republic.

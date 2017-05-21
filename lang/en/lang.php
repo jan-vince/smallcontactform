@@ -237,17 +237,17 @@ return [
 			'allow_autoreply' => 'Allow auto reply',
 			'allow_autoreply_comment' => 'Send a form content copy to author',
 
-			'autoreply_name_field' => 'Email TO "name" form field',
+			'autoreply_name_field' => 'NAME form field',
 			'autoreply_name_field_empty_option' => '-- Select --',
-			'autoreply_name_field_comment' => 'Select a field with sender name (must be type of Text). Save and refresh this page if you can\'t see your fields.',
+			'autoreply_name_field_comment' => 'Must be type of Text.<br><em>Save and refresh this page if you can\'t see your fields.</em>',
 
-			'autoreply_email_field' => 'Email TO "address" form field',
+			'autoreply_email_field' => 'EMAIL address form field',
 			'autoreply_email_field_empty_option' => '-- Select --',
-			'autoreply_email_field_comment' => 'Select a field with sender email address (must be type of Email). Save and refresh this page if you can\'t see your fields.',
+			'autoreply_email_field_comment' => 'Must be type of Email.<br><em>Save and refresh this page if you can\'t see your fields.</em>',
 
-			'autoreply_message_field' => 'Message form field',
+			'autoreply_message_field' => 'MESSAGE form field',
 			'autoreply_message_field_empty_option' => '-- Select --',
-			'autoreply_message_field_comment' => 'Select a message field (must be type of Textarea). Save and refresh this page if you can\'t see your fields.',
+			'autoreply_message_field_comment' => 'Must be type of Textarea.<br><em>Save and refresh this page if you can\'t see your fields.</em>',
 
 		],
 
@@ -271,7 +271,26 @@ return [
 			'antispam_delay_error_msg_comment' => 'Message to show to user when form was sent too fast',
 			'antispam_delay_error_msg_placeholder' => 'Form sent too fast! Please wait few seconds and try again!',
 
+		],
 
+		'mapping' => [
+
+			'hint' => [
+				'title' => 'Why fields mapping?',
+				'content' => '
+				<p>You can build a custom form with own field names and types.</p>
+				<p>System writes all form data in database, but for quick overview Name, Email and Message columns are visible separately in Messages list.</p>
+				<p>So you have to help system to identify these columns by mapping to your form fields.</p>
+				<p><em>These mappings are also used for auto reply emails where at least Email field mapping is important.</em></p>
+				',
+			],
+
+			'warning' => [
+				'title' => 'Can\'t select your form fields?',
+				'content' => '
+				<p>If you don\'t see your form fields, click on button Save at the bottom of this page and then reload page (F5 or Ctr+R / Cmd+R).</p>
+				',
+			],
 
 		],
 
@@ -279,6 +298,7 @@ return [
 			'form' => 'Form',
 			'buttons' => 'Send button',
 			'form_fields' => 'Fields',
+			'mapping' => 'Columns mapping',
 			'email' => 'Email',
 			'antispam' => 'Antispam',
 		],

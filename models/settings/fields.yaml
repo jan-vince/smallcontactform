@@ -229,6 +229,47 @@ tabs:
                         type: section
 
 
+        ## MAPPING
+
+        autoreply_email_field:
+            label: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field'
+            commentHtml: true
+            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field_comment'
+            span: left
+            type: dropdown
+            tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
+            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field_empty_option'
+
+        partial_mapping:
+            type: partial
+            path: $/janvince/smallcontactform/models/settings/_mapping_help.htm
+            span: right
+            tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
+
+        autoreply_name_field:
+            label: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field'
+            commentHtml: true
+            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field_comment'
+            span: left
+            type: dropdown
+            tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
+            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field_empty_option'
+
+        autoreply_message_field:
+            label: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field'
+            commentHtml: true
+            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field_comment'
+            span: left
+            type: dropdown
+            tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
+            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field_empty_option'
+
+        partial_mapping_warning:
+            type: partial
+            path: $/janvince/smallcontactform/models/settings/_mapping_warning.htm
+            span: right
+            tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
+
 
         ## ANTISPAM
 
@@ -352,47 +393,6 @@ tabs:
                 action: show
                 field: allow_autoreply
                 condition: checked
-
-
-        autoreply_email_field:
-            label: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field'
-            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field_comment'
-            span: left
-            type: dropdown
-            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
-            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field_empty_option'
-            cssClass: field-indent
-            trigger:
-                action: show
-                field: allow_autoreply
-                condition: checked
-
-        autoreply_name_field:
-            label: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field'
-            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field_comment'
-            span: right
-            type: dropdown
-            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
-            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field_empty_option'
-            cssClass: field-indent
-            trigger:
-                action: show
-                field: allow_autoreply
-                condition: checked
-
-        autoreply_message_field:
-            label: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field'
-            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field_comment'
-            span: left
-            type: dropdown
-            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
-            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field_empty_option'
-            cssClass: field-indent
-            trigger:
-                action: show
-                field: allow_autoreply
-                condition: checked
-
 
         section_notify:
             type: section
