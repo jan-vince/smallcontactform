@@ -62,6 +62,30 @@ But you have to include Twig tags ````{% styles %}```` and ````{% scripts %}````
 </html>
 ````
 
+If you want to insert assets by hand, you can do it this way (or similar):
+
+````html
+<html>
+	<head>
+		<link rel="stylesheet" href="/modules/system/assets/css/framework.extras.css">
+	</head>
+<body>
+
+	{% page %}
+
+	<script type="text/javascript"
+			src="{{ [
+						'@jquery',
+						'@framework',
+	                    '@framework.extras']|theme
+				}}.js">
+	</script>
+
+</body>
+
+</html>
+````
+
 ### SEND BUTTON
 
 * You can set button class and text.
