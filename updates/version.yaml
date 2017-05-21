@@ -17,3 +17,5 @@
     - Mail templates convert new lines to <br> with {{ values|raw|nl2br }}
 1.2.3:
     - Fields mapping moved to separate tab *Columns mapping*
+1.2.4:
+    - Updated README.md with assets usage example
