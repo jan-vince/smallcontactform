@@ -67,7 +67,7 @@ If you want to insert assets by hand, you can do it this way (or similar):
 ````html
 <html>
 	<head>
-		<link rel="stylesheet" href="/modules/system/assets/css/framework.extras.css">
+		<link rel="stylesheet" href="{{ /modules/system/assets/css/framework.extras.css|app }}">
 	</head>
 <body>
 
@@ -121,7 +121,7 @@ Very simple implementation of passive antispam (inspired by [Nette AntiSpam Cont
 
 The idea behind this is to check how fast is form send and if robots-catching field is filled.
 
-* When allowed, you can set form delay (in seconds) to prevent toot fast form sendind (mostly by robots). You can add custom error message (will be shown in general error message box above form).
+* When allowed, you can set form delay (in seconds) to prevent too fast form sendind (mostly by robots). You can add custom error message (will be shown in general error message box above form).
 * You can add antispam field label and error message for non JavaScript enabled browsers.
  * If JavaScritp is working, antispam field is automatically hidden and cleared.
 
