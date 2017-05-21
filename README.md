@@ -88,7 +88,7 @@ System writes all form data in database, but for quick overview Name, Email and 
 
 But you have to help system to identify these columns by mapping to your form fields.
 
-These mappings are also used for auto reply emails where at least Email field mapping is important - if you allow this function in *Email* tab.
+These mappings are also used for auto reply emails where at least Email field mapping is important.
 
 
 ### ANTISPAM
