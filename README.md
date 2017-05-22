@@ -67,7 +67,7 @@ If you want to insert assets by hand, you can do it this way (or similar):
 ````html
 <html>
 	<head>
-		<link rel="stylesheet" href="{{ /modules/system/assets/css/framework.extras.css|app }}">
+		<link href="{{['~/modules/system/assets/css/framework.extras.css']|theme }}" rel="stylesheet">		
 	</head>
 <body>
 
