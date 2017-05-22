@@ -74,11 +74,11 @@ If you want to insert assets by hand, you can do it this way (or similar):
 	{% page %}
 
 	<script type="text/javascript"
-			src="{{ [
-						'@jquery',
-						'@framework',
-	                    '@framework.extras']|theme
-				}}.js">
+		src="{{ [
+			'@jquery',
+			'@framework',
+			'@framework.extras']|theme
+		}}.js">
 	</script>
 
 </body>
