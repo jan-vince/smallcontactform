@@ -67,18 +67,16 @@ If you want to insert assets by hand, you can do it this way (or similar):
 ````html
 <html>
 	<head>
-		<link href="{{['~/modules/system/assets/css/framework.extras.css']|theme }}" rel="stylesheet">		
+		<link href="{{['~/modules/system/assets/css/framework.extras.css']|theme }}.css" rel="stylesheet">
 	</head>
 <body>
 
 	{% page %}
 
-	<script type="text/javascript"
-			src="{{ [
-						'@jquery',
-						'@framework',
-	                    '@framework.extras']|theme
-				}}.js">
+	<script type="text/javascript" src="{{ [
+				'@jquery',
+				'@framework',
+				'@framework.extras']|theme}}.js">
 	</script>
 
 </body>
