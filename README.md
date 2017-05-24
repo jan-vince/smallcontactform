@@ -46,7 +46,7 @@ This will include necessary styles (Bootstrap, AJAX, October AJAX) and scripts (
 
 But you have to include Twig tags ````{% styles %}```` and ````{% scripts %}```` into your layout or page like this:
 
-````html
+````
 <html>
 	<head>
 		{% styles %}
@@ -64,7 +64,7 @@ But you have to include Twig tags ````{% styles %}```` and ````{% scripts %}````
 
 If you want to insert assets by hand, you can do it this way (or similar):
 
-````html
+````
 <html>
 	<head>
 		<link href="{{['~/modules/system/assets/css/framework.extras.css']|theme }}.css" rel="stylesheet">
