@@ -334,6 +334,49 @@ tabs:
                 condition: checked
 
 
+        section_ip_protection:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            trigger:
+                action: show
+                field: add_antispam
+                condition: checked
+
+        add_ip_protection:
+            label: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+
+        add_ip_protection_count:
+            label: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection_count'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection_count_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection_count_placeholder'
+            span: left
+            type: number
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_ip_protection
+                condition: checked
+
+        add_ip_protection_error_too_many_submits:
+            label: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_too_many_submits'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_too_many_submits_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_too_many_submits_placeholder'
+            span: right
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_ip_protection
+                condition: checked
+
+
+
         ## EMAILS
 
         allow_email_queue:

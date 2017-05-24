@@ -58,6 +58,7 @@ return [
 				'new_message' => 'Status',
 				'new' => 'New',
 				'read' => 'Read',
+				'remote_ip' => 'Sender\'s IP',
 
 			]
 
@@ -75,6 +76,7 @@ return [
 			'preview_title' => 'Contact form message',
 			'preview_date' => 'From date:',
 			'preview_content_title' => 'Content:',
+			'remote_ip' => 'sent from ip',
 
 		],
 
@@ -270,6 +272,20 @@ return [
 			'antispam_delay_error_msg' => 'Delay error message',
 			'antispam_delay_error_msg_comment' => 'Message to show to user when form was sent too fast',
 			'antispam_delay_error_msg_placeholder' => 'Form sent too fast! Please wait few seconds and try again!',
+
+			'add_ip_protection' => 'Check sender\'s IP',
+			'add_ip_protection_comment' => 'Do not allow too many form submits from one IP address',
+
+			'add_ip_protection_count' => 'Maximum form submits during a day',
+			'add_ip_protection_count_comment' => 'Number of allowed submits from one IP address during a single day',
+			'add_ip_protection_count_placeholder' => '3',
+
+			'add_ip_protection_error_get_ip' => 'We wasn\'t able to determine your IP address!',
+
+			'add_ip_protection_error_too_many_submits' => 'Too many submits error message',
+			'add_ip_protection_error_too_many_submits_comment' => 'Error message to show to the user',
+			'add_ip_protection_error_too_many_submits_placeholder' => 'Too many form submits from one address today!',
+
 
 		],
 

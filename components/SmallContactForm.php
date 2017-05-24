@@ -12,6 +12,7 @@ use Input;
 use Session;
 use Flash;
 use Form;
+use Log;
 
 class SmallContactForm extends ComponentBase
 {
@@ -62,8 +63,35 @@ class SmallContactForm extends ComponentBase
 		 * Validation
 		 */
 		$this->setFieldsValidationRules();
+		$errors = [];
 
 		$this->post = Input::all();
+
+		// IP protection is enabled (has highest priority)
+		if( Settings::get('add_ip_protection') ) {
+
+			$max = ( Settings::get('add_ip_protection_count') ? intval(Settings::get('add_ip_protection_count')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_count_placeholder'))) );
+
+			if( empty($max) ) {
+				$max = 3;
+			}
+
+			$currentIp = Request::ip();
+
+			if( empty($currentIp) ) {
+				Log::error('SMALL CONTACT FORM ERROR: Could not get remote IP address!');
+				$errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_get_ip'));
+			} else {
+
+				$message = new Message;
+
+				if($message->testIPAddress($currentIp) >= $max) {
+					$errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_too_many_submits_placeholder'));
+				}
+
+			}
+
+		}
 
 		// Antispam validation if allowed
 		if( Settings::get('add_antispam') ) {
@@ -72,6 +100,10 @@ class SmallContactForm extends ComponentBase
 			if( !empty($this->post['_form_created']) ) {
 
 				$delay = ( Settings::get('antispam_delay') ? intval(Settings::get('antispam_delay')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'))) );
+
+				if(!$delay) {
+					$delay = 5;
+				}
 
 				$formCreatedTime = strtr(Input::get('_form_created'), 'jihgfedcba', '0123456789');
 
@@ -89,9 +121,7 @@ class SmallContactForm extends ComponentBase
 		$this->validationMessages = $validator->messages();
 		$this->setPostData($validator->messages());
 
-		if($validator->invalid()){
-
-			$errors = [];
+		if($validator->invalid() or !empty($errors)){
 
 			// Form main error msg
 			$errors[] = ( Settings::get('form_error_msg') ? Settings::get('form_error_msg') : e(trans('janvince.smallcontactform::lang.settings.form.error_msg_placeholder')));
@@ -129,7 +159,7 @@ class SmallContactForm extends ComponentBase
 			} else {
 				$this->post = [];
 				$this->postData = [];
-				$this->page['flashSuccess'] = true;				
+				$this->page['flashSuccess'] = true;
 			}
 
 		}

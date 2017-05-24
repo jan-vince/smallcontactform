@@ -123,6 +123,12 @@ The idea behind this is to check how fast is form send and if robots-catching fi
 * You can add antispam field label and error message for non JavaScript enabled browsers.
  * If JavaScritp is working, antispam field is automatically hidden and cleared.
 
+#### Check sender's IP
+
+You can add an extra form protection with limit submits from one IP address.
+
+This check has own error message and custom field to set maximum submits.
+
 
 ### EMAIL
 

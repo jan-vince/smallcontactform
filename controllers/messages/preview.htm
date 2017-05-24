@@ -28,9 +28,15 @@
 
 			<?php endforeach ?>
 
+                <tr>
+                    <th class="p-r-md"><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.remote_ip')) ); ?></th>
+                    <td><?php if(!empty($message->remote_ip)) { echo($message->remote_ip); } ?></td>
+
 		</table>
 
-		<br><br>
+		<br>
+
+        <br>
 
     </div>
 

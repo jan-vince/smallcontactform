@@ -58,7 +58,7 @@ return [
 				'new_message' => 'Stav',
 				'new' => 'Nová',
 				'read' => 'Přečtená',
-
+				'remote_ip' => 'IP odesílatele',
 			]
 
 		],
@@ -75,7 +75,7 @@ return [
 			'preview_title' => 'Zpráva z kontaktního formuláře',
 			'preview_date' => 'Ze dne:',
 			'preview_content_title' => 'Obsah:',
-
+			'remote_ip' => 'odesláno z ip',
 		],
 
 		'index' => [
@@ -256,7 +256,7 @@ return [
 			'add_antispam_comment' => 'Přidá jednoduchou ale efektivní pasivní ochranu proti robotům (více informací v souboru README.md)',
 
 			'antispam_delay' => 'Zpoždění formuláře (s)',
-			'antispam_delay_comment' => 'Test na příliš ryfchlé odeslání formuláře (většinou roboty)',
+			'antispam_delay_comment' => 'Test na příliš rychlé odeslání formuláře (většinou roboty)',
 			'antispam_delay_placeholder' => '3',
 
 			'antispam_label' => 'Popisek (label) antispamového pole',
@@ -270,6 +270,20 @@ return [
 			'antispam_delay_error_msg' => 'Chybová zprávy při rychlém odeslání',
 			'antispam_delay_error_msg_comment' => 'Zpráva, která se zobrazí při příliš rychlém odeslání formuláře',
 			'antispam_delay_error_msg_placeholder' => 'Příliš rychlé odeslání formuláře! Prosím zkuste to za pár vteřin znovu!',
+
+			'add_ip_protection' => 'Testovat IP adresu odesílatele',
+			'add_ip_protection_comment' => 'Nepovolí příliš mnoho odeslání formuláře z jedné IP adresy',
+
+			'add_ip_protection_count' => 'Maximální počet odeslání během jednoho dne',
+			'add_ip_protection_count_comment' => 'Počet povolených odeslání formuláře z jedné IP adresy během jednoho dne',
+			'add_ip_protection_count_placeholder' => '3',
+
+			'add_ip_protection_error_get_ip' => 'Nepodařilo se určit vaši IP adresu!',
+
+			'add_ip_protection_error_too_many_submits' => 'Chybová zpráva při překročení počtu odeslání',
+			'add_ip_protection_error_too_many_submits_comment' => 'Zpráva, kterou obdrží uživatel při překročení limitu počtu odeslání formuláře',
+			'add_ip_protection_error_too_many_submits_placeholder' => 'Byl překročen limit odeslání formuláře během jednoho dne!',
+
 
 		],
 

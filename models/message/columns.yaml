@@ -32,8 +32,8 @@ columns:
         type: text_preview
         width: 50%
 
-    # form_data:
-    #     label: janvince.smallcontactform::lang.models.message.columns.form_data
-    #     searchable: true
-    #     type: array_preview
-    #     width: 50%
+    remote_ip:
+        label: janvince.smallcontactform::lang.models.message.columns.remote_ip
+        searchable: true
+        type: text
+        invisible: true

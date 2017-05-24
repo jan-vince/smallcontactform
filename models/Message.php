@@ -10,6 +10,8 @@ use JanVince\SmallContactForm\Models\Settings;
 use Log;
 use Validator;
 use Mail;
+use Request;
+use Carbon\Carbon;
 
 
 class Message extends Model
@@ -84,6 +86,7 @@ class Message extends Model
 		$this->name = $name_field_value;
 		$this->email = $email_field_value;
 		$this->message = $message_field_value;
+        $this->remote_ip = Request::ip();
 		$this->save();
 
 	}
@@ -209,6 +212,20 @@ class Message extends Model
 
 	}
 
+    /**
+     * Test how many times was given IP address used this day
+     * @return int
+     */
+    public function testIPAddress($ip){
 
+        $today = Carbon::today();
+
+        $count = Message::whereDate('created_at', '=', $today->toDateString())
+                        ->where('remote_ip', '=', $ip)
+                        ->count();
+
+        return $count;
+
+    }
 
 }
