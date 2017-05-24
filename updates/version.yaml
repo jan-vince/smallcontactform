@@ -23,3 +23,5 @@
     - Added IP protection function (limit too many submits from one IP address)
     - And Messages list column to show senders IP address (invisible by default)
     - scf_tables_02.php
+1.2.6:
+    - Fixed IP protection error message
