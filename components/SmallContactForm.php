@@ -86,7 +86,7 @@ class SmallContactForm extends ComponentBase
 				$message = new Message;
 
 				if($message->testIPAddress($currentIp) >= $max) {
-					$errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_too_many_submits_placeholder'));
+					$errors[] = ( Settings::get('add_ip_protection_error_too_many_submits') ? Settings::get('add_ip_protection_error_too_many_submits') : e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_too_many_submits_placeholder')) );
 				}
 
 			}
