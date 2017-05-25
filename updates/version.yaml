@@ -27,3 +27,5 @@
     - Fixed IP protection error message
 1.2.7:
     - Changed remote_ip column type to string
+1.2.8:
+    - Added option to use placeholders instead of labels

@@ -121,6 +121,9 @@ return [
 
 			'css_class' => 'CSS třída formuláře',
 
+			'use_placeholders' => 'Používat zástupný text (placeholder)',
+			'use_placeholders_comment' => 'Místo popisků nad formulářovými poli bude použitý zástupný text',
+
 			'success_msg' => 'Zpráva po úspěšném odeslání',
 			'success_msg_placeholder' => 'Formulář byl v pořádku odeslán.',
 

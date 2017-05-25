@@ -123,6 +123,9 @@ return [
 
 			'css_class' => 'Form CSS class',
 
+			'use_placeholders' => 'Use placeholders',
+			'use_placeholders_comment' => 'Placeholders will be shown instead of field labels',
+
 			'success_msg' => 'Form success message',
 			'success_msg_placeholder' => 'Your data was sent.',
 

@@ -231,7 +231,7 @@ class SmallContactForm extends ComponentBase
 		$output[] = '<div class="' . $wrapperCss . '">';
 
 			// Label
-			if(!empty($fieldSettings['label'])){
+			if( !empty($fieldSettings['label']) and !Settings::get('form_use_placeholders') ){
 				$output[] = '<label class="control-label ' . ( $fieldRequired ? 'required' : '' ) . '" for="' . $fieldSettings['name'] . '">' . $fieldSettings['label'] . '</label>';
 			}
 
@@ -247,6 +247,12 @@ class SmallContactForm extends ComponentBase
 				'class' => ($fieldSettings['field_css'] ? $fieldSettings['field_css'] : e(trans('janvince.smallcontactform::lang.settings.form_fields.field_css_placeholder')) ),
 				'value' => (!empty($this->postData[$fieldSettings['name']]['value']) && empty($fieldType['html_close']) ? $this->postData[$fieldSettings['name']]['value'] : '' ),
 			];
+
+			// Placeholders if enabled
+			if(Settings::get('form_use_placeholders')){
+				$attributes['placeholder'] = $fieldSettings['label'];
+			}
+
 
 			// Autofocus only when no error
 			if(!empty($fieldSettings['autofocus']) && !Flash::error()){

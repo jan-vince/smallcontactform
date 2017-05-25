@@ -29,7 +29,9 @@ You can set permissions to restrict access to *Settings > Small Contact form* an
 ### FORM
 
 * You can set your own CSS class name and general success/error messages.
+* If you need it, placeholders can be used instead of labels
 * Form can be hidden after successfull send.
+
 
 #### Enable AJAX
 

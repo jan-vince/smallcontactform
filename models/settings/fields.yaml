@@ -31,6 +31,13 @@ tabs:
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.form'
 
+        form_use_placeholders:
+            label: 'janvince.smallcontactform::lang.settings.form.use_placeholders'
+            comment: 'janvince.smallcontactform::lang.settings.form.use_placeholders_comment'
+            span: left
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
 
         section_ajax:
             type: section
