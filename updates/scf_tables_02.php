@@ -12,7 +12,7 @@ class SmallContactFormTables_02 extends Migration
 
         Schema::table('janvince_smallcontactform_messages', function($table)
         {
-            $table->text('remote_ip')->nullable();
+            $table->string('remote_ip')->nullable();
             $table->index('remote_ip');
         });
 
