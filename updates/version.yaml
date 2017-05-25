@@ -25,3 +25,5 @@
     - scf_tables_02.php
 1.2.6:
     - Fixed IP protection error message
+1.2.7:
+    - Changed remote_ip column type to string
