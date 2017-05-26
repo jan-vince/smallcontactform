@@ -42,7 +42,7 @@ class Settings extends Model
     /**
      * Try to use Rainlab Tranlaste plugin to get translated content or falls back to default settings value
      */
-    public static function getTranslated($value){
+    public static function getTranslated($value, $defaultValue = false){
 
         // Check for Rainlab.Translate plugin
         $pluginManager = PluginManager::instance()->findByIdentifier('Rainlab.Translate');
@@ -51,10 +51,16 @@ class Settings extends Model
 
     		$settings = Settings::instance();
 
-    		return $settings->getAttributeTranslated($value);
+    		$valueTranslated = $settings->getAttributeTranslated($value);
+
+            if(!empty($valueTranslated)){
+                return $valueTranslated;
+            } else {
+                return $defaultValue;
+            }
 
         } else {
-            return Settings::get($value);
+            return Settings::get($value, $defaultValue);
         }
 
     }
