@@ -152,7 +152,30 @@ Email can be send to form sender as confirmation.
 A notification of sent form can be send to provided email address.
 
 
-## Messages list
+## TRANSLATION
+
+You can allow translation with [Rainlab Translate](https://octobercms.com/plugin/rainlab-translate) plugin.
+
+> After installation of Translate plugin, please add at least two languages in *Settings > Manage languages*.
+> For translations to work there must be a localePicker component included in your layout/page.
+
+#### Form texts
+
+Most of Small Contact form texts can be edited right in *Settings > Small Contact form*.
+
+#### Custom form fields
+
+Translate plugin doesn't supports translation of individual repeater fields yet, so form field texts (label, validation error messages) have to be - for now - translated in a dictionary: *Settings > Translate messages*
+
+> Please note that form fields labels will be shown in dictionary after first form render (on your frontend page) and validation error messages after first send.
+
+#### Email templates
+
+You can create your own email templates in *Settings > Mail templates* (for hint look inside of default templates starting with *janvince.smallcontactform::*).
+
+Remeber your email templates CODE and put in in Small Contact form email settings in *Settings > Small Contact form > Email tab*. For each language there can be specific template.
+
+## MESSAGES LIST
 
 All sent data from Contact form are saved and listed in backend Messages list.
 
@@ -161,7 +184,7 @@ If email, name and message fields are asigned on *Settings > Small contact form
 You can click on a record to see all form data. The message will be marked as read.
 
 
-## Dashboard report widgets
+## DASHBOARD REPORT WIDGETS
 
 There are available report widgets to be used on OctoberCMS dashboard.
 

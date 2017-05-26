@@ -228,7 +228,10 @@ return [
 			'address_from_name_placeholder' => 'John Doe',
 
 			'subject' => 'Email subject',
-			'comment' => 'Set only if you want other than defined in Settings > Mail templates.',
+			'subject_comment' => 'Set only if you want other than defined in Settings > Mail templates.',
+
+			'template' => 'Email template',
+			'template_comment' => 'Code of email template created in Settings > Email templates. Left empty for default template: janvince.smallcontactform::mail.autoreply.',
 
 			'allow_email_queue' => 'Queueing mail',
 			'allow_email_queue_comment' => 'Add email to queue instead of immediately send. You have to configure your OctoberCMS queue first!',
@@ -253,6 +256,9 @@ return [
 			'autoreply_message_field' => 'MESSAGE form field',
 			'autoreply_message_field_empty_option' => '-- Select --',
 			'autoreply_message_field_comment' => 'Must be type of Textarea.<br><em>Save and refresh this page if you can\'t see your fields.</em>',
+
+			'notification_template' => 'Notification email template',
+			'notification_template_comment' => 'Code of email template created in Settings > Email templates. Left empty for default template: janvince.smallcontactform::mail.autoreply.',
 
 		],
 

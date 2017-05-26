@@ -29,3 +29,6 @@
     - Changed remote_ip column type to string
 1.2.8:
     - Added option to use placeholders instead of labels
+1.3.0:
+    - Added translation support for Rainlab Translate plugin
+    - Fixed some typos

@@ -14,7 +14,7 @@ use Backend;
  */
 class Messages extends Controller
 {
-	public $requiredPerrmisions = ['janvince.smallcontactform.access_messages'];
+	public $requiredPermissions = ['janvince.smallcontactform.access_messages'];
 
     public $implement = [
         'Backend.Behaviors.ListController'

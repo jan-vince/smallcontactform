@@ -13,9 +13,16 @@ use Session;
 use Flash;
 use Form;
 use Log;
+use App;
 
 class SmallContactForm extends ComponentBase
 {
+
+	// public $implement = [
+    //     '@RainLab.Translate.Behaviors.TranslatableModel',
+    // ];
+	//
+	// public $translatable = [];
 
 	private $validationRules;
 	private $validationMessages;
@@ -39,13 +46,13 @@ class SmallContactForm extends ComponentBase
 		$this->page['flashSuccess'] = Session::get('flashSuccess');
 
 		// Inject CSS assets if required
-		if(Settings::get('add_assets') && Settings::get('add_css_assets')){
+		if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_css_assets')){
 			$this->addCss('/modules/system/assets/css/framework.extras.css');
 			$this->addCss('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 		}
 
 		// Inject JS assets if required
-		if(Settings::get('add_assets') && Settings::get('add_js_assets')){
+		if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_js_assets')){
 			$this->addJs('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
 			$this->addJs('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
 			$this->addJs('/modules/system/assets/js/framework.js');
@@ -68,9 +75,9 @@ class SmallContactForm extends ComponentBase
 		$this->post = Input::all();
 
 		// IP protection is enabled (has highest priority)
-		if( Settings::get('add_ip_protection') ) {
+		if( Settings::getTranslated('add_ip_protection') ) {
 
-			$max = ( Settings::get('add_ip_protection_count') ? intval(Settings::get('add_ip_protection_count')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_count_placeholder'))) );
+			$max = ( Settings::getTranslated('add_ip_protection_count') ? intval(Settings::getTranslated('add_ip_protection_count')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_count_placeholder'))) );
 
 			if( empty($max) ) {
 				$max = 3;
@@ -86,7 +93,7 @@ class SmallContactForm extends ComponentBase
 				$message = new Message;
 
 				if($message->testIPAddress($currentIp) >= $max) {
-					$errors[] = ( Settings::get('add_ip_protection_error_too_many_submits') ? Settings::get('add_ip_protection_error_too_many_submits') : e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_too_many_submits_placeholder')) );
+					$errors[] = ( Settings::getTranslated('add_ip_protection_error_too_many_submits') ? Settings::getTranslated('add_ip_protection_error_too_many_submits') : e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_too_many_submits_placeholder')) );
 				}
 
 			}
@@ -94,12 +101,12 @@ class SmallContactForm extends ComponentBase
 		}
 
 		// Antispam validation if allowed
-		if( Settings::get('add_antispam') ) {
+		if( Settings::getTranslated('add_antispam') ) {
 			$this->validationRules['_protect'] = 'size:0';
 
 			if( !empty($this->post['_form_created']) ) {
 
-				$delay = ( Settings::get('antispam_delay') ? intval(Settings::get('antispam_delay')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'))) );
+				$delay = ( Settings::getTranslated('antispam_delay') ? intval(Settings::getTranslated('antispam_delay')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'))) );
 
 				if(!$delay) {
 					$delay = 5;
@@ -124,11 +131,11 @@ class SmallContactForm extends ComponentBase
 		if($validator->invalid() or !empty($errors)){
 
 			// Form main error msg
-			$errors[] = ( Settings::get('form_error_msg') ? Settings::get('form_error_msg') : e(trans('janvince.smallcontactform::lang.settings.form.error_msg_placeholder')));
+			$errors[] = ( Settings::getTranslated('form_error_msg') ? Settings::getTranslated('form_error_msg') : e(trans('janvince.smallcontactform::lang.settings.form.error_msg_placeholder')));
 
 			// validation error msg for Antispam field
 			if( empty($this->postData['_protect']['error']) && !empty($this->postData['_form_created']['error']) ) {
-				$errors[] = ( Settings::get('antispam_delay_error_msg') ? Settings::get('antispam_delay_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder')));
+				$errors[] = ( Settings::getTranslated('antispam_delay_error_msg') ? Settings::getTranslated('antispam_delay_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder')));
 			}
 
 			Flash::error(implode(PHP_EOL, $errors));
@@ -136,7 +143,7 @@ class SmallContactForm extends ComponentBase
 		} else {
 
 			Flash::success(
-				( Settings::get('form_success_msg') ? Settings::get('form_success_msg') : e(trans('janvince.smallcontactform::lang.settings.form.success_msg_placeholder')) )
+				( Settings::getTranslated('form_success_msg') ? Settings::getTranslated('form_success_msg') : e(trans('janvince.smallcontactform::lang.settings.form.success_msg_placeholder')) )
 			);
 
 			Session::flash('flashSuccess', true);
@@ -155,7 +162,7 @@ class SmallContactForm extends ComponentBase
 			// Redirect to prevent repeated sending of form
 			// Clear data after success AJAX send
 			if(!Request::ajax()){
-				return Redirect::refresh();
+				// return Redirect::refresh();
 			} else {
 				$this->post = [];
 				$this->postData = [];
@@ -173,7 +180,7 @@ class SmallContactForm extends ComponentBase
 	 */
 	public function fields(){
 
-		return Settings::get('form_fields', []);
+		return Settings::getTranslated('form_fields', []);
 
 	}
 
@@ -184,11 +191,11 @@ class SmallContactForm extends ComponentBase
 
 		$attributes = [];
 
-		$attributes['class'] = Settings::get('form_css_class');
+		$attributes['class'] = Settings::getTranslated('form_css_class');
 		$attributes['request'] = $this->alias . '::onFormSend';
 		$attributes['method'] = 'POST';
 
-		if( Settings::get('form_allow_ajax', 0) ) {
+		if( Settings::getTranslated('form_allow_ajax', 0) ) {
 
 			$attributes['data-request'] = $this->alias . '::onFormSend';
 			$attributes['data-request-validate'] = NULL;
@@ -196,9 +203,9 @@ class SmallContactForm extends ComponentBase
 
 		}
 
-		if( Settings::get('form_send_confirm_msg') and Settings::get('form_allow_confirm_msg') ) {
+		if( Settings::getTranslated('form_send_confirm_msg') and Settings::getTranslated('form_allow_confirm_msg') ) {
 
-			$attributes['data-request-confirm'] = Settings::get('form_send_confirm_msg');
+			$attributes['data-request-confirm'] = Settings::getTranslated('form_send_confirm_msg');
 
 		}
 
@@ -231,13 +238,13 @@ class SmallContactForm extends ComponentBase
 		$output[] = '<div class="' . $wrapperCss . '">';
 
 			// Label
-			if( !empty($fieldSettings['label']) and !Settings::get('form_use_placeholders') ){
-				$output[] = '<label class="control-label ' . ( $fieldRequired ? 'required' : '' ) . '" for="' . $fieldSettings['name'] . '">' . $fieldSettings['label'] . '</label>';
+			if( !empty($fieldSettings['label']) and !Settings::getTranslated('form_use_placeholders') ){
+				$output[] = '<label class="control-label ' . ( $fieldRequired ? 'required' : '' ) . '" for="' . $fieldSettings['name'] . '">' . Settings::getDictionaryTranslated($fieldSettings['label']) . '</label>';
 			}
 
 			// Add help-block if there are errors
 			if(!empty($this->postData[$fieldSettings['name']]['error'])){
-				$output[] = '<small class="help-block">' . $this->postData[$fieldSettings['name']]['error'] . "</small>";
+				$output[] = '<small class="help-block">' . Settings::getDictionaryTranslated($this->postData[$fieldSettings['name']]['error']) . "</small>";
 			}
 
 			// Field attributes
@@ -249,8 +256,8 @@ class SmallContactForm extends ComponentBase
 			];
 
 			// Placeholders if enabled
-			if(Settings::get('form_use_placeholders')){
-				$attributes['placeholder'] = $fieldSettings['label'];
+			if(Settings::getTranslated('form_use_placeholders')){
+				$attributes['placeholder'] = Settings::getDictionaryTranslated($fieldSettings['label']);
 			}
 
 
@@ -303,7 +310,7 @@ class SmallContactForm extends ComponentBase
 	 */
 	public function getAntispamFieldHtmlCode(){
 
-		if( !Settings::get('add_antispam') ){
+		if( !Settings::getTranslated('add_antispam') ){
 			return NULL;
 		}
 
@@ -311,13 +318,13 @@ class SmallContactForm extends ComponentBase
 
 		$output[] = '<div id="_protect-wrapper" class="form-group ' . (Input::get('_protect') ? 'has-error' : '') . '">';
 
-			$output[] = '<label class="control-label">' . ( Settings::get('antispam_label') ? Settings::get('antispam_label') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_label_placeholder'))  ) . '</label>';
+			$output[] = '<label class="control-label">' . ( Settings::getTranslated('antispam_label') ? Settings::getTranslated('antispam_label') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_label_placeholder'))  ) . '</label>';
 
 			$output[] = '<input type="hidden" name="_form_created" value="' . strtr(time(), '0123456789', 'jihgfedcba') . '">';
 
 			// Add help-block if there are errors
 			if(!empty($this->postData['_protect']['error'])){
-				$output[] = '<small class="help-block">' . ( Settings::get('antispam_error_msg') ? Settings::get('antispam_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_error_msg_placeholder'))  ) . "</small>";
+				$output[] = '<small class="help-block">' . ( Settings::getTranslated('antispam_error_msg') ? Settings::getTranslated('antispam_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_error_msg_placeholder'))  ) . "</small>";
 			}
 
 			// Field attributes
@@ -369,9 +376,9 @@ class SmallContactForm extends ComponentBase
 
 		$output[] = '<div id="submit-wrapper" class="form-group">';
 
-			$output[] = '<button type="submit" data-attach-loading class="oc-loader ' . ( Settings::get('send_btn_css_class') ? Settings::get('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . '">';
+			$output[] = '<button type="submit" data-attach-loading class="oc-loader ' . ( Settings::getTranslated('send_btn_css_class') ? Settings::getTranslated('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . '">';
 
-			$output[] = ( Settings::get('send_btn_text') ? Settings::get('send_btn_text') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_text_placeholder')) );
+			$output[] = ( Settings::getTranslated('send_btn_text') ? Settings::getTranslated('send_btn_text') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_text_placeholder')) );
 
 			$output[] = '</button>';
 
@@ -401,7 +408,7 @@ class SmallContactForm extends ComponentBase
 					$rules[] = $rule['validation_type'];
 
 					if(!empty($rule['validation_error'])){
-						$validationMessages[($field['name'] . '.' . $rule['validation_type'] )] = $rule['validation_error'];
+						$validationMessages[($field['name'] . '.' . $rule['validation_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
 					}
 				}
 				$validationRules[$field['name']] = implode('|', $rules);

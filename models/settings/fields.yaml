@@ -74,6 +74,13 @@ tabs:
                 field: form_allow_ajax
                 condition: checked
 
+        section_assets:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+            trigger:
+                action: show
+                field: add_assets
+                condition: checked
 
         add_assets:
             label: 'janvince.smallcontactform::lang.settings.form.add_assets'
@@ -434,7 +441,19 @@ tabs:
 
         email_subject:
             label: 'janvince.smallcontactform::lang.settings.email.subject'
-            comment: 'janvince.smallcontactform::lang.settings.email.comment'
+            comment: 'janvince.smallcontactform::lang.settings.email.subject_comment'
+            span: full
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_autoreply
+                condition: checked
+
+        email_template:
+            label: 'janvince.smallcontactform::lang.settings.email.template'
+            comment: 'janvince.smallcontactform::lang.settings.email.template_comment'
             span: full
             type: text
             tab: 'janvince.smallcontactform::lang.settings.tabs.email'
@@ -472,10 +491,14 @@ tabs:
                 field: allow_notifications
                 condition: checked
 
-        section_assets:
-            type: section
-            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+        notification_template:
+            label: 'janvince.smallcontactform::lang.settings.email.notification_template'
+            comment: 'janvince.smallcontactform::lang.settings.email.notification_template_comment'
+            span: full
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            cssClass: field-indent
             trigger:
                 action: show
-                field: add_assets
+                field: allow_notifications
                 condition: checked

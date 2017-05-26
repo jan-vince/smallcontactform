@@ -3,19 +3,85 @@
 namespace JanVince\SmallContactForm\Models;
 
 use Model;
+use System\Classes\PluginManager;
 
 class Settings extends Model
 {
 
-    public $requiredPerrmisions = ['janvince.smallcontactform.access_settings'];
+    public $implement = [
+        'System.Behaviors.SettingsModel',
+        '@RainLab.Translate.Behaviors.TranslatableModel',
+    ];
 
-	public $implement = ['System.Behaviors.SettingsModel'];
+    public $translatable = [
+        'form_success_msg',
+        'form_error_msg',
+        'form_send_confirm_msg',
+        'send_btn_text',
+
+//        'form_fields',    // TODO: find out how to translate repeater's field (not whole repeater)
+
+        'antispam_delay_error_msg',
+        'antispam_label',
+        'antispam_error_msg',
+        'add_ip_protection_error_too_many_submits',
+        'email_address_from_name',
+        'email_subject',
+        'email_template',
+        'notification_template',
+    ];
+
+    public $requiredPermissions = ['janvince.smallcontactform.access_settings'];
 
     public $settingsCode = 'janvince_smallcontactform_settings';
 
     public $settingsFields = 'fields.yaml';
 
-	public $translatable = [];
+    protected $jsonable = ['form_fields'];
+
+    /**
+     * Try to use Rainlab Tranlaste plugin to get translated content or falls back to default settings value
+     */
+    public static function getTranslated($value){
+
+        // Check for Rainlab.Translate plugin
+        $pluginManager = PluginManager::instance()->findByIdentifier('Rainlab.Translate');
+
+        if ($pluginManager && !$pluginManager->disabled) {
+
+    		$settings = Settings::instance();
+
+    		return $settings->getAttributeTranslated($value);
+
+        } else {
+            return Settings::get($value);
+        }
+
+    }
+
+    /**
+     * Try to use Rainlab Tranlaste plugin to get translated content for given key
+     */
+    public static function getDictionaryTranslated($value){
+
+        // Check for Rainlab.Translate plugin
+        $translatePlugin = PluginManager::instance()->findByIdentifier('Rainlab.Translate');
+
+        if ($translatePlugin && !$translatePlugin->disabled) {
+
+            $params = [];
+
+            $message = \RainLab\Translate\Models\Message::trans($value, $params);
+
+            return $message;
+
+        } else {
+            return $value;
+        }
+
+    }
+
+
 
 	/**
 	 * Generate form fields types list
@@ -95,7 +161,7 @@ class Settings extends Model
 
 		$output = [];
 
-		foreach (Settings::get('form_fields', []) as $field) {
+		foreach (Settings::getTranslated('form_fields', []) as $field) {
 
 			if($type && !empty($field['type']) && $field['type'] <> $type) {
 				continue;

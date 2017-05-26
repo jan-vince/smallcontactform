@@ -12,6 +12,7 @@ use Validator;
 use Mail;
 use Request;
 use Carbon\Carbon;
+use View;
 
 
 class Message extends Model
@@ -19,6 +20,7 @@ class Message extends Model
     use \October\Rain\Database\Traits\Validation;
 
     public $table = 'janvince_smallcontactform_messages';
+
     public $implement = ['@JanVince.Translate.Behaviors.TranslatableModel'];
 
 	public $timestamps = true;
@@ -66,17 +68,17 @@ class Message extends Model
 			$output[$key] = e($value['value']);
 
 			// if email field is assigned in auto reply, save it separatelly
-			if(empty($email_field_value) and $key == Settings::get('autoreply_email_field')){
+			if(empty($email_field_value) and $key == Settings::getTranslated('autoreply_email_field')){
 				$email_field_value = e($value['value']);
 			}
 
 			// if name field is assigned in auto reply, save it separatelly
-			if(empty($name_field_value) and $key == Settings::get('autoreply_name_field')){
+			if(empty($name_field_value) and $key == Settings::getTranslated('autoreply_name_field')){
 				$name_field_value = e($value['value']);
 			}
 
 			// if name message is assigned in auto reply, save it separatelly
-			if(empty($message_field_value) and $key == Settings::get('autoreply_message_field')){
+			if(empty($message_field_value) and $key == Settings::getTranslated('autoreply_message_field')){
 				$message_field_value = e($value['value']);
 			}
 
@@ -96,11 +98,11 @@ class Message extends Model
 	 */
 	public function sendAutoreplyEmail($postData){
 
-		if(!Settings::get('allow_autoreply')) {
+		if(!Settings::getTranslated('allow_autoreply')) {
 			return;
 		}
 
-		if(!Settings::get('autoreply_email_field')) {
+		if(!Settings::getTranslated('autoreply_email_field')) {
 			Log::error('SMALL CONTACT FORM ERROR: Contact form data have no email to send auto reply message!');
 			return;
 		}
@@ -111,7 +113,7 @@ class Message extends Model
 		$sendTo = '';
 
 		foreach($postData as $key => $field) {
-			if($key == Settings::get('autoreply_email_field')){
+			if($key == Settings::getTranslated('autoreply_email_field')){
 				$sendTo = $field['value'];
 			}
 		}
@@ -123,7 +125,7 @@ class Message extends Model
 			return;
 		}
 
-		if( Settings::get('allow_email_queue') ){
+		if( Settings::getTranslated('allow_email_queue') ){
 			$method = 'queue';
 		} else {
 			$method = 'send';
@@ -143,17 +145,31 @@ class Message extends Model
 
         }
 
-		Mail::{$method}('janvince.smallcontactform::mail.autoreply', ['fields' => $output], function($message) use($sendTo){
+        $template = 'janvince.smallcontactform::mail.autoreply';
+
+        if( Settings::getTranslated('email_template') ){
+
+            if(View::exists(Settings::getTranslated('email_template'))) {
+                $template = Settings::getTranslated('email_template');
+            } else {
+                Log::error('SMALL CONTACT FORM: Missing defined email template: ' . Settings::getTranslated('email_template') . '. Default template will be used!');
+            }
+
+        }
+
+
+
+		Mail::{$method}($template, ['fields' => $output], function($message) use($sendTo){
 
 			$message->to($sendTo);
 
-			if( Settings::get('email_subject') ){
-				$message->subject(Settings::get('email_subject'));
+			if( Settings::getTranslated('email_subject') ){
+				$message->subject(Settings::getTranslated('email_subject'));
 			}
 
 			// From address
-			if( Settings::get('email_address_from') ) {
-				$message->from(Settings::get('email_address_from'), Settings::get('email_address_from_name'));
+			if( Settings::getTranslated('email_address_from') ) {
+				$message->from(Settings::getTranslated('email_address_from'), Settings::getTranslated('email_address_from_name'));
 			}
 
 		});
@@ -166,11 +182,11 @@ class Message extends Model
 	 */
 	public function sendNotificationEmail($postData){
 
-		if(!Settings::get('allow_notifications')) {
+		if(!Settings::getTranslated('allow_notifications')) {
 			return;
 		}
 
-		$sendTo =  Settings::get('notification_address_to') ;
+		$sendTo =  Settings::getTranslated('notification_address_to') ;
 
 		$validator = Validator::make(['email' => $sendTo], ['email' => 'required|email']);
 
@@ -179,7 +195,7 @@ class Message extends Model
 			return;
 		}
 
-		if( Settings::get('allow_email_queue') ){
+		if( Settings::getTranslated('allow_email_queue') ){
 			$method = 'queue';
 		} else {
 			$method = 'send';
@@ -198,13 +214,26 @@ class Message extends Model
 
         }
 
-		Mail::{$method}('janvince.smallcontactform::mail.notification', ['fields' => $output], function($message) use($sendTo){
+        $template = 'janvince.smallcontactform::mail.autoreply';
+
+        if( Settings::getTranslated('notification_template') ){
+
+            if(View::exists(Settings::getTranslated('notification_template'))) {
+                $template = Settings::getTranslated('notification_template');
+            } else {
+                Log::error('SMALL CONTACT FORM: Missing defined email template: ' . Settings::getTranslated('notification_template') . '. Default template will be used!');
+            }
+
+        }
+
+
+		Mail::{$method}($template, ['fields' => $output], function($message) use($sendTo){
 
 			$message->to($sendTo);
 
 			// From address
-			if( Settings::get('email_address_from') ) {
-				$message->from(Settings::get('email_address_from'), Settings::get('email_address_from_name'));
+			if( Settings::getTranslated('email_address_from') ) {
+				$message->from(Settings::getTranslated('email_address_from'), Settings::getTranslated('email_address_from_name'));
 			}
 
 		});
