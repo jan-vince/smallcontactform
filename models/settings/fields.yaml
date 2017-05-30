@@ -116,6 +116,13 @@ tabs:
 
         ## BUTTONS
 
+        send_btn_wrapper_css:
+            span: left
+            label: 'janvince.smallcontactform::lang.settings.buttons.send_btn_wrapper_css'
+            placeholder: 'janvince.smallcontactform::lang.settings.buttons.send_btn_wrapper_css_placeholder'
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.buttons'
+
         send_btn_css_class:
             label: 'janvince.smallcontactform::lang.settings.buttons.send_btn_css_class'
             placeholder: 'janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder'

@@ -163,6 +163,8 @@ return [
 			'send_btn_css_class' => 'Send button CSS class',
 			'send_btn_css_class_placeholder' => 'btn btn-primary',
 
+			'send_btn_wrapper_css' => 'Send button wrapper CSS class',
+			'send_btn_wrapper_css_placeholder' => 'form-group',
 
 		],
 

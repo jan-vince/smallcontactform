@@ -158,9 +158,11 @@ return [
 			'send_btn_text' => 'Text odesílacího tlačítka',
 			'send_btn_text_placeholder' => 'Odeslat',
 
-			'send_btn_css_class' => 'CSS styly odesílacího tlačítka',
+			'send_btn_css_class' => 'CSS třída odesílacího tlačítka',
 			'send_btn_css_class_placeholder' => 'btn btn-primary',
 
+			'send_btn_wrapper_css' => 'CSS třída kontejneru',
+			'send_btn_wrapper_css_placeholder' => 'form-group',
 
 		],
 
