@@ -137,7 +137,42 @@ tabs:
             type: text
             tab: 'janvince.smallcontactform::lang.settings.tabs.buttons'
 
+        section_redirect:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.buttons'
 
+        allow_redirect:
+            label: 'janvince.smallcontactform::lang.settings.redirect.allow_redirect'
+            comment: 'janvince.smallcontactform::lang.settings.redirect.allow_redirect_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.buttons'
+
+        redirect_url:
+            label: 'janvince.smallcontactform::lang.settings.redirect.redirect_url'
+            comment: 'janvince.smallcontactform::lang.settings.redirect.redirect_url_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.redirect.redirect_url_placeholder'
+            span: full
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.buttons'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_redirect
+                condition: checked
+
+
+        redirect_url_external:
+            label: 'janvince.smallcontactform::lang.settings.redirect.redirect_url_external'
+            comment: 'janvince.smallcontactform::lang.settings.redirect.redirect_url_external_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.buttons'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_redirect
+                condition: checked
 
 
         ## FORM FIELDS

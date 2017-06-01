@@ -168,6 +168,20 @@ return [
 
 		],
 
+		'redirect' => [
+
+			'allow_redirect' => 'Redirect after submit',
+			'allow_redirect_comment' => 'Redirect to another page after successfull submit',
+
+			'redirect_url' => 'Page URL to redirect to',
+			'redirect_url_comment' => 'Enter your page URL (eg. /contact/thank-you)',
+			'redirect_url_placeholder' => '/contact/thank-you',
+
+			'redirect_url_external' => 'External URL',
+			'redirect_url_external_comment' => 'This is external URL path 	(eg. http://www.domain.com)',
+
+		],
+
 		'form_fields' => [
 			'prompt' => 'Add new form field',
 

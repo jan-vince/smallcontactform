@@ -162,7 +162,20 @@ class SmallContactForm extends ComponentBase
 			// Redirect to prevent repeated sending of form
 			// Clear data after success AJAX send
 			if(!Request::ajax()){
-				// return Redirect::refresh();
+				if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
+
+					if( !empty(Settings::getTranslated('redirect_url_external')) ) {
+						$path = Settings::getTranslated('redirect_url');
+					} else {
+						$path = url(Settings::getTranslated('redirect_url'));
+					}
+
+					return Redirect::to($path);
+
+				} else {
+					return Redirect::refresh();
+				}
+
 			} else {
 				$this->post = [];
 				$this->postData = [];
@@ -200,6 +213,16 @@ class SmallContactForm extends ComponentBase
 			$attributes['data-request'] = $this->alias . '::onFormSend';
 			$attributes['data-request-validate'] = NULL;
 			$attributes['data-request-update'] = "'". $this->alias ."::scf-message':'#scf-message','". $this->alias ."::scf-form':'#scf-form'";
+
+		}
+
+		if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
+
+			if( !empty(Settings::getTranslated('redirect_url_external')) ) {
+				$attributes['data-request-redirect'] = Settings::getTranslated('redirect_url');
+			} else {
+				$attributes['data-request-redirect'] = url(Settings::getTranslated('redirect_url'));
+			}
 
 		}
 

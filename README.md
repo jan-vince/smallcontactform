@@ -30,7 +30,7 @@ You can set permissions to restrict access to *Settings > Small Contact form* an
 
 * You can set your own CSS class name and general success/error messages.
 * If you need it, placeholders can be used instead of labels
-* Form can be hidden after successfull send.
+* Form can be hidden after successful submit.
 
 
 #### Enable AJAX
@@ -89,6 +89,7 @@ If you want to insert assets by hand, you can do it this way (or similar):
 ### SEND BUTTON
 
 * You can set button class and text.
+* Form can automatically redirect to given URL after successful submit.
 
 
 ### FIELDS

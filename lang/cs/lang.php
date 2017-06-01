@@ -166,6 +166,20 @@ return [
 
 		],
 
+		'redirect' => [
+
+			'allow_redirect' => 'Přesměrovat po úspěšném odeslání',
+			'allow_redirect_comment' => 'Přesměrovat na jinou stránku po úspěšném odeslání formuláře',
+
+			'redirect_url' => 'URL stránky pro přesměrování',
+			'redirect_url_comment' => 'Vložte URL adresu stránky, kam bude přesměrováno (např. /kontakt/diky)',
+			'redirect_url_placeholder' => '/kontakt/diky',
+
+			'redirect_url_external' => 'Externí URL',
+			'redirect_url_external_comment' => 'Toto je adresa externí stránky (např. http://www.domain.com)',
+
+		],
+
 		'form_fields' => [
 			'prompt' => 'Přidat nové pole formuláře',
 
