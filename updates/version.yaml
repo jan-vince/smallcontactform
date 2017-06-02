@@ -5,7 +5,7 @@
     - Fix form hiding after successful send
     - Fix in README.md
 1.0.2:
-    - Fix some typos and add LICENCE file (thank to Szabó Gergő)
+    - Fix some typos and add LICENCE file (thanks Szabó Gergő)
 1.1.0:
     - Added function to delete records in Messages list
     - Added permission to delete records
@@ -38,3 +38,5 @@
     - Added custom send button wrapper class
 1.4.0:
     - Added redirect option after successful submit (internal and external URL)
+1.4.1:
+    - Minor UI fix (thanks Szabó Gergő)
