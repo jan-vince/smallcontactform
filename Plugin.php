@@ -44,7 +44,7 @@ class Plugin extends PluginBase {
 			'settings' => [
 				'label' => 'janvince.smallcontactform::lang.plugin.name',
 				'description' => 'janvince.smallcontactform::lang.plugin.description',
-				'category'    => 'Small plugins',
+				'category'    => 'janvince.smallcontactform::lang.plugin.category',
 				'icon' => 'icon-inbox',
 				'class' => 'JanVince\SmallContactForm\Models\Settings',
 				'keywords' => 'small contact form message recaptcha antispam',
