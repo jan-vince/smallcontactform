@@ -13,7 +13,7 @@ use Mail;
 use Request;
 use Carbon\Carbon;
 use View;
-
+use App;
 
 class Message extends Model
 {
@@ -145,7 +145,7 @@ class Message extends Model
 
         }
 
-        $template = 'janvince.smallcontactform::mail.autoreply';
+        $template = Settings::getTranslatedTemplates('en', App::getLocale(), 'autoreply');
 
         if( Settings::getTranslated('email_template') ){
 
@@ -214,7 +214,7 @@ class Message extends Model
 
         }
 
-        $template = 'janvince.smallcontactform::mail.autoreply';
+        $template = Settings::getTranslatedTemplates('en', App::getLocale(), 'notification');
 
         if( Settings::getTranslated('notification_template') ){
 

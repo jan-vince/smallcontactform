@@ -496,7 +496,7 @@ tabs:
         email_template:
             label: 'janvince.smallcontactform::lang.settings.email.template'
             comment: 'janvince.smallcontactform::lang.settings.email.template_comment'
-            span: full
+            span: left
             type: text
             tab: 'janvince.smallcontactform::lang.settings.tabs.email'
             cssClass: field-indent
@@ -536,7 +536,7 @@ tabs:
         notification_template:
             label: 'janvince.smallcontactform::lang.settings.email.notification_template'
             comment: 'janvince.smallcontactform::lang.settings.email.notification_template_comment'
-            span: full
+            span: left
             type: text
             tab: 'janvince.smallcontactform::lang.settings.tabs.email'
             cssClass: field-indent

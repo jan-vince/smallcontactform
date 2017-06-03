@@ -87,8 +87,10 @@ return [
 	'mail' => [
 
 		'templates' => [
-			'autoreply' => 'Zpráva automatické odpovědi z kontaktního formuláře',
-			'notification' => 'Notifikace z kontaktního formuláře',
+			'autoreply' => 'Zpráva automatické odpovědi z kontaktního formuláře (Anglicky)',
+			'notification' => 'Notifikace z kontaktního formuláře (Anglicky)',
+			'autoreply_cs' => 'Zpráva automatické odpovědi z kontaktního formuláře (Česky)',
+			'notification_cs' => 'Notifikace z kontaktního formuláře (Česky)',
 		]
 
 	],

@@ -35,7 +35,6 @@ class Plugin extends PluginBase {
 
 	public function boot() {
 
-
 	}
 
 	public function registerSettings() {
@@ -107,10 +106,9 @@ class Plugin extends PluginBase {
 
 	public function registerMailTemplates()
 	{
-	    return [
-	        'janvince.smallcontactform::mail.autoreply' => 'janvince.smallcontactform::lang.mail.templates.autoreply',
-	        'janvince.smallcontactform::mail.notification' => 'janvince.smallcontactform::lang.mail.templates.notification',
-	    ];
+
+		return Settings::getTranslatedTemplates();
+
 	}
 
 	public function registerMarkupTags()

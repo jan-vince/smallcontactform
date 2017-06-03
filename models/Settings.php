@@ -243,5 +243,104 @@ class Settings extends Model
 
 	}
 
+    /**
+    * Get non English locales from Translate plugin
+    * @return array
+     */
+    public static function getEnabledNonEnglishLocales() {
+
+        // Check for Rainlab.Translate plugin
+		$pluginManager = PluginManager::instance()->findByIdentifier('Rainlab.Translate');
+
+		if ($pluginManager && !$pluginManager->disabled) {
+
+			$locales = \RainLab\Translate\Models\Locale::listEnabled();
+
+			return $locales;
+
+		}
+
+    }
+
+    /**
+    * Get non English locales from Translate plugin
+    * @return array
+     */
+    public static function getTranslatedTemplates($defaultLocale = 'en', $locale = NULL, $templateType = NULL) {
+
+        $enabledLocales = Settings::getEnabledNonEnglishLocales();
+
+        /**
+         * Templates map
+         * [locale] => [templateType] => [template]
+         */
+        $translatedTemplates = [
+
+            'en' => [
+
+                'autoreply' => [
+                    'janvince.smallcontactform::mail.autoreply' => 'janvince.smallcontactform::lang.mail.templates.autoreply',
+                ],
+
+                'notification' => [
+                    'janvince.smallcontactform::mail.notification' => 'janvince.smallcontactform::lang.mail.templates.notification',
+                ],
+
+            ],
+
+            'cs' => [
+
+                'autoreply' => [
+                    'janvince.smallcontactform::mail.autoreply_cs' => 'janvince.smallcontactform::lang.mail.templates.autoreply_cs',
+                ],
+
+                'notification' => [
+                    'janvince.smallcontactform::mail.notification_cs' => 'janvince.smallcontactform::lang.mail.templates.notification_cs',
+                ],
+
+            ],
+
+        ];
+
+        if( $locale and $templateType ) {
+
+            if( !empty($translatedTemplates[$locale]) and !empty($translatedTemplates[$locale][$templateType]) ) {
+                return key($translatedTemplates[$locale][$templateType]);
+            } elseif ( $defaultLocale and !empty($translatedTemplates[$defaultLocale]) and !empty($translatedTemplates[$defaultLocale][$templateType]) ) {
+                return key($translatedTemplates[$defaultLocale][$templateType]);
+            } else {
+                return NULL;
+            }
+
+
+
+        } else {
+
+            $allEnabledTemplates = [];
+
+            foreach( $enabledLocales as $enabledLocaleKey => $enabledLocaleName ) {
+
+                if( !empty($translatedTemplates[$enabledLocaleKey]) ) {
+
+                    foreach( $translatedTemplates[$enabledLocaleKey] as $type ) {
+
+                        foreach( $type as $key => $value ) {
+                            $allEnabledTemplates[$key] = $value;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            return $allEnabledTemplates;
+
+        }
+
+        return [];
+
+    }
 
 }
