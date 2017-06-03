@@ -42,3 +42,5 @@
     - Minor UI fix (thanks Szabó Gergő)
 1.4.2:
     - Added support for default translated mail templates (Czech and English for now)
+1.4.3:
+    - Fixed translation of mail templates description in Settings > Mail templates

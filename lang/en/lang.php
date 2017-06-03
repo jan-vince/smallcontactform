@@ -89,10 +89,13 @@ return [
 	'mail' => [
 
 		'templates' => [
+
 			'autoreply' => 'Form auto reply message (English)',
-			'notification' => 'Form notification message (English)',
 			'autoreply_cs' => 'Form auto reply message (Czech)',
+
+			'notification' => 'Form notification message (English)',
 			'notification_cs' => 'Form notification message (Czech)',
+			
 		]
 
 	],

@@ -325,7 +325,7 @@ class Settings extends Model
                     foreach( $translatedTemplates[$enabledLocaleKey] as $type ) {
 
                         foreach( $type as $key => $value ) {
-                            $allEnabledTemplates[$key] = $value;
+                            $allEnabledTemplates[$key] = e(trans($value));
 
                         }
 
