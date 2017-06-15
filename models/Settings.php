@@ -3,6 +3,7 @@
 namespace JanVince\SmallContactForm\Models;
 
 use Model;
+use App;
 use System\Classes\PluginManager;
 
 class Settings extends Model
@@ -247,7 +248,7 @@ class Settings extends Model
     * Get non English locales from Translate plugin
     * @return array
      */
-    public static function getEnabledNonEnglishLocales() {
+    public static function getEnabledLocales() {
 
         // Check for Rainlab.Translate plugin
 		$pluginManager = PluginManager::instance()->findByIdentifier('Rainlab.Translate');
@@ -258,9 +259,18 @@ class Settings extends Model
 
 			return $locales;
 
-		}
+		} elseif( App::getLocale() ) {
+            // Backend locale
+            return [
+                'en' => 'English',
+                App::getLocale() => App::getLocale(),
+            ];
+        }
 
-        return [];
+        // English fallback
+        return [
+            'en' => 'English',
+        ];
 
     }
 
@@ -270,7 +280,7 @@ class Settings extends Model
      */
     public static function getTranslatedTemplates($defaultLocale = 'en', $locale = NULL, $templateType = NULL) {
 
-        $enabledLocales = Settings::getEnabledNonEnglishLocales();
+        $enabledLocales = Settings::getEnabledLocales();
 
         /**
          * Templates map

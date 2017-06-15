@@ -46,3 +46,6 @@
     - Fixed translation of mail templates description in Settings > Mail templates
 1.4.4:
     - Fixed array of enabledLocales
+1.4.5:
+    - Fixed email template check
+    - Added default EN locale to enabled locales array

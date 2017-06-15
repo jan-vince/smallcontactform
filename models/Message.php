@@ -14,6 +14,8 @@ use Request;
 use Carbon\Carbon;
 use View;
 use App;
+use System\Models\MailTemplate;
+
 
 class Message extends Model
 {
@@ -149,15 +151,13 @@ class Message extends Model
 
         if( Settings::getTranslated('email_template') ){
 
-            if(View::exists(Settings::getTranslated('email_template'))) {
+            if(View::exists(Settings::getTranslated('email_template')) OR !empty( MailTemplate::listAllTemplates()[Settings::getTranslated('email_template')] ) ) {
                 $template = Settings::getTranslated('email_template');
             } else {
                 Log::error('SMALL CONTACT FORM: Missing defined email template: ' . Settings::getTranslated('email_template') . '. Default template will be used!');
             }
 
         }
-
-
 
 		Mail::{$method}($template, ['fields' => $output], function($message) use($sendTo){
 
@@ -173,7 +173,6 @@ class Message extends Model
 			}
 
 		});
-
 
 	}
 
@@ -218,7 +217,7 @@ class Message extends Model
 
         if( Settings::getTranslated('notification_template') ){
 
-            if(View::exists(Settings::getTranslated('notification_template'))) {
+            if(View::exists(Settings::getTranslated('notification_template')) OR !empty( MailTemplate::listAllTemplates()[Settings::getTranslated('notification_template')] ) ) {
                 $template = Settings::getTranslated('notification_template');
             } else {
                 Log::error('SMALL CONTACT FORM: Missing defined email template: ' . Settings::getTranslated('notification_template') . '. Default template will be used!');
