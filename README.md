@@ -13,13 +13,13 @@ git clone https://github.com/jan-vince/smallcontactform
 **OctoberCMS backend**
 
 Just look for 'Small Contact Form' in search field in:
-> Settings > Updates&Plugins > Install plugins
+> Settings > Updates & Plugins > Install plugins
 
 ### Permissions
 
 > Settings > Administrators
 
-You can set permissions to restrict access to *Settings > Small Contact form* and to messages list.
+You can set permissions to restrict access to *Settings > Small plugins > Contact form* and to messages list.
 
 
 ## Setup new Contact form
@@ -76,9 +76,9 @@ If you want to insert assets by hand, you can do it this way (or similar):
 	{% page %}
 
 	<script type="text/javascript" src="{{ [
-				'@jquery',
-				'@framework',
-				'@framework.extras']|theme}}.js">
+		'@jquery',
+		'@framework',
+		'@framework.extras']|theme}}.js">
 	</script>
 
 </body>
@@ -133,19 +133,19 @@ You can add an extra form protection with limit submits from one IP address.
 This check has own error message and custom field to set maximum submits.
 
 
-### EMAIL
+### EMAIL
 
 Mails can be sent directly or queued ([OctoberCMS queue](https://octobercms.com/docs/services/queues) must be configured!).
 
-Don't forget to configure mail preferences in *Settings > Mail configuration*!
+Don't forget to configure mail preferences in *Settings > Mail > Mail configuration*!
 
 #### Allow autoreply
 
 Email can be send to form sender as confirmation.
 
 * You have to enter email address and name - it will be used as FROM field
-* Email subject can be manually added here (or edited in *Settings > Mail templates (code: janvince.smallcontactform::mail.autoreply)*)
-* Email TO address and name have to be assigned to form fields (in selections only corresponding field types are shown - if you don't see one, try to check it's type in Fields tab)
+* Email subject can be manually added here (or edited in *Settings > Mail > Mail templates (code: janvince.smallcontactform::mail.autoreply)*)
+* Email TO address and name have to be assigned to form fields (in selections only corresponding field types are shown - if you don't see one, try to check it's type in Fields tab)
  * Message field can be also assigned (and will be saved separatelly into database)
 
 #### Allow notifications
@@ -155,32 +155,32 @@ A notification of sent form can be send to provided email address.
 
 ## TRANSLATION
 
-You can allow translation with [Rainlab Translate](https://octobercms.com/plugin/rainlab-translate) plugin.
+You can allow translation with [RainLab Translate](https://octobercms.com/plugin/rainlab-translate) plugin.
 
-> After installation of Translate plugin, please add at least two languages in *Settings > Manage languages*.
+> After installation of Translate plugin, please add at least two languages in *Settings > Translate > Manage languages*.
 > For translations to work there must be a localePicker component included in your layout/page.
 
 #### Form texts
 
-Most of Small Contact form texts can be edited right in *Settings > Small Contact form*.
+Most of Small Contact form texts can be edited right in *Settings > Small plugins > Contact form*.
 
 #### Custom form fields
 
-Translate plugin doesn't supports translation of individual repeater fields yet, so form field texts (label, validation error messages) have to be - for now - translated in a dictionary: *Settings > Translate messages*
+Translate plugin doesn't supports translation of individual repeater fields yet, so form field texts (label, validation error messages) have to be - for now - translated in a dictionary: *Settings > Translate > Translate messages*
 
 > Please note that form fields labels will be shown in dictionary after first form render (on your frontend page) and validation error messages after first send.
 
 #### Email templates
 
-You can create your own email templates in *Settings > Mail templates* (for hint look inside of default templates starting with *janvince.smallcontactform::*).
+You can create your own email templates in *Settings > Mail > Mail templates* (for hint look inside of default templates starting with *janvince.smallcontactform::*).
 
-Remeber your email templates CODE and put in in Small Contact form email settings in *Settings > Small Contact form > Email tab*. For each language there can be specific template.
+Remeber your email templates CODE and put in in Small Contact form email settings in *Settings > Small plugins > Contact form > Email tab*. For each language there can be specific template.
 
 ## MESSAGES LIST
 
 All sent data from Contact form are saved and listed in backend Messages list.
 
-If email, name and message fields are asigned on *Settings > Small contact form > Columns mapping*, they will be saved and shown in separate columns.
+If email, name and message fields are asigned on *Settings > Small plugins > contact form > Columns mapping tab*, they will be saved and shown in separate columns.
 
 You can click on a record to see all form data. The message will be marked as read.
 
