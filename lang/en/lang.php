@@ -3,7 +3,7 @@
 return [
 	'plugin' => [
 		'name' => 'Contact form',
-		'description' => 'Simple but flexible contact form builder with custom fields, validation and passive antispam',
+		'description' => 'Simple contact form builder',
 		'category' => 'Small plugins',
 	],
 
@@ -95,7 +95,7 @@ return [
 
 			'notification' => 'Form notification message (English)',
 			'notification_cs' => 'Form notification message (Czech)',
-			
+
 		]
 
 	],
@@ -276,7 +276,7 @@ return [
 
 			'autoreply_message_field' => 'MESSAGE form field',
 			'autoreply_message_field_empty_option' => '-- Select --',
-			'autoreply_message_field_comment' => 'Must be type of Textarea.<br><em>Save and refresh this page if you can\'t see your fields.</em>',
+			'autoreply_message_field_comment' => 'Must be type of Textarea or Text.<br><em>Save and refresh this page if you can\'t see your fields.</em>',
 
 			'notification_template' => 'Notification email template',
 			'notification_template_comment' => 'Code of email template created in Settings > Email templates. Left empty for default template: janvince.smallcontactform::mail.autoreply.',

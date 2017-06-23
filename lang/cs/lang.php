@@ -3,7 +3,7 @@
 return [
 	'plugin' => [
 		'name' => 'Kontaktní formulář',
-		'description' => 'Jednoduchý kontaktní formulář s možností editace vlastních polí a pasivní antispamovou ochrannou',
+		'description' => 'Jednoduchý kontaktní formulář',
 		'category' => 'Small plugins',
 	],
 
@@ -271,7 +271,7 @@ return [
 
 			'autoreply_message_field' => 'Pole formuláře, které obsahuje ZPRÁVU',
 			'autoreply_message_field_empty_option' => '-- vyberte --',
-			'autoreply_message_field_comment' => 'Pole typu Textarea.',
+			'autoreply_message_field_comment' => 'Pole typu Textarea nebo Text.',
 
 			'notification_template' => 'Šablona notifikačního emailu',
 			'notification_template_comment' => 'Kód emailové šablony vytvořené v Nastavení > E-mailové šablony. Nechte prázdné pro výchozí šablonu: janvince.smallcontactform::mail.notification.',

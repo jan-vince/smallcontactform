@@ -49,3 +49,5 @@
 1.4.5:
     - Fixed email template check
     - Added default EN locale to enabled locales array
+1.4.6:
+    - Removed field type restriction for Fields mapping

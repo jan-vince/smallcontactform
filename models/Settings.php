@@ -164,41 +164,32 @@ class Settings extends Model
 	 * Generate fields list
 	 * @return arry
 	 */
-	private function getFieldsList($type = false){
+	private function getFieldsList($type = false, $forceType = false){
 
 		$output = [];
+		$outputAll = [];
 
 		foreach (Settings::getTranslated('form_fields', []) as $field) {
 
-			if($type && !empty($field['type']) && $field['type'] <> $type) {
-				continue;
-			}
+            $fieldName = $field['name'] . ' ['. $field ['type'] . ']';
 
-			$output[$field['name']] = $field['name'];
+            $outputAll[$field['name']] = $fieldName;
+
+            if($type && !empty($field['type']) && $field['type'] <> $type) {
+                continue;
+            } else {
+                $output[$field['name']] = $fieldName;
+            }
 
 		}
 
-		return $output;
+        if($forceType) {
+            return $output;
+        } else {
+            return $outputAll;
+        }
 
 	}
-
-	/**
-	 * Custom validation for repeater fields
-	 */
-	public function beforeValidate()
-	{
-
-		// $validator = Validator::make();
-
-	    foreach ($this->form_fields as $field) {
-
-	        // if (array_get($product, 'quantity', 0) < 0) {
-	        //     throw new ValidationException(['products' => 'All quantities should be greater than 0']);
-	        // }
-
-	    }
-	}
-
 
 	/**
 	 * HTML field types mapping array
