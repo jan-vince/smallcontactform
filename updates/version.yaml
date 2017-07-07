@@ -51,3 +51,5 @@
     - Added default EN locale to enabled locales array
 1.4.6:
     - Removed field type restriction for Fields mapping
+1.4.7:
+    - Removed hardcoded date format for created_at column in messages list, updated README and added hungarian language (thanks Szabó Gergő for all this)
