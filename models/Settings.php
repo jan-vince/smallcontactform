@@ -1,6 +1,4 @@
-<?php
-
-namespace JanVince\SmallContactForm\Models;
+<?php namespace JanVince\SmallContactForm\Models;
 
 use Model;
 use App;
@@ -8,7 +6,6 @@ use System\Classes\PluginManager;
 
 class Settings extends Model
 {
-
     public $implement = [
         'System.Behaviors.SettingsModel',
         '@RainLab.Translate.Behaviors.TranslatableModel',
@@ -19,9 +16,7 @@ class Settings extends Model
         'form_error_msg',
         'form_send_confirm_msg',
         'send_btn_text',
-
 //        'form_fields',    // TODO: find out how to translate repeater's field (not whole repeater)
-
         'antispam_delay_error_msg',
         'antispam_label',
         'antispam_error_msg',
@@ -43,18 +38,18 @@ class Settings extends Model
     /**
      * Try to use Rainlab Tranlaste plugin to get translated content or falls back to default settings value
      */
-    public static function getTranslated($value, $defaultValue = false){
-
+    public static function getTranslated($value, $defaultValue = false)
+    {
         // Check for Rainlab.Translate plugin
         $pluginManager = PluginManager::instance()->findByIdentifier('Rainlab.Translate');
 
         if ($pluginManager && !$pluginManager->disabled) {
 
-    		$settings = Settings::instance();
+            $settings = Settings::instance();
 
-    		$valueTranslated = $settings->getAttributeTranslated($value);
+            $valueTranslated = $settings->getAttributeTranslated($value);
 
-            if(!empty($valueTranslated)){
+            if (!empty($valueTranslated)) {
                 return $valueTranslated;
             } else {
                 return $defaultValue;
@@ -69,15 +64,13 @@ class Settings extends Model
     /**
      * Try to use Rainlab Tranlaste plugin to get translated content for given key
      */
-    public static function getDictionaryTranslated($value){
-
+    public static function getDictionaryTranslated($value)
+    {
         // Check for Rainlab.Translate plugin
         $translatePlugin = PluginManager::instance()->findByIdentifier('Rainlab.Translate');
 
         if ($translatePlugin && !$translatePlugin->disabled) {
-
             $params = [];
-
             $message = \RainLab\Translate\Models\Message::trans($value, $params);
 
             return $message;
@@ -85,172 +78,154 @@ class Settings extends Model
         } else {
             return $value;
         }
-
     }
 
+    /**
+     * Generate form fields types list
+     *  @return array
+     */
+    public function getTypeOptions($value, $formData)
+    {
+        $fieldTypes = $this->getFieldTypes();
 
+        $types = [];
 
-	/**
-	 * Generate form fields types list
-	 *	@return array
-	 */
-	public function getTypeOptions($value, $formData)
-	{
+        if (!$fieldTypes) {
+            return [];
+        }
 
-		$fieldTypes = $this->getFieldTypes();
+        foreach ($fieldTypes as $key => $value) {
+            $types[$key] = 'janvince.smallcontactform::lang.settings.form_field_types.'.$key;
+        }
 
-		$types = [];
+        return $types;
+    }
 
-		if(!$fieldTypes) {
-			return [];
-		}
+    /**
+     * Generate form fields types list
+     *  @return array
+     */
+    public function getValidationTypeOptions($value, $formData)
+    {
+        return [
+            'required' => 'janvince.smallcontactform::lang.settings.form_field_validation.required',
+            'email'    => 'janvince.smallcontactform::lang.settings.form_field_validation.email',
+            'numeric'  => 'janvince.smallcontactform::lang.settings.form_field_validation.numeric',
+        ];
+    }
 
-		foreach ($fieldTypes as $key => $value) {
-			$types[$key] = 'janvince.smallcontactform::lang.settings.form_field_types.'.$key;
-		}
+    /**
+     * Generate list of existing fields for email name
+     *  @return array
+     */
+    public function getAutoreplyNameFieldOptions($value, $formData)
+    {
+        return $this->getFieldsList('text');
+    }
 
-		return $types;
+    /**
+     * Generate list of existing fields for email name
+     *  @return array
+     */
+    public function getAutoreplyEmailFieldOptions($value, $formData)
+    {
+        return $this->getFieldsList('email');
+    }
 
-	}
+    /**
+     * Generate list of existing message fields
+     *  @return array
+     */
+    public function getAutoreplyMessageFieldOptions($value, $formData)
+    {
+        return $this->getFieldsList('textarea');
+    }
 
-	/**
-	 * Generate form fields types list
-	 *	@return array
-	 */
-	public function getValidationTypeOptions($value, $formData)
-	{
+    /**
+     * Generate fields list
+     * @return arry
+     */
+    private function getFieldsList($type = false, $forceType = false)
+    {
+        $output = [];
+        $outputAll = [];
 
-	    return [
-			'required' => 'janvince.smallcontactform::lang.settings.form_field_validation.required',
-			'email' => 'janvince.smallcontactform::lang.settings.form_field_validation.email',
-			'numeric' => 'janvince.smallcontactform::lang.settings.form_field_validation.numeric',
-		];
-	}
-
-	/**
-	 * Generate list of existing fields for email name
-	 *	@return array
-	 */
-	public function getAutoreplyNameFieldOptions($value, $formData)
-	{
-
-		return $this->getFieldsList('text');
-
-	}
-
-	/**
-	 * Generate list of existing fields for email name
-	 *	@return array
-	 */
-	public function getAutoreplyEmailFieldOptions($value, $formData)
-	{
-
-		return $this->getFieldsList('email');
-
-	}
-
-	/**
-	 * Generate list of existing message fields
-	 *	@return array
-	 */
-	public function getAutoreplyMessageFieldOptions($value, $formData)
-	{
-
-		return $this->getFieldsList('textarea');
-
-	}
-
-	/**
-	 * Generate fields list
-	 * @return arry
-	 */
-	private function getFieldsList($type = false, $forceType = false){
-
-		$output = [];
-		$outputAll = [];
-
-		foreach (Settings::getTranslated('form_fields', []) as $field) {
-
+        foreach (Settings::getTranslated('form_fields', []) as $field) {
             $fieldName = $field['name'] . ' ['. $field ['type'] . ']';
 
             $outputAll[$field['name']] = $fieldName;
 
-            if($type && !empty($field['type']) && $field['type'] <> $type) {
+            if ($type && !empty($field['type']) && $field['type'] <> $type) {
                 continue;
             } else {
                 $output[$field['name']] = $fieldName;
             }
+        }
 
-		}
-
-        if($forceType) {
+        if ($forceType) {
             return $output;
         } else {
             return $outputAll;
         }
+    }
 
-	}
+    /**
+     * HTML field types mapping array
+     * @return array
+     */
+    public static function getFieldTypes($type = false)
+    {
+        $types = [
+            'text' => [
+                'html_open' => 'input',
+                'attributes' => [
+                    'type' => 'text',
+                ],
+                'html_close' => NULL,
+            ],
 
-	/**
-	 * HTML field types mapping array
-	 * @return array
-	 */
-	public static function getFieldTypes($type = false) {
+            'email' => [
+                'html_open' => 'input',
+                'attributes' => [
+                    'type' => 'email',
+                ],
+                'html_close' => NULL,
+            ],
 
-		$types = [
+            'textarea' => [
+                'html_open' => 'textarea',
+                'attributes' => [
+                    'rows' => 5,
+                ],
+                'html_close' => 'textarea',
+            ],
+        ];
 
-			'text' => [
-				'html_open' => 'input',
-				'attributes' => [
-					'type' => 'text',
-				],
-				'html_close' => NULL,
-			],
+        if ($type) {
+            if (!empty($types[$type])) {
+                return $types[$type];
+            }
+        }
 
-			'email' => [
-				'html_open' => 'input',
-				'attributes' => [
-					'type' => 'email',
-				],
-				'html_close' => NULL,
-			],
-
-			'textarea' => [
-				'html_open' => 'textarea',
-				'attributes' => [
-					'rows' => 5,
-				],
-				'html_close' => 'textarea',
-			],
-
-		];
-
-		if($type){
-			if(!empty($types[$type])){
-				return $types[$type];
-			}
-		}
-
-		return $types;
-
-	}
+        return $types;
+    }
 
     /**
     * Get non English locales from Translate plugin
     * @return array
      */
-    public static function getEnabledLocales() {
-
+    public static function getEnabledLocales()
+    {
         // Check for Rainlab.Translate plugin
-		$pluginManager = PluginManager::instance()->findByIdentifier('Rainlab.Translate');
+        $pluginManager = PluginManager::instance()->findByIdentifier('Rainlab.Translate');
 
-		if ($pluginManager && !$pluginManager->disabled) {
+        if ($pluginManager && !$pluginManager->disabled) {
 
-			$locales = \RainLab\Translate\Models\Locale::listEnabled();
+            $locales = \RainLab\Translate\Models\Locale::listEnabled();
 
-			return $locales;
+            return $locales;
 
-		} elseif( App::getLocale() ) {
+        } elseif (App::getLocale()) {
             // Backend locale
             return [
                 'en' => 'English',
@@ -262,15 +237,14 @@ class Settings extends Model
         return [
             'en' => 'English',
         ];
-
     }
 
     /**
     * Get non English locales from Translate plugin
     * @return array
      */
-    public static function getTranslatedTemplates($defaultLocale = 'en', $locale = NULL, $templateType = NULL) {
-
+    public static function getTranslatedTemplates($defaultLocale = 'en', $locale = NULL, $templateType = NULL)
+    {
         $enabledLocales = Settings::getEnabledLocales();
 
         /**
@@ -278,36 +252,27 @@ class Settings extends Model
          * [locale] => [templateType] => [template]
          */
         $translatedTemplates = [
-
             'en' => [
-
                 'autoreply' => [
                     'janvince.smallcontactform::mail.autoreply' => 'janvince.smallcontactform::lang.mail.templates.autoreply',
                 ],
-
                 'notification' => [
                     'janvince.smallcontactform::mail.notification' => 'janvince.smallcontactform::lang.mail.templates.notification',
                 ],
-
             ],
-
             'cs' => [
-
                 'autoreply' => [
                     'janvince.smallcontactform::mail.autoreply_cs' => 'janvince.smallcontactform::lang.mail.templates.autoreply_cs',
                 ],
-
                 'notification' => [
                     'janvince.smallcontactform::mail.notification_cs' => 'janvince.smallcontactform::lang.mail.templates.notification_cs',
                 ],
-
             ],
-
         ];
 
-        if( $locale and $templateType ) {
+        if ( $locale and $templateType ) {
 
-            if( !empty($translatedTemplates[$locale]) and !empty($translatedTemplates[$locale][$templateType]) ) {
+            if ( !empty($translatedTemplates[$locale]) and !empty($translatedTemplates[$locale][$templateType]) ) {
                 return key($translatedTemplates[$locale][$templateType]);
             } elseif ( $defaultLocale and !empty($translatedTemplates[$defaultLocale]) and !empty($translatedTemplates[$defaultLocale][$templateType]) ) {
                 return key($translatedTemplates[$defaultLocale][$templateType]);
@@ -315,35 +280,23 @@ class Settings extends Model
                 return NULL;
             }
 
-
-
         } else {
 
             $allEnabledTemplates = [];
 
-            foreach( $enabledLocales as $enabledLocaleKey => $enabledLocaleName ) {
-
-                if( !empty($translatedTemplates[$enabledLocaleKey]) ) {
-
-                    foreach( $translatedTemplates[$enabledLocaleKey] as $type ) {
-
-                        foreach( $type as $key => $value ) {
+            foreach ($enabledLocales as $enabledLocaleKey => $enabledLocaleName) {
+                if (!empty($translatedTemplates[$enabledLocaleKey])) {
+                    foreach ($translatedTemplates[$enabledLocaleKey] as $type) {
+                        foreach ($type as $key => $value) {
                             $allEnabledTemplates[$key] = e(trans($value));
-
                         }
-
                     }
-
                 }
-
             }
 
             return $allEnabledTemplates;
-
         }
 
         return [];
-
     }
-
 }
