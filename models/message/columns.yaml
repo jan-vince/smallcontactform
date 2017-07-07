@@ -15,7 +15,6 @@ columns:
     created_at:
         label: janvince.smallcontactform::lang.models.message.columns.datetime
         type: datetime
-        format: j.n.Y H:i
         searchable: true
 
     name:
