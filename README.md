@@ -41,7 +41,7 @@ By default, sending form will trigger page reload. With AJAX, everything can be 
 * For AJAX enabled form, before send confirmation dialog can be required.
 
 
-#### Add Asssets
+#### Add Assets
 
 If you want to start quickly, you can enable Add assets checkbox - and then Add CSS and JS assets.    
 This will include necessary styles (Bootstrap, AJAX, October AJAX) and scripts (jQuery, Bootstrap, October AJAX framework and extras).
@@ -122,9 +122,9 @@ Very simple implementation of passive antispam (inspired by [Nette AntiSpam Cont
 
 The idea behind this is to check how fast is form send and if robots-catching field is filled.
 
-* When allowed, you can set form delay (in seconds) to prevent too fast form sendind (mostly by robots). You can add custom error message (will be shown in general error message box above form).
+* When allowed, you can set form delay (in seconds) to prevent too fast form sending (mostly by robots). You can add custom error message (will be shown in general error message box above form).
 * You can add antispam field label and error message for non JavaScript enabled browsers.
- * If JavaScritp is working, antispam field is automatically hidden and cleared.
+ * If JavaScript is working, antispam field is automatically hidden and cleared.
 
 #### Check sender's IP
 
@@ -146,7 +146,7 @@ Email can be send to form sender as confirmation.
 * You have to enter email address and name - it will be used as FROM field
 * Email subject can be manually added here (or edited in *Settings > Mail > Mail templates (code: janvince.smallcontactform::mail.autoreply)*)
 * Email TO address and name have to be assigned to form fields (in selections only corresponding field types are shown - if you don't see one, try to check it's type in Fields tab)
- * Message field can be also assigned (and will be saved separatelly into database)
+ * Message field can be also assigned (and will be saved separately into database)
 
 #### Allow notifications
 
@@ -157,7 +157,7 @@ A notification of sent form can be send to provided email address.
 
 You can allow translation with [RainLab Translate](https://octobercms.com/plugin/rainlab-translate) plugin.
 
-> After installation of Translate plugin, please add at least two languages in *Settings > Translate > Manage languages*.
+> After installation of Translate plugin, please add at least two languages in *Settings > Translate > Manage languages*.
 > For translations to work there must be a localePicker component included in your layout/page.
 
 #### Form texts
@@ -174,7 +174,7 @@ Translate plugin doesn't supports translation of individual repeater fields yet,
 
 You can create your own email templates in *Settings > Mail > Mail templates* (for hint look inside of default templates starting with *janvince.smallcontactform::*).
 
-Remeber your email templates CODE and put in in Small Contact form email settings in *Settings > Small plugins > Contact form > Email tab*. For each language there can be specific template.
+Remember your email templates CODE and put in in Small Contact form email settings in *Settings > Small plugins > Contact form > Email tab*. For each language there can be specific template.
 
 There is ````{{fields}}```` array available inside of email templates.
 
@@ -184,7 +184,7 @@ There is ````{{fields}}```` array available inside of email templates.
 
 All sent data from Contact form are saved and listed in backend Messages list.
 
-If email, name and message fields are asigned on *Settings > Small plugins > contact form > Columns mapping tab*, they will be saved and shown in separate columns.
+If email, name and message fields are assigned on *Settings > Small plugins > contact form > Columns mapping tab*, they will be saved and shown in separate columns.
 
 You can click on a record to see all form data. The message will be marked as read.
 
