@@ -13,16 +13,13 @@
             <p class="description"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.all_description')) ?></p>
         </div>
 
-
         <div class="scoreboard-item title-value">
             <h4><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.latest_record')) ?></h4>
             <p class="oc-icon-user"><?= $this->getRecordsStats('latest_message_name'); ?></p>
             <p class="description"><?= $this->getRecordsStats('latest_message_date'); ?></p>
         </div>
-
     </div>
 </div>
-
 
 <?php if ($this->user->hasAccess('janvince.smallcontactform.delete_messages')): ?>
     <div data-control="toolbar">
