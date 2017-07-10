@@ -5,6 +5,8 @@ use Backend\Classes\Controller;
 use JanVince\SmallContactForm\Models\Settings;
 use JanVince\SmallContactForm\Models\Message;
 use Flash;
+use App;
+use Carbon\Carbon;
 use Redirect;
 use Backend;
 
@@ -14,7 +16,7 @@ use Backend;
  */
 class Messages extends Controller
 {
-	public $requiredPermissions = ['janvince.smallcontactform.access_messages'];
+  public $requiredPermissions = ['janvince.smallcontactform.access_messages'];
 
     public $implement = [
         'Backend.Behaviors.ListController'
@@ -28,90 +30,92 @@ class Messages extends Controller
         BackendMenu::setContext('JanVince.SmallContactForm', 'smallcontactform', 'messages');
     }
 
-	/**
-	 * Generate messages statsitics
-	 * @param $part
-	 */
-	public function getRecordsStats($part){
+  /**
+   * Generate messages statsitics
+   * @param $part
+   */
+  public function getRecordsStats( $part ){
 
-        switch($part){
+        switch( $part ){
 
             case 'all_count':
-                return Message::count();
-            	break;
+              return Message::count();
+            break;
 
             case 'read_count':
-                return Message::isRead()->count();
-            	break;
+              return Message::isRead()->count();
+            break;
 
             case 'new_count':
-                return Message::isNew()->count();
-            	break;
+              return Message::isNew()->count();
+            break;
 
             case 'latest_message_date':
-                $data = Message::orderBy('created_at', 'DESC')->first();
-				if(!empty($data->created_at)) {
-					return $data->created_at->format('j.n.Y H:i');
-				}
 
-				return NULL;
-            	break;
+              $data = Message::orderBy( 'created_at', 'DESC' )->first();
+
+              if ( !empty( $data->created_at ) ) {
+                Carbon::setLocale( App::getLocale() );
+                return Carbon::createFromFormat( 'Y-m-d H:i:s', $data->created_at )->diffForHumans();
+              }
+
+              return NULL;
+            break;
 
             case 'latest_message_name':
-                $data = Message::orderBy('created_at', 'DESC')->first();
-				if(!empty($data->name)) {
-					return $data->name;
-				}
+              $data = Message::orderBy( 'created_at', 'DESC' )->first();
 
-				return NULL;
-            	break;
+              if( !empty( $data->name ) ) {
+                return $data->name;
+              }
+
+              return NULL;
+            break;
 
             default:
-                return NULL;
-                break;
+              return NULL;
+            break;
 
         }
 
-	}
+  }
 
-	/**
+  /**
      * Preview page view
      * @param $id
      */
-    public function preview($id){
+    public function preview( $id ){
 
-		$message = Message::find($id);
+    $message = Message::find( $id );
 
-        if($message){
+        if ( $message ) {
 
             $this->vars['message'] = $message;
-			$message->new_message = 0;
-			$message->save();
+            $message->new_message = 0;
+            $message->save();
 
-        }
-        else{
+        } else{
 
-            Flash::error(e(trans('janvince.smallcontactform::lang.controller.preview.record_not_found')));
-
-            return Redirect::to(Backend::url('janvince/smallcontactform/messages'));
+            Flash::error( e( trans( 'janvince.smallcontactform::lang.controller.preview.record_not_found') ) );
+            return Redirect::to( Backend::url( 'janvince/smallcontactform/messages' ) );
 
         }
 
     }
 
-	/**
+  /**
      * Index page view
      * @param $id
      */
     public function index(){
-		parent::index();
+    parent::index();
 
-		if (!$this->user->hasAccess('janvince.smallcontactform.access_messages')) {
+    if (!$this->user->hasAccess('janvince.smallcontactform.access_messages')) {
 
-			Flash::error( e(trans('janvince.smallcontactform::lang.controllers.index.unauthorized')) );
-			return Redirect::to( Backend::url('/') );
+      Flash::error( e(trans('janvince.smallcontactform::lang.controllers.index.unauthorized')) );
+      return Redirect::to( Backend::url('/') );
 
-		}
+    }
 
 
 
