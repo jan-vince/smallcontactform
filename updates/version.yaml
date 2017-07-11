@@ -57,3 +57,5 @@
     - Changes to allow multiple use of contact form (form and message blocks has now unique IDs)
     - Added checkbox field type
     - Scoreboard last message time format (thanks Szabó Gergő)
+1.4.9:
+    - Added scoreboard button to quickly open form settings

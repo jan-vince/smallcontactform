@@ -37,6 +37,7 @@ return [
       'read_count' => 'Přečtené',
       'all_count' => 'Celkem',
       'all_description' => 'Zpráv',
+      'settings_btn' => 'Nastavení formuláře',
     ],
 
     'preview' => [
@@ -227,7 +228,7 @@ return [
       'text' => 'Text',
       'email' => 'Email',
       'textarea' => 'Textarea',
-      'checkbox' => 'Checkbox',      
+      'checkbox' => 'Checkbox',
     ],
 
     'form_field_validation' => [

@@ -24,8 +24,8 @@
 </div>
 
 
-<?php if ($this->user->hasAccess('janvince.smallcontactform.delete_messages')): ?>
     <div data-control="toolbar">
+      <?php if ($this->user->hasAccess('janvince.smallcontactform.delete_messages')): ?>
         <button
             class="btn btn-default oc-icon-trash-o"
             disabled="disabled"
@@ -41,5 +41,6 @@
             data-stripe-load-indicator>
             <?= e(trans('backend::lang.list.delete_selected')) ?>
         </button>
+      <?php endif ?>
+        <a href="<?= Backend::url('system/settings/update/janvince/smallcontactform/settings'); ?>" class="btn btn-info oc-icon-cogs"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.settings_btn')) ?></a>
     </div>
-<?php endif ?>

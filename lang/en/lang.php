@@ -37,6 +37,7 @@ return [
       'read_count' => 'Read',
       'all_count' => 'Total',
       'all_description' => 'Messages',
+      'settings_btn' => 'Form settings',      
     ],
 
     'preview' => [
