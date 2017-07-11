@@ -18,19 +18,19 @@ use App;
 class SmallContactForm extends ComponentBase
 {
 
-	// public $implement = [
+  // public $implement = [
     //     '@RainLab.Translate.Behaviors.TranslatableModel',
     // ];
-	//
-	// public $translatable = [];
+  //
+  // public $translatable = [];
 
-	private $validationRules;
-	private $validationMessages;
+  private $validationRules;
+  private $validationMessages;
 
-	private $postData = [];
-	private $post;
+  private $postData = [];
+  private $post;
 
-	private $errorAutofocus;
+  private $errorAutofocus;
 
 
     public function componentDetails()
@@ -41,462 +41,482 @@ class SmallContactForm extends ComponentBase
         ];
     }
 
-	public function onRun(){
+  public function onRun(){
 
-		$this->page['flashSuccess'] = Session::get('flashSuccess');
+    if ( Session::get('flashSuccess') ) {
 
-		// Inject CSS assets if required
-		if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_css_assets')){
-			$this->addCss('/modules/system/assets/css/framework.extras.css');
-			$this->addCss('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-		}
+      $this->page['flashSuccess'] = Session::get('flashSuccess', $this->alias);
 
-		// Inject JS assets if required
-		if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_js_assets')){
-			$this->addJs('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
-			$this->addJs('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
-			$this->addJs('/modules/system/assets/js/framework.js');
-			$this->addJs('/modules/system/assets/js/framework.extras.js');
-		}
+    }
 
-	}
 
-	/**
-	 * Form handler
-	 */
-	public function onFormSend(){
+    // Inject CSS assets if required
+    if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_css_assets')){
+      $this->addCss('/modules/system/assets/css/framework.extras.css');
+      $this->addCss('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+    }
 
-		/**
-		 * Validation
-		 */
-		$this->setFieldsValidationRules();
-		$errors = [];
+    // Inject JS assets if required
+    if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_js_assets')){
+      $this->addJs('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
+      $this->addJs('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
+      $this->addJs('/modules/system/assets/js/framework.js');
+      $this->addJs('/modules/system/assets/js/framework.extras.js');
+    }
 
-		$this->post = Input::all();
+  }
 
-		// IP protection is enabled (has highest priority)
-		if( Settings::getTranslated('add_ip_protection') ) {
+  /**
+   * Form handler
+   */
+  public function onFormSend(){
+    /**
+     * Validation
+     */
+    $this->setFieldsValidationRules();
+    $errors = [];
 
-			$max = ( Settings::getTranslated('add_ip_protection_count') ? intval(Settings::getTranslated('add_ip_protection_count')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_count_placeholder'))) );
+    $this->post = Input::all();
 
-			if( empty($max) ) {
-				$max = 3;
-			}
+    // IP protection is enabled (has highest priority)
+    if( Settings::getTranslated('add_ip_protection') ) {
 
-			$currentIp = Request::ip();
+      $max = ( Settings::getTranslated('add_ip_protection_count') ? intval(Settings::getTranslated('add_ip_protection_count')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_count_placeholder'))) );
 
-			if( empty($currentIp) ) {
-				Log::error('SMALL CONTACT FORM ERROR: Could not get remote IP address!');
-				$errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_get_ip'));
-			} else {
+      if( empty($max) ) {
+        $max = 3;
+      }
 
-				$message = new Message;
+      $currentIp = Request::ip();
 
-				if($message->testIPAddress($currentIp) >= $max) {
-					$errors[] = ( Settings::getTranslated('add_ip_protection_error_too_many_submits') ? Settings::getTranslated('add_ip_protection_error_too_many_submits') : e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_too_many_submits_placeholder')) );
-				}
+      if( empty($currentIp) ) {
+        Log::error('SMALL CONTACT FORM ERROR: Could not get remote IP address!');
+        $errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_get_ip'));
+      } else {
 
-			}
+        $message = new Message;
 
-		}
+        if($message->testIPAddress($currentIp) >= $max) {
+          $errors[] = ( Settings::getTranslated('add_ip_protection_error_too_many_submits') ? Settings::getTranslated('add_ip_protection_error_too_many_submits') : e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_error_too_many_submits_placeholder')) );
+        }
 
-		// Antispam validation if allowed
-		if( Settings::getTranslated('add_antispam') ) {
-			$this->validationRules['_protect'] = 'size:0';
+      }
 
-			if( !empty($this->post['_form_created']) ) {
+    }
 
-				$delay = ( Settings::getTranslated('antispam_delay') ? intval(Settings::getTranslated('antispam_delay')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'))) );
+    // Antispam validation if allowed
+    if( Settings::getTranslated('add_antispam') ) {
+      $this->validationRules[('_protect-' . $this->alias)] = 'size:0';
 
-				if(!$delay) {
-					$delay = 5;
-				}
+      if( !empty($this->post['_form_created']) ) {
 
-				$formCreatedTime = strtr(Input::get('_form_created'), 'jihgfedcba', '0123456789');
+        $delay = ( Settings::getTranslated('antispam_delay') ? intval(Settings::getTranslated('antispam_delay')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'))) );
 
-				$this->post['_form_created'] = intval($formCreatedTime + $delay);
+        if(!$delay) {
+          $delay = 5;
+        }
 
-				$this->validationRules['_form_created'] = 'numeric|max:' . time();
+        $formCreatedTime = strtr(Input::get('_form_created'), 'jihgfedcba', '0123456789');
 
-			}
+        $this->post['_form_created'] = intval($formCreatedTime + $delay);
 
-		}
+        $this->validationRules['_form_created'] = 'numeric|max:' . time();
 
-		// Validate
-		$validator = Validator::make($this->post, $this->validationRules, $this->validationMessages);
-		$validator->valid();
-		$this->validationMessages = $validator->messages();
-		$this->setPostData($validator->messages());
+      }
 
-		if($validator->invalid() or !empty($errors)){
+    }
 
-			// Form main error msg
-			$errors[] = ( Settings::getTranslated('form_error_msg') ? Settings::getTranslated('form_error_msg') : e(trans('janvince.smallcontactform::lang.settings.form.error_msg_placeholder')));
+    // Validate
+    $validator = Validator::make($this->post, $this->validationRules, $this->validationMessages);
+    $validator->valid();
+    $this->validationMessages = $validator->messages();
+    $this->setPostData($validator->messages());
 
-			// validation error msg for Antispam field
-			if( empty($this->postData['_protect']['error']) && !empty($this->postData['_form_created']['error']) ) {
-				$errors[] = ( Settings::getTranslated('antispam_delay_error_msg') ? Settings::getTranslated('antispam_delay_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder')));
-			}
+    if($validator->invalid() or !empty($errors)){
 
-			Flash::error(implode(PHP_EOL, $errors));
+      // Form main error msg
+      $errors[] = ( Settings::getTranslated('form_error_msg') ? Settings::getTranslated('form_error_msg') : e(trans('janvince.smallcontactform::lang.settings.form.error_msg_placeholder')));
 
-		} else {
+      // validation error msg for Antispam field
+      if( empty($this->postData[('_protect' . $this->alias)]['error']) && !empty($this->postData['_form_created']['error']) ) {
+        $errors[] = ( Settings::getTranslated('antispam_delay_error_msg') ? Settings::getTranslated('antispam_delay_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder')));
+      }
 
-			Flash::success(
-				( Settings::getTranslated('form_success_msg') ? Settings::getTranslated('form_success_msg') : e(trans('janvince.smallcontactform::lang.settings.form.success_msg_placeholder')) )
-			);
+      Flash::error(implode(PHP_EOL, $errors));
 
-			Session::flash('flashSuccess', true);
+    } else {
 
-			$message = new Message;
+      Flash::success(
+        ( Settings::getTranslated('form_success_msg') ? Settings::getTranslated('form_success_msg') : e(trans('janvince.smallcontactform::lang.settings.form.success_msg_placeholder')) )
+      );
 
-			// Store data in DB
-			$message->storeFormData($this->postData);
+      Session::flash('flashSuccess', $this->alias);
 
-			// Send auto reply
-			$message->sendAutoreplyEmail($this->postData);
+      $message = new Message;
 
-			// Send notification
-			$message->sendNotificationEmail($this->postData);
+      // Store data in DB
+      $message->storeFormData($this->postData);
 
-			// Redirect to prevent repeated sending of form
-			// Clear data after success AJAX send
-			if(!Request::ajax()){
-				if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
+      // Send auto reply
+      $message->sendAutoreplyEmail($this->postData);
 
-					if( !empty(Settings::getTranslated('redirect_url_external')) ) {
-						$path = Settings::getTranslated('redirect_url');
-					} else {
-						$path = url(Settings::getTranslated('redirect_url'));
-					}
+      // Send notification
+      $message->sendNotificationEmail($this->postData);
 
-					return Redirect::to($path);
+      // Redirect to prevent repeated sending of form
+      // Clear data after success AJAX send
+      if(!Request::ajax()){
+        if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
 
-				} else {
-					return Redirect::refresh();
-				}
+          if( !empty(Settings::getTranslated('redirect_url_external')) ) {
+            $path = Settings::getTranslated('redirect_url');
+          } else {
+            $path = url(Settings::getTranslated('redirect_url'));
+          }
 
-			} else {
-				$this->post = [];
-				$this->postData = [];
-				$this->page['flashSuccess'] = true;
-			}
+          return Redirect::to($path);
 
-		}
+        } else {
+          return Redirect::refresh();
+        }
 
-	}
+      } else {
+        $this->post = [];
+        $this->postData = [];
+        $this->page['flashSuccess'] = $this->alias;
+      }
 
-	/**
-	 * Get plugin settings
-	 * Twig access: contactForm.fields
-	 * @return array
-	 */
-	public function fields(){
+    }
 
-		return Settings::getTranslated('form_fields', []);
+  }
 
-	}
+  /**
+   * Get plugin settings
+   * Twig access: contactForm.fields
+   * @return array
+   */
+  public function fields(){
 
-	/**
-	 * Get form attributes
-	 */
-	public function getFormAttributes(){
+    return Settings::getTranslated('form_fields', []);
 
-		$attributes = [];
+  }
 
-		$attributes['class'] = Settings::getTranslated('form_css_class');
-		$attributes['request'] = $this->alias . '::onFormSend';
-		$attributes['method'] = 'POST';
+  /**
+   * Get form attributes
+   */
+  public function getFormAttributes(){
 
-		if( Settings::getTranslated('form_allow_ajax', 0) ) {
+    $attributes = [];
 
-			$attributes['data-request'] = $this->alias . '::onFormSend';
-			$attributes['data-request-validate'] = NULL;
-			$attributes['data-request-update'] = "'". $this->alias ."::scf-message':'#scf-message','". $this->alias ."::scf-form':'#scf-form'";
+    $attributes['class'] = Settings::getTranslated('form_css_class');
+    $attributes['request'] = $this->alias . '::onFormSend';
+    $attributes['method'] = 'POST';
 
-		}
+    if( Settings::getTranslated('form_allow_ajax', 0) ) {
 
-		if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
+      $attributes['data-request'] = $this->alias . '::onFormSend';
+      $attributes['data-request-validate'] = NULL;
+      $attributes['data-request-update'] = "'". $this->alias ."::scf-message':'#scf-message-". $this->alias ."','". $this->alias ."::scf-form':'#scf-form-". $this->alias ."'";
 
-			if( !empty(Settings::getTranslated('redirect_url_external')) ) {
-				$attributes['data-request-redirect'] = Settings::getTranslated('redirect_url');
-			} else {
-				$attributes['data-request-redirect'] = url(Settings::getTranslated('redirect_url'));
-			}
+    }
 
-		}
+    if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
 
-		if( Settings::getTranslated('form_send_confirm_msg') and Settings::getTranslated('form_allow_confirm_msg') ) {
+      if( !empty(Settings::getTranslated('redirect_url_external')) ) {
+        $attributes['data-request-redirect'] = Settings::getTranslated('redirect_url');
+      } else {
+        $attributes['data-request-redirect'] = url(Settings::getTranslated('redirect_url'));
+      }
 
-			$attributes['data-request-confirm'] = Settings::getTranslated('form_send_confirm_msg');
+    }
 
-		}
+    if( Settings::getTranslated('form_send_confirm_msg') and Settings::getTranslated('form_allow_confirm_msg') ) {
 
-		return $attributes;
+      $attributes['data-request-confirm'] = Settings::getTranslated('form_send_confirm_msg');
 
-	}
+    }
 
-	/**
-	 * Generate field HTML code
-	 * @return string
-	 */
-	public function getFieldHtmlCode(array $fieldSettings){
+    return $attributes;
 
-		if(empty($fieldSettings['name']) && empty($fieldSettings['type'])){
-			return NULL;
-		}
+  }
 
-		$fieldType = Settings::getFieldTypes($fieldSettings['type']);
-		$fieldRequired = $this->isFieldRequired($fieldSettings);
+  /**
+   * Generate field HTML code
+   * @return string
+   */
+  public function getFieldHtmlCode(array $fieldSettings){
 
-		$output = [];
+    if(empty($fieldSettings['name']) && empty($fieldSettings['type'])){
+      return NULL;
+    }
 
-		$wrapperCss = ( $fieldSettings['wrapper_css'] ? $fieldSettings['wrapper_css'] : e(trans('janvince.smallcontactform::lang.settings.form_fields.wrapper_css_placeholder')) );
+    $fieldType = Settings::getFieldTypes($fieldSettings['type']);
+    $fieldRequired = $this->isFieldRequired($fieldSettings);
 
-		// Add wrapper error class if there are any
-		if(!empty($this->postData[$fieldSettings['name']]['error'])){
-			$wrapperCss .= ' has-error';
-		}
+    $output = [];
 
-		$output[] = '<div class="' . $wrapperCss . '">';
+    $wrapperCss = ( $fieldSettings['wrapper_css'] ? $fieldSettings['wrapper_css'] : $fieldType['wrapper_class'] );
 
-			// Label
-			if( !empty($fieldSettings['label']) and !Settings::getTranslated('form_use_placeholders') ){
-				$output[] = '<label class="control-label ' . ( $fieldRequired ? 'required' : '' ) . '" for="' . $fieldSettings['name'] . '">' . Settings::getDictionaryTranslated($fieldSettings['label']) . '</label>';
-			}
+    // Add wrapper error class if there are any
+    if(!empty($this->postData[$fieldSettings['name']]['error'])){
+      $wrapperCss .= ' has-error';
+    }
 
-			// Add help-block if there are errors
-			if(!empty($this->postData[$fieldSettings['name']]['error'])){
-				$output[] = '<small class="help-block">' . Settings::getDictionaryTranslated($this->postData[$fieldSettings['name']]['error']) . "</small>";
-			}
+    $output[] = '<div class="' . $wrapperCss . '">';
 
-			// Field attributes
-			$attributes = [
-				'id' => $fieldSettings['name'],
-				'name' => $fieldSettings['name'],
-				'class' => ($fieldSettings['field_css'] ? $fieldSettings['field_css'] : e(trans('janvince.smallcontactform::lang.settings.form_fields.field_css_placeholder')) ),
-				'value' => (!empty($this->postData[$fieldSettings['name']]['value']) && empty($fieldType['html_close']) ? $this->postData[$fieldSettings['name']]['value'] : '' ),
-			];
+      // Label classic
+      if( !empty($fieldSettings['label']) and !Settings::getTranslated('form_use_placeholders') and !empty($fieldType['label']) ){
+        $output[] = '<label class="control-label ' . ( $fieldRequired ? 'required' : '' ) . '" for="' . $fieldSettings['name'] . '">' . Settings::getDictionaryTranslated($fieldSettings['label']) . '</label>';
+      }
 
-			// Placeholders if enabled
-			if(Settings::getTranslated('form_use_placeholders')){
-				$attributes['placeholder'] = Settings::getDictionaryTranslated($fieldSettings['label']);
-			}
+      // Label as container
+      if( empty($fieldType['label']) ){
+        $output[] = '<label>';
+      }
 
 
-			// Autofocus only when no error
-			if(!empty($fieldSettings['autofocus']) && !Flash::error()){
-				$attributes['autofocus'] = NULL;
-			}
+      // Add help-block if there are errors
+      if(!empty($this->postData[$fieldSettings['name']]['error'])){
+        $output[] = '<small class="help-block">' . Settings::getDictionaryTranslated($this->postData[$fieldSettings['name']]['error']) . "</small>";
+      }
 
-			// Add custom attributes from field settings
-			if(!empty($fieldType['attributes'])){
-				$attributes = array_merge($attributes, $fieldType['attributes']);
-			}
+      // Field attributes
+      $attributes = [
+        'id' => $fieldSettings['name'],
+        'name' => $fieldSettings['name'],
+        'class' => ($fieldSettings['field_css'] ? $fieldSettings['field_css'] : $fieldType['field_class'] ),
+        'value' => (!empty($this->postData[$fieldSettings['name']]['value']) && empty($fieldType['html_close']) ? $this->postData[$fieldSettings['name']]['value'] : '' ),
+      ];
 
-			// Add error class if there are any and autofocus field
-			if(!empty($this->postData[$fieldSettings['name']]['error'])){
-				$attributes['class'] = $attributes['class'] . ' error';
+      // Placeholders if enabled
+      if(Settings::getTranslated('form_use_placeholders')){
+        $attributes['placeholder'] = Settings::getDictionaryTranslated($fieldSettings['label']);
+      }
 
-				if(empty($this->errorAutofocus)){
-					$attributes['autofocus'] = NULL;
-					$this->errorAutofocus = true;
-				}
 
-			}
+      // Autofocus only when no error
+      if(!empty($fieldSettings['autofocus']) && !Flash::error()){
+        $attributes['autofocus'] = NULL;
+      }
 
-			if($fieldRequired){
-				$attributes['required'] = NULL;
-			}
+      // Add custom attributes from field settings
+      if(!empty($fieldType['attributes'])){
+        $attributes = array_merge($attributes, $fieldType['attributes']);
+      }
 
+      // Add error class if there are any and autofocus field
+      if(!empty($this->postData[$fieldSettings['name']]['error'])){
+        $attributes['class'] = $attributes['class'] . ' error';
 
-			$output[] = '<' . $fieldType['html_open'] . ' ' . $this->formatAttributes($attributes) . '>';
+        if(empty($this->errorAutofocus)){
+          $attributes['autofocus'] = NULL;
+          $this->errorAutofocus = true;
+        }
 
-			// For pair tags insert value between
-			if(!empty($this->postData[$fieldSettings['name']]['value']) && !empty($fieldType['html_close'])){
-				$output[] = $this->postData[$fieldSettings['name']]['value'];
-			}
+      }
 
-			if(!empty($fieldType['html_close'])){
-				$output[] = '</' . $fieldType['html_close'] . '>';
-			}
+      if($fieldRequired){
+        $attributes['required'] = NULL;
+      }
 
-		$output[] = "</div>";
 
-		return(implode('', $output));
+      $output[] = '<' . $fieldType['html_open'] . ' ' . $this->formatAttributes($attributes) . '>';
 
-	}
+      // For pair tags insert value between
+      if(!empty($this->postData[$fieldSettings['name']]['value']) && !empty($fieldType['html_close'])){
+        $output[] = $this->postData[$fieldSettings['name']]['value'];
+      }
 
-	/**
-	 * Generate antispam field HTML code
-	 * @return string
-	 */
-	public function getAntispamFieldHtmlCode(){
+      // For tags withou label put text inline
+      if( empty( $fieldType['label'] ) ){
+        $output[] = Settings::getDictionaryTranslated($fieldSettings['label']);
+      }
 
-		if( !Settings::getTranslated('add_antispam') ){
-			return NULL;
-		}
+      if(!empty($fieldType['html_close'])){
+        $output[] = '</' . $fieldType['html_close'] . '>';
+      }
 
-		$output = [];
+      // Label as container
+      if( empty($fieldType['label']) ){
+        $output[] = '</label>';
+      }
 
-		$output[] = '<div id="_protect-wrapper" class="form-group ' . (Input::get('_protect') ? 'has-error' : '') . '">';
+    $output[] = "</div>";
 
-			$output[] = '<label class="control-label">' . ( Settings::getTranslated('antispam_label') ? Settings::getTranslated('antispam_label') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_label_placeholder'))  ) . '</label>';
+    return(implode('', $output));
 
-			$output[] = '<input type="hidden" name="_form_created" value="' . strtr(time(), '0123456789', 'jihgfedcba') . '">';
+  }
 
-			// Add help-block if there are errors
-			if(!empty($this->postData['_protect']['error'])){
-				$output[] = '<small class="help-block">' . ( Settings::getTranslated('antispam_error_msg') ? Settings::getTranslated('antispam_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_error_msg_placeholder'))  ) . "</small>";
-			}
+  /**
+   * Generate antispam field HTML code
+   * @return string
+   */
+  public function getAntispamFieldHtmlCode(){
 
-			// Field attributes
-			$attributes = [
-				'id' => '_protect',
-				'name' => '_protect',
-				'class' => '_protect form-control',
-				'value' => 'http://',
-			];
+    if( !Settings::getTranslated('add_antispam') ){
+      return NULL;
+    }
 
-			// Add error class if field is not empty
-			if( Input::get('_protect') ){
-				$attributes['class'] = $attributes['class'] . ' error';
+    $output = [];
 
-				if(empty($this->errorAutofocus)){
-					$attributes['autofocus'] = NULL;
-					$this->errorAutofocus = true;
-				}
+    $output[] = '<div id="_protect-wrapper-' . $this->alias . '" class="form-group _protect-wrapper' . (Input::get('_protect-'.$this->alias) ? 'has-error' : '') . '">';
 
-			}
+      $output[] = '<label class="control-label">' . ( Settings::getTranslated('antispam_label') ? Settings::getTranslated('antispam_label') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_label_placeholder'))  ) . '</label>';
 
-			$output[] = '<input ' . $this->formatAttributes($attributes) . '>';
+      $output[] = '<input type="hidden" name="_form_created" value="' . strtr(time(), '0123456789', 'jihgfedcba') . '">';
 
-		$output[] = "</div>";
+      // Add help-block if there are errors
+      if(!empty($this->postData[('_protect'.$this->alias)]['error'])){
+        $output[] = '<small class="help-block">' . ( Settings::getTranslated('antispam_error_msg') ? Settings::getTranslated('antispam_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_error_msg_placeholder'))  ) . "</small>";
+      }
 
-		$output[] = "
-			<script>
-				document.getElementById('_protect').setAttribute('value', '');
-				document.getElementById('_protect-wrapper').style.display = 'none';
-			</script>
-		";
+      // Field attributes
+      $attributes = [
+        'id' => '_protect-'.$this->alias,
+        'name' => '_protect',
+        'class' => '_protect form-control',
+        'value' => 'http://',
+      ];
 
-		return(implode('', $output));
+      // Add error class if field is not empty
+      if( Input::get('_protect-'.$this->alias) ){
+        $attributes['class'] = $attributes['class'] . ' error';
 
-	}
+        if(empty($this->errorAutofocus)){
+          $attributes['autofocus'] = NULL;
+          $this->errorAutofocus = true;
+        }
 
+      }
 
-	/**
-	 * Generate antispam field HTML code
-	 * @return string
-	 */
-	public function getSubmitButtonHtmlCode(){
+      $output[] = '<input ' . $this->formatAttributes($attributes) . '>';
 
-		if( !count($this->fields()) ){
-			return e(trans('janvince.smallcontactform::lang.controller.contact_form.no_fields'));
-		}
+    $output[] = "</div>";
 
-		$output = [];
+    $output[] = "
+      <script>
+        document.getElementById('_protect-" . $this->alias . "').setAttribute('value', '');
+        document.getElementById('_protect-wrapper-" . $this->alias . "').style.display = 'none';
+      </script>
+    ";
 
-		$wrapperCss = ( Settings::getTranslated('send_btn_wrapper_css') ? Settings::getTranslated('send_btn_wrapper_css') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_wrapper_css_placeholder')) );
+    return(implode('', $output));
 
-		$output[] = '<div id="submit-wrapper" class="' . $wrapperCss . '">';
+  }
 
-			$output[] = '<button type="submit" data-attach-loading class="oc-loader ' . ( Settings::getTranslated('send_btn_css_class') ? Settings::getTranslated('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . '">';
 
-			$output[] = ( Settings::getTranslated('send_btn_text') ? Settings::getTranslated('send_btn_text') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_text_placeholder')) );
+  /**
+   * Generate antispam field HTML code
+   * @return string
+   */
+  public function getSubmitButtonHtmlCode(){
 
-			$output[] = '</button>';
+    if( !count($this->fields()) ){
+      return e(trans('janvince.smallcontactform::lang.controller.contact_form.no_fields'));
+    }
 
-		$output[] = "</div>";
+    $output = [];
 
-		return(implode('', $output));
+    $wrapperCss = ( Settings::getTranslated('send_btn_wrapper_css') ? Settings::getTranslated('send_btn_wrapper_css') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_wrapper_css_placeholder')) );
 
-	}
+    $output[] = '<div id="submit-wrapper" class="' . $wrapperCss . '">';
 
+      $output[] = '<button type="submit" data-attach-loading class="oc-loader ' . ( Settings::getTranslated('send_btn_css_class') ? Settings::getTranslated('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . '">';
 
-	/**
-	 * Generate validation rules and messages
-	 */
-	private function setFieldsValidationRules(){
+      $output[] = ( Settings::getTranslated('send_btn_text') ? Settings::getTranslated('send_btn_text') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_text_placeholder')) );
 
-		$fieldsDefinition = $this->fields();
+      $output[] = '</button>';
 
-		$validationRules = [];
-		$validationMessages = [];
+    $output[] = "</div>";
 
-		foreach($fieldsDefinition as $field){
+    return(implode('', $output));
 
-			if(!empty($field['validation'])) {
-				$rules = [];
+  }
 
-				foreach($field['validation'] as $rule) {
-					$rules[] = $rule['validation_type'];
 
-					if(!empty($rule['validation_error'])){
-						$validationMessages[($field['name'] . '.' . $rule['validation_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
-					}
-				}
-				$validationRules[$field['name']] = implode('|', $rules);
-			}
+  /**
+   * Generate validation rules and messages
+   */
+  private function setFieldsValidationRules(){
 
-		}
+    $fieldsDefinition = $this->fields();
 
-		$this->validationRules = $validationRules;
-		$this->validationMessages = $validationMessages;
+    $validationRules = [];
+    $validationMessages = [];
 
-	}
+    foreach($fieldsDefinition as $field){
 
+      if(!empty($field['validation'])) {
+        $rules = [];
 
-	/**
-	 * Generate post data with errors
-	 */
-	private function setPostData(MessageBag $validatorMessages){
+        foreach($field['validation'] as $rule) {
+          $rules[] = $rule['validation_type'];
 
-		foreach( Input::all() as $key => $value){
+          if(!empty($rule['validation_error'])){
+            $validationMessages[($field['name'] . '.' . $rule['validation_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
+          }
+        }
+        $validationRules[$field['name']] = implode('|', $rules);
+      }
 
-			$this->postData[$key] = [
-				'value' => e(Input::get($key)),
-				'error' => $validatorMessages->first($key),
-			];
+    }
 
-		}
+    $this->validationRules = $validationRules;
+    $this->validationMessages = $validationMessages;
 
-	}
+  }
 
-	/**
-	 * Format attributes array
-	 * @return array
-	 */
-	private function formatAttributes(array $attributes) {
 
-		$output = [];
+  /**
+   * Generate post data with errors
+   */
+  private function setPostData(MessageBag $validatorMessages){
 
-		foreach ($attributes as $key => $value) {
-			$output[] = $key . '="' . $value . '"';
-		}
+    foreach( Input::all() as $key => $value){
 
-		return implode(' ', $output);
+      $this->postData[$key] = [
+        'value' => e(Input::get($key)),
+        'error' => $validatorMessages->first($key),
+      ];
 
-	}
+    }
 
-	/**
-	 * Search for required validation type
-	 */
-	private function isFieldRequired($fieldSettings){
+  }
 
-		if(empty($fieldSettings['validation'])){
-			return false;
-		}
+  /**
+   * Format attributes array
+   * @return array
+   */
+  private function formatAttributes(array $attributes) {
 
-		foreach($fieldSettings['validation'] as $rule) {
-			if(!empty($rule['validation_type']) && $rule['validation_type'] == 'required'){
-				return true;
-			}
-		}
+    $output = [];
 
-		return false;
+    foreach ($attributes as $key => $value) {
+      $output[] = $key . '="' . $value . '"';
+    }
 
-	}
+    return implode(' ', $output);
+
+  }
+
+  /**
+   * Search for required validation type
+   */
+  private function isFieldRequired($fieldSettings){
+
+    if(empty($fieldSettings['validation'])){
+      return false;
+    }
+
+    foreach($fieldSettings['validation'] as $rule) {
+      if(!empty($rule['validation_type']) && $rule['validation_type'] == 'required'){
+        return true;
+      }
+    }
+
+    return false;
+
+  }
 
 
 }

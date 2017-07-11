@@ -1,5 +1,9 @@
 {% flash%}
-	<div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
-		{{ html_entity_decode(message)|nl2br }}
-	</div>
+
+  {% if flashSuccess==__SELF__ %}
+  	<div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+  		{{ html_entity_decode(message)|nl2br }}
+  	</div>
+  {% endif %}
+
 {% endflash %}

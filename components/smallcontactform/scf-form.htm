@@ -1,4 +1,4 @@
-{% if flashSuccess == false or ( flashSuccess and settingsGet('form_hide_after_success', 0) == 0 ) %}
+{% if flashSuccess == false or ( flashSuccess!=__SELF__) or ( flashSuccess==__SELF__ and settingsGet('form_hide_after_success', 0) == 0 ) %}
 
 	{{ form_open(__SELF__.getFormAttributes) }}
 

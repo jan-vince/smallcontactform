@@ -53,3 +53,7 @@
     - Removed field type restriction for Fields mapping
 1.4.7:
     - Removed hardcoded date format for created_at column in messages list, updated README and added hungarian language (thanks Szabó Gergő for all this)
+1.4.8:
+    - Changes to allow multiple use of contact form (form and message blocks has now unique IDs)
+    - Added checkbox field type
+    - Scoreboard last message time format (thanks Szabó Gergő)
