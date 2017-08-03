@@ -23,7 +23,7 @@ class Message extends Model
 
     public $table = 'janvince_smallcontactform_messages';
 
-    public $implement = ['@JanVince.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
 
 	public $timestamps = true;
 
