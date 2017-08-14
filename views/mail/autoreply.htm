@@ -5,23 +5,23 @@ Hello,
 
 this is a confirmation from Contact form.
 
-{% if fields|length %}
+{% if fieldsDetails|length %}
 You have sent this:
 
 <table border="0">
 
-	<tbody>
+    <tbody>
 
-		{% for key,value in fields %}
+        {% for field in fieldsDetails %}
 
-			<tr>
-				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key }}</th>
-				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
-			</tr>
+            <tr>
+                <th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
+                <td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
+            </tr>
 
-		{% endfor %}
+        {% endfor %}
 
-	</tbody>
+    </tbody>
 
 </table>
 
@@ -39,7 +39,7 @@ Contact form
 
 <p>this is a confirmation from Contact form.</p>
 
-{% if fields|length %}
+{% if fieldsDetails|length %}
 
 <br>
 
@@ -47,18 +47,18 @@ Contact form
 
 <table border="0">
 
-	<tbody>
+    <tbody>
 
-		{% for key,value in fields %}
+        {% for field in fieldsDetails %}
 
-			<tr>
-				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key }}</th>
-				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
-			</tr>
+            <tr>
+                <th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
+                <td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
+            </tr>
 
-		{% endfor %}
+        {% endfor %}
 
-	</tbody>
+    </tbody>
 
 </table>
 

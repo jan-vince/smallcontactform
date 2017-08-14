@@ -60,4 +60,9 @@
 1.4.9:
     - Added scoreboard button to quickly open form settings
 1.4.10:
-    - Fidex typo in lang filename
+    - Fixed typo in lang filename
+1.4.11:
+    - Added "fieldsDetails" array to all email templates to have access to field labels, types and more
+    - Updated default autoreply mail templates to include fieldsDetail array
+    - Added function to detect non-defined fields in sent data
+    - Updated README.md file

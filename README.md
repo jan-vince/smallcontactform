@@ -50,14 +50,14 @@ But you have to include Twig tags ````{% styles %}```` and ````{% scripts %}````
 
 ````
 <html>
-	<head>
-		{% styles %}
-	</head>
+    <head>
+        {% styles %}
+    </head>
 <body>
 
-	{% page %}
+    {% page %}
 
-	{% scripts %}
+    {% scripts %}
 
 </body>
 
@@ -68,18 +68,18 @@ If you want to insert assets by hand, you can do it this way (or similar):
 
 ````
 <html>
-	<head>
-		<link href="{{['~/modules/system/assets/css/framework.extras.css']|theme }}.css" rel="stylesheet">
-	</head>
+    <head>
+        <link href="{{['~/modules/system/assets/css/framework.extras.css']|theme }}.css" rel="stylesheet">
+    </head>
 <body>
 
-	{% page %}
+    {% page %}
 
-	<script type="text/javascript" src="{{ [
-		'@jquery',
-		'@framework',
-		'@framework.extras']|theme}}.js">
-	</script>
+    <script type="text/javascript" src="{{ [
+        '@jquery',
+        '@framework',
+        '@framework.extras']|theme}}.js">
+    </script>
 
 </body>
 
@@ -138,6 +138,13 @@ This check has own error message and custom field to set maximum submits.
 Mails can be sent directly or queued ([OctoberCMS queue](https://octobercms.com/docs/services/queues) must be configured!).
 
 Don't forget to configure mail preferences in *Settings > Mail > Mail configuration*!
+
+#### Data in email templates
+
+There are variables available in all email templates:
+
+* **fields** is array of [ 'field name' => 'post value' ]
+* **fieldsDetails** is array of [ 'field name' => ['name', 'value', 'type', ...] ]
 
 #### Allow autoreply
 
