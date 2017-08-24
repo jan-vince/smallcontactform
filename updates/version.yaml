@@ -72,3 +72,5 @@
     - Updated README.md file
 1.5.1:
     - Fixed flash message visibility when where are some errors
+1.5.2:
+    - Fixed flash error for IP protection visibility
