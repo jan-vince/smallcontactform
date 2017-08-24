@@ -33,38 +33,36 @@ class SmallContactForm extends ComponentBase
   private $errorAutofocus;
 
 
-    public function componentDetails()
-    {
+    public function componentDetails() {
         return [
             'name'        => 'janvince.smallcontactform::lang.controller.contact_form.name',
             'description' => 'janvince.smallcontactform::lang.controller.contact_form.description'
         ];
     }
 
-  public function onRun(){
+    public function onRun() {
 
-    if ( Session::get('flashSuccess') ) {
+        if ( Session::get('flashSuccess') ) {
 
-      $this->page['flashSuccess'] = Session::get('flashSuccess', $this->alias);
+          $this->page['flashSuccess'] = Session::get('flashSuccess', $this->alias);
+
+        }
+
+        // Inject CSS assets if required
+        if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_css_assets')){
+          $this->addCss('/modules/system/assets/css/framework.extras.css');
+          $this->addCss('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+        }
+
+        // Inject JS assets if required
+        if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_js_assets')){
+          $this->addJs('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
+          $this->addJs('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
+          $this->addJs('/modules/system/assets/js/framework.js');
+          $this->addJs('/modules/system/assets/js/framework.extras.js');
+        }
 
     }
-
-
-    // Inject CSS assets if required
-    if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_css_assets')){
-      $this->addCss('/modules/system/assets/css/framework.extras.css');
-      $this->addCss('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-    }
-
-    // Inject JS assets if required
-    if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_js_assets')){
-      $this->addJs('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
-      $this->addJs('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
-      $this->addJs('/modules/system/assets/js/framework.js');
-      $this->addJs('/modules/system/assets/js/framework.extras.js');
-    }
-
-  }
 
   /**
    * Form handler
@@ -157,11 +155,11 @@ class SmallContactForm extends ComponentBase
       // Store data in DB
       $message->storeFormData($this->postData);
 
-      // Send auto reply
-      $message->sendAutoreplyEmail($this->postData);
+      // Send autoreply
+      $message->sendAutoreplyEmail($this->postData, $this->getProperties());
 
       // Send notification
-      $message->sendNotificationEmail($this->postData);
+      $message->sendNotificationEmail($this->postData, $this->getProperties());
 
       // Redirect to prevent repeated sending of form
       // Clear data after success AJAX send
@@ -197,7 +195,27 @@ class SmallContactForm extends ComponentBase
    */
   public function fields(){
 
-    return Settings::getTranslated('form_fields', []);
+    $fields = Settings::getTranslated('form_fields', []);
+
+    if( !empty($this->property('disable_fields')) ) {
+
+        $disabledFields = explode( '|', $this->property('disable_fields') );
+
+        if(!is_array($disabledFields)) {
+            return $fields;
+        }
+
+        foreach ($fields as $key => $value) {
+
+            if( isset($value['name']) and in_array(trim($value['name']), $disabledFields) ) {
+                unset($fields[$key]);
+            }
+
+        }
+
+    }
+
+    return $fields;
 
   }
 

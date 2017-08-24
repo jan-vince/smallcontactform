@@ -113,7 +113,7 @@ System writes all form data in database, but for quick overview Name, Email and 
 
 But you have to help system to identify these columns by mapping to your form fields.
 
-These mappings are also used for auto reply emails where at least Email field mapping is important.
+These mappings are also used for autoreply emails where at least Email field mapping is important.
 
 
 ### ANTISPAM
@@ -210,6 +210,52 @@ Shows basic messages statistics.
 Shows number of new messages. The color changes to green if there are any.
 
 You can simply click widget to open Messages list.
+
+## Hacking a form component
+
+Sometimes there is a need to have more than one contact form. As this plugin is meant to be as simple as possible, these multiform functions are little hacks :)
+
+#### Override notification email options
+You can set different email address to which notification about Contact Form sent will be delivered and also change a notification template.
+
+*Template must exist in Settings > Mail > Mail configuration*.
+
+If you add a locale string to ````notification_template```` property (like ````notification_template_en````) than that one has priority and will be used if  ````App::getLocale()```` returns ````en````.
+
+````
+[contactForm salesForm]
+notification_address_to = 'sales@domain.com'
+notification_template = 'notification-sales'
+notification_template_en = 'notification-sales-en'
+notification_template_cs = 'notification-sales-cs
+````
+
+#### Override autoreply email options
+You can set different email address and name for autoreply message and also use different autoreply template.
+
+*Template must exist in Settings > Mail > Mail configuration*.
+
+If you add a locale string to ````autoreply_template```` or ````autoreply_address_from_name```` property (like ````autoreply_template_en```` or ````autoreply_address_from_name_en````) than that one has priority and will be used if  ````App::getLocale()```` returns ````en````.
+
+````
+[contactForm orderForm]
+autoreply_address_from = 'order@domain.com'
+autoreply_address_from_name = 'Orders'
+autoreply_address_from_name_en = 'Orders'
+autoreply_address_from_name_cs = 'Objednávky'
+autoreply_template = 'autoreply-order'
+autoreply_template_en = 'autoreply-order-en'
+autoreply_template_cs = 'autoreply-order-cs'
+````
+#### Disable some form fields
+You can disable some of defined form fields by passing their names in ````disable_fields```` component property.
+
+Several fields can be added while separated with pipe ````|````.
+
+````
+[contactForm]
+disable_fields = 'phone|name|confirmation'
+````
 
 
 ----

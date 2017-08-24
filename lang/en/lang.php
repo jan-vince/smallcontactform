@@ -37,7 +37,7 @@ return [
       'read_count' => 'Read',
       'all_count' => 'Total',
       'all_description' => 'Messages',
-      'settings_btn' => 'Form settings',      
+      'settings_btn' => 'Form settings',
     ],
 
     'preview' => [
@@ -91,8 +91,8 @@ return [
 
     'templates' => [
 
-      'autoreply' => 'Form auto reply message (English)',
-      'autoreply_cs' => 'Form auto reply message (Czech)',
+      'autoreply' => 'Form autoreply message (English)',
+      'autoreply_cs' => 'Form autoreply message (Czech)',
 
       'notification' => 'Form notification message (English)',
       'notification_cs' => 'Form notification message (Czech)',
@@ -265,7 +265,7 @@ return [
       'notification_address_to' => 'Send notification to email',
       'notification_address_to_placeholder' => 'notifications@domain.com',
 
-      'allow_autoreply' => 'Allow auto reply',
+      'allow_autoreply' => 'Allow autoreply',
       'allow_autoreply_comment' => 'Send a form content copy to author',
 
       'autoreply_name_field' => 'NAME form field',
@@ -329,7 +329,7 @@ return [
         <p>You can build a custom form with own field names and types.</p>
         <p>System writes all form data in database, but for quick overview Name, Email and Message columns are visible separately in Messages list.</p>
         <p>So you have to help system to identify these columns by mapping to your form fields.</p>
-        <p><em>These mappings are also used for auto reply emails where at least Email field mapping is important.</em></p>
+        <p><em>These mappings are also used for autoreply emails where at least Email field mapping is important.</em></p>
         ',
       ],
 
