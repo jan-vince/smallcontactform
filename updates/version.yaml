@@ -70,3 +70,5 @@
     - Added some component hacking options (override autoreply and notification emails and template, disable fields)
     - Fixed some typos
     - Updated README.md file
+1.5.1:
+    - Fixed flash message visibility when where are some errors
