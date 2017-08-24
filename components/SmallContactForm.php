@@ -141,6 +141,7 @@ class SmallContactForm extends ComponentBase
       }
 
       Flash::error(implode(PHP_EOL, $errors));
+      Session::flash('flashSuccess', $this->alias);
 
     } else {
 
