@@ -521,6 +521,18 @@ tabs:
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.email'
 
+        notification_address_from_form:
+            label: 'janvince.smallcontactform::lang.settings.email.notification_address_from_form'
+            comment: 'janvince.smallcontactform::lang.settings.email.notification_address_from_form_comment'
+            span: left
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_notifications
+                condition: checked
+
         notification_address_to:
             label: 'janvince.smallcontactform::lang.settings.email.notification_address_to'
             span: left

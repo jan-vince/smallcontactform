@@ -74,3 +74,5 @@
     - Fixed flash message visibility when where are some errors
 1.5.2:
     - Fixed flash error for IP protection visibility
+1.5.3:
+    - Added option for notification emails to have FROM address set from contact form email field

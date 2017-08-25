@@ -265,6 +265,9 @@ return [
       'notification_address_to' => 'Send notification to email',
       'notification_address_to_placeholder' => 'notifications@domain.com',
 
+      'notification_address_from_form' => 'Form email field as notification FROM address',
+      'notification_address_from_form_comment' => 'Set from address to email entered in contact form (the field must be set in column mapping), so you can directly reply to notification.',
+
       'allow_autoreply' => 'Allow autoreply',
       'allow_autoreply_comment' => 'Send a form content copy to author',
 

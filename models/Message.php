@@ -270,6 +270,8 @@ class Message extends Model
         $output = [];
         $outputFull = [];
         $formFields = Settings::getTranslated('form_fields');
+        $fromAddress = null;
+        $fromAddressName = null;
 
         foreach($formFields as $field) {
 
@@ -283,6 +285,15 @@ class Message extends Model
 
             if( !empty( $field['name'] ) ) {
                 $outputFull[ $field['name'] ] = array_merge( $field, [ 'value' => $fieldValue ] );
+            }
+            // If email field is assigned, prepare for fromAddress
+            if(empty($fromAddress) and $field['name'] == Settings::getTranslated('autoreply_email_field')){
+                $fromAddress = e( $postData[$field['name']]['value'] );
+            }
+
+            // If name field is assigned, prepare for fromAddress
+            if(empty($fromAddressName) and $field['name'] == Settings::getTranslated('autoreply_name_field')){
+                $fromAddressName = e( $postData[$field['name']]['value'] );
             }
 
             $output[ $field['name'] ] = $fieldValue;
@@ -317,10 +328,25 @@ class Message extends Model
         } elseif ( !empty($componentProperties[ ('notification_template_'.App::getLocale())]) and empty( MailTemplate::listAllTemplates()[ $componentProperties[ ('notification_template_'.App::getLocale())] ] ) ) {
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('notification_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
-
-        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendTo){
+        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendTo, $fromAddress, $fromAddressName){
 
             $message->to($sendTo);
+
+            /**
+            *   Set notification FROM address to email provided in form (if present, mapped and allowed in settings)
+            */
+            if ( !empty($fromAddress) and Settings::getTranslated('notification_address_from_form') ) {
+
+                $validator = Validator::make(['email' => $fromAddress], ['email' => 'required|email']);
+
+                if($validator->fails()){
+                    Log::error('SMALL CONTACT FORM ERROR: Notification from address is not valid (' .$fromAddress. ')! System email address and name will be used.');
+                    return;
+                }
+
+                $message->from($fromAddress, $fromAddressName);
+
+            }
 
         });
 
