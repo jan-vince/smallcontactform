@@ -76,3 +76,5 @@
     - Fixed flash error for IP protection visibility
 1.5.3:
     - Added option for notification emails to have FROM address set from contact form email field
+1.5.4:
+    - Added option to mark selected messages as read

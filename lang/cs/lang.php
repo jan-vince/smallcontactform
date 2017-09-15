@@ -38,6 +38,9 @@ return [
       'all_count' => 'Celkem',
       'all_description' => 'Zpráv',
       'settings_btn' => 'Nastavení formuláře',
+      'mark_read' => 'Označit jako přečtené',
+      'mark_read_confirm' => 'Opravdu chcete vybrané zprávy označit jako přečtené?',
+      'mark_read_success' => 'Zprávy byly označeny jako přečtené.',
     ],
 
     'preview' => [

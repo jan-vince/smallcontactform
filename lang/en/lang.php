@@ -38,6 +38,9 @@ return [
       'all_count' => 'Total',
       'all_description' => 'Messages',
       'settings_btn' => 'Form settings',
+      'mark_read' => 'Mark as read',
+      'mark_read_confirm' => 'Really set selected messages as read?',
+      'mark_read_success' => 'Successfully marked as read.',
     ],
 
     'preview' => [

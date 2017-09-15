@@ -103,21 +103,52 @@ class Messages extends Controller
 
     }
 
-  /**
+    /**
      * Index page view
-     * @param $id
      */
     public function index(){
-    parent::index();
 
-    if (!$this->user->hasAccess('janvince.smallcontactform.access_messages')) {
+        parent::index();
 
-      Flash::error( e(trans('janvince.smallcontactform::lang.controllers.index.unauthorized')) );
-      return Redirect::to( Backend::url('/') );
+        if (!$this->user->hasAccess('janvince.smallcontactform.access_messages')) {
+
+          Flash::error( e(trans('janvince.smallcontactform::lang.controllers.index.unauthorized')) );
+          return Redirect::to( Backend::url('/') );
+
+        }
 
     }
 
+    /**
+     * Mark messages as read
+     * @param $record
+     */
+    public function onMarkRead(){
 
+        if (!$this->user->hasAccess('janvince.smallcontactform.access_messages')) {
+
+            Flash::error( e(trans('janvince.smallcontactform::lang.controllers.index.unauthorized')) );
+            return;
+
+        }
+
+        if ( ($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds) ) {
+
+            foreach ($checkedIds as $item) {
+                if (!$record = Message::find($item)) {
+                    continue;
+                }
+
+                $record->new_message = 0;
+                $record->save();
+
+            }
+
+            Flash::success( e(trans('janvince.smallcontactform::lang.controller.scoreboard.mark_read_success')) );
+
+            return $this->listRefresh();
+
+        }
 
     }
 

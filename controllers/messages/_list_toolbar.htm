@@ -42,5 +42,22 @@
             <?= e(trans('backend::lang.list.delete_selected')) ?>
         </button>
       <?php endif ?>
+
+      <button
+          class="btn btn-default oc-icon-check-square"
+          disabled="disabled"
+          onclick="$(this).data('request-data', {
+              checked: $('.control-list').listWidget('getChecked')
+          })"
+          data-request="onMarkRead"
+          data-request-confirm="<?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.mark_read_confirm')) ?>"
+          data-trigger-action="enable"
+          data-trigger=".control-list input[type=checkbox]"
+          data-trigger-condition="checked"
+          data-request-success="$(this).prop('disabled', true)"
+          data-stripe-load-indicator>
+          <?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.mark_read')) ?>
+      </button>
+
         <a href="<?= Backend::url('system/settings/update/janvince/smallcontactform/settings'); ?>" class="btn btn-info oc-icon-cogs"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.settings_btn')) ?></a>
     </div>
