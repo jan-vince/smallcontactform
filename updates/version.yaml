@@ -78,3 +78,5 @@
     - Added option for notification emails to have FROM address set from contact form email field
 1.5.4:
     - Added option to mark selected messages as read
+1.5.5:
+    - Changed JSON type for repeater DB column

@@ -17,7 +17,7 @@ class SmallContactFormTables_01 extends Migration
             $table->text('name')->nullable();
             $table->text('email')->nullable();
             $table->text('message')->nullable();
-            $table->json('form_data')->nullable();
+            $table->text('form_data')->nullable();
             $table->boolean('new_message')->default(1);
             $table->timestamps();
         });
