@@ -305,8 +305,11 @@ class SmallContactForm extends ComponentBase
         'id' => $fieldSettings['name'],
         'name' => $fieldSettings['name'],
         'class' => ($fieldSettings['field_css'] ? $fieldSettings['field_css'] : $fieldType['field_class'] ),
-        'value' => (!empty($this->postData[$fieldSettings['name']]['value']) && empty($fieldType['html_close']) ? $this->postData[$fieldSettings['name']]['value'] : '' ),
       ];
+
+      if ( !empty($this->postData[$fieldSettings['name']]['value']) && empty($fieldType['html_close']) ) {
+          $attributes['value'] = $this->postData[$fieldSettings['name']]['value'];
+      }
 
       // Placeholders if enabled
       if(Settings::getTranslated('form_use_placeholders')){
