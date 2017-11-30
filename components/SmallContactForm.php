@@ -442,7 +442,7 @@ class SmallContactForm extends ComponentBase
 
     $wrapperCss = ( Settings::getTranslated('send_btn_wrapper_css') ? Settings::getTranslated('send_btn_wrapper_css') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_wrapper_css_placeholder')) );
 
-    $output[] = '<div id="submit-wrapper-"' . $this->alias . ' class="' . $wrapperCss . '">';
+    $output[] = '<div id="submit-wrapper-' . $this->alias . '" class="' . $wrapperCss . '">';
 
       $output[] = '<button type="submit" data-attach-loading class="oc-loader ' . ( Settings::getTranslated('send_btn_css_class') ? Settings::getTranslated('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . '">';
 
