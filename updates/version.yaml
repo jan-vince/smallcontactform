@@ -80,3 +80,5 @@
     - Added option to mark selected messages as read
 1.5.5:
     - Changed JSON type for repeater DB column
+1.5.6:
+    - Removed value attribute in textarea field
