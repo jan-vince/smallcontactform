@@ -8,9 +8,9 @@ return [
   ],
 
   'permissions' => [
-    'access_messages' => 'Zobrazit zprávy',
+    'access_messages' => 'Přístup k seznamu zpráv',
+    'access_settings' => 'Přístup k nastavení',
     'delete_messages' => 'Smazat vybrané zprávy',
-    'access_settings' => 'Zobrazit nastavení',
   ],
 
   'navigation' => [
@@ -354,8 +354,4 @@ return [
 
   ],
 
-  'permissions' => [
-    'access_messages' => 'Přístup k seznamu zpráv',
-    'access_settings' => 'Přístup k nastavení',
-  ],
 ];

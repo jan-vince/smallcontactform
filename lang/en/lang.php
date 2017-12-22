@@ -8,9 +8,9 @@ return [
   ],
 
   'permissions' => [
-    'access_messages' => 'Show form messages',
+    'access_messages' => 'Access messages list',
+    'access_settings' => 'Manage backend preferences',
     'delete_messages' => 'Delete stored messages',
-    'access_settings' => 'Show form settings',
   ],
 
   'navigation' => [
@@ -359,8 +359,4 @@ return [
 
   ],
 
-  'permissions' => [
-    'access_messages' => 'Access messages list',
-    'access_settings' => 'Manage backend preferences',
-  ],
 ];
