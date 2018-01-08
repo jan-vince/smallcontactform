@@ -86,3 +86,5 @@
     - Added component alias to id attributes for multi-form usage
 1.5.8:
     - Fixed typo in lang files
+1.5.9:
+    - Added direct link to messages list from dashboard widget

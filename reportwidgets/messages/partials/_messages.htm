@@ -1,6 +1,7 @@
 <div class="report-widget">
     <h3><?= e(trans('janvince.smallcontactform::lang.reportwidget.partials.messages.title')) ?></h3>
 
+<a href="<?= Backend::url('janvince/smallcontactform/messages');?>">
     <div
         class="control-chart"
         data-control="chart-bar"
@@ -12,4 +13,5 @@
             <li data-color="#d1d1d1"><?= e(trans('janvince.smallcontactform::lang.reportwidget.partials.messages.messages_read')) ?> <span><?php echo($this->getRecordsStats('read_count'));  ?></span></li>
         </ul>
     </div>
+</a>
 </div>
