@@ -90,3 +90,5 @@
     - Added direct link to messages list from dashboard widget
 1.6.0:
     - Added Google reCAPTCHA validation
+1.6.1:
+    - Changed All messages large indicator to New messages in scoreboard

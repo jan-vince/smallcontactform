@@ -34,6 +34,7 @@ return [
       'records_count' => 'Zprávy',
       'latest_record' => 'nejnovější od',
       'new_count' => 'Nové',
+      'new_description' => 'Zpráv',
       'read_count' => 'Přečtené',
       'all_count' => 'Celkem',
       'all_description' => 'Zpráv',

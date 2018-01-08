@@ -34,6 +34,7 @@ return [
       'records_count' => 'Messages',
       'latest_record' => 'Latest from',
       'new_count' => 'New',
+      'new_description' => 'Messages',
       'read_count' => 'Read',
       'all_count' => 'Total',
       'all_description' => 'Messages',

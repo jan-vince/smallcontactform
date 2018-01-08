@@ -34,6 +34,7 @@ return [
       'records_count' => 'Üzenetek',
       'latest_record' => 'Legutóbbi',
       'new_count' => 'Új levél',
+      'new_description' => 'üzenet',
       'read_count' => 'Olvasott',
       'all_count' => 'Összes',
       'all_description' => 'üzenet',
