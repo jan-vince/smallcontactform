@@ -1,4 +1,4 @@
-{% if flashSuccess == false or ( flashSuccess!=__SELF__) or ( flashSuccess==__SELF__ and settingsGet('form_hide_after_success', 0) == 0 ) %}
+{% if flashError or (flashSuccess == false) or (flashSuccess!=__SELF__) or (flashSuccess==__SELF__ and settingsGet('form_hide_after_success', 0) == 0) %}
 
 	{{ form_open(__SELF__.getFormAttributes) }}
 
@@ -10,8 +10,18 @@
 
 		{{ __SELF__.getAntispamFieldHtmlCode({})|raw }}
 
+		{% if settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_site_key') %}
+			<div class="form-group">
+	            <div class="g-recaptcha" data-sitekey="{{ settingsGet('google_recaptcha_site_key') }}"></div>
+	        </div>
+		{% endif %}
+
 		{{ __SELF__.getSubmitButtonHtmlCode({})|raw }}
 
 	{{ form_close() }}
+
+	{% if settingsGet('google_recaptcha_scripts_allow') %}
+		<script src='https://www.google.com/recaptcha/api.js?hl=cs'></script>
+	{% endif %}
 
 {% endif %}

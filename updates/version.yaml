@@ -88,3 +88,5 @@
     - Fixed typo in lang files
 1.5.9:
     - Added direct link to messages list from dashboard widget
+1.6.0:
+    - Added Google reCAPTCHA validation

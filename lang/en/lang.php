@@ -292,7 +292,7 @@ return [
     ],
 
     'antispam' => [
-      'add_antispam' => 'Add antispam protection',
+      'add_antispam' => 'Add passive antispam protection',
       'add_antispam_comment' => 'Add simple but effective passive antispam control (more info in README.md file)',
 
       'antispam_delay' => 'Antispam delay (s)',
@@ -310,6 +310,22 @@ return [
       'antispam_delay_error_msg' => 'Delay error message',
       'antispam_delay_error_msg_comment' => 'Message to show to user when form was sent too fast',
       'antispam_delay_error_msg_placeholder' => 'Form sent too fast! Please wait few seconds and try again!',
+
+      'add_google_recaptcha' => 'Add Google reCaptcha',
+      'add_google_recaptcha_comment' => 'Add reCaptcha to Contact Form (more info in README.md file).<br>You can get API keys on <a href="https://www.google.com/recaptcha/admin#list" target="_blank">Google reCaptcha site</a>.',
+
+      'google_recaptcha_site_key' => 'Site key',
+      'google_recaptcha_site_key_comment' => 'Put your site key',
+
+      'google_recaptcha_secret_key' => 'Secret key',
+      'google_recaptcha_secret_key_comment' => 'Put your secret key',
+
+      'google_recaptcha_error_msg' => 'Error message',
+      'google_recaptcha_error_msg_comment' => 'Message to show to user when reCAPTCHA is not validated.',
+      'google_recaptcha_error_msg_placeholder' => 'Google reCAPTCHA validation error!',
+
+      'google_recaptcha_scripts_allow' => 'Automatically add necessary JS scripts',
+      'google_recaptcha_scripts_allow_comment' => 'This will add link to JS scripts to your site.',
 
       'add_ip_protection' => 'Check sender\'s IP',
       'add_ip_protection_comment' => 'Do not allow too many form submits from one IP address',

@@ -287,7 +287,7 @@ return [
     ],
 
     'antispam' => [
-      'add_antispam' => 'Přidat ochranu proti spamu',
+      'add_antispam' => 'Přidat pasivní ochranu proti spamu',
       'add_antispam_comment' => 'Přidá jednoduchou ale efektivní pasivní ochranu proti robotům (více informací v souboru README.md)',
 
       'antispam_delay' => 'Zpoždění formuláře (s)',
@@ -305,6 +305,22 @@ return [
       'antispam_delay_error_msg' => 'Chybová zprávy při rychlém odeslání',
       'antispam_delay_error_msg_comment' => 'Zpráva, která se zobrazí při příliš rychlém odeslání formuláře',
       'antispam_delay_error_msg_placeholder' => 'Příliš rychlé odeslání formuláře! Prosím zkuste to za pár vteřin znovu!',
+
+      'add_google_recaptcha' => 'Přidat Google reCaptcha',
+      'add_google_recaptcha_comment' => 'Přidá reCaptcha do kontaktního formuláře (více informací v souboru README.md). <br>API klíče můžete získat na <a href="https://www.google.com/recaptcha/admin#list" target="_blank">stránce Google reCaptcha</a>.',
+
+      'google_recaptcha_site_key' => 'Site key',
+      'google_recaptcha_site_key_comment' => 'Vložte svůj "site key"',
+
+      'google_recaptcha_secret_key' => 'Secret key',
+      'google_recaptcha_secret_key_comment' => 'Vložte svůj "secret key"',
+
+      'google_recaptcha_error_msg' => 'Chybová zpráva',
+      'google_recaptcha_error_msg_comment' => 'Zpráva, která se zobrazí, pokud dojde chybě při ověření reCAPTCHA.',
+      'google_recaptcha_error_msg_placeholder' => 'Chyba při ověření pomocí Google reCAPTCHA!',
+
+      'google_recaptcha_scripts_allow' => 'Automaticky přidat Google reCAPTCHA sckript',
+      'google_recaptcha_scripts_allow_comment' => 'Vloží odkaz na JavaScriptový soubor potřebný pro fungování reCAPTCHA.',
 
       'add_ip_protection' => 'Testovat IP adresu odesílatele',
       'add_ip_protection_comment' => 'Nepovolí příliš mnoho odeslání formuláře z jedné IP adresy',

@@ -118,6 +118,8 @@ These mappings are also used for autoreply emails where at least Email field map
 
 ### ANTISPAM
 
+#### Passive antispam
+
 Very simple implementation of passive antispam (inspired by [Nette AntiSpam Control](https://gist.github.com/Michal-Mikolas/2388131)).
 
 The idea behind this is to check how fast is form send and if robots-catching field is filled.
@@ -125,6 +127,20 @@ The idea behind this is to check how fast is form send and if robots-catching fi
 * When allowed, you can set form delay (in seconds) to prevent too fast form sending (mostly by robots). You can add custom error message (will be shown in general error message box above form).
 * You can add antispam field label and error message for non JavaScript enabled browsers.
  * If JavaScript is working, antispam field is automatically hidden and cleared.
+
+#### Google reCaptcha
+
+Implementation of Google reCaptcha antispam protection.
+
+##### Setup
+
+First you have to create new API keys pair in reCaptcha admin panel.
+
+Hit **Get reCAPTCHA** button on [reCaptcha wellcome page](https://www.google.com/recaptcha). Set label and check reCAPTCHA v2 option and hit button Register.
+
+Copy Site key and Secret key to Contact Form's settings fields.
+
+If you want Contact Form to automatically include server scripts in your layout, check the button in Form settings.
 
 #### Check sender's IP
 

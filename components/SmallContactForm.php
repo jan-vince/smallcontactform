@@ -124,6 +124,22 @@ class SmallContactForm extends ComponentBase
 
     }
 
+    //  reCaptcha validation if enabled
+    if( Settings::getTranslated('add_google_recaptcha') ) {
+
+        try {
+            $response=json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".Settings::get('google_recaptcha_secret_key')."&response=".post('g-recaptcha-response')."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
+        } catch(\Exception $e) {
+            Log::error($e->getMessage());
+            $errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_placeholder'));
+        }
+
+        if(empty($response['success'])) {
+            $errors[] = ( Settings::getTranslated('google_recaptcha_error_msg') ? Settings::getTranslated('google_recaptcha_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_placeholder')));
+        }
+
+    }
+
     // Validate
     $validator = Validator::make($this->post, $this->validationRules, $this->validationMessages);
     $validator->valid();
@@ -143,6 +159,8 @@ class SmallContactForm extends ComponentBase
       Flash::error(implode(PHP_EOL, $errors));
       Session::flash('flashSuccess', $this->alias);
       $this->page['flashSuccess'] = $this->alias;
+      Session::flash('flashError', true);
+      $this->page['flashError'] = true;
 
     } else {
 

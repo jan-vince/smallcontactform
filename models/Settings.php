@@ -30,6 +30,7 @@ class Settings extends Model
         'email_subject',
         'email_template',
         'notification_template',
+        'google_recaptcha_error_msg',
     ];
 
     public $requiredPermissions = ['janvince.smallcontactform.access_settings'];

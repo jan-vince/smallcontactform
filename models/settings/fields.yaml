@@ -389,13 +389,79 @@ tabs:
                 field: add_antispam
                 condition: checked
 
-
         section_ip_protection:
             type: section
             tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
             trigger:
                 action: show
                 field: add_antispam
+                condition: checked
+
+        add_google_recaptcha:
+            label: 'janvince.smallcontactform::lang.settings.antispam.add_google_recaptcha'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.add_google_recaptcha_comment'
+            commentHtml: true
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+
+        google_recaptcha_site_key:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_site_key'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_site_key_comment'
+            commentHtml: true
+            span: left
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
+        google_recaptcha_secret_key:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_secret_key'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_secret_key_comment'
+            span: right
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
+        google_recaptcha_error_msg:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_placeholder'
+            span: right
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
+        google_recaptcha_scripts_allow:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_scripts_allow'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_scripts_allow_comment'
+            span: left
+            type: checkbox
+            default: true
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
+        section_google_recaptcha:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            trigger:
+                action: show
+                field: add_google_recaptcha
                 condition: checked
 
         add_ip_protection:
