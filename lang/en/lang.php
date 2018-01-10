@@ -328,6 +328,9 @@ return [
       'google_recaptcha_scripts_allow' => 'Automatically add necessary JS scripts',
       'google_recaptcha_scripts_allow_comment' => 'This will add link to JS scripts to your site.',
 
+      'google_recaptcha_locale_allow' => 'Allow locale detection',
+      'google_recaptcha_locale_allow_comment' => 'This will add curent web page locale to reCAPTCHA script, so it will translated.',
+
       'add_ip_protection' => 'Check sender\'s IP',
       'add_ip_protection_comment' => 'Do not allow too many form submits from one IP address',
 

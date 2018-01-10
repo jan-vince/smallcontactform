@@ -434,7 +434,7 @@ tabs:
             label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg'
             comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_comment'
             placeholder: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_placeholder'
-            span: right
+            span: left
             type: text
             tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
             cssClass: field-indent
@@ -446,6 +446,19 @@ tabs:
         google_recaptcha_scripts_allow:
             label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_scripts_allow'
             comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_scripts_allow_comment'
+            span: left
+            type: checkbox
+            default: true
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
+        google_recaptcha_locale_allow:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_locale_allow'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_locale_allow_comment'
             span: left
             type: checkbox
             default: true

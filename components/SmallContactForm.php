@@ -42,6 +42,8 @@ class SmallContactForm extends ComponentBase
 
     public function onRun() {
 
+        $this->page['currentLocale'] = App::getLocale();
+
         if ( Session::get('flashSuccess') ) {
 
           $this->page['flashSuccess'] = Session::get('flashSuccess', $this->alias);

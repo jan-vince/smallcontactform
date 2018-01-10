@@ -323,6 +323,9 @@ return [
       'google_recaptcha_scripts_allow' => 'Automaticky přidat Google reCAPTCHA sckript',
       'google_recaptcha_scripts_allow_comment' => 'Vloží odkaz na JavaScriptový soubor potřebný pro fungování reCAPTCHA.',
 
+      'google_recaptcha_locale_allow' => 'Povolit detekci jazyka',
+      'google_recaptcha_locale_allow_comment' => 'Přidá k reCAPTCHA skriptu kód jazyka stránky, takže ověřovací box bude mluvit jazykem návštěvníka webu.',
+
       'add_ip_protection' => 'Testovat IP adresu odesílatele',
       'add_ip_protection_comment' => 'Nepovolí příliš mnoho odeslání formuláře z jedné IP adresy',
 

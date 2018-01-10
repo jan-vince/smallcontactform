@@ -92,3 +92,5 @@
     - Added Google reCAPTCHA validation
 1.6.1:
     - Changed All messages large indicator to New messages in scoreboard
+1.6.2:
+    - Removed reCAPTCHA hard coded locale string (thx kuzyk). Added settings option to allow locale detection.
