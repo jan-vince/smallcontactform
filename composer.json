@@ -2,6 +2,7 @@
   "name": "janvince/smallcontactform",
   "description": "Simple but flexible multi language contact form builder with custom fields, validation and passive antispam",
   "homepage": "http://www.vince.cz",
+  "type": "october-plugin",
   "keywords": [
     "october",
     "cms",
