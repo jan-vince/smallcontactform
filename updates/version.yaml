@@ -96,3 +96,5 @@
     - Removed reCAPTCHA hard coded locale string (thx kuzyk). Added settings option to allow locale detection.
 1.7.0:
     - Added option to specify <label> custom CSS class
+1.7.1:
+    - Fixed 'text_preview' list field type truncate function (thx kuzyk)
