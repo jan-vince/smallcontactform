@@ -215,6 +215,9 @@ return [
       'field_css' => 'Field CSS class',
       'field_css_placeholder' => 'form-control',
 
+      'label_css' => 'Label CSS class',
+      'label_css_placeholder' => '',
+
       'field_validation' => 'Field validation',
       'field_validation_comment' => 'Add field validation rules',
 

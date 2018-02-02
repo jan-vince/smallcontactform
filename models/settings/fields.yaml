@@ -231,6 +231,17 @@ tabs:
                             field: field_styling
                             condition: checked
 
+                    label_css:
+                        span: left
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.label_css'
+                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.label_css_placeholder'
+                        type: text
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: field_styling
+                            condition: checked
+
                     field_css:
                         span: right
                         label: 'janvince.smallcontactform::lang.settings.form_fields.field_css'

@@ -204,11 +204,14 @@ return [
       'autofocus' => 'Automaticky zvýraznit (autofocus)',
       'autofocus_comment' => 'Po zobrazení nastavit na poli kurzor',
 
-      'wrapper_css' => 'CSS třídy kontejneru',
+      'wrapper_css' => 'CSS třída kontejneru',
       'wrapper_css_placeholder' => 'form-group',
 
-      'field_css' => 'CSS třidy pole',
+      'field_css' => 'CSS třida pole',
       'field_css_placeholder' => 'form-control',
+
+      'label_css' => 'CSS třída popisku (label)',
+      'label_css_placeholder' => '',
 
       'field_validation' => 'Validační pravidla pole',
       'field_validation_comment' => 'Povolí nastavení vlastních validačních pravidel',
