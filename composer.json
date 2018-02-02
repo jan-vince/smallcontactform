@@ -1,0 +1,28 @@
+{
+  "name": "janvince/smallcontactform",
+  "description": "Simple but flexible multi language contact form builder with custom fields, validation and passive antispam",
+  "homepage": "http://www.vince.cz",
+  "type": "october-plugin",
+  "keywords": [
+    "october",
+    "cms",
+    "octobercms",
+    "laravel",
+    "contact",
+    "form"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jan Vince"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/jan-vince/smallcontactform/issues"
+  },
+  "require": {
+    "php": ">=7.0",
+    "composer/installers": "~1.0"
+  },
+  "minimum-stability": "dev"
+}

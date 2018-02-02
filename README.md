@@ -22,6 +22,23 @@ Just look for 'Small Contact Form' in search field in:
 You can set permissions to restrict access to *Settings > Small plugins > Contact form* and to messages list.
 
 
+### Installation with composer
+
+* Edit composer.json by adding new repository
+```json
+"repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/jan-vince/smallcontactform"
+    }
+]
+```
+* run in command line
+```sh
+composer require janvince/smallcontactform
+```
+
+
 ## Setup new Contact form
 
 > Settings > Small Contact form
