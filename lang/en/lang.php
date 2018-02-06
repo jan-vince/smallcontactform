@@ -136,6 +136,9 @@ return [
       'use_placeholders' => 'Use placeholders',
       'use_placeholders_comment' => 'Placeholders will be shown instead of field labels',
 
+      'disable_browser_validation' => 'Disable browser validation',
+      'disable_browser_validation_comment' => 'Do not allow browser built-in validation and popups.',
+
       'success_msg' => 'Form success message',
       'success_msg_placeholder' => 'Your data was sent.',
 

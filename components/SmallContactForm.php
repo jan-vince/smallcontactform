@@ -248,7 +248,6 @@ class SmallContactForm extends ComponentBase
 
     $attributes = [];
 
-    $attributes['class'] = Settings::getTranslated('form_css_class');
     $attributes['request'] = $this->alias . '::onFormSend';
     $attributes['method'] = 'POST';
 
@@ -258,6 +257,10 @@ class SmallContactForm extends ComponentBase
       $attributes['data-request-validate'] = NULL;
       $attributes['data-request-update'] = "'". $this->alias ."::scf-message':'#scf-message-". $this->alias ."','". $this->alias ."::scf-form':'#scf-form-". $this->alias ."'";
 
+    }
+
+    if( Settings::getTranslated('form_css_class') ) {
+        $attributes['class'] = Settings::getTranslated('form_css_class');
     }
 
     if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
@@ -274,6 +277,11 @@ class SmallContactForm extends ComponentBase
 
       $attributes['data-request-confirm'] = Settings::getTranslated('form_send_confirm_msg');
 
+    }
+
+    // Disable browser validation if enabled
+    if(!empty(Settings::getTranslated('form_disable_browser_validation'))){
+      $attributes['novalidate'] = "novalidate";
     }
 
     return $attributes;
@@ -317,7 +325,7 @@ class SmallContactForm extends ComponentBase
 
       // Add help-block if there are errors
       if(!empty($this->postData[$fieldSettings['name']]['error'])){
-        $output[] = '<small class="help-block">' . Settings::getDictionaryTranslated($this->postData[$fieldSettings['name']]['error']) . "</small>";
+        $output[] = '<small class=" invalid-feedback">' . Settings::getDictionaryTranslated($this->postData[$fieldSettings['name']]['error']) . "</small>";
       }
 
       // Field attributes
@@ -336,7 +344,6 @@ class SmallContactForm extends ComponentBase
         $attributes['placeholder'] = Settings::getDictionaryTranslated($fieldSettings['label']);
       }
 
-
       // Autofocus only when no error
       if(!empty($fieldSettings['autofocus']) && !Flash::error()){
         $attributes['autofocus'] = NULL;
@@ -349,7 +356,7 @@ class SmallContactForm extends ComponentBase
 
       // Add error class if there are any and autofocus field
       if(!empty($this->postData[$fieldSettings['name']]['error'])){
-        $attributes['class'] = $attributes['class'] . ' error';
+        $attributes['class'] = $attributes['class'] . ' error is-invalid';
 
         if(empty($this->errorAutofocus)){
           $attributes['autofocus'] = NULL;

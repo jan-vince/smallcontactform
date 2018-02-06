@@ -100,3 +100,5 @@
     - Fixed 'text_preview' list field type truncate function (thx kuzyk)
 1.7.2:
     - Changed count() to mb_strlen() function in custom list type definition
+1.8.0:
+    - Added option to disable built-in browser form validation. Added class 'is-invalid' for fields with error (as used Bootstrap 4).

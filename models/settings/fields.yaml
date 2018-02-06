@@ -38,6 +38,13 @@ tabs:
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.form'
 
+        form_disable_browser_validation:
+            label: 'janvince.smallcontactform::lang.settings.form.disable_browser_validation'
+            comment: 'janvince.smallcontactform::lang.settings.form.disable_browser_validation_comment'
+            span: left
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
 
         section_ajax:
             type: section

@@ -131,6 +131,9 @@ return [
       'use_placeholders' => 'Používat zástupný text (placeholder)',
       'use_placeholders_comment' => 'Místo popisků nad formulářovými poli bude použitý zástupný text',
 
+      'disable_browser_validation' => 'Zakázat validaci prohlížečem',
+      'disable_browser_validation_comment' => 'Nepovolit prohlížeči použít vlastní validaci a zobrazovat výstrahy.',
+
       'success_msg' => 'Zpráva po úspěšném odeslání',
       'success_msg_placeholder' => 'Formulář byl v pořádku odeslán.',
 
