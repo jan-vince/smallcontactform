@@ -104,6 +104,13 @@ class Plugin extends PluginBase {
         ];
     }
 
+    public function registerPageSnippets()
+    {
+        return [
+            'JanVince\SmallContactForm\Components\SmallContactForm' => 'contactForm',
+        ];
+    }
+    
     public function registerMailTemplates()
     {
 
