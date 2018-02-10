@@ -270,8 +270,8 @@ class Message extends Model
         $output = [];
         $outputFull = [];
         $formFields = Settings::getTranslated('form_fields');
-        $fromAddress = null;
-        $fromAddressName = null;
+        $replyToAddress = null;
+        $replyToName = null;
 
         foreach($formFields as $field) {
 
