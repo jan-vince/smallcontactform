@@ -190,7 +190,11 @@ Email can be send to form sender as confirmation.
 
 #### Allow notifications
 
-A notification of sent form can be send to provided email address.
+Once a Contact form is sent a notification can be immediately send to a provided email address.
+
+*A **Reply to** address of notification email will be set to an email address from Contact form (if this field is used).*
+
+You can also force **From** address to be set to the one entered in Contact form - but not all email systems support this!
 
 
 ## TRANSLATION

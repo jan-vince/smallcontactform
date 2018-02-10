@@ -102,3 +102,7 @@
     - Changed count() to mb_strlen() function in custom list type definition
 1.8.0:
     - Added option to disable built-in browser form validation. Added class 'is-invalid' for fields with error (as used Bootstrap 4).
+1.9.0:
+    - Form registered as Page snippet to be used in Rainlab.Page content (thx BtzLeon)
+1.9.1:
+    - REPLY TO address is now used for notification email by default. You can still force FROM address to be used (but this is not supported by all email systems!).

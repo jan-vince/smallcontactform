@@ -265,13 +265,13 @@ return [
       'allow_email_queue_comment' => 'Přidat emaily do fronty místo okamžitého odeslání. Musíte ale nejdříve správně nakonfigurovat frontu systému OctoberCMS!',
 
       'allow_notifications' => 'Povolit odesílání upozornění',
-      'allow_notifications_comment' => 'Odesílat upozornění, pokud někdo odešle formulář',
+      'allow_notifications_comment' => 'Odesílat upozornění, pokud někdo odešle formulář.',
 
       'notification_address_to' => 'Upozornění posílat na adresu:',
       'notification_address_to_placeholder' => 'notifications@domain.com',
 
-      'notification_address_from_form' => 'Adresa odesílatele upozornění z emailu formuláře',
-      'notification_address_from_form_comment' => 'Nastaví adresu odesílatele upozornění na tu, která byla zadána ve formuláři (sloupec email musí mít nastavenou vazbu), takže můžete na upozornění přímo odpovědět.',
+      'notification_address_from_form' => 'Nastavit adresu Od na email z formuláře (NEMUSÍ PODPOROVAT váš emailový systém!)',
+      'notification_address_from_form_comment' => 'Nemusí být podporováno vaším Nastaví u odesílaného upozornění adresu Od (From) na tu, která byla zadána ve formuláři (sloupec email musí mít nastavenou vazbu).',
 
       'allow_autoreply' => 'Povolit automatickou odpověď',
       'allow_autoreply_comment' => 'Poslat automatickou odpověď odesílateli formuláře',

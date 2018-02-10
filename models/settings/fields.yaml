@@ -621,7 +621,7 @@ tabs:
         notification_address_from_form:
             label: 'janvince.smallcontactform::lang.settings.email.notification_address_from_form'
             comment: 'janvince.smallcontactform::lang.settings.email.notification_address_from_form_comment'
-            span: left
+            span: full
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.email'
             cssClass: field-indent
