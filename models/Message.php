@@ -70,6 +70,11 @@ class Message extends Model
                 continue;
             }
 
+            // skip reCaptcha
+            if($key == 'g-recaptcha-response'){
+                continue;
+            }
+
             // skip non-defined fields
             $fieldDefined = null;
             foreach( $formFields as $field) {
