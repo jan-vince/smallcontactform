@@ -314,7 +314,7 @@ class SmallContactForm extends ComponentBase
 
       // Label classic
       if( !empty($fieldSettings['label']) and !Settings::getTranslated('form_use_placeholders') and !empty($fieldType['label']) ){
-        $output[] = '<label class="control-label ' . ( !empty($fieldSettings['label_css']) ? $fieldSettings['label_css'] : '' ) . ' ' . ( $fieldRequired ? 'required' : '' ) . '" for="' . $fieldSettings['name'] . '">' . Settings::getDictionaryTranslated($fieldSettings['label']) . '</label>';
+        $output[] = '<label class="control-label ' . ( !empty($fieldSettings['label_css']) ? $fieldSettings['label_css'] : '' ) . ' ' . ( $fieldRequired ? 'required' : '' ) . '" for="' . ($this->alias . '-' . $fieldSettings['name']) . '">' . Settings::getDictionaryTranslated($fieldSettings['label']) . '</label>';
       }
 
       // Label as container

@@ -108,3 +108,5 @@
     - REPLY TO address is now used for notification email by default. You can still force FROM address to be used (but this is not supported by all email systems!).
 1.9.2:
     - Fix problem when ReCaptcha field was logged as an undefined field to system log (thx LukeTowers)
+1.9.3:
+    - Fixed label 'for' attribute to point to input ID (as required by specification)
