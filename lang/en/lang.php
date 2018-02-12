@@ -385,4 +385,20 @@ return [
 
   ],
 
+  'components' => [
+
+      'groups' => [
+
+          'hacks' => 'Hacks',
+
+      ],
+      'properties' => [
+
+          'disable_notifications' => 'Disable notification mails',
+          'disable_notifications_comment' => 'This will disable notification emails (overrides form settings)',
+
+      ]
+
+  ],
+
 ];

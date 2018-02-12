@@ -257,6 +257,10 @@ class Message extends Model
             return;
         }
 
+        if(!empty($componentProperties['disable_notifications'])) {
+            return;
+        }
+
         $sendTo =  (!empty($componentProperties['notification_address_to']) ? $componentProperties['notification_address_to'] : Settings::getTranslated('notification_address_to') );
 
         $validator = Validator::make(['email' => $sendTo], ['email' => 'required|email']);

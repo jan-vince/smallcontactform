@@ -40,6 +40,24 @@ class SmallContactForm extends ComponentBase
         ];
     }
 
+    public function defineProperties()
+    {
+
+        return [
+
+            'disable_notifications'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.disable_notifications',
+                'description' => 'janvince.smallcontactform::lang.components.properties.disable_notifications_comment',
+                'type'        => 'checkbox',
+                'default'     => false,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.hacks',
+            ]
+
+        ];
+
+    }
+
+
     public function onRun() {
 
         $this->page['currentLocale'] = App::getLocale();

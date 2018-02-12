@@ -110,3 +110,5 @@
     - Fix problem when ReCaptcha field was logged as an undefined field to system log (thx LukeTowers)
 1.9.3:
     - Fixed label 'for' attribute to point to input ID (as required by specification)
+1.10.0:
+    - Added form componnet hacks group (now only for disabling notification emails, more will come)

@@ -294,6 +294,13 @@ Several fields can be added while separated with pipe ````|````.
 disable_fields = 'phone|name|confirmation'
 ````
 
+Or you can disable some of functions:
+
+````
+[contactForm]
+disable_notifications = true
+````
+
 
 ----
 > My thanks goes to:    

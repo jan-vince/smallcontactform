@@ -380,4 +380,20 @@ return [
 
   ],
 
+  'components' => [
+
+      'groups' => [
+
+          'hacks' => 'Hacks',
+
+      ],
+      'properties' => [
+
+          'disable_notifications' => 'Zakázat odesílání notifikačních emailů',
+          'disable_notifications_comment' => 'Zakáže odeslání notifikáčních emailů (bez ohledu na systémová nastavení formuláře)',
+
+      ]
+
+  ],
+
 ];
