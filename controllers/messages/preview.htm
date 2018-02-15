@@ -32,6 +32,10 @@
                     <th class="p-r-md"><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.remote_ip')) ); ?></th>
                     <td><?php if(!empty($message->remote_ip)) { echo($message->remote_ip); } ?></td>
 
+                <tr>
+                    <th class="p-r-md"><?php echo(e(trans('janvince.smallcontactform::lang.components.properties.form_description')) ); ?></th>
+                    <td><?php if(!empty($message->form_description)) { echo($message->form_description); } ?></td>
+
 		</table>
 
 		<br>
