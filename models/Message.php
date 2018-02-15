@@ -54,7 +54,7 @@ class Message extends Model
     }
 
 
-    public function storeFormData($data){
+    public function storeFormData($data, $formAlias, $formDescription){
 
         $output = [];
         $name_field_value = NULL;
@@ -112,6 +112,8 @@ class Message extends Model
         $this->email = $email_field_value;
         $this->message = $message_field_value;
         $this->remote_ip = Request::ip();
+        $this->form_alias = $formAlias;
+        $this->form_description = $formDescription;
         $this->save();
 
     }

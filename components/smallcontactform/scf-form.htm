@@ -10,6 +10,8 @@
 
 		{{ __SELF__.getAntispamFieldHtmlCode({})|raw }}
 
+		{{ __SELF__.getDescriptionFieldHtmlCode({})|raw }}
+
 		{% if settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_site_key') %}
 			<div class="form-group">
 	            <div class="g-recaptcha" data-sitekey="{{ settingsGet('google_recaptcha_site_key') }}"></div>

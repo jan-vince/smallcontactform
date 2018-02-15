@@ -252,6 +252,33 @@ You can simply click widget to open Messages list.
 
 Sometimes there is a need to have more than one contact form. As this plugin is meant to be as simple as possible, these multiform functions are little hacks :)
 
+####  Set form description
+
+You can add a form description. This can be used to distinquish between more forms or to add extra info to sent form data.
+
+Form description is saved to Messages list and there is a separate column (invisible by default).
+
+*There is also an Alias column that contain component's alias of the used form.*
+
+````
+[contactForm myForm]
+form_description = 'Form used in home page'
+````
+
+You can override form's property in Twig component tag:
+
+````
+{% component 'myForm' form_description = 'My other description' %}
+````
+
+This can be more complex:
+````
+{% set myVar = 12345 %}
+{% component 'myForm' form_description = ('Current value: ' ~ myVar) %}
+````
+
+> When you override form description in ````{% component form_description = 'My description' %}````, description will be added as a **hidden field** into a form. Do not use this to store private data as this is easily visible in page HTML code!
+
 #### Override notification email options
 You can set different email address to which notification about Contact Form sent will be delivered and also change a notification template.
 

@@ -112,3 +112,6 @@
     - Fixed label 'for' attribute to point to input ID (as required by specification)
 1.10.0:
     - Added form componnet hacks group (now only for disabling notification emails, more will come)
+1.11.0:
+    - Added form description field (can be used to distinquish between more forms or to save extra data). More info in README file.
+    - scf_tables_03.php

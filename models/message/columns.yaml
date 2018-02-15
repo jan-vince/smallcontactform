@@ -36,3 +36,15 @@ columns:
         searchable: true
         type: text
         invisible: true
+
+    form_alias:
+        label: janvince.smallcontactform::lang.models.message.columns.form_alias
+        searchable: true
+        type: text
+        invisible: true
+
+    form_description:
+        label: janvince.smallcontactform::lang.models.message.columns.form_description
+        searchable: true
+        type: text_preview
+        invisible: true

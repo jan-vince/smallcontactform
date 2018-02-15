@@ -64,7 +64,8 @@ return [
         'new' => 'New',
         'read' => 'Read',
         'remote_ip' => 'Sender\'s IP',
-
+        'form_alias' => 'Alias',
+        'form_description' => 'Description',
       ]
 
     ],
@@ -396,6 +397,9 @@ return [
 
           'disable_notifications' => 'Disable notification mails',
           'disable_notifications_comment' => 'This will disable notification emails (overrides form settings)',
+
+        'form_description' => 'Form description',
+        'form_description_comment' => 'You can add optional form description, that will be saved with other sent data in the messages list. You can also use {{ :slug }} here.',
 
       ]
 

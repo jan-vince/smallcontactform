@@ -81,6 +81,8 @@ return [
       'preview_date' => 'Ze dne:',
       'preview_content_title' => 'Obsah:',
       'remote_ip' => 'odesláno z ip',
+      'form_alias' => 'Alias',
+      'form_description' => 'Popisek',    
     ],
 
     'index' => [
@@ -391,6 +393,9 @@ return [
 
           'disable_notifications' => 'Zakázat odesílání notifikačních emailů',
           'disable_notifications_comment' => 'Zakáže odeslání notifikáčních emailů (bez ohledu na systémová nastavení formuláře)',
+
+          'form_description' => 'Popisek formuláře',
+          'form_description_comment' => 'Volitelně můžete přidat popisek formuláře, který se uloží společně s odeslanými daty do seznamu zpráv. Můžete použít i {{ :slug }}.',
 
       ]
 

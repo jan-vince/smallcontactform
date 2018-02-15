@@ -32,6 +32,8 @@ class SmallContactForm extends ComponentBase
 
   private $errorAutofocus;
 
+  private $formDescription;
+  private $formDescriptionOverride;
 
     public function componentDetails() {
         return [
@@ -45,6 +47,12 @@ class SmallContactForm extends ComponentBase
 
         return [
 
+            'form_description'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.form_description',
+                'description' => 'janvince.smallcontactform::lang.components.properties.form_description_comment',
+                'type'        => 'text',
+                'default'     => null,
+            ],
             'disable_notifications'      => [
                 'title'       => 'janvince.smallcontactform::lang.components.properties.disable_notifications',
                 'description' => 'janvince.smallcontactform::lang.components.properties.disable_notifications_comment',
@@ -59,6 +67,8 @@ class SmallContactForm extends ComponentBase
 
 
     public function onRun() {
+
+        $this->formDescription = $this->property('form_description');
 
         $this->page['currentLocale'] = App::getLocale();
 
@@ -82,6 +92,13 @@ class SmallContactForm extends ComponentBase
           $this->addJs('/modules/system/assets/js/framework.extras.js');
         }
 
+    }
+
+    public function onRender() {
+
+        if($this->formDescription != $this->property('form_description') ) {
+            $this->formDescriptionOverride = $this->property('form_description');
+        }
     }
 
   /**
@@ -193,7 +210,8 @@ class SmallContactForm extends ComponentBase
       $message = new Message;
 
       // Store data in DB
-      $message->storeFormData($this->postData);
+      $formDescription = !empty($this->post['_form_description']) ? e($this->post['_form_description']) : $this->property('form_description');
+      $message->storeFormData($this->postData, $this->alias, $formDescription);
 
       // Send autoreply
       $message->sendAutoreplyEmail($this->postData, $this->getProperties());
@@ -474,7 +492,35 @@ class SmallContactForm extends ComponentBase
 
 
   /**
-   * Generate antispam field HTML code
+   * Generate description field HTML code
+   * @return string
+   */
+  public function getDescriptionFieldHtmlCode(){
+
+    if( !$this->formDescriptionOverride ){
+      return NULL;
+    }
+
+    $output = [];
+
+    // Field attributes
+    $attributes = [
+        'id' => '_form_description-'.$this->alias,
+        'type' => 'hidden',
+        'name' => '_form_description',
+        'class' => '_form_description form-control',
+        'value' => $this->formDescriptionOverride,
+      ];
+
+    $output[] = '<input ' . $this->formatAttributes($attributes) . '>';
+
+    return(implode('', $output));
+
+  }
+
+
+  /**
+   * Generate submit button field HTML code
    * @return string
    */
   public function getSubmitButtonHtmlCode(){
