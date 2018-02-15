@@ -115,3 +115,5 @@
 1.11.0:
     - Added form fields alias and description (can be used to distinquish between more forms or to save extra data). More info in README file.
     - scf_tables_03.php
+1.11.1:
+    - Added form description field to message preview
