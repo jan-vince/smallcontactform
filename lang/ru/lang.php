@@ -57,7 +57,6 @@ return [
         'datetime' => 'Дата и время',
         'form_data' => 'Данные формы',
         'name' => 'Имя',
-        'email' => 'Email',
         'message' => 'Сообщение',
         'new_message' => 'Статус',
         'new' => 'Новое',
@@ -186,10 +185,8 @@ return [
       'autofocus_comment' => 'Автофокусировка на этом поле формы.',
 
       'wrapper_css' => 'CSS классы обертки (wrapper)',
-      'wrapper_css_placeholder' => 'form-group',
 
       'field_css' => 'CSS классы полей <input>',
-      'field_css_placeholder' => 'form-control',
 
       'label_css' => 'CSS классы метки <label>',
       'label_css_placeholder' => '',
