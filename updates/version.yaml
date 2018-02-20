@@ -117,3 +117,5 @@
     - scf_tables_03.php
 1.11.1:
     - Added form description field to message preview
+1.12.0:
+    - Added Russian translation (thank Dinver)
