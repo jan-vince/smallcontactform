@@ -24,7 +24,7 @@ class SmallContactFormTables_03 extends Migration
 
             Schema::table('janvince_smallcontactform_messages', function($table)
             {
-                $table->dropColumn('form_description')->nullable();
+                $table->dropColumn('form_description');
             });
 
         }
@@ -32,7 +32,7 @@ class SmallContactFormTables_03 extends Migration
 
             Schema::table('janvince_smallcontactform_messages', function($table)
             {
-                $table->dropColumn('form_alias')->nullable();
+                $table->dropColumn('form_alias');
             });
 
         }
