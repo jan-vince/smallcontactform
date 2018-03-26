@@ -214,10 +214,10 @@ class SmallContactForm extends ComponentBase
       $message->storeFormData($this->postData, $this->alias, $formDescription);
 
       // Send autoreply
-      $message->sendAutoreplyEmail($this->postData, $this->getProperties());
+      $message->sendAutoreplyEmail($this->postData, $this->getProperties(), $this->alias, $formDescription);
 
       // Send notification
-      $message->sendNotificationEmail($this->postData, $this->getProperties());
+      $message->sendNotificationEmail($this->postData, $this->getProperties(), $this->alias, $formDescription);
 
       // Redirect to prevent repeated sending of form
       // Clear data after success AJAX send

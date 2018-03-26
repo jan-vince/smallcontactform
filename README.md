@@ -277,6 +277,13 @@ This can be more complex:
 {% component 'myForm' form_description = ('Current value: ' ~ myVar) %}
 ````
 
+In email template you can access these variables like this:
+````
+Form alias: {{fields.form_alias}}
+Form description: {{fields.form_description}}
+````
+
+
 > When you override form description in ````{% component form_description = 'My description' %}````, description will be added as a **hidden field** into a form. Do not use this to store private data as this is easily visible in page HTML code!
 
 #### Override notification email options

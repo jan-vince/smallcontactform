@@ -121,3 +121,5 @@
     - Added Russian translation (thank Dinver)
 1.12.1:
     - Chanded input custom list column type for switch to prevent interaction with toolbar JS
+1.13.1:
+    - Added form_alias and form_description variables to email (notification and autoreply) templates

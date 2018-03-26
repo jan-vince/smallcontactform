@@ -121,7 +121,7 @@ class Message extends Model
     /**
      * Build and send autoreply message
      */
-    public function sendAutoreplyEmail($postData, $componentProperties = []){
+    public function sendAutoreplyEmail($postData, $componentProperties = [], $formAlias, $formDescription){
 
         if(!Settings::getTranslated('allow_autoreply')) {
             return;
@@ -174,9 +174,10 @@ class Message extends Model
                 $outputFull[ $field['name'] ] = array_merge( $field, [ 'value' => $fieldValue ] );
             }
 
-            $output[ $field['name'] ] = $fieldValue;
-
         }
+
+        $output['form_description'] = $formDescription;
+        $output['form_alias'] = $formAlias;
 
         $template = Settings::getTranslatedTemplates('en', App::getLocale(), 'autoreply');
 
@@ -253,7 +254,7 @@ class Message extends Model
     /**
      * Build and send notification message
      */
-    public function sendNotificationEmail($postData, $componentProperties = []){
+    public function sendNotificationEmail($postData, $componentProperties = [], $formAlias, $formDescription){
 
         if(!Settings::getTranslated('allow_notifications')) {
             return;
@@ -311,6 +312,9 @@ class Message extends Model
             $output[ $field['name'] ] = $fieldValue;
 
         }
+
+        $output['form_description'] = $formDescription;
+        $output['form_alias'] = $formAlias;
 
         $template = Settings::getTranslatedTemplates('en', App::getLocale(), 'notification');
 
