@@ -376,7 +376,7 @@ class SmallContactForm extends ComponentBase
       }
 
       // Placeholders if enabled
-      if(Settings::getTranslated('form_use_placeholders')){
+      if(Settings::getTranslated('form_use_placeholders') and $fieldSettings['type'] <> 'checkbox'){
         $attributes['placeholder'] = Settings::getDictionaryTranslated($fieldSettings['label']);
       }
 

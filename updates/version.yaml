@@ -123,3 +123,5 @@
     - Chanded input custom list column type for switch to prevent interaction with toolbar JS
 1.13.1:
     - Added form_alias and form_description variables to email (notification and autoreply) templates
+1.13.2:
+    - Disabled placeholder attribute for checkbox
