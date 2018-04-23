@@ -1,0 +1,10 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+export:
+    title: janvince.smallcontactform::lang.controllers.messages.export
+    modelClass: JanVince\SmallContactForm\Models\MessageExport
+    list: $/janvince/smallcontactform/models/message/columns_export.yaml
+    redirect: /janvince/smallcontactform/messages
+    fileName: scf-export.csv

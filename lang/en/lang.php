@@ -55,6 +55,7 @@ return [
     'message' => [
 
       'columns' => [
+        'id' => 'ID',
         'datetime' => 'Date and time',
         'form_data' => 'Form data',
         'name' => 'Name',
@@ -66,6 +67,8 @@ return [
         'remote_ip' => 'Sender\'s IP',
         'form_alias' => 'Alias',
         'form_description' => 'Description',
+        'created_at' => 'Created at',
+        'updated_at' => 'Updated at',
       ]
 
     ],
@@ -82,8 +85,8 @@ return [
       'preview_title' => 'Contact form message',
       'preview_date' => 'From date:',
       'preview_content_title' => 'Content:',
-      'remote_ip' => 'sent from ip',
-
+      'remote_ip' => 'Sent from ip',
+      'export' => 'Export',
     ],
 
     'index' => [

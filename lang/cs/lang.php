@@ -55,6 +55,7 @@ return [
     'message' => [
 
       'columns' => [
+        'id' => 'ID',
         'datetime' => 'Datum a čas',
         'form_data' => 'Data formuláře',
         'name' => 'Jméno',
@@ -64,6 +65,8 @@ return [
         'new' => 'Nová',
         'read' => 'Přečtená',
         'remote_ip' => 'IP odesílatele',
+        'created_at' => 'Datum vytvoření',
+        'updated_at' => 'Datum aktualizace',
       ]
 
     ],
@@ -82,7 +85,8 @@ return [
       'preview_content_title' => 'Obsah:',
       'remote_ip' => 'odesláno z ip',
       'form_alias' => 'Alias',
-      'form_description' => 'Popisek',    
+      'form_description' => 'Popisek',   
+      'export' => 'Export', 
     ],
 
     'index' => [

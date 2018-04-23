@@ -19,10 +19,13 @@ class Messages extends Controller
   public $requiredPermissions = ['janvince.smallcontactform.access_messages'];
 
     public $implement = [
-        'Backend.Behaviors.ListController'
+        'Backend.Behaviors.ListController',
+        'Backend.Behaviors.ImportExportController',
     ];
 
     public $listConfig = 'config_list.yaml';
+
+    public $importExportConfig = 'config_export.yaml';
 
     public function __construct()
     {

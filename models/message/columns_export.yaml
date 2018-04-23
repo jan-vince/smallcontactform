@@ -1,0 +1,45 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    id:
+        label: janvince.smallcontactform::lang.models.message.columns.id
+        type: number
+
+    new_message:
+        label: janvince.smallcontactform::lang.models.message.columns.new
+        type: number
+
+    created_at:
+        label: janvince.smallcontactform::lang.models.message.columns.created_at
+        type: datetime
+
+    updated_at:
+        label: janvince.smallcontactform::lang.models.message.columns.updated_at
+        type: datetime
+
+    name:
+        label: janvince.smallcontactform::lang.models.message.columns.name
+        type: text
+
+    email:
+        label: janvince.smallcontactform::lang.models.message.columns.email
+        type: text
+
+    message:
+        label: janvince.smallcontactform::lang.models.message.columns.message
+        type: text
+
+    remote_ip:
+        label: janvince.smallcontactform::lang.models.message.columns.remote_ip
+        type: text
+
+    form_alias:
+        label: janvince.smallcontactform::lang.models.message.columns.form_alias
+        type: text
+
+    form_description:
+        label: janvince.smallcontactform::lang.models.message.columns.form_description
+        type: text
