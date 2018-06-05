@@ -692,5 +692,5 @@ tabs:
             tab: 'janvince.smallcontactform::lang.settings.tabs.privacy'
             trigger:
                 action: show
-                field: allow_notifications
+                field: privacy_disable_messages_saving
                 condition: checked

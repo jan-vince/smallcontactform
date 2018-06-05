@@ -131,3 +131,5 @@
     - Added permissions to export messages list
 1.15.0:
     - Added Privacy tab and new option to disable sent messages saving
+1.15.1:
+    - Fixed settings fields trigger
