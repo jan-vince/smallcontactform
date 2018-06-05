@@ -48,3 +48,9 @@ columns:
         searchable: true
         type: text_preview
         invisible: true
+
+    form_data:
+        label: janvince.smallcontactform::lang.models.message.columns.form_data
+        searchable: true
+        type: text
+        invisible: true

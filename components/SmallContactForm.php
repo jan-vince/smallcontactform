@@ -114,7 +114,8 @@ class SmallContactForm extends ComponentBase
     $this->post = Input::all();
 
     // IP protection is enabled (has highest priority)
-    if( Settings::getTranslated('add_ip_protection') ) {
+    // But privacy must allow messages saving
+    if( Settings::getTranslated('add_ip_protection') and !Settings::getTranslated('privacy_disable_messages_saving') ) {
 
       $max = ( Settings::getTranslated('add_ip_protection_count') ? intval(Settings::getTranslated('add_ip_protection_count')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.add_ip_protection_count_placeholder'))) );
 
@@ -140,7 +141,8 @@ class SmallContactForm extends ComponentBase
     }
 
     // Antispam validation if allowed
-    if( Settings::getTranslated('add_antispam') ) {
+    // Only if messages saving is allowed
+    if( Settings::getTranslated('add_antispam') and !Settings::getTranslated('privacy_disable_messages_saving')) {
       $this->validationRules[('_protect-' . $this->alias)] = 'size:0';
 
       if( !empty($this->post['_form_created']) ) {

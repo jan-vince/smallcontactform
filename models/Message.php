@@ -36,7 +36,7 @@ class Message extends Model
 
     protected $jsonable = ['form_data'];
 
-
+    
     /**
      * Scope new messages only
      */
@@ -55,6 +55,10 @@ class Message extends Model
 
 
     public function storeFormData($data, $formAlias, $formDescription){
+
+        if(Settings::getTranslated('privacy_disable_messages_saving')) {
+            return;
+        }
 
         $output = [];
         $name_field_value = NULL;

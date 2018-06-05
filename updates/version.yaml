@@ -129,3 +129,5 @@
     - Added option to export messages list
 1.14.0:
     - Added permissions to export messages list
+1.15.0:
+    - Added Privacy tab and new option to disable sent messages saving

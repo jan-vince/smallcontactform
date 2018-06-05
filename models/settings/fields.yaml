@@ -347,74 +347,6 @@ tabs:
 
         ## ANTISPAM
 
-        add_antispam:
-            label: 'janvince.smallcontactform::lang.settings.antispam.add_antispam'
-            comment: 'janvince.smallcontactform::lang.settings.antispam.add_antispam_comment'
-            span: full
-            type: checkbox
-            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
-
-        antispam_delay:
-            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay'
-            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_comment'
-            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'
-            span: left
-            type: number
-            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
-            cssClass: field-indent
-            trigger:
-                action: show
-                field: add_antispam
-                condition: checked
-
-        antispam_delay_error_msg:
-            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg'
-            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_comment'
-            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder'
-            span: right
-            type: text
-            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
-            cssClass: field-indent
-            trigger:
-                action: show
-                field: add_antispam
-                condition: checked
-
-
-        antispam_label:
-            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_label'
-            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_label_comment'
-            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_label_placeholder'
-            span: left
-            type: text
-            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
-            cssClass: field-indent
-            trigger:
-                action: show
-                field: add_antispam
-                condition: checked
-
-        antispam_error_msg:
-            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_error_msg'
-            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_error_msg_comment'
-            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_error_msg_placeholder'
-            span: right
-            type: text
-            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
-            cssClass: field-indent
-            trigger:
-                action: show
-                field: add_antispam
-                condition: checked
-
-        section_ip_protection:
-            type: section
-            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
-            trigger:
-                action: show
-                field: add_antispam
-                condition: checked
-
         add_google_recaptcha:
             label: 'janvince.smallcontactform::lang.settings.antispam.add_google_recaptcha'
             comment: 'janvince.smallcontactform::lang.settings.antispam.add_google_recaptcha_comment'
@@ -495,12 +427,98 @@ tabs:
                 field: add_google_recaptcha
                 condition: checked
 
+        section_disabled_extensions:
+            type: section
+            label: 'janvince.smallcontactform::lang.settings.antispam.disabled_extensions' 
+            comment: 'janvince.smallcontactform::lang.settings.antispam.disabled_extensions_comment' 
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            trigger:
+                action: show
+                field: privacy_disable_messages_saving
+                condition: checked
+
+        add_antispam:
+            label: 'janvince.smallcontactform::lang.settings.antispam.add_antispam'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.add_antispam_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            trigger:
+                action: disable
+                field: privacy_disable_messages_saving
+                condition: checked            
+
+        antispam_delay:
+            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'
+            span: left
+            type: number
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_antispam
+                condition: checked
+
+        antispam_delay_error_msg:
+            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder'
+            span: right
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_antispam
+                condition: checked
+
+
+        antispam_label:
+            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_label'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_label_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_label_placeholder'
+            span: left
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_antispam
+                condition: checked
+
+        antispam_error_msg:
+            label: 'janvince.smallcontactform::lang.settings.antispam.antispam_error_msg'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.antispam_error_msg_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.antispam_error_msg_placeholder'
+            span: right
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_antispam
+                condition: checked
+
+        section_ip_protection:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            trigger:
+                action: show
+                field: add_antispam
+                condition: checked
+
         add_ip_protection:
             label: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection'
             comment: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection_comment'
             span: full
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            trigger:
+                action: disable
+                field: privacy_disable_messages_saving
+                condition: checked
 
         add_ip_protection_count:
             label: 'janvince.smallcontactform::lang.settings.antispam.add_ip_protection_count'
@@ -649,6 +667,29 @@ tabs:
             type: text
             tab: 'janvince.smallcontactform::lang.settings.tabs.email'
             cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_notifications
+                condition: checked
+
+
+        ## PRIVACY
+
+        privacy_disable_messages_saving:
+            label: 'janvince.smallcontactform::lang.settings.privacy.disable_messages_saving'
+            comment: 'janvince.smallcontactform::lang.settings.privacy.disable_messages_saving_comment'
+            commentHtml: true
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.privacy'
+
+        privacy_disable_messages_saving_section:
+            comment: 'janvince.smallcontactform::lang.settings.privacy.disable_messages_saving_comment_section'
+            commentHtml: true
+            span: full
+            type: section
+            cssClass: field-indent
+            tab: 'janvince.smallcontactform::lang.settings.tabs.privacy'
             trigger:
                 action: show
                 field: allow_notifications

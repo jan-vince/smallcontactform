@@ -355,6 +355,8 @@ return [
       'add_ip_protection_error_too_many_submits_comment' => 'Error message to show to the user',
       'add_ip_protection_error_too_many_submits_placeholder' => 'Too many form submits from one address today!',
 
+      'disabled_extensions' => 'Disabled extensions',
+      'disabled_extensions_comment' => 'Settings set on Privacy tab disabled these extensions',
 
     ],
 
@@ -379,6 +381,12 @@ return [
 
     ],
 
+    'privacy' => [
+      'disable_messages_saving' => 'Disable messages saving',
+      'disable_messages_saving_comment' => 'When checked, no data will saved in Messages list.<br><strong>This will also disable passive antispam and IP protection!</strong>',
+      'disable_messages_saving_comment_section' => '<div class="callout fade in callout-danger no-subheader"><div class="header"><i class="icon-warning"></i><h3>Be sure to allow notification emails or you will have no data from sent forms!</h3></div></div>',
+    ],
+
     'tabs' => [
       'form' => 'Form',
       'buttons' => 'Send button',
@@ -386,6 +394,7 @@ return [
       'mapping' => 'Columns mapping',
       'email' => 'Email',
       'antispam' => 'Antispam',
+      'privacy' => 'Privacy'
     ],
 
   ],

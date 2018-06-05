@@ -352,7 +352,8 @@ return [
       'add_ip_protection_error_too_many_submits_comment' => 'Zpráva, kterou obdrží uživatel při překročení limitu počtu odeslání formuláře',
       'add_ip_protection_error_too_many_submits_placeholder' => 'Byl překročen limit odeslání formuláře během jednoho dne!',
 
-
+      'disabled_extensions' => 'Zakázaná rozšíření',
+      'disabled_extensions_comment' => 'Nastavení ze záložky Soukromí zkusobila vypnutí těchto rozšíření',
     ],
 
     'mapping' => [
@@ -375,6 +376,12 @@ return [
       ],
 
     ],
+    
+    'privacy' => [
+      'disable_messages_saving' => 'Zakázat ukládání zpráv',
+      'disable_messages_saving_comment' => 'Pokud je zaškrtnuto, odeslané zprávy se nebudou ukládat do databáze.<br><strong>Tato volba zároveň zakáže použití pasivního antispamu a IP ochrany!</strong>',
+      'disable_messages_saving_comment_section' => '<div class="callout fade in callout-danger no-subheader"><div class="header"><i class="icon-warning"></i><h3>Ujistěte se, že máte povoleny notifikační emaily, jinak nebudete mít žádná data z odeslaných formulářů!</h3></div></div>',
+    ],
 
     'tabs' => [
       'form' => 'Formulář',
@@ -383,6 +390,7 @@ return [
       'mapping' => 'Vazby sloupců',
       'email' => 'Email',
       'antispam' => 'Antispam',
+      'privacy' => 'Soukromí'      
     ],
 
   ],
