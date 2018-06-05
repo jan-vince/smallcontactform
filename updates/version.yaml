@@ -127,3 +127,5 @@
     - Disabled placeholder attribute for checkbox
 1.14.0:
     - Added option to export messages list
+1.14.0:
+    - Added permissions to export messages list

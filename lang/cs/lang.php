@@ -11,6 +11,7 @@ return [
     'access_messages' => 'Přístup k seznamu zpráv',
     'access_settings' => 'Přístup k nastavení',
     'delete_messages' => 'Smazat vybrané zprávy',
+    'export_messages' => 'Exportovat zprávy',
   ],
 
   'navigation' => [

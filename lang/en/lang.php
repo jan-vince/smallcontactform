@@ -11,6 +11,7 @@ return [
     'access_messages' => 'Access messages list',
     'access_settings' => 'Manage backend preferences',
     'delete_messages' => 'Delete stored messages',
+    'export_messages' => 'Export messages',
   ],
 
   'navigation' => [

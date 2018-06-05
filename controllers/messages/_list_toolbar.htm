@@ -59,11 +59,14 @@
           <?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.mark_read')) ?>
       </button>
 
-        <a href="<?= Backend::url('system/settings/update/janvince/smallcontactform/settings'); ?>" class="btn btn-info oc-icon-cogs"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.settings_btn')) ?></a>
+      <a href="<?= Backend::url('system/settings/update/janvince/smallcontactform/settings'); ?>" class="btn btn-info oc-icon-cogs"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.settings_btn')) ?></a>
 
+      <?php if ($this->user->hasAccess('janvince.smallcontactform.export_messages')): ?>
         <a
             href="<?= Backend::url('janvince/smallcontactform/messages/export/') ?>"
             class="btn btn-default oc-icon-download">
             <?= e(trans('janvince.smallcontactform::lang.controllers.messages.export')) ?>
         </a>
+      <?php endif ?>
+
     </div>
