@@ -398,7 +398,7 @@ tabs:
             comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_scripts_allow_comment'
             span: left
             type: checkbox
-            default: true
+            default: false
             tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
             cssClass: field-indent
             trigger:
@@ -411,7 +411,7 @@ tabs:
             comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_locale_allow_comment'
             span: left
             type: checkbox
-            default: true
+            default: false
             tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
             cssClass: field-indent
             trigger:
