@@ -442,11 +442,7 @@ tabs:
             comment: 'janvince.smallcontactform::lang.settings.antispam.add_antispam_comment'
             span: full
             type: checkbox
-            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
-            trigger:
-                action: disable
-                field: privacy_disable_messages_saving
-                condition: checked            
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'           
 
         antispam_delay:
             label: 'janvince.smallcontactform::lang.settings.antispam.antispam_delay'

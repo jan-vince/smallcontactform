@@ -379,7 +379,7 @@ return [
     
     'privacy' => [
       'disable_messages_saving' => 'Zakázat ukládání zpráv',
-      'disable_messages_saving_comment' => 'Pokud je zaškrtnuto, odeslané zprávy se nebudou ukládat do databáze.<br><strong>Tato volba zároveň zakáže použití pasivního antispamu a IP ochrany!</strong>',
+      'disable_messages_saving_comment' => 'Pokud je zaškrtnuto, odeslané zprávy se nebudou ukládat do databáze.<br><strong>Tato volba zároveň zakáže použití IP ochrany!</strong>',
       'disable_messages_saving_comment_section' => '<div class="callout fade in callout-danger no-subheader"><div class="header"><i class="icon-warning"></i><h3>Ujistěte se, že máte povoleny notifikační emaily, jinak nebudete mít žádná data z odeslaných formulářů!</h3></div></div>',
     ],
 

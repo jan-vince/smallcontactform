@@ -135,3 +135,5 @@
     - Fixed settings fields trigger
 1.15.2:
     - Fixed default values for recaptcha settings to false
+1.15.3:
+    - Allowed combination of disabled messages saving and allowed passive antispam

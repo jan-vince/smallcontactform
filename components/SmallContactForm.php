@@ -141,8 +141,7 @@ class SmallContactForm extends ComponentBase
     }
 
     // Antispam validation if allowed
-    // Only if messages saving is allowed
-    if( Settings::getTranslated('add_antispam') and !Settings::getTranslated('privacy_disable_messages_saving')) {
+    if( Settings::getTranslated('add_antispam')) {
       $this->validationRules[('_protect-' . $this->alias)] = 'size:0';
 
       if( !empty($this->post['_form_created']) ) {
