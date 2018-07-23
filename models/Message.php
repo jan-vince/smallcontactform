@@ -270,10 +270,21 @@ class Message extends Model
 
         $sendTo =  (!empty($componentProperties['notification_address_to']) ? $componentProperties['notification_address_to'] : Settings::getTranslated('notification_address_to') );
 
-        $validator = Validator::make(['email' => $sendTo], ['email' => 'required|email']);
+        $sendToAddresses = explode(',', $sendTo);        
+        $sendToAddressesValidated = [];
 
-        if($validator->fails()){
-            Log::error('SMALL CONTACT FORM ERROR: Notification email address (' .$sendTo. ') is invalid! No notification will be delivered!');
+        foreach($sendToAddresses as $sendToAddress) {
+
+            $validator = Validator::make(['email' => trim($sendToAddress)], ['email' => 'required|email']);
+    
+            if($validator->fails()){
+                Log::error('SMALL CONTACT FORM ERROR: Notification email address (' .trim($sendToAddress). ') is invalid! No notification will be delivered!');
+            } else {
+                $sendToAddressesValidated[] = trim($sendToAddress);
+            }
+        }
+
+        if( !count($sendToAddressesValidated) ) {
             return;
         }
 
@@ -349,9 +360,18 @@ class Message extends Model
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('notification_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
 
-        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendTo, $replyToAddress, $replyToName){
+        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName){
 
-            $message->to($sendTo);
+            if( count($sendToAddressesValidated)>1 ) {
+                
+                foreach($sendToAddressesValidated as $address) {
+                    $message->bcc($address);
+                }
+            } elseif( !empty($sendToAddressesValidated[0]) ) {
+                $message->to($sendToAddressesValidated[0]);
+            } else {
+                return;
+            }
 
             /**
             *   Set Reply to address and also set From address if requested
@@ -371,12 +391,8 @@ class Message extends Model
                 if ( Settings::getTranslated('notification_address_from_form') ) {
                     $message->from($replyToAddress, $replyToName);
                 }
-
             }
-
         });
-
-
     }
 
     /**

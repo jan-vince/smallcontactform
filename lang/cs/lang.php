@@ -275,6 +275,7 @@ return [
       'allow_notifications_comment' => 'Odesílat upozornění, pokud někdo odešle formulář.',
 
       'notification_address_to' => 'Upozornění posílat na adresu:',
+      'notification_address_to_comment' => 'Jedna emailová adresa nebo seznam adres oddělených čárkami',
       'notification_address_to_placeholder' => 'notifications@domain.com',
 
       'notification_address_from_form' => 'Nastavit adresu Od na email z formuláře (NEMUSÍ PODPOROVAT váš emailový systém!)',

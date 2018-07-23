@@ -278,6 +278,7 @@ return [
       'allow_notifications_comment' => 'Send notification after form has been sent',
 
       'notification_address_to' => 'Send notification to email',
+      'notification_address_to_comment' => 'One email address or comma-separated list of addresses',
       'notification_address_to_placeholder' => 'notifications@domain.com',
 
       'notification_address_from_form' => 'Force notification From address (NOT SUPPORTED by all email systems!)',

@@ -190,7 +190,7 @@ Email can be send to form sender as confirmation.
 
 #### Allow notifications
 
-Once a Contact form is sent a notification can be immediately send to a provided email address.
+Once a Contact form is sent a notification can be immediately send to a provided email address (or comma-separated list of addresses).
 
 *A **Reply to** address of notification email will be set to an email address from Contact form (if this field is used).*
 

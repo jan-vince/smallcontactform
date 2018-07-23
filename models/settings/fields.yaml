@@ -646,6 +646,7 @@ tabs:
 
         notification_address_to:
             label: 'janvince.smallcontactform::lang.settings.email.notification_address_to'
+            comment: 'janvince.smallcontactform::lang.settings.email.notification_address_to_comment'
             span: left
             type: text
             placeholder: 'janvince.smallcontactform::lang.settings.email.notification_address_to_placeholder'

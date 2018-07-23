@@ -137,3 +137,5 @@
     - Fixed default values for recaptcha settings to false
 1.15.3:
     - Allowed combination of disabled messages saving and allowed passive antispam
+1.16.0:
+    - Added option to have more than one notification email address
