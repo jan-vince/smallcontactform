@@ -139,3 +139,5 @@
     - Allowed combination of disabled messages saving and allowed passive antispam
 1.16.0:
     - Added option to have more than one notification email address
+1.16.1:
+    - Fixed missing form data in autoreply templates. Updated default autoreply messages.

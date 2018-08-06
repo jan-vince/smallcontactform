@@ -178,6 +178,8 @@ class Message extends Model
                 $outputFull[ $field['name'] ] = array_merge( $field, [ 'value' => $fieldValue ] );
             }
 
+            $output[ $field['name'] ] = $fieldValue;
+
         }
 
         $output['form_description'] = $formDescription;

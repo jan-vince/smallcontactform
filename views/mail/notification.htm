@@ -15,7 +15,7 @@ Sent form content:
 		{% for key,value in fields %}
 
 			<tr>
-				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key }}</th>
+				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key|upper }}</th>
 				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
 			</tr>
 
@@ -52,7 +52,7 @@ Contact form
 		{% for key,value in fields %}
 
 			<tr>
-				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key }}</th>
+				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key|upper }}</th>
 				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
 			</tr>
 

@@ -14,10 +14,16 @@ You have sent this:
 
         {% for field in fieldsDetails %}
 
-            <tr>
-                <th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
-                <td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
-            </tr>
+            {% if field.label == 'form_description' or field.label == 'form_alias' %}
+            {% else %}
+
+                <tr>
+                    <th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
+                    <td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
+                    <th>{{field.label}}</th>
+                </tr>
+
+            {% endif %}
 
         {% endfor %}
 
@@ -49,14 +55,14 @@ Contact form
 
     <tbody>
 
-        {% for field in fieldsDetails %}
+		{% for field in fieldsDetails %}
 
-            <tr>
-                <th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
-                <td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
-            </tr>
+			<tr>
+				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
+				<td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
+			</tr>
 
-        {% endfor %}
+		{% endfor %}
 
     </tbody>
 
