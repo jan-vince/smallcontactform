@@ -9,8 +9,9 @@ return [
 
   'permissions' => [
     'access_messages' => 'Üzenetek megtekintése',
-    'delete_messages' => 'Üzenetek törlése',
     'access_settings' => 'Beállítások módosítása',
+    'delete_messages' => 'Üzenetek törlése',
+    'export_messages' => 'Üzenetek exportálása',
   ],
 
   'navigation' => [
@@ -39,6 +40,9 @@ return [
       'all_count' => 'Összes',
       'all_description' => 'üzenet',
       'settings_btn' => 'Testreszabás',
+      'mark_read' => 'Olvasottnak jelöl',
+      'mark_read_confirm' => 'Valóban olvasottnak szeretné jelölni az üzeneteket?',
+      'mark_read_success' => 'Az üzenetek sikeresen olvasottnak lettek jelölve.',
     ],
 
     'preview' => [
@@ -52,6 +56,7 @@ return [
     'message' => [
 
       'columns' => [
+        'id' => 'ID',
         'datetime' => 'Elküldve',
         'form_data' => 'Adatok',
         'name' => 'Név',
@@ -61,6 +66,10 @@ return [
         'new' => 'Új levél',
         'read' => 'Olvasott',
         'remote_ip' => 'IP cím',
+        'form_alias' => 'Űrlap',
+        'form_description' => 'Leírás',
+        'created_at' => 'Létrehozva',
+        'updated_at' => 'Módosítva',
       ],
 
     ],
@@ -76,6 +85,7 @@ return [
       'preview_date' => 'Elküldve:',
       'preview_content_title' => 'Tartalom:',
       'remote_ip' => 'IP cím',
+      'export' => 'Exportálás',
     ],
 
     'index' => [
@@ -118,9 +128,19 @@ return [
 
   ],
 
-  'permissions' => [
-    'access_messages' => 'Üzenetek megtekintése',
-    'access_settings' => 'Beállítások módosítása',
+  'components' => [
+
+      'groups' => [
+          'hacks' => 'Hackelés',
+      ],
+
+      'properties' => [
+          'disable_notifications' => 'Értesítő e-mailek letiltása',
+          'disable_notifications_comment' => 'Felül fogja írni az űrlap központi beállítását erre vonatkozóan.',
+          'form_description' => 'Űrlap leírás',
+          'form_description_comment' => 'Amennyiben megad adatot, azok mentésre kerülnek az űrlap beküldésekor. Például az aktuális oldal címének megjegyzéséhez használhatja a {{ :slug }} kódot.',
+      ],
+
   ],
 
 ];
