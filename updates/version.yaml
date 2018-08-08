@@ -141,3 +141,5 @@
     - Added option to have more than one notification email address
 1.16.1:
     - Fixed missing form data in autoreply templates. Updated default autoreply messages.
+1.16.2:
+    - Updated hungarian translation (thx gergo85)
