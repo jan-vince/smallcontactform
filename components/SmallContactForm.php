@@ -18,12 +18,6 @@ use App;
 class SmallContactForm extends ComponentBase
 {
 
-  // public $implement = [
-    //     '@RainLab.Translate.Behaviors.TranslatableModel',
-    // ];
-  //
-  // public $translatable = [];
-
   private $validationRules;
   private $validationMessages;
 
@@ -64,7 +58,6 @@ class SmallContactForm extends ComponentBase
         ];
 
     }
-
 
     public function onRun() {
 
@@ -178,13 +171,13 @@ class SmallContactForm extends ComponentBase
 
     }
 
-    // Validate
+    // Validate sent data
     $validator = Validator::make($this->post, $this->validationRules, $this->validationMessages);
     $validator->valid();
     $this->validationMessages = $validator->messages();
     $this->setPostData($validator->messages());
 
-    if($validator->invalid() or !empty($errors)){
+    if(!empty($validator->failed()) or !empty($errors)){
 
       // Form main error msg
       $errors[] = ( Settings::getTranslated('form_error_msg') ? Settings::getTranslated('form_error_msg') : e(trans('janvince.smallcontactform::lang.settings.form.error_msg_placeholder')));
@@ -275,7 +268,6 @@ class SmallContactForm extends ComponentBase
     }
 
     return $fields;
-
   }
 
   /**
@@ -298,6 +290,10 @@ class SmallContactForm extends ComponentBase
 
     if( Settings::getTranslated('form_css_class') ) {
         $attributes['class'] = Settings::getTranslated('form_css_class');
+    }
+
+    if( !empty(Input::all()) ) {
+      $attributes['class'] .= ' was-validated';
     }
 
     if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
@@ -341,13 +337,18 @@ class SmallContactForm extends ComponentBase
     $output = [];
 
     $wrapperCss = ( $fieldSettings['wrapper_css'] ? $fieldSettings['wrapper_css'] : $fieldType['wrapper_class'] );
-
+    
     // Add wrapper error class if there are any
     if(!empty($this->postData[$fieldSettings['name']]['error'])){
       $wrapperCss .= ' has-error';
     }
 
     $output[] = '<div class="' . $wrapperCss . '">';
+
+      // Checkbox wrapper
+      if ($fieldSettings['type'] == 'checkbox') {
+        $output[] = '<div class="checkbox">';
+      }
 
       // Label classic
       if( !empty($fieldSettings['label']) and !Settings::getTranslated('form_use_placeholders') and !empty($fieldType['label']) ){
@@ -373,7 +374,12 @@ class SmallContactForm extends ComponentBase
       ];
 
       if ( !empty($this->postData[$fieldSettings['name']]['value']) && empty($fieldType['html_close']) ) {
+
+        if ($fieldSettings['type'] == 'checkbox') { 
+          $attributes['checked'] = null;
+        } else {
           $attributes['value'] = $this->postData[$fieldSettings['name']]['value'];
+        }
       }
 
       // Placeholders if enabled
@@ -426,6 +432,11 @@ class SmallContactForm extends ComponentBase
       // Label as container
       if( empty($fieldType['label']) ){
         $output[] = '</label>';
+      }
+
+      // Checkbox wrapper
+      if ($fieldSettings['type'] == 'checkbox') {
+        $output[] = '</div>';
       }
 
     $output[] = "</div>";
@@ -571,14 +582,13 @@ class SmallContactForm extends ComponentBase
             $validationMessages[($field['name'] . '.' . $rule['validation_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
           }
         }
+       
         $validationRules[$field['name']] = implode('|', $rules);
       }
-
     }
 
     $this->validationRules = $validationRules;
     $this->validationMessages = $validationMessages;
-
   }
 
 
@@ -587,11 +597,11 @@ class SmallContactForm extends ComponentBase
    */
   private function setPostData(MessageBag $validatorMessages){
 
-    foreach( Input::all() as $key => $value){
+    foreach( $this->fields() as $field){
 
-      $this->postData[$key] = [
-        'value' => e(Input::get($key)),
-        'error' => $validatorMessages->first($key),
+      $this->postData[ $field['name'] ] = [
+        'value' => e(Input::get($field['name'])),
+        'error' => $validatorMessages->first($field['name']),
       ];
 
     }
@@ -611,7 +621,6 @@ class SmallContactForm extends ComponentBase
     }
 
     return implode(' ', $output);
-
   }
 
   /**
@@ -630,8 +639,5 @@ class SmallContactForm extends ComponentBase
     }
 
     return false;
-
   }
-
-
 }

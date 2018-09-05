@@ -236,7 +236,7 @@ class Settings extends Model
       'checkbox' => [
         'html_open' => 'input',
         'label' => false,
-        'wrapper_class' => 'checkbox',
+        'wrapper_class' => null,
         'field_class' => null,
         'inner_label' => true,
         'attributes' => [
