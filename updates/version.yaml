@@ -143,5 +143,5 @@
     - Fixed missing form data in autoreply templates. Updated default autoreply messages.
 1.16.2:
     - Updated hungarian translation (thx gergo85)
-1.16.3
+1.16.3:
     - Fixed checkbox validation and validation state
