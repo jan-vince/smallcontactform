@@ -279,6 +279,7 @@ class SmallContactForm extends ComponentBase
 
     $attributes['request'] = $this->alias . '::onFormSend';
     $attributes['method'] = 'POST';
+    $attributes['class'] = null;
 
     if( Settings::getTranslated('form_allow_ajax', 0) ) {
 
@@ -289,7 +290,7 @@ class SmallContactForm extends ComponentBase
     }
 
     if( Settings::getTranslated('form_css_class') ) {
-        $attributes['class'] = Settings::getTranslated('form_css_class');
+        $attributes['class'] .= Settings::getTranslated('form_css_class');
     }
 
     if( !empty(Input::all()) ) {
