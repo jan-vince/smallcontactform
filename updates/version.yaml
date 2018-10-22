@@ -145,3 +145,5 @@
     - Updated hungarian translation (thx gergo85)
 1.16.3:
     - Fixed checkbox validation and validation state
+1.17.0:
+    - Added Slovak translation (thx vosco88)
