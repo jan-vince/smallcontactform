@@ -148,7 +148,7 @@ return [
       'success_msg_placeholder' => 'Vos données ont été envoyées.',
 
       'error_msg' => 'Message d\'erreur du formulaire',
-      'error_msg_placeholder' => 'Une erreur s'est produite lors de l\'envoi de vos données!',
+      'error_msg_placeholder' => 'Une erreur s\'est produite lors de l\'envoi de vos données!',
 
       'allow_ajax' => 'Activer AJAX',
       'allow_ajax_comment' => 'Autoriser AJAX avec rechange pour les navigateurs sans JavaScript.',
@@ -163,7 +163,7 @@ return [
       'hide_after_success_comment' => 'Afficher uniquement le message de réussite sans formulaire',
 
       'add_assets' => 'Ajouter des assets',
-      'add_assets_comment' => 'Ajouter automatiquement les assets CSS et JS nécessaires (plus d'informations sur les assets dans le fichier README.md - en anglais)',
+      'add_assets_comment' => 'Ajouter automatiquement les assets CSS et JS nécessaires (plus d\'informations sur les assets dans le fichier README.md - en anglais)',
 
       'add_css_assets' => 'Ajouter des assets CSS',
       'add_css_assets_comment' => 'Tous les styles nécessaires seront inclus',
@@ -196,7 +196,7 @@ return [
       'redirect_url_placeholder' => '/contact/thank-you',
 
       'redirect_url_external' => 'URL externe',
-      'redirect_url_external_comment' => 'Ceci est un chemin d'URL externe (ex. http://www.domain.com)',
+      'redirect_url_external_comment' => 'Ceci est un chemin d\'URL externe (ex. http://www.domain.com)',
 
     ],
 
@@ -236,7 +236,7 @@ return [
 
       'validation_error' => 'Message d\'erreur de validation',
       'validation_error_placeholder' => 'S\'il vous plaît entrer des données valides.',
-      'validation_error_comment' => 'Message d'erreur à utiliser lorsque la validation échoue',
+      'validation_error_comment' => 'Message d\'erreur à utiliser lorsque la validation échoue',
 
       'custom' => 'Champ personnalisé',
       'custom_description' => 'Champ personnalisé avec option de validation',
@@ -272,13 +272,13 @@ return [
       'template_comment' => 'Code du modèle e-mail créé dans Paramètres > Modèles des e-mails. Laissez vide pour le modèle par défaut: janvince.smallcontactform::mail.autoreply.',
 
       'allow_email_queue' => 'E-mail en fille d\'attente',
-      'allow_email_queue_comment' => 'Ajouter un email à la file d'attente au lieu de l\'envoyer immédiatement. Vous devez d'abord configurer votre file d\'attente OctoberCMS!',
+      'allow_email_queue_comment' => 'Ajouter un email à la file d\'attente au lieu de l\'envoyer immédiatement. Vous devez d\'abord configurer votre file d\'attente OctoberCMS!',
 
       'allow_notifications' => 'Autoriser les notifications',
-      'allow_notifications_comment' => 'Envoyer une notification après l'envoi du formulaire',
+      'allow_notifications_comment' => 'Envoyer une notification après l\'envoi du formulaire',
 
       'notification_address_to' => 'Envoyer une notification à l\'e-mail',
-      'notification_address_to_comment' => 'Une adresse électronique ou une liste d'adresses séparées par des virgules',
+      'notification_address_to_comment' => 'Une adresse électronique ou une liste d\'adresses séparées par des virgules',
       'notification_address_to_placeholder' => 'notifications@domain.com',
 
       'notification_address_from_form' => 'Forcer l\'adresse e-mail de la notification (NON PRIS EN CHARGE par tous les systèmes de messagerie!)',
@@ -291,7 +291,7 @@ return [
       'autoreply_name_field_empty_option' => '-- Sélectionnez --',
       'autoreply_name_field_comment' => 'Doit être du type Texte.<br><em>Enregistrez et actualisez cette page si vous ne pouvez pas voir vos champs.</em>',
 
-      'autoreply_email_field' => 'Champ du formulaire avec l'adresse E-MAIL',
+      'autoreply_email_field' => 'Champ du formulaire avec l\'adresse E-MAIL',
       'autoreply_email_field_empty_option' => '-- Sélectionnez --',
       'autoreply_email_field_comment' => 'Doit être du type email.<br><em>Enregistrez et actualisez cette page si vous ne pouvez pas voir vos champs.</em>',
 
@@ -309,7 +309,7 @@ return [
       'add_antispam_comment' => 'Ajouter un contrôle antispam passif simple mais efficace (plus d’informations dans le fichier README.md - en anglais)',
 
       'antispam_delay' => 'Délai Antispam (en secondes)',
-      'antispam_delay_comment' => 'Protection différée pour l'envoi de formulaires trop rapide (généralement par des robots)',
+      'antispam_delay_comment' => 'Protection différée pour l\'envoi de formulaires trop rapide (généralement par des robots)',
       'antispam_delay_placeholder' => '3',
 
       'antispam_label' => 'Étiquette de champ antispam',
@@ -320,9 +320,9 @@ return [
       'antispam_error_msg_comment' => 'Message à afficher à l\'utilisateur lorsque la protection antispam est déclenchée',
       'antispam_error_msg_placeholder' => 'Veuillez vider ce champ!',
 
-      'antispam_delay_error_msg' => 'Message d'erreur de délai',
-      'antispam_delay_error_msg_comment' => 'Message à montrer à l'utilisateur lorsque le formulaire a été envoyé trop rapidement',
-      'antispam_delay_error_msg_placeholder' => 'Formulaire envoyé trop vite! S'il vous plaît attendre quelques secondes et essayez à nouveau!',
+      'antispam_delay_error_msg' => 'Message d\'erreur de délai',
+      'antispam_delay_error_msg_comment' => 'Message à montrer à l\'utilisateur lorsque le formulaire a été envoyé trop rapidement',
+      'antispam_delay_error_msg_placeholder' => 'Formulaire envoyé trop vite! S\'il vous plaît attendre quelques secondes et essayez à nouveau!',
 
       'add_google_recaptcha' => 'Ajouter Google reCaptcha',
       'add_google_recaptcha_comment' => 'Ajoutez reCaptcha au formulaire de contact (plus d\’informations dans le fichier README.md - en anglais). <br> Vous pouvez obtenir les clés d’API sur le <a href="https://www.google.com/recaptcha/admin#list" target="_blank">Google reCaptcha</a>.',
@@ -334,16 +334,16 @@ return [
       'google_recaptcha_secret_key_comment' => 'Mettez votre clé secrète',
 
       'google_recaptcha_error_msg' => 'Message d\'erreur',
-      'google_recaptcha_error_msg_comment' => 'Message à afficher à l'utilisateur lorsque le reCAPTCHA n\'est pas validé.',
+      'google_recaptcha_error_msg_comment' => 'Message à afficher à l\'utilisateur lorsque le reCAPTCHA n\'est pas validé.',
       'google_recaptcha_error_msg_placeholder' => 'Erreur de validation du reCAPTCHA de Google!',
 
       'google_recaptcha_scripts_allow' => 'Ajouter automatiquement les scripts JS nécessaires',
       'google_recaptcha_scripts_allow_comment' => 'Cela ajoutera un lien vers les scripts JS sur votre site.',
 
       'google_recaptcha_locale_allow' => 'Autoriser la détection des paramètres de langues',
-      'google_recaptcha_locale_allow_comment' => 'Cela ajoutera les paramètres de langues actuels de la page Web au script reCAPTCHA, de sorte qu'il sera traduit.',
+      'google_recaptcha_locale_allow_comment' => 'Cela ajoutera les paramètres de langues actuels de la page Web au script reCAPTCHA, de sorte qu\'il sera traduit.',
 
-      'add_ip_protection' => 'Vérifier l\'adresse IP de l'expéditeur',
+      'add_ip_protection' => 'Vérifier l\'adresse IP de l\'expéditeur',
       'add_ip_protection_comment' => 'Ne pas autoriser trop de formulaires soumis à partir d\'une même adresse IP',
 
       'add_ip_protection_count' => 'Formulaire maximum soumis au cours d\'une journée',
@@ -353,11 +353,11 @@ return [
       'add_ip_protection_error_get_ip' => 'Nous n\'avons pas pu déterminer votre adresse IP!',
 
       'add_ip_protection_error_too_many_submits' => 'Message d\'erreur lorsque trop de messages sont envoyés',
-      'add_ip_protection_error_too_many_submits_comment' => 'Message d'erreur à montrer à l\'utilisateur',
+      'add_ip_protection_error_too_many_submits_comment' => 'Message d\'erreur à montrer à l\'utilisateur',
       'add_ip_protection_error_too_many_submits_placeholder' => 'Trop de messages ont été envoyés par votre adresse aujourd\'hui!',
 
       'disabled_extensions' => 'Extensions désactivées',
-      'disabled_extensions_comment' => 'Les paramètres définis dans l'onglet Confidentialité ont désactivé ces extensions.',
+      'disabled_extensions_comment' => 'Les paramètres définis dans l\'onglet Confidentialité ont désactivé ces extensions.',
 
     ],
 
@@ -383,9 +383,9 @@ return [
     ],
 
     'privacy' => [
-      'disable_messages_saving' => 'Désactiver l'enregistrement des messages',
+      'disable_messages_saving' => 'Désactiver l\'enregistrement des messages',
       'disable_messages_saving_comment' => 'Lorsque cette case est cochée, aucune donnée ne sera enregistrée dans la liste de messages.<br><strong>La protection IP sera également désactivée!</strong>',
-      'disable_messages_saving_comment_section' => '<div class="callout fade in callout-danger no-subheader"><div class="header"><i class="icon-warning"></i><h3>Assurez-vous d'autoriser les courriels de notification, sinon vous ne recevrez aucune donnée des formulaires envoyés!</h3></div></div>',
+      'disable_messages_saving_comment_section' => '<div class="callout fade in callout-danger no-subheader"><div class="header"><i class="icon-warning"></i><h3>Assurez-vous d\'autoriser les courriels de notification, sinon vous ne recevrez aucune donnée des formulaires envoyés!</h3></div></div>',
     ],
 
     'tabs' => [
