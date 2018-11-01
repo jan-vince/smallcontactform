@@ -246,6 +246,18 @@ class Settings extends Model
         'html_close' => null,
       ],
 
+      'radio' => [
+        'html_open' => 'input',
+        'label' => false,
+        'wrapper_class' => null,
+        'field_class' => null,
+        'inner_label' => true,
+        'attributes' => [
+          'type' => 'radio',
+        ],
+        'html_close' => null,
+      ],
+        
     ];
 
     if($type){
