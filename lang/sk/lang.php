@@ -170,11 +170,12 @@ return [
       'custom' => 'vlastné pole',
       'custom_description' => 'vlastné pole s validačnými pravidlami',
     ],
-    'form_field_types' => [
+    'c' => [
       'text' => 'Text',
       'email' => 'Email',
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
+        'radio' => 'Radio',
     ],
     'form_field_validation' => [
       'select' => '--- Vyberte pravidlo ---',
