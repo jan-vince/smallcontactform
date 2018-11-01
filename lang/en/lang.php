@@ -249,6 +249,7 @@ return [
       'email' => 'Email',
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
+      'radio' => 'Radio',
     ],
 
     'form_field_validation' => [
