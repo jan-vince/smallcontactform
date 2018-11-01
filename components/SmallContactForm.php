@@ -351,6 +351,11 @@ class SmallContactForm extends ComponentBase
         $output[] = '<div class="checkbox">';
       }
 
+      // Radio wrapper
+      if ($fieldSettings['type'] == 'radio') {
+        $output[] = '<div class="radio">';
+      }
+    
       // Label classic
       if( !empty($fieldSettings['label']) and !Settings::getTranslated('form_use_placeholders') and !empty($fieldType['label']) ){
         $output[] = '<label class="control-label ' . ( !empty($fieldSettings['label_css']) ? $fieldSettings['label_css'] : '' ) . ' ' . ( $fieldRequired ? 'required' : '' ) . '" for="' . ($this->alias . '-' . $fieldSettings['name']) . '">' . Settings::getDictionaryTranslated($fieldSettings['label']) . '</label>';
@@ -381,10 +386,22 @@ class SmallContactForm extends ComponentBase
         } else {
           $attributes['value'] = $this->postData[$fieldSettings['name']]['value'];
         }
+        
+         if ($fieldSettings['type'] == 'radio') { 
+          $attributes['checked'] = null;
+        } else {
+          $attributes['value'] = $this->postData[$fieldSettings['name']]['value'];
+        }
+        
       }
 
+      // Use label for value of Radio
+      if ($fieldApplicationSettings['type'] == 'radio') { 
+        $attributes['value'] = $fieldApplicationSettings['label'];
+      }
+    
       // Placeholders if enabled
-      if(Settings::getTranslated('form_use_placeholders') and $fieldSettings['type'] <> 'checkbox'){
+      if(Settings::getTranslated('form_use_placeholders') and $fieldSettings['type'] <> 'checkbox' and $fieldSettings['type'] <> 'radio'){
         $attributes['placeholder'] = Settings::getDictionaryTranslated($fieldSettings['label']);
       }
 
@@ -437,6 +454,11 @@ class SmallContactForm extends ComponentBase
 
       // Checkbox wrapper
       if ($fieldSettings['type'] == 'checkbox') {
+        $output[] = '</div>';
+      }
+    
+      // Radio wrapper
+      if ($fieldSettings['type'] == 'radio') {
         $output[] = '</div>';
       }
 
