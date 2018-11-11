@@ -238,6 +238,10 @@ return [
       'validation_error_placeholder' => 'Please enter valid data.',
       'validation_error_comment' => 'Error message to use when validation fails',
 
+      'regex_rule' => 'Mask regular expression',
+      'regex_rule_placeholder' => 'Mask regular expression',
+      'regex_rule_comment' => 'Mask regular expression by which input is validated',
+
       'custom' => 'Custom field',
       'custom_description' => 'Custom field with validation option',
 
@@ -256,6 +260,7 @@ return [
       'required' => 'Required',
       'email' => 'Email',
       'numeric' => 'Numeric',
+      'regex' => 'Regular expression'
     ],
 
     'email' => [

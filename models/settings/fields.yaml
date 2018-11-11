@@ -292,6 +292,15 @@ tabs:
                                     label: 'janvince.smallcontactform::lang.settings.form_fields.validation'
                                     type: dropdown
                                     emptyOption: 'janvince.smallcontactform::lang.settings.form_field_validation.select'
+                                regex_rule:
+                                    span: right
+                                    label: 'janvince.smallcontactform::lang.settings.form_fields.regex_rule'
+                                    placeholder: 'janvince.smallcontactform::lang.settings.form_fields.regex_rule_placeholder'
+                                    type: text
+                                    trigger:
+                                        action: show
+                                        field: validation_type
+                                        condition: value[regex]
                                 validation_error:
                                     span: right
                                     label: 'janvince.smallcontactform::lang.settings.form_fields.validation_error'

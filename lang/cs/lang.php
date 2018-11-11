@@ -235,6 +235,10 @@ return [
       'validation_error_placeholder' => 'Prosím vložte správná data.',
       'validation_error_comment' => 'Chybová hláška, která se zobrazí u pole',
 
+      'regex_rule' => 'Maska regulárního výrazu',
+      'regex_rule_placeholder' => 'Maska regulárního výrazu',
+      'regex_rule_comment' => 'Maska regulárního výrazu podle které se validuje vstup',
+
       'custom' => 'Vlastní pole',
       'custom_description' => 'Vlastní pole s validačními pravidly',
 
@@ -253,6 +257,7 @@ return [
       'required' => 'Vyžadováno',
       'email' => 'Email',
       'numeric' => 'Číslo',
+      'regex' => 'Regulární výraz'
     ],
 
     'email' => [

@@ -125,6 +125,7 @@ class Settings extends Model
       'required' => 'janvince.smallcontactform::lang.settings.form_field_validation.required',
       'email' => 'janvince.smallcontactform::lang.settings.form_field_validation.email',
       'numeric' => 'janvince.smallcontactform::lang.settings.form_field_validation.numeric',
+      'regex' => 'janvince.smallcontactform::lang.settings.form_field_validation.regex'
     ];
   }
 

@@ -577,13 +577,21 @@ class SmallContactForm extends ComponentBase
         $rules = [];
 
         foreach($field['validation'] as $rule) {
-          $rules[] = $rule['validation_type'];
+        	if($rule['validation_type']=='regex'
+				&& isset($rule['regex_rule'])
+				&& !empty($rule['regex_rule'])
+				&& (@preg_match($rule['regex_rule'], null) !== false)
+			){
+				$rules[] = $rule['validation_type'].':'.$rule['regex_rule'];
+        	}else{
+
+				$rules[] = $rule['validation_type'];
+        	}
 
           if(!empty($rule['validation_error'])){
             $validationMessages[($field['name'] . '.' . $rule['validation_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
           }
         }
-       
         $validationRules[$field['name']] = implode('|', $rules);
       }
     }
