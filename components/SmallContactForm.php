@@ -592,7 +592,7 @@ class SmallContactForm extends ComponentBase
             $validationMessages[($field['name'] . '.' . $rule['validation_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
           }
         }
-        $validationRules[$field['name']] = implode('|', $rules);
+        $validationRules[$field['name']] = $rules;
       }
     }
 
