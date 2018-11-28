@@ -570,34 +570,67 @@ class SmallContactForm extends ComponentBase
 
     $validationRules = [];
     $validationMessages = [];
-
     foreach($fieldsDefinition as $field){
-
+      
       if(!empty($field['validation'])) {
         $rules = [];
-
+        
         foreach($field['validation'] as $rule) {
-        	if($rule['validation_type']=='regex'
-				&& isset($rule['regex_rule'])
-				&& !empty($rule['regex_rule'])
-				&& (@preg_match($rule['regex_rule'], null) !== false)
-			){
-				$rules[] = $rule['validation_type'].':'.$rule['regex_rule'];
-        	}else{
+          
+          if( $rule['validation_type']=='custom' && !empty($rule['validation_custom_type']) ){
 
-				$rules[] = $rule['validation_type'];
+            if(!empty($rule['validation_custom_pattern'])) {
+              
+              switch ($rule['validation_custom_type']) {
+
+                /**
+                 * Keep regex pattern in an array
+                 */
+                case "regex":
+
+                  $rules[] = [$rule['validation_custom_type'], $rule['validation_custom_pattern']];
+
+                break;
+
+                default:
+
+                  $rules[] = $rule['validation_custom_type'] . ':' . $rule['validation_custom_pattern'];
+
+                break;
+
+              }
+              
+              
+              
+            } else {
+              
+              $rules[] = $rule['validation_custom_type'];
+
+            }
+
+            if(!empty($rule['validation_error'])){
+
+              $validationMessages[($field['name'] . '.' . $rule['validation_custom_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
+            }  
+
+          } else {
+
+            $rules[] = $rule['validation_type']; 
+
+            if(!empty($rule['validation_error'])){
+
+              $validationMessages[($field['name'] . '.' . $rule['validation_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
+            }  
         	}
-
-          if(!empty($rule['validation_error'])){
-            $validationMessages[($field['name'] . '.' . $rule['validation_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
-          }
         }
+
         $validationRules[$field['name']] = $rules;
       }
     }
 
     $this->validationRules = $validationRules;
     $this->validationMessages = $validationMessages;
+
   }
 
 

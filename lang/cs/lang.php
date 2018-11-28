@@ -235,9 +235,12 @@ return [
       'validation_error_placeholder' => 'Prosím vložte správná data.',
       'validation_error_comment' => 'Chybová hláška, která se zobrazí u pole',
 
-      'regex_rule' => 'Maska regulárního výrazu',
-      'regex_rule_placeholder' => 'Maska regulárního výrazu',
-      'regex_rule_comment' => 'Maska regulárního výrazu podle které se validuje vstup',
+      'validation_custom_type' => 'Vlastní validační pravidlo',
+      'validation_custom_type_comment' => 'Vložte některé z pravidel třídy Validator (např. regex, boolean, ...). Přehled <a href="https://octobercms.com/docs/services/validation#available-validation-rules" target="_blank">validačních pravidel</a>.',
+
+      'validation_custom_pattern' => 'Podmínka validačního pravidla',
+      'validation_custom_pattern_comment' => 'POnechte prázdné nebo doplňte podmínku pravidla. Toto je pravá část validačního pravidla (za dvojtečkou).',
+
 
       'custom' => 'Vlastní pole',
       'custom_description' => 'Vlastní pole s validačními pravidly',

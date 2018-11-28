@@ -292,21 +292,30 @@ tabs:
                                     label: 'janvince.smallcontactform::lang.settings.form_fields.validation'
                                     type: dropdown
                                     emptyOption: 'janvince.smallcontactform::lang.settings.form_field_validation.select'
-                                regex_rule:
+                                validation_error:
                                     span: right
-                                    label: 'janvince.smallcontactform::lang.settings.form_fields.regex_rule'
-                                    placeholder: 'janvince.smallcontactform::lang.settings.form_fields.regex_rule_placeholder'
+                                    label: 'janvince.smallcontactform::lang.settings.form_fields.validation_error'
+                                    placeholder: 'janvince.smallcontactform::lang.settings.form_fields.validation_error_placeholder'
+                                    type: text
+                                validation_custom_type:
+                                    span: left
+                                    label: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_type'
+                                    comment: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_type_comment'
+                                    commentHtml: true
                                     type: text
                                     trigger:
                                         action: show
                                         field: validation_type
-                                        condition: value[regex]
-                                validation_error:
+                                        condition: value[custom]
+                                validation_custom_pattern:
                                     span: right
-                                    label: 'janvince.smallcontactform::lang.settings.form_fields.validation_error'
-                                    # comment: 'janvince.smallcontactform::lang.settings.form_fields.validation_error_comment'
-                                    placeholder: 'janvince.smallcontactform::lang.settings.form_fields.validation_error_placeholder'
+                                    label: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_pattern'
+                                    comment: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_pattern_comment'
                                     type: text
+                                    trigger:
+                                        action: show
+                                        field: validation_type
+                                        condition: value[custom]
 
                     section_end:
                         type: section
