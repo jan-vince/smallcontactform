@@ -116,13 +116,19 @@ Here you can add fields to build your contact (or other) form.
 The idea is simple (and solution is so I hope):
 
 * Click to add new field
-* Set it's name (this is used for ````<input name="{{name}}" id="{{name}}">````), so it should be lowercase without special characters.
-* Set Label if you need one (it is used for descriptive text above input field)
-* Set autofocus if you want cursor to automatically jump to this field (if checked more than one field, cursor jumps to first one)
-* Add field validation rules:
+  * Set it's name (this is used for ````<input name="{{name}}" id="{{name}}">````), so it should be lowercase without special characters.
+  * Set Label if you need one (it is used for descriptive text above input field)
+  * Set autofocus if you want cursor to automatically jump to this field (if checked more than one field, cursor jumps to first one)
+
+#### Field data validation
+
+You can select from predefined rules or add custom Validator rules (read [documentation](https://octobercms.com/docs/services/validation#available-validation-rules)).
+
+Some rules require additional validation pattern some of them not.
+
  * You can add one or more validation rules and error messages for them
  * Error messages will be shown above input field
-* You can reorder fields by drag and drop left circle (all fields can be collapsed by pressing Ctrl+click (Cmd+click on MacOS) on arrow in right top corners)
+ * You can reorder fields by drag and drop left circle (all fields can be collapsed by pressing Ctrl+click (Cmd+click on MacOS) on arrow in right top corners)
 
 ### COLUMNS MAPPING
 

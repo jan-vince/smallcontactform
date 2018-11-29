@@ -147,3 +147,5 @@
     - Fixed checkbox validation and validation state
 1.17.0:
     - Added Slovak translation (thx vosco88)
+1.18.0:
+    - Added custom validation fields (thanks petr-vytlacil for help)
