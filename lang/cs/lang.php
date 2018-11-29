@@ -261,7 +261,7 @@ return [
       'required' => 'Vyžadováno',
       'email' => 'Email',
       'numeric' => 'Číslo',
-      'regex' => 'Regulární výraz'
+      'custom' => 'Vlastní pravidlo',
     ],
 
     'email' => [
