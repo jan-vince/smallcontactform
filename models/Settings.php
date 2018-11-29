@@ -125,7 +125,7 @@ class Settings extends Model
       'required' => 'janvince.smallcontactform::lang.settings.form_field_validation.required',
       'email' => 'janvince.smallcontactform::lang.settings.form_field_validation.email',
       'numeric' => 'janvince.smallcontactform::lang.settings.form_field_validation.numeric',
-      'custom' => 'janvince.smallcontactform::lang.settings.form_field_validation.custom'
+      'custom' => 'janvince.smallcontactform::lang.settings.form_field_validation.custom',
     ];
   }
 
@@ -245,6 +245,17 @@ class Settings extends Model
           'value' => 1,
         ],
         'html_close' => null,
+      ],
+
+      'dropdown' => [
+        'html_open' => 'select',
+        'label' => true,
+        'wrapper_class' => 'form-group',
+        'field_class' => 'form-control',
+        'inner_label' => false,
+        'attributes' => [
+        ],
+        'html_close' => 'select',
       ],
 
     ];

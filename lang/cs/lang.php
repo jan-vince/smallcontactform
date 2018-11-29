@@ -246,7 +246,9 @@ return [
       'custom' => 'Vlastní pole',
       'custom_description' => 'Vlastní pole s validačními pravidly',
 
-
+      'add_values_prompt' => 'Přidat hodnoty',
+      'field_value_id' => 'ID hodnoty',
+      'field_value_content' => 'Obsah',
     ],
 
     'form_field_types' => [
@@ -254,6 +256,7 @@ return [
       'email' => 'Email',
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
+      'dropdown' => 'Výběr (dropdown)',
     ],
 
     'form_field_validation' => [

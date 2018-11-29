@@ -211,6 +211,28 @@ tabs:
                         type: text
                         cssClass: field-indent
 
+                    field_values:
+                        # label: 'janvince.smallcontactform::lang.settings.form_fields.validation'
+                        prompt: 'janvince.smallcontactform::lang.settings.form_fields.add_values_prompt'
+                        span: full
+                        type: repeater
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: type
+                            condition: value[dropdown]
+                        form:
+                            fields:
+                                field_value_id:
+                                    span: left
+                                    label: 'janvince.smallcontactform::lang.settings.form_fields.field_value_id'
+                                    type: text
+                                field_value_content:
+                                    span: right
+                                    label: 'janvince.smallcontactform::lang.settings.form_fields.field_value_content'
+                                    type: text
+
+
                     field_styling:
                         label: 'janvince.smallcontactform::lang.settings.form_fields.field_styling'
                         comment: 'janvince.smallcontactform::lang.settings.form_fields.field_styling_comment'

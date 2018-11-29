@@ -416,12 +416,32 @@ class SmallContactForm extends ComponentBase
 
       $output[] = '<' . $fieldType['html_open'] . ' ' . $this->formatAttributes($attributes) . '>';
 
+      // For dropdown add options
+      if( $fieldSettings['type'] == 'dropdown' && count($fieldSettings['field_values']) ) {
+
+        $valuesCounter = 1;
+        
+        foreach($fieldSettings['field_values'] as $fieldValue) {
+
+          if( !empty($this->postData[$fieldSettings['name']]['value']) && $this->postData[$fieldSettings['name']]['value'] == $fieldValue['field_value_id'] ){
+            $optionAttribute = 'selected';
+          } else {
+            $optionAttribute = null;
+          }
+
+          $output[] = "<option $optionAttribute value='" . $fieldValue['field_value_id'] . "'>" . $fieldValue['field_value_content'] . "</option>";
+
+          $valuesCounter++;
+
+        }
+
+      }
       // For pair tags insert value between
       if(!empty($this->postData[$fieldSettings['name']]['value']) && !empty($fieldType['html_close'])){
         $output[] = $this->postData[$fieldSettings['name']]['value'];
       }
 
-      // For tags withou label put text inline
+      // For tags without label put text inline
       if( empty( $fieldType['label'] ) ){
         $output[] = Settings::getDictionaryTranslated($fieldSettings['label']);
       }

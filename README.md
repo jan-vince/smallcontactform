@@ -120,6 +120,11 @@ The idea is simple (and solution is so I hope):
   * Set Label if you need one (it is used for descriptive text above input field)
   * Set autofocus if you want cursor to automatically jump to this field (if checked more than one field, cursor jumps to first one)
 
+When dropdown is selected there will be values/options repeater shown. You can add as many values you need.
+
+> Hint: you can add dropdown empty option by adding a value with empty ID.
+
+
 #### Field data validation
 
 You can select from predefined rules or add custom Validator rules (read [documentation](https://octobercms.com/docs/services/validation#available-validation-rules)).
@@ -129,6 +134,8 @@ Some rules require additional validation pattern some of them not.
  * You can add one or more validation rules and error messages for them
  * Error messages will be shown above input field
  * You can reorder fields by drag and drop left circle (all fields can be collapsed by pressing Ctrl+click (Cmd+click on MacOS) on arrow in right top corners)
+
+> Hint: For dropdown validation you can use `custom` validation type with rule `in` and list of IDs in `pattern` field (eg: 1,2,3).
 
 ### COLUMNS MAPPING
 

@@ -151,3 +151,5 @@
     - Added French translations (thx FelixINX)
 1.19.0:
     - Added custom validation fields (thanks petr-vytlacil for help)
+1.20.0:
+    - Added dropdown field type

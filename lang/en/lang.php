@@ -249,6 +249,9 @@ return [
       'custom' => 'Custom field',
       'custom_description' => 'Custom field with validation option',
 
+      'add_values_prompt' => 'Add values',
+      'field_value_id' => 'Field value ID',
+      'field_value_content' => 'Field value content',
 
     ],
 
@@ -257,6 +260,7 @@ return [
       'email' => 'Email',
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
+      'dropdown' => 'Dropdown',
     ],
 
     'form_field_validation' => [
