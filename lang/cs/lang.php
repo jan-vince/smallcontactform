@@ -241,7 +241,7 @@ return [
 
       'validation_custom_pattern' => 'Podmínka validačního pravidla',
       'validation_custom_pattern_comment' => 'Nechte prázdné nebo doplňte podmínku pravidla (toto je pravá část zápisu validačního pravidla za dvojtečkou - např. [abc] pro pravidlo regex).',
-      'validation_custom_pattern_placeholder' => '[^abc]',
+      'validation_custom_pattern_placeholder' => "/^[0-9]+$/",
 
       'custom' => 'Vlastní pole',
       'custom_description' => 'Vlastní pole s validačními pravidly',

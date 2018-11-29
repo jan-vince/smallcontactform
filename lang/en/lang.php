@@ -244,7 +244,7 @@ return [
 
       'validation_custom_pattern' => 'Validation rule pattern',
       'validation_custom_pattern_comment' => 'Left empty or enter custom rule pattern (this is a right part of Validator rule after colon - eg. [abc] for regex).',
-      'validation_custom_pattern_placeholder' => '[^abc]',
+      'validation_custom_pattern_placeholder' => "/^[0-9]+$/",
 
       'custom' => 'Custom field',
       'custom_description' => 'Custom field with validation option',
