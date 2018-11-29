@@ -238,6 +238,14 @@ return [
       'validation_error_placeholder' => 'Please enter valid data.',
       'validation_error_comment' => 'Error message to use when validation fails',
 
+      'validation_custom_type' => 'Validation rule name',
+      'validation_custom_type_comment' => 'Enter Validator rule name (eg. regex, boolean, ...).<br>See <a href="https://octobercms.com/docs/services/validation#available-validation-rules" target="_blank">validation rules</a>.',
+      'validation_custom_type_placeholder' => 'regex',
+
+      'validation_custom_pattern' => 'Validation rule pattern',
+      'validation_custom_pattern_comment' => 'Left empty or enter custom rule pattern (this is a right part of Validator rule after colon - eg. [abc] for regex).',
+      'validation_custom_pattern_placeholder' => '[^abc]',
+
       'custom' => 'Custom field',
       'custom_description' => 'Custom field with validation option',
 
@@ -256,6 +264,7 @@ return [
       'required' => 'Required',
       'email' => 'Email',
       'numeric' => 'Numeric',
+      'custom' => 'Custom rule',
     ],
 
     'email' => [
