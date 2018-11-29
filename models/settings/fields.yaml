@@ -319,9 +319,6 @@ tabs:
                                         field: validation_type
                                         condition: value[custom]
 
-                    section_end:
-                        type: section
-
 
         ## MAPPING
 
