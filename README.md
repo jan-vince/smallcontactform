@@ -348,6 +348,22 @@ Or you can disable some of functions:
 disable_notifications = true
 ````
 
+----
+
+## HOWTO
+
+#### Add an empty option to dropdown field
+
+You can easily add an empty option with empty ID and some value.
+
+![Dropdown empty field](https://www.vince.cz/storage/app/media/OctoberCMS/scf-settings-dropdown.png)
+
+#### Validate dropdown field
+
+If you want to validate dropdown options, you can use custom validation rule `in` with list of IDs as a validation pattern.
+
+![Dropdown validation](https://www.vince.cz/storage/app/media/OctoberCMS/scf-settings-dropdown-validation.png)
+
 
 ----
 > My thanks goes to:    
