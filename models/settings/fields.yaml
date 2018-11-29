@@ -300,6 +300,7 @@ tabs:
                                 validation_custom_type:
                                     span: left
                                     label: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_type'
+                                    placeholder: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_type_placeholder'
                                     comment: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_type_comment'
                                     commentHtml: true
                                     type: text
@@ -310,6 +311,7 @@ tabs:
                                 validation_custom_pattern:
                                     span: right
                                     label: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_pattern'
+                                    placeholder: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_pattern_placeholder'
                                     comment: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_pattern_comment'
                                     type: text
                                     trigger:
