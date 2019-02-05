@@ -19,9 +19,7 @@ class Settings extends Model
         'form_error_msg',
         'form_send_confirm_msg',
         'send_btn_text',
-
-//        'form_fields',    // TODO: find out how to translate repeater's field (not whole repeater)
-
+        'form_fields',
         'antispam_delay_error_msg',
         'antispam_label',
         'antispam_error_msg',
