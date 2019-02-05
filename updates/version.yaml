@@ -154,4 +154,4 @@
 1.20.0:
     - Added dropdown field type
 1.21.0:
-    - Form fields repeater is not translatable
+    - Form fields repeater is now translatable
