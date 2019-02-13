@@ -155,3 +155,5 @@
     - Added dropdown field type
 1.21.0:
     - Form fields repeater is now translatable
+1.22.0:
+    - Fixed multiple flash messages shown

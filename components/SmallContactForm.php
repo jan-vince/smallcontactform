@@ -177,6 +177,11 @@ class SmallContactForm extends ComponentBase
     $this->validationMessages = $validator->messages();
     $this->setPostData($validator->messages());
 
+    Session::forget('_flash_oc');
+    Session::forget('_flash');
+    Session::forget('flashSuccess');
+    Session::forget('flashError');
+
     if(!empty($validator->failed()) or !empty($errors)){
 
       // Form main error msg
@@ -190,6 +195,7 @@ class SmallContactForm extends ComponentBase
       Flash::error(implode(PHP_EOL, $errors));
       Session::flash('flashSuccess', $this->alias);
       $this->page['flashSuccess'] = $this->alias;
+      
       Session::flash('flashError', true);
       $this->page['flashError'] = true;
 
