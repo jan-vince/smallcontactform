@@ -157,3 +157,5 @@
     - Form fields repeater is now translatable
 1.22.0:
     - Fixed multiple flash messages shown
+1.23.0:
+    - When placeholders are used, labels are now still present and only hidden by style attribute
