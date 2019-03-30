@@ -432,6 +432,19 @@ tabs:
                 field: add_google_recaptcha
                 condition: checked
 
+        google_recaptcha_wrapper_css:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_wrapper_css'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_wrapper_css_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_wrapper_css_placeholder'
+            span: left
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
         google_recaptcha_scripts_allow:
             label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_scripts_allow'
             comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_scripts_allow_comment'

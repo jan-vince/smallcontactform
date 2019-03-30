@@ -342,6 +342,10 @@ return [
       'google_recaptcha_secret_key' => 'Secret key',
       'google_recaptcha_secret_key_comment' => 'Vložte svůj "secret key"',
 
+      'google_recaptcha_wrapper_css' => 'CSS třída kontejneru reCaptcha boxu',
+      'google_recaptcha_wrapper_css_comment' => 'CSS třída kontejneru, ve kterém je vložený box reCaptcha',
+      'google_recaptcha_wrapper_css_placeholder' => 'form-group',
+
       'google_recaptcha_error_msg' => 'Chybová zpráva',
       'google_recaptcha_error_msg_comment' => 'Zpráva, která se zobrazí, pokud dojde chybě při ověření reCAPTCHA.',
       'google_recaptcha_error_msg_placeholder' => 'Chyba při ověření pomocí Google reCAPTCHA!',

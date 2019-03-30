@@ -159,3 +159,5 @@
     - Fixed multiple flash messages shown
 1.23.0:
     - When placeholders are used, labels are now still present and only hidden by style attribute
+1.24.0:
+    - Added option to set custom reCaptcha wrapper CSS class

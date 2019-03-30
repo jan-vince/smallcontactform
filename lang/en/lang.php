@@ -346,6 +346,10 @@ return [
       'google_recaptcha_secret_key' => 'Secret key',
       'google_recaptcha_secret_key_comment' => 'Put your secret key',
 
+      'google_recaptcha_wrapper_css' => 'reCaptcha box wrapper CSS class',
+      'google_recaptcha_wrapper_css_comment' => 'CSS class of wrapper box around reCaptcha box',
+      'google_recaptcha_wrapper_css_placeholder' => 'form-group',
+
       'google_recaptcha_error_msg' => 'Error message',
       'google_recaptcha_error_msg_comment' => 'Message to show to user when reCAPTCHA is not validated.',
       'google_recaptcha_error_msg_placeholder' => 'Google reCAPTCHA validation error!',

@@ -13,7 +13,7 @@
 		{{ __SELF__.getDescriptionFieldHtmlCode({})|raw }}
 
 		{% if settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_site_key') %}
-			<div class="form-group">
+			<div class="{{__SELF__.getReCaptchaWrapperClass()}}">
 	            <div class="g-recaptcha" data-sitekey="{{ settingsGet('google_recaptcha_site_key') }}"></div>
 	        </div>
 		{% endif %}

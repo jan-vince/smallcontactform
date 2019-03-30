@@ -586,6 +586,17 @@ class SmallContactForm extends ComponentBase
 
   }
 
+  /**
+   * Get reCaptcha wrapper class
+   * @return string
+   */
+  public function getReCaptchaWrapperClass(){
+
+    $wrapperCss = ( Settings::getTranslated('google_recaptcha_wrapper_css') ? Settings::getTranslated('google_recaptcha_wrapper_css') : e(trans('janvince.smallcontactform::lang.settings.antispam.google_recaptcha_wrapper_css_placeholder')) );
+
+    return $wrapperCss;
+
+  }
 
   /**
    * Generate validation rules and messages
