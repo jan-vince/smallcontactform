@@ -336,6 +336,18 @@ class Settings extends Model
 
             ],
 
+            'es' => [
+
+                'autoreply' => [
+                    'janvince.smallcontactform::mail.autoreply_es' => 'janvince.smallcontactform::lang.mail.templates.autoreply_es',
+                ],
+
+                'notification' => [
+                    'janvince.smallcontactform::mail.notification_es' => 'janvince.smallcontactform::lang.mail.templates.notification_es',
+                ],
+
+            ],
+
         ];
 
         if( $locale and $templateType ) {
