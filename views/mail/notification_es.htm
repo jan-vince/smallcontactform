@@ -1,0 +1,70 @@
+subject = "Notificación del formulario de contacto"
+==
+
+Hola,
+esto es una notificación de un formulario de contacto.
+
+{% if fields|length %}
+Contenido del formulario enviado:
+
+<table border="0">
+
+	<tbody>
+
+		{% for key,value in fields %}
+
+			<tr>
+				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key|upper }}</th>
+				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
+			</tr>
+
+		{% endfor %}
+
+	</tbody>
+
+</table>
+
+{% endif %}
+
+
+Le saluda atentamente,
+
+El formulario de contacto
+
+
+==
+
+<p>Hola,</p>
+
+<p>esto es una notificación de un formulario de contacto..</p>
+
+{% if fields|length %}
+
+<br>
+
+<p>Sent form content:</p>
+
+<table border="0">
+
+	<tbody>
+
+		{% for key,value in fields %}
+
+			<tr>
+				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key|upper }}</th>
+				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
+			</tr>
+
+		{% endfor %}
+
+	</tbody>
+
+</table>
+
+{% endif %}
+
+<br>
+
+<p>Le saluda atentamente,<br>
+
+El formulario de contacto</p>
