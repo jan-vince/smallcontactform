@@ -1,0 +1,77 @@
+subject = "Potwierdzenie wysłania formularza"
+==
+
+Dzień dobry,
+
+to jest potwierdzenie wysłane z formularza kontaktowego.
+
+{% if fieldsDetails|length %}
+Wiadomość, którą wysłałeś:
+
+<table border="0">
+
+    <tbody>
+
+    {% for field in fieldsDetails %}
+
+    {% if field.label == 'form_description' or field.label == 'form_alias' %}
+    {% else %}
+
+    <tr>
+        <th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
+        <td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
+        <th>{{field.label}}</th>
+    </tr>
+
+    {% endif %}
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endif %}
+
+
+Z poważaniem,
+
+Formularz kontaktowy
+
+
+==
+
+<p>Dzień dobry,</p>
+
+<p>to jest potwierdzenie wysłane z formularza kontaktowego.</p>
+
+{% if fieldsDetails|length %}
+
+<br>
+
+<p>Wiadomość, którą wysłałeś:</p>
+
+<table border="0">
+
+    <tbody>
+
+    {% for field in fieldsDetails %}
+
+    <tr>
+        <th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
+        <td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endif %}
+
+<br>
+
+<p>Z poważaniem,<br>
+
+    Formularz kontaktowy</p>
