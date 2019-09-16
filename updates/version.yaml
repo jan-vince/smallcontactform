@@ -161,3 +161,5 @@
     - When placeholders are used, labels are now still present and only hidden by style attribute
 1.24.0:
     - Added option to set custom reCaptcha wrapper CSS class
+1.25.0:
+    Added polish (thanks Magiczne) and spanish (thanks codibit) translations
