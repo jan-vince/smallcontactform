@@ -163,3 +163,5 @@
     - Added option to set custom reCaptcha wrapper CSS class
 1.25.0:
     Added polish (thanks Magiczne) and spanish (thanks codibit) translations
+1.3.0:
+    Added invisible reCaptcha

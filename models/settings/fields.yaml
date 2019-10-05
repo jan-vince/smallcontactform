@@ -394,6 +394,22 @@ tabs:
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
 
+        google_recaptcha_version:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_version'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_version_comment'
+            commentHtml: true
+            span: left
+            type: dropdown
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            options:
+                v2checkbox: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_versions.v2checkbox'
+                v2invisible: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_versions.v2invisible'
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
         google_recaptcha_site_key:
             label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_site_key'
             comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_site_key_comment'

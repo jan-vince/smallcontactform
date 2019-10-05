@@ -98,6 +98,7 @@ class SmallContactForm extends ComponentBase
    * Form handler
    */
   public function onFormSend(){
+    
     /**
      * Validation
      */
@@ -156,7 +157,7 @@ class SmallContactForm extends ComponentBase
     }
 
     //  reCaptcha validation if enabled
-    if( Settings::getTranslated('add_google_recaptcha') ) {
+    if( Settings::getTranslated('add_google_recaptcha') and ( Settings::getTranslated('google_recaptcha_version') == 'v2checkbox' ) ) {
 
         try {
             $response=json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".Settings::get('google_recaptcha_secret_key')."&response=".post('g-recaptcha-response')."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
@@ -286,6 +287,7 @@ class SmallContactForm extends ComponentBase
     $attributes['request'] = $this->alias . '::onFormSend';
     $attributes['method'] = 'POST';
     $attributes['class'] = null;
+    $attributes['id'] = 'scf-form-id-' . $this->alias;
 
     if( Settings::getTranslated('form_allow_ajax', 0) ) {
 
@@ -574,7 +576,7 @@ class SmallContactForm extends ComponentBase
 
     $output[] = '<div id="submit-wrapper-' . $this->alias . '" class="' . $wrapperCss . '">';
 
-      $output[] = '<button type="submit" data-attach-loading class="oc-loader ' . ( Settings::getTranslated('send_btn_css_class') ? Settings::getTranslated('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . '">';
+      $output[] = '<button type="submit" data-attach-loading class="oc-loader ' . ( Settings::getTranslated('send_btn_css_class') ? Settings::getTranslated('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . (Settings::getTranslated('google_recaptcha_version') == 'v2invisible' ? ' g-recaptcha' : '') . '"'. (Settings::getTranslated('google_recaptcha_version') == 'v2invisible' ? (' data-sitekey="' . Settings::getTranslated('google_recaptcha_site_key') . '"') : '') . (Settings::getTranslated('google_recaptcha_version') == 'v2invisible' ? (' data-callback="onSubmit_' . $this->alias . '"') : '') . '>';
 
       $output[] = ( Settings::getTranslated('send_btn_text') ? Settings::getTranslated('send_btn_text') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_text_placeholder')) );
 

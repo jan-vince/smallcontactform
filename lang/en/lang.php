@@ -340,6 +340,14 @@ return [
       'add_google_recaptcha' => 'Add Google reCaptcha',
       'add_google_recaptcha_comment' => 'Add reCaptcha to Contact Form (more info in README.md file).<br>You can get API keys on <a href="https://www.google.com/recaptcha/admin#list" target="_blank">Google reCaptcha site</a>.',
 
+      'google_recaptcha_version' => 'Google reCaptcha version',
+      'google_recaptcha_version_comment' => 'Choose a version of reCaptcha widget.<br>More info on <a href="https://developers.google.com/recaptcha/docs/versions" target="_blank">Google reCaptcha site</a>.',
+      
+      'google_recaptcha_versions' => [
+        'v2checkbox' => 'reCaptcha V2 checkbox',
+        'v2invisible' => 'reCaptcha V2 invisible',
+      ],
+
       'google_recaptcha_site_key' => 'Site key',
       'google_recaptcha_site_key_comment' => 'Put your site key',
 

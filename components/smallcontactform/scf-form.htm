@@ -12,10 +12,14 @@
 
 		{{ __SELF__.getDescriptionFieldHtmlCode({})|raw }}
 
-		{% if settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_site_key') %}
+		{% if settingsGet('google_recaptcha_version') == 'v2checkbox' and settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_site_key') %}
+
 			<div class="{{__SELF__.getReCaptchaWrapperClass()}}">
-	            <div class="g-recaptcha" data-sitekey="{{ settingsGet('google_recaptcha_site_key') }}"></div>
-	        </div>
+
+				<div class="g-recaptcha" data-sitekey="{{ settingsGet('google_recaptcha_site_key') }}"></div>
+
+			</div>
+
 		{% endif %}
 
 		{{ __SELF__.getSubmitButtonHtmlCode({})|raw }}
@@ -23,7 +27,28 @@
 	{{ form_close() }}
 
 	{% if settingsGet('google_recaptcha_scripts_allow') %}
-		<script src='https://www.google.com/recaptcha/api.js{{ settingsGet("google_recaptcha_locale_allow") and currentLocale ? ("?hl="~currentLocale) }}' async defer></script>
+		<script src='https://www.google.com/recaptcha/api.js{{ settingsGet("google_recaptcha_locale_allow") and currentLocale ? ("?hl="~currentLocale) }}'></script>
+
+		{% if settingsGet('google_recaptcha_version') == 'v2invisible' %}
+
+			<script>
+				
+				function onSubmit_{{ __SELF__.alias }}(token) {
+
+					return new Promise(function(resolve, reject) { 
+
+						//Your code logic goes here
+
+						document.getElementById("{{'scf-form-id-'~__SELF__.alias}}").submit();
+						resolve();
+
+					}); //end promise
+				}
+
+			</script>
+
+		{% endif %}
+
 	{% endif %}
 
 {% endif %}

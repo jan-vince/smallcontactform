@@ -336,6 +336,14 @@ return [
       'add_google_recaptcha' => 'Přidat Google reCaptcha',
       'add_google_recaptcha_comment' => 'Přidá reCaptcha do kontaktního formuláře (více informací v souboru README.md). <br>API klíče můžete získat na <a href="https://www.google.com/recaptcha/admin#list" target="_blank">stránce Google reCaptcha</a>.',
 
+      'google_recaptcha_version' => 'Verze Google reCaptcha',
+      'google_recaptcha_version_comment' => 'Zvolte verzi reCaptcha widgetu.<br>Více informací naleznete na <a href="https://developers.google.com/recaptcha/docs/versions" target="_blank">webu Google reCaptcha</a>.',
+
+      'google_recaptcha_versions' => [
+        'v2checkbox' => 'reCaptcha V2 zaškrtávací pole',
+        'v2invisible' => 'reCaptcha V2 neviditelná',
+      ],
+
       'google_recaptcha_site_key' => 'Site key',
       'google_recaptcha_site_key_comment' => 'Vložte svůj "site key"',
 
