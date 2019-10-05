@@ -23,7 +23,7 @@
 	{{ form_close() }}
 
 	{% if settingsGet('google_recaptcha_scripts_allow') %}
-		<script src='https://www.google.com/recaptcha/api.js{{ settingsGet("google_recaptcha_locale_allow") and currentLocale ? ("?hl="~currentLocale) }}'></script>
+		<script src='https://www.google.com/recaptcha/api.js{{ settingsGet("google_recaptcha_locale_allow") and currentLocale ? ("?hl="~currentLocale) }}' async defer></script>
 	{% endif %}
 
 {% endif %}
