@@ -26,8 +26,9 @@
 
 	{{ form_close() }}
 
-	{% if settingsGet('google_recaptcha_scripts_allow') %}
-		<script src='https://www.google.com/recaptcha/api.js{{ settingsGet("google_recaptcha_locale_allow") and currentLocale ? ("?hl="~currentLocale) }}'></script>
+	{% if settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_scripts_allow') %}
+	
+		<script src='https://www.google.com/recaptcha/api.js{{ settingsGet("google_recaptcha_locale_allow") and currentLocale ? ("?hl="~currentLocale) }}' async defer></script>
 
 		{% if settingsGet('google_recaptcha_version') == 'v2invisible' %}
 
