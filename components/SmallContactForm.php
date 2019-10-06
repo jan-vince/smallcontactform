@@ -220,28 +220,25 @@ class SmallContactForm extends ComponentBase
       // Send notification
       $message->sendNotificationEmail($this->postData, $this->getProperties(), $this->alias, $formDescription);
 
-      // Redirect to prevent repeated sending of form
+      // Redirect to defined page or to prevent repeated sending of form
       // Clear data after success AJAX send
-      if(!Request::ajax()){
-        if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
+      if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
 
-          if( !empty(Settings::getTranslated('redirect_url_external')) ) {
-            $path = Settings::getTranslated('redirect_url');
-          } else {
-            $path = url(Settings::getTranslated('redirect_url'));
-          }
-
-          return Redirect::to($path);
-
+        if( !empty(Settings::getTranslated('redirect_url_external')) ) {
+          $path = Settings::getTranslated('redirect_url');
         } else {
-          return Redirect::refresh();
+          $path = url(Settings::getTranslated('redirect_url'));
         }
 
+        return Redirect::to($path);
+
       } else {
-        $this->post = [];
-        $this->postData = [];
-        $this->page['flashSuccess'] = $this->alias;
+        return Redirect::refresh();
       }
+
+      $this->post = [];
+      $this->postData = [];
+      $this->page['flashSuccess'] = $this->alias;
 
     }
 
@@ -303,16 +300,6 @@ class SmallContactForm extends ComponentBase
 
     if( !empty(Input::all()) ) {
       $attributes['class'] .= ' was-validated';
-    }
-
-    if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
-
-      if( !empty(Settings::getTranslated('redirect_url_external')) ) {
-        $attributes['data-request-redirect'] = Settings::getTranslated('redirect_url');
-      } else {
-        $attributes['data-request-redirect'] = url(Settings::getTranslated('redirect_url'));
-      }
-
     }
 
     if( Settings::getTranslated('form_send_confirm_msg') and Settings::getTranslated('form_allow_confirm_msg') ) {

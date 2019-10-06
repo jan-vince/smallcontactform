@@ -167,3 +167,5 @@
     Added invisible reCaptcha
 1.30.1:
     Fixed reCaptcha scripts load
+1.31.2:
+    Fixed AJAX redirect when validation error (thanks zlobec)
