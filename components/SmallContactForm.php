@@ -157,7 +157,7 @@ class SmallContactForm extends ComponentBase
     }
 
     //  reCaptcha validation if enabled
-    if( Settings::getTranslated('add_google_recaptcha') and ( Settings::getTranslated('google_recaptcha_version') == 'v2checkbox' ) ) {
+    if( Settings::getTranslated('add_google_recaptcha') and (empty(Settings::getTranslated('google_recaptcha_version')) or Settings::getTranslated('google_recaptcha_version') == 'v2checkbox' ) ) {
 
         try {
             $response=json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".Settings::get('google_recaptcha_secret_key')."&response=".post('g-recaptcha-response')."&remoteip=".$_SERVER['REMOTE_ADDR']), true);

@@ -169,3 +169,5 @@
     Fixed reCaptcha scripts load
 1.31.2:
     Fixed AJAX redirect when validation error (thanks zlobec)
+1.31.3:
+    Fixed reCaptcha checkbox version not showing up on older installations

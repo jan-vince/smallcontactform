@@ -12,7 +12,7 @@
 
 		{{ __SELF__.getDescriptionFieldHtmlCode({})|raw }}
 
-		{% if settingsGet('google_recaptcha_version') == 'v2checkbox' and settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_site_key') %}
+		{% if (settingsGet('google_recaptcha_version') is null or settingsGet('google_recaptcha_version') == 'v2checkbox') and settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_site_key') %}
 
 			<div class="{{__SELF__.getReCaptchaWrapperClass()}}">
 
