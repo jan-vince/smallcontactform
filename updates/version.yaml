@@ -162,14 +162,14 @@
 1.24.0:
     - Added option to set custom reCaptcha wrapper CSS class
 1.25.0:
-    Added polish (thanks Magiczne) and spanish (thanks codibit) translations
+    - Added polish (thanks Magiczne) and spanish (thanks codibit) translations
 1.30.0:
-    Added invisible reCaptcha
+    - Added invisible reCaptcha
 1.30.1:
-    Fixed reCaptcha scripts load
+    - Fixed reCaptcha scripts load
 1.31.2:
-    Fixed AJAX redirect when validation error (thanks zlobec)
+    - Fixed AJAX redirect when validation error (thanks zlobec)
 1.31.3:
-    Fixed reCaptcha checkbox version not showing up on older installations
+    - Fixed reCaptcha checkbox version not showing up on older installations
 1.31.4:
-    Fixed unnecessary refresh after Ajax send (thanks cregx)
+    - Fixed unnecessary refresh after Ajax send (thanks cregx)
