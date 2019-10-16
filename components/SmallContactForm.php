@@ -233,7 +233,10 @@ class SmallContactForm extends ComponentBase
         return Redirect::to($path);
 
       } else {
-        return Redirect::refresh();
+
+        if (!Request::ajax()) {
+          return Redirect::refresh();
+        }
       }
 
       $this->post = [];

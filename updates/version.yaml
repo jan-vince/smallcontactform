@@ -171,3 +171,5 @@
     Fixed AJAX redirect when validation error (thanks zlobec)
 1.31.3:
     Fixed reCaptcha checkbox version not showing up on older installations
+1.31.4:
+    Fixed unnecessary refresh after Ajax send (thanks cregx)
