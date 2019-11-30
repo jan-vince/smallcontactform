@@ -312,6 +312,7 @@ If you add a locale string to ````notification_template```` property (like ````n
 [contactForm salesForm]
 disable_notifications = true
 notification_address_to = 'sales@domain.com'
+notification_address_from = 'contactform@domain.com'
 notification_template = 'notification-sales'
 notification_template_en = 'notification-sales-en'
 notification_template_cs = 'notification-sales-cs

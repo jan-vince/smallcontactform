@@ -425,6 +425,11 @@ return [
       'groups' => [
 
           'hacks' => 'Hacks',
+          'override_form' => 'Přepsat nastavení formuláře',
+          'override_notifications' => 'Přepsat nastavení notifikací',
+          'override_autoreply' => 'Přepsat nastavení automatických odpovědí',
+          'override' => 'Přepsat nastavení',
+
 
       ],
       'properties' => [
@@ -434,6 +439,42 @@ return [
 
           'form_description' => 'Popisek formuláře',
           'form_description_comment' => 'Volitelně můžete přidat popisek formuláře, který se uloží společně s odeslanými daty do seznamu zpráv. Můžete použít i {{ :slug }}.',
+
+          'disable_fields' => 'Zakázat pole',
+          'disable_fields_comment' => 'Vložte názvy polí oddělené trubkou (např. name|message|phone)',
+
+          'send_btn_label' => 'Popisek odesílacího tlačítka',
+          'send_btn_label_comment' => 'Přepíše výchozí text odesílacího tlačítka',
+
+          'form_success_msg' => 'Zpráva po úspěšném odeslání',
+          'form_success_msg_comment' => 'Přepíše výchozí zprávu zobrazenou po úspěšném odeslání formuláře',
+
+          'form_error_msg' => 'Zpráva po chybě při odeslání',
+          'form_error_msg_comment' => 'Přepíše výchozí zprávu zobrazenou po neúspěšném odeslání formuláře',
+
+          'notification_address_to' => 'Adresa KOMU',
+          'notification_address_to_comment' => 'Přepíše adresu KOMU v notifikačním emailu',
+
+          'notification_address_from' => 'Adresa OD',
+          'notification_address_from_comment' => 'Přepíše adresu OD v notifikačním emailu',
+
+          'notification_address_from_name' => 'Jméno pro adresu OD',
+          'notification_address_from_name_comment' => 'Přepíše jméno zobrazené spolu s emailem OD',
+
+          'notification_template' => 'Šablona notifikace',
+          'notification_template_comment' => 'Přepíše šablonu notifikačního emailu',
+
+          'disable_autoreply' => 'Zakázat notifikace',
+          'disable_autoreply_comment' => 'Zakáže odesílání notifikací',
+
+          'autoreply_address_from' => 'Adresa OD',
+          'autoreply_address_from_comment' => 'Přepíše adresu od v automatické odpovědi po odeslání formuláře',
+
+          'autoreply_address_from_name' => 'Jméno pro adresu OD',
+          'autoreply_address_from_name_comment' => 'Přepíše jméno zobrazené spolu s emailem OD',
+
+          'autoreply_template' => 'Šablona automatické odpovědi',
+          'autoreply_template_comment' => 'Přepíše šablonu emailu autoamtické odpovědi',
 
       ]
 

@@ -460,6 +460,12 @@ return [
         'notification_address_to' => 'Address TO',
         'notification_address_to_comment' => 'This will override email address where notification email will be sent (if enabled in form settings)',
 
+        'notification_address_from' => 'Address FROM',
+        'notification_address_from_comment' => 'This will override email address from where notification email will be sent',
+
+        'notification_address_from_name' => 'Address FROM name',
+        'notification_address_from_name_comment' => 'This will override email address name from where notification email will be sent',
+
         'notification_template' => 'Notification template',
         'notification_template_comment' => 'This will override notification email template (eg. janvince.smallcontactform::mail.notification)',
 

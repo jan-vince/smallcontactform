@@ -131,6 +131,10 @@ class Message extends Model
             return;
         }
 
+        if (!empty($componentProperties['disable_autoreply'])) {
+            return;
+        }
+
         if(!Settings::getTranslated('autoreply_email_field')) {
             Log::error('SMALL CONTACT FORM ERROR: Contact form data have no email to send autoreply message!');
             return;
@@ -138,7 +142,7 @@ class Message extends Model
 
         /**
         *	Extract and test email field value
-        */
+        */        
         $sendTo = '';
 
         foreach($postData as $key => $field) {
@@ -201,16 +205,16 @@ class Message extends Model
          *  Override email template by component property
          *  Language specific template has priority (override non language specific)
          */
-        if ( !empty($componentProperties['email_template']) and !empty( MailTemplate::listAllTemplates()[ $componentProperties['email_template'] ] ) ) {
-            $template = $componentProperties['email_template'];
-        } elseif ( !empty($componentProperties['email_template']) and empty( MailTemplate::listAllTemplates()[ $componentProperties['email_template'] ] ) ) {
-            Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties['email_template'] . '. ' . $template . ' template will be used!');
+        if ( !empty($componentProperties['autoreply_template']) and !empty( MailTemplate::listAllTemplates()[ $componentProperties['autoreply_template'] ] ) ) {
+            $template = $componentProperties['autoreply_template'];
+        } elseif ( !empty($componentProperties['autoreply_template']) and empty( MailTemplate::listAllTemplates()[ $componentProperties['autoreply_template'] ] ) ) {
+            Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties['autoreply_template'] . '. ' . $template . ' template will be used!');
         }
 
-        if ( !empty($componentProperties[ ('email_template_'.App::getLocale())]) and !empty( MailTemplate::listAllTemplates()[ $componentProperties[ ('email_template_'.App::getLocale())] ] ) ) {
-            $template =  $componentProperties[('email_template_'.App::getLocale())];
-        } elseif ( !empty($componentProperties[ ('email_template_'.App::getLocale())]) and empty( MailTemplate::listAllTemplates()[ $componentProperties[ ('email_template_'.App::getLocale())] ] ) ) {
-            Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('email_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
+        if ( !empty($componentProperties[ ('autoreply_template_'.App::getLocale())]) and !empty( MailTemplate::listAllTemplates()[ $componentProperties[ ('autoreply_template_'.App::getLocale())] ] ) ) {
+            $template =  $componentProperties[('autoreply_template_'.App::getLocale())];
+        } elseif ( !empty($componentProperties[ ('autoreply_template_'.App::getLocale())]) and empty( MailTemplate::listAllTemplates()[ $componentProperties[ ('autoreply_template_'.App::getLocale())] ] ) ) {
+            Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('autoreply_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
 
         Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendTo, $componentProperties){
@@ -362,7 +366,7 @@ class Message extends Model
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('notification_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
 
-        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName){
+        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties){
 
             if( count($sendToAddressesValidated)>1 ) {
                 
@@ -394,6 +398,21 @@ class Message extends Model
                     $message->from($replyToAddress, $replyToName);
                 }
             }
+
+            /**
+             * Set From address if defined in component property
+             */
+            if ( !empty($componentProperties['notification_address_from'])) {
+
+                if (!empty($componentProperties['notification_address_from'])) {
+                    $fromAddressName = $componentProperties['notification_address_from'];
+                } else {
+                    $fromAddressName = null;
+                }
+
+                $message->from($componentProperties['notification_address_from'], $fromAddressName);
+            }
+
         });
     }
 

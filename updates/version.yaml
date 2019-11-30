@@ -173,3 +173,6 @@
     - Fixed reCaptcha checkbox version not showing up on older installations
 1.31.4:
     - Fixed unnecessary refresh after Ajax send (thanks cregx)
+1.32.0:
+    - Added all settings overrides as regular component properties (can be used to override some form settings in multi-form setup)
+    - Updated documentation

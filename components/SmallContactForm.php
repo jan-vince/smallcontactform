@@ -92,6 +92,20 @@ class SmallContactForm extends ComponentBase
                 'default'     => null,
                 'group'       => 'janvince.smallcontactform::lang.components.groups.override_notifications',
             ],
+            'notification_address_from'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.notification_address_from',
+                'description' => 'janvince.smallcontactform::lang.components.properties.notification_address_from_comment',
+                'type'        => 'string',
+                'default'     => null,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.override_notifications',
+            ],
+            'notification_address_from_name'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.notification_address_from_name',
+                'description' => 'janvince.smallcontactform::lang.components.properties.notification_address_from_name_comment',
+                'type'        => 'string',
+                'default'     => null,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.override_notifications',
+            ],
             'notification_template'      => [
                 'title'       => 'janvince.smallcontactform::lang.components.properties.notification_template',
                 'description' => 'janvince.smallcontactform::lang.components.properties.notification_template_comment',
@@ -259,8 +273,16 @@ class SmallContactForm extends ComponentBase
 
     if(!empty($validator->failed()) or !empty($errors)){
 
-      // Form main error msg
-      $errors[] = ( Settings::getTranslated('form_error_msg') ? Settings::getTranslated('form_error_msg') : e(trans('janvince.smallcontactform::lang.settings.form.error_msg_placeholder')));
+      // Form main error msg (can be overriden by component property)
+      if ( $this->property('form_error_msg') ) {
+
+        $errors[] = $this->property('form_error_msg');
+
+      } else {
+
+        $errors[] = ( Settings::getTranslated('form_error_msg') ? Settings::getTranslated('form_error_msg') : e(trans('janvince.smallcontactform::lang.settings.form.error_msg_placeholder')));
+
+      }
 
       // validation error msg for Antispam field
       if( empty($this->postData[('_protect' . $this->alias)]['error']) && !empty($this->postData['_form_created']['error']) ) {
@@ -276,9 +298,18 @@ class SmallContactForm extends ComponentBase
 
     } else {
 
-      Flash::success(
-        ( Settings::getTranslated('form_success_msg') ? Settings::getTranslated('form_success_msg') : e(trans('janvince.smallcontactform::lang.settings.form.success_msg_placeholder')) )
-      );
+      // Form main success msg (can be overriden by component property)
+      if ($this->property('form_success_msg')) {
+        
+        $successMsg = $this->property('form_success_msg');
+        
+      } else {
+        
+        $successMsg = ( Settings::getTranslated('form_success_msg') ? Settings::getTranslated('form_success_msg') : e(trans('janvince.smallcontactform::lang.settings.form.success_msg_placeholder')) );
+        
+      }
+      
+      Flash::success($successMsg);
 
       Session::flash('flashSuccess', $this->alias);
 
