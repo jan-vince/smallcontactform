@@ -176,3 +176,5 @@
 1.32.0:
     - Added all settings overrides as regular component properties (can be used to override some form settings in multi-form setup)
     - Updated documentation
+1.32.1:
+    - Fixed test on empty values if some fields are disabled

@@ -321,12 +321,12 @@ class Message extends Model
             }
 
             // If email field is assigned, prepare for replyTo
-            if(empty($replyToAddress) and $field['name'] == Settings::getTranslated('autoreply_email_field')){
+            if(empty($replyToAddress) and $field['name'] == Settings::getTranslated('autoreply_email_field') and isset($postData[$field['name']]['value'])){
                 $replyToAddress = e( $postData[$field['name']]['value'] );
             }
 
             // If name field is assigned, prepare for fromAddress
-            if(empty($replyToName) and $field['name'] == Settings::getTranslated('autoreply_name_field')){
+            if(empty($replyToName) and $field['name'] == Settings::getTranslated('autoreply_name_field') and isset($postData[$field['name']]['value'])){
                 $replyToName = e( $postData[$field['name']]['value'] );
             }
 
