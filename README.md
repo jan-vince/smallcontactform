@@ -261,36 +261,38 @@ Shows number of new messages. The color changes to green if there are any.
 
 You can simply click widget to open Messages list.
 
-## Hacking a form component
+## Overriding form settings 
 
-Sometimes there is a need to have more than one contact form. As this plugin is meant to be as simple as possible, these multiform functions are little hacks :)
+You can override some of the form settings in component dropdown (on page or layout) or by passing them in component call.
 
-####  Set form description
 
-You can add a form description. This can be used to distinquish between more forms or to add extra info to sent form data.
+####  Form settings
 
-Form description is saved to Messages list and there is a separate column (invisible by default).
-
-*There is also an Alias column that contain component's alias of the used form.*
+*There is also an Alias column that contain component's alias of the used form and is saved in messages log (this field is invisible by default in messages table).*
 
 ````
 [contactForm myForm]
 form_description = 'Form used in home page'
+disable_fields = 'name|message'
+send_btn_label = 'Go'
+form_success_msg = 'Ok, sent :)'
+form_error_msg = 'Houston, we have a problem'
 ````
 
-You can override form's property in Twig component tag:
+
+You can override form's property in Twig component tag, eg:
 
 ````
-{% component 'myForm' form_description = 'My other description' %}
+{% component 'myForm' form_description = 'My other description' send_btn_label = 'Stay in touch' %}
 ````
 
-This can be more complex:
+This can be even more complex:
 ````
 {% set myVar = 12345 %}
 {% component 'myForm' form_description = ('Current value: ' ~ myVar) %}
 ````
 
-In email template you can access these variables like this:
+In email template you can access some of these variables like this:
 ````
 Form alias: {{fields.form_alias}}
 Form description: {{fields.form_description}}
@@ -300,7 +302,7 @@ Form description: {{fields.form_description}}
 > When you override form description in ````{% component form_description = 'My description' %}````, description will be added as a **hidden field** into a form. Do not use this to store private data as this is easily visible in page HTML code!
 
 #### Override notification email options
-You can set different email address to which notification about Contact Form sent will be delivered and also change a notification template.
+You can set different email address to which notification about sent form will be delivered and also change a notification template.
 
 *Template must exist in Settings > Mail > Mail configuration*.
 
@@ -308,11 +310,14 @@ If you add a locale string to ````notification_template```` property (like ````n
 
 ````
 [contactForm salesForm]
+disable_notifications = true
 notification_address_to = 'sales@domain.com'
 notification_template = 'notification-sales'
 notification_template_en = 'notification-sales-en'
 notification_template_cs = 'notification-sales-cs
 ````
+
+> Local strings in `notification_template` canot be used in Twig!
 
 #### Override autoreply email options
 You can set different email address and name for autoreply message and also use different autoreply template.
@@ -346,6 +351,7 @@ Or you can disable some of functions:
 ````
 [contactForm]
 disable_notifications = true
+disable_autoreply = true
 ````
 
 ----

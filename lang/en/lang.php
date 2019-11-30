@@ -430,15 +430,50 @@ return [
       'groups' => [
 
           'hacks' => 'Hacks',
+          'override_form' => 'Override form settings',
+          'override_notifications' => 'Override notification settings',
+          'override_autoreply' => 'Override autoreply settings',
+          'override' => 'Override form settings',
+
 
       ],
       'properties' => [
 
-          'disable_notifications' => 'Disable notification mails',
-          'disable_notifications_comment' => 'This will disable notification emails (overrides form settings)',
-
         'form_description' => 'Form description',
         'form_description_comment' => 'You can add optional form description, that will be saved with other sent data in the messages list. You can also use {{ :slug }} here.',
+
+        'disable_fields' => 'Disable fields',
+        'disable_fields_comment' => 'This will disable listed fields. Add field names separated by pipe (eg. name|message|phone)',
+
+        'send_btn_label' => 'Send button label',
+        'send_btn_label_comment' => 'Override send button label',
+
+        'form_success_msg' => 'Success message',
+        'form_success_msg_comment' => 'Override success message shown after successful sent',
+
+        'form_error_msg' => 'Error message',
+        'form_error_msg_comment' => 'Override error message shown after unsuccessful sent',
+
+        'disable_notifications' => 'Disable notification',
+        'disable_notifications_comment' => 'This will disable notification emails (overrides form settings)',
+
+        'notification_address_to' => 'Address TO',
+        'notification_address_to_comment' => 'This will override email address where notification email will be sent (if enabled in form settings)',
+
+        'notification_template' => 'Notification template',
+        'notification_template_comment' => 'This will override notification email template (eg. janvince.smallcontactform::mail.notification)',
+
+        'disable_autoreply' => 'Disable notification',
+        'disable_autoreply_comment' => 'This will disable notification emails (overrides form settings)',
+
+        'autoreply_address_from' => 'Address FROM',
+        'autoreply_address_from_comment' => 'This will override email address in autoreply email (if enabled in form settings)',
+
+        'autoreply_address_from_name' => 'Address (FROM) name',
+        'autoreply_address_from_name_comment' => 'This will override email address name in autoreply email (if enabled in form settings)',
+
+        'autoreply_template' => 'Autoreply template',
+        'autoreply_template_comment' => 'This will override autoreply email template (eg. janvince.smallcontactform::mail.autoreply)',
 
       ]
 

@@ -44,16 +44,90 @@ class SmallContactForm extends ComponentBase
             'form_description'      => [
                 'title'       => 'janvince.smallcontactform::lang.components.properties.form_description',
                 'description' => 'janvince.smallcontactform::lang.components.properties.form_description_comment',
-                'type'        => 'text',
+                'type'        => 'string',
                 'default'     => null,
             ],
+
+            'disable_fields'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.disable_fields',
+                'description' => 'janvince.smallcontactform::lang.components.properties.disable_fields_comment',
+                'type'        => 'string',
+                'default'     => null,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.override_form',
+            ],
+            'send_btn_label'      => [
+              'title'       => 'janvince.smallcontactform::lang.components.properties.send_btn_label',
+              'description' => 'janvince.smallcontactform::lang.components.properties.send_btn_label_comment',
+              'type'        => 'string',
+              'default'     => null,
+              'group'       => 'janvince.smallcontactform::lang.components.groups.override_form',
+            ],
+            'form_success_msg'      => [
+              'title'       => 'janvince.smallcontactform::lang.components.properties.form_success_msg',
+              'description' => 'janvince.smallcontactform::lang.components.properties.form_success_msg_comment',
+              'type'        => 'string',
+              'default'     => null,
+              'group'       => 'janvince.smallcontactform::lang.components.groups.override_form',
+            ],
+            'form_error_msg'      => [
+              'title'       => 'janvince.smallcontactform::lang.components.properties.form_error_msg',
+              'description' => 'janvince.smallcontactform::lang.components.properties.form_error_msg_comment',
+              'type'        => 'string',
+              'default'     => null,
+              'group'       => 'janvince.smallcontactform::lang.components.groups.override_form',
+            ],
+
+
             'disable_notifications'      => [
                 'title'       => 'janvince.smallcontactform::lang.components.properties.disable_notifications',
                 'description' => 'janvince.smallcontactform::lang.components.properties.disable_notifications_comment',
                 'type'        => 'checkbox',
                 'default'     => false,
-                'group'       => 'janvince.smallcontactform::lang.components.groups.hacks',
-            ]
+                'group'       => 'janvince.smallcontactform::lang.components.groups.override_notifications',
+            ],
+            'notification_address_to'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.notification_address_to',
+                'description' => 'janvince.smallcontactform::lang.components.properties.notification_address_to_comment',
+                'type'        => 'string',
+                'default'     => null,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.override_notifications',
+            ],
+            'notification_template'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.notification_template',
+                'description' => 'janvince.smallcontactform::lang.components.properties.notification_template_comment',
+                'type'        => 'string',
+                'default'     => null,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.override_notifications',
+            ],
+
+            'disable_autoreply'      => [
+              'title'       => 'janvince.smallcontactform::lang.components.properties.disable_autoreply',
+              'description' => 'janvince.smallcontactform::lang.components.properties.disable_autoreply_comment',
+              'type'        => 'checkbox',
+              'default'     => false,
+              'group'       => 'janvince.smallcontactform::lang.components.groups.override_autoreply',
+            ],
+            'autoreply_address_from'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.autoreply_address_from',
+                'description' => 'janvince.smallcontactform::lang.components.properties.autoreply_address_from_comment',
+                'type'        => 'string',
+                'default'     => null,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.override_autoreply',
+            ],
+            'autoreply_address_from_name'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.autoreply_address_from_name',
+                'description' => 'janvince.smallcontactform::lang.components.properties.autoreply_address_from_name_comment',
+                'type'        => 'string',
+                'default'     => null,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.override_autoreply',
+            ],
+            'autoreply_template'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.autoreply_template',
+                'description' => 'janvince.smallcontactform::lang.components.properties.autoreply_template_comment',
+                'type'        => 'string',
+                'default'     => null,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.override_autoreply',
+            ],
 
         ];
 
@@ -568,7 +642,15 @@ class SmallContactForm extends ComponentBase
 
       $output[] = '<button type="submit" data-attach-loading class="oc-loader ' . ( Settings::getTranslated('send_btn_css_class') ? Settings::getTranslated('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . (Settings::getTranslated('google_recaptcha_version') == 'v2invisible' ? ' g-recaptcha' : '') . '"'. (Settings::getTranslated('google_recaptcha_version') == 'v2invisible' ? (' data-sitekey="' . Settings::getTranslated('google_recaptcha_site_key') . '"') : '') . (Settings::getTranslated('google_recaptcha_version') == 'v2invisible' ? (' data-callback="onSubmit_' . $this->alias . '"') : '') . '>';
 
-      $output[] = ( Settings::getTranslated('send_btn_text') ? Settings::getTranslated('send_btn_text') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_text_placeholder')) );
+      if ($this->property('send_btn_label')) {
+
+        $output[] = $this->property('send_btn_label');
+
+      } else {
+
+        $output[] = ( Settings::getTranslated('send_btn_text') ? Settings::getTranslated('send_btn_text') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_text_placeholder')) );
+
+      }
 
       $output[] = '</button>';
 
