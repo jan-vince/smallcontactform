@@ -137,6 +137,8 @@ Some rules require additional validation pattern some of them not.
 
 > Hint: For dropdown validation you can use `custom` validation type with rule `in` and list of IDs in `pattern` field (eg: 1,2,3).
 
+> Note: There is a `custom_not_regex` validation rule as an inverse to built in `regex`.
+
 ### COLUMNS MAPPING
 
 System writes all form data in database, but for quick overview Name, Email and Message columns are visible separately in Messages list.
