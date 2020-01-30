@@ -7,6 +7,8 @@ use System\Classes\PluginBase;
 use System\Classes\PluginManager;
 use Config;
 use Backend;
+use Validator;
+use Log;
 
 
 use JanVince\SmallContactForm\Models\Settings;
@@ -34,6 +36,32 @@ class Plugin extends PluginBase {
     }
 
     public function boot() {
+
+        /**
+         * Custom Validator rules
+         */
+        Validator::extend('custom_not_regex', function ($attribute, $value, $parameters) {
+
+            if (is_array($parameters)) {
+                $param = $parameters[0];
+            } else {
+                $param = $parameters;
+            }
+
+            try {
+                $result = preg_match($param, $value);
+
+                if ($result === 1) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } catch (\Exception $e) {
+                Log::error('Error in Small Contact Form custom_not_regex validation rule! ' . $e->getMessage());
+            }
+
+            return false;
+        });
 
     }
 

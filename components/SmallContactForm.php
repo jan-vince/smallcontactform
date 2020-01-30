@@ -390,6 +390,7 @@ class SmallContactForm extends ComponentBase
     $attributes = [];
 
     $attributes['request'] = $this->alias . '::onFormSend';
+    $attributes['url'] = '#scf-' . $this->alias;
     $attributes['method'] = 'POST';
     $attributes['class'] = null;
     $attributes['id'] = 'scf-form-id-' . $this->alias;

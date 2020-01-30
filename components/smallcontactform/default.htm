@@ -1,7 +1,11 @@
-<div id="scf-message-{{ __SELF__ }}">
-	{% partial __SELF__ ~ '::scf-message' %}
-</div>
+<div id="scf-{{ __SELF__ }}">
 
-<div id="scf-form-{{ __SELF__ }}">
-	{% partial __SELF__ ~ '::scf-form' %}
+	<div id="scf-message-{{ __SELF__ }}">
+		{% partial __SELF__ ~ '::scf-message' %}
+	</div>
+
+	<div id="scf-form-{{ __SELF__ }}">
+		{% partial __SELF__ ~ '::scf-form' %}
+	</div>
+
 </div>

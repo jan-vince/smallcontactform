@@ -178,3 +178,6 @@
     - Updated documentation
 1.32.1:
     - Fixed test on empty values if some fields are disabled
+1.4.0:
+    - Added validation rule custom_not_regex (inverse of default regex validation rule)
+    - Added form container with ID and action attribute with this hash URL (to automatically jump to form after nonAJAX send or refresh)
