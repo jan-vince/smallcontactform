@@ -404,8 +404,8 @@ class Message extends Model
              */
             if ( !empty($componentProperties['notification_address_from'])) {
 
-                if (!empty($componentProperties['notification_address_from'])) {
-                    $fromAddressName = $componentProperties['notification_address_from'];
+                if (!empty($componentProperties['notification_address_from_name'])) {
+                    $fromAddressName = $componentProperties['notification_address_from_name'];
                 } else {
                     $fromAddressName = null;
                 }

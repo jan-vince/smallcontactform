@@ -181,3 +181,5 @@
 1.40.0:
     - Added validation rule custom_not_regex (inverse of default regex validation rule)
     - Added form container with ID and action attribute with this hash URL (to automatically jump to form after nonAJAX send or refresh)
+1.40.1:
+    - Fixed notification From name to be correctly set from component properties
