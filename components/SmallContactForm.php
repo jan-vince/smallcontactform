@@ -158,7 +158,7 @@ class SmallContactForm extends ComponentBase
               'title'       => 'janvince.smallcontactform::lang.settings.redirect.redirect_url',
               'description' => 'janvince.smallcontactform::lang.settings.redirect.redirect_url_comment',
               'type'        => 'string',
-              'default'     => false,
+              'default'     => null,
               'group'       => 'janvince.smallcontactform::lang.components.groups.override_redirect',
             ],
 

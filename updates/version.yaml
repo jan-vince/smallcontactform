@@ -186,3 +186,5 @@
 1.41.0:
     - Added component redirect properties and allow dynamic redirect URL as a component markup parameter. More info in README file.
     - Removed hard coded form hash URL (#scf-[form-alias]) as this can be now easily added with redirect options.
+1.41.1:
+    - Set redirect URL property default value to null.
