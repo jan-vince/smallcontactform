@@ -434,9 +434,9 @@ return [
           'override_notifications' => 'Override notification settings',
           'override_autoreply' => 'Override autoreply settings',
           'override' => 'Override form settings',
-
-
+          'override_redirect' => 'Override redirect settings',
       ],
+
       'properties' => [
 
         'form_description' => 'Form description',

@@ -11,6 +11,8 @@
 		{{ __SELF__.getAntispamFieldHtmlCode({})|raw }}
 
 		{{ __SELF__.getDescriptionFieldHtmlCode({})|raw }}
+		
+		{{ __SELF__.getRedirectFieldHtmlCode({})|raw }}
 
 		{% if (settingsGet('google_recaptcha_version') is null or settingsGet('google_recaptcha_version') == 'v2checkbox') and settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_site_key') %}
 

@@ -29,6 +29,9 @@ class SmallContactForm extends ComponentBase
   private $formDescription;
   private $formDescriptionOverride;
 
+  private $formRedirect;
+  private $formRedirectOverride;
+
     public function componentDetails() {
         return [
             'name'        => 'janvince.smallcontactform::lang.controller.contact_form.name',
@@ -143,6 +146,30 @@ class SmallContactForm extends ComponentBase
                 'group'       => 'janvince.smallcontactform::lang.components.groups.override_autoreply',
             ],
 
+            'allow_redirect'      => [
+              'title'       => 'janvince.smallcontactform::lang.settings.redirect.allow_redirect',
+              'description' => 'janvince.smallcontactform::lang.settings.redirect.allow_redirect_comment',
+              'type'        => 'checkbox',
+              'default'     => false,
+              'group'       => 'janvince.smallcontactform::lang.components.groups.override_redirect',
+            ],
+
+            'redirect_url'      => [
+              'title'       => 'janvince.smallcontactform::lang.settings.redirect.redirect_url',
+              'description' => 'janvince.smallcontactform::lang.settings.redirect.redirect_url_comment',
+              'type'        => 'string',
+              'default'     => false,
+              'group'       => 'janvince.smallcontactform::lang.components.groups.override_redirect',
+            ],
+
+            'redirect_url_external'      => [
+              'title'       => 'janvince.smallcontactform::lang.settings.redirect.redirect_url_external',
+              'description' => 'janvince.smallcontactform::lang.settings.redirect.redirect_url_external_comment',
+              'type'        => 'checkbox',
+              'default'     => false,
+              'group'       => 'janvince.smallcontactform::lang.components.groups.override_redirect',
+            ],
+
         ];
 
     }
@@ -150,6 +177,7 @@ class SmallContactForm extends ComponentBase
     public function onRun() {
 
         $this->formDescription = $this->property('form_description');
+        $this->formRedirect = $this->property('redirect_url');
 
         $this->page['currentLocale'] = App::getLocale();
 
@@ -180,6 +208,11 @@ class SmallContactForm extends ComponentBase
         if($this->formDescription != $this->property('form_description') ) {
             $this->formDescriptionOverride = $this->property('form_description');
         }
+
+        if($this->formRedirect != $this->property('redirect_url') ) {
+            $this->formRedirectOverride = $this->property('redirect_url');
+        }
+
     }
 
   /**
@@ -325,14 +358,57 @@ class SmallContactForm extends ComponentBase
       // Send notification
       $message->sendNotificationEmail($this->postData, $this->getProperties(), $this->alias, $formDescription);
 
-      // Redirect to defined page or to prevent repeated sending of form
-      // Clear data after success AJAX send
-      if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
+      /**
+       * Clear data
+       */
+      $this->postData = [];
+      $this->page['flashSuccess'] = $this->alias;
 
-        if( !empty(Settings::getTranslated('redirect_url_external')) ) {
-          $path = Settings::getTranslated('redirect_url');
+      /**
+       *  Redirects
+       *  
+       * Redirect to defined page or to prevent repeated sending of form
+       * Clear data after success AJAX send
+       */
+      if( Settings::getTranslated('allow_redirect') or $this->property('allow_redirect') ) {
+
+        // Component markup parameter (eg. {{ component 'contactForm' redirect_url = '/form-success-'~page.id }} ) overrides component property
+        if(!empty($this->post['_form_redirect'])) {
+
+          $propertyRedirectUrl = e($this->post['_form_redirect']);
+
         } else {
-          $path = url(Settings::getTranslated('redirect_url'));
+
+          $propertyRedirectUrl = $this->property('redirect_url');
+
+        }
+
+        // If redirection is allowed but no URL provided, just refresh (if not AJAX)
+        if(empty($propertyRedirectUrl) and empty(Settings::getTranslated('redirect_url'))) {
+          
+          Log::warning('SCF: Form redirect is allowed but no URL was provided!');
+
+          if (!Request::ajax()) {
+
+            return Redirect::refresh();
+            
+          } else {
+
+            return;
+
+          }
+
+        }
+
+        // Overrides take precedence
+        if( !empty(Settings::getTranslated('redirect_url_external')) and !empty($this->property('redirect_url_external')) ) {
+
+          $path = $propertyRedirectUrl ? $propertyRedirectUrl : Settings::getTranslated('redirect_url');
+
+        } else {
+
+          $path = $propertyRedirectUrl ? url($propertyRedirectUrl) : url(Settings::getTranslated('redirect_url'));
+
         }
 
         return Redirect::to($path);
@@ -340,13 +416,12 @@ class SmallContactForm extends ComponentBase
       } else {
 
         if (!Request::ajax()) {
-          return Redirect::refresh();
-        }
-      }
 
-      $this->post = [];
-      $this->postData = [];
-      $this->page['flashSuccess'] = $this->alias;
+          return Redirect::refresh();
+
+        }
+
+      }
 
     }
 
@@ -390,7 +465,10 @@ class SmallContactForm extends ComponentBase
     $attributes = [];
 
     $attributes['request'] = $this->alias . '::onFormSend';
-    $attributes['url'] = '#scf-' . $this->alias;
+    
+    // Disabled hard coded hash URL in 1.41.0 as dynamic redirect is now available
+    // $attributes['url'] = '#scf-' . $this->alias;
+    
     $attributes['method'] = 'POST';
     $attributes['class'] = null;
     $attributes['id'] = 'scf-form-id-' . $this->alias;
@@ -655,6 +733,32 @@ class SmallContactForm extends ComponentBase
 
   }
 
+  /**
+   * Generate redirect field HTML code
+   * @return string
+   */
+  public function getRedirectFieldHtmlCode(){
+
+    if( !$this->formRedirectOverride ){
+      return NULL;
+    }
+
+    $output = [];
+
+    // Field attributes
+    $attributes = [
+        'id' => '_form_redirect-'.$this->alias,
+        'type' => 'hidden',
+        'name' => '_form_redirect',
+        'class' => '_form_redirect form-control',
+        'value' => $this->formRedirectOverride,
+      ];
+
+    $output[] = '<input ' . $this->formatAttributes($attributes) . '>';
+
+    return(implode('', $output));
+
+  }
 
   /**
    * Generate submit button field HTML code

@@ -429,9 +429,9 @@ return [
           'override_notifications' => 'Přepsat nastavení notifikací',
           'override_autoreply' => 'Přepsat nastavení automatických odpovědí',
           'override' => 'Přepsat nastavení',
-
-
+          'override_redirect' => 'Přepsat nastavení přesměrování',
       ],
+      
       'properties' => [
 
           'disable_notifications' => 'Zakázat odesílání notifikačních emailů',
