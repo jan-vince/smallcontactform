@@ -25,7 +25,7 @@ You can set permissions to restrict access to *Settings > Small plugins > Contac
 ### Installation with composer
 
 * Edit composer.json by adding new repository
-```json
+```
 "repositories": [
     {
       "type": "vcs",
