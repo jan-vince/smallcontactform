@@ -1,3 +1,9 @@
+{% if formSuccessfullySent %}
+
+	{{ __SELF__.getGaSuccessEventHtmlCode(true)|raw }}
+
+{% endif %}
+
 {% flash%}
 
   {% if flashSuccess==__SELF__ %}

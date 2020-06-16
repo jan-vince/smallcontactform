@@ -248,6 +248,19 @@ There is ````{{fields}}```` array available inside of email templates.
 
 *If your custom form field has name eg. 'email', you use it in template with ````{{fields.email}}````.*
 
+## GOOGLE ANALYTICS
+
+> if you want to use these settings, be sure to have Google Analytics scripts included on your site. You can use [Rainlab Google Analytics plugin](https://octobercms.com/plugin/rainlab-googleanalytics).
+
+### Events
+
+You can allow events to be send to your GA account when the form is successfully sent.
+
+There are (translatable) fields for category, action and label.
+
+*All event settings can be overriden in component property so if you use more then one form, you can custommize events for each of them.*
+
+
 ## MESSAGES LIST
 
 All sent data from Contact form are saved and listed in backend Messages list.

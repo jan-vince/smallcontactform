@@ -188,3 +188,6 @@
     - Removed hard coded form hash URL (#scf-[form-alias]) as this can be now easily added with redirect options.
 1.41.1:
     - Set redirect URL property default value to null.
+1.42.0:
+    - Added Google Analytics events after form is successfully sent
+    - Do not populate redirection field code when redirection is not allowed

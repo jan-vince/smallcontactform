@@ -168,6 +168,16 @@ return [
       'add_js_assets' => 'Přidat JS skripty',
       'add_js_assets_comment' => 'Vloží všechny potřebné skripty',
 
+      'form_ga_event_success' => 'Událost po úspěšném odeslání',
+
+    ],
+    
+    'sections' => [
+      'ga_events' => 'Události'
+    ],
+
+    'ga' => [
+      'ga_success_event_allow' => 'Zaznamenat událost po úspěšném odeslání formuláře',
 
     ],
 
@@ -249,6 +259,12 @@ return [
       'add_values_prompt' => 'Přidat hodnoty',
       'field_value_id' => 'ID hodnoty',
       'field_value_content' => 'Obsah',
+
+      'hit_type' => 'Hit type',
+      'event_category' => 'Kategorie události (event category)',
+      'event_action' => 'Akce události (event action)',
+      'event_label' => 'Štítek události (event label)',
+
     ],
 
     'form_field_types' => [
@@ -415,7 +431,7 @@ return [
       'mapping' => 'Vazby sloupců',
       'email' => 'Email',
       'antispam' => 'Antispam',
-      'privacy' => 'Soukromí'      
+      'privacy' => 'Soukromí'
     ],
 
   ],
@@ -430,6 +446,7 @@ return [
           'override_autoreply' => 'Přepsat nastavení automatických odpovědí',
           'override' => 'Přepsat nastavení',
           'override_redirect' => 'Přepsat nastavení přesměrování',
+          'override_ga' => 'Přepsat nastavení Google Analytics',
       ],
       
       'properties' => [

@@ -120,7 +120,6 @@ tabs:
                 field: add_assets
                 condition: checked
 
-
         ## BUTTONS
 
         send_btn_wrapper_css:
@@ -737,6 +736,49 @@ tabs:
                 field: allow_notifications
                 condition: checked
 
+
+        ## Google Analytics
+        section_ga_events:
+            type: section
+            label: 'janvince.smallcontactform::lang.settings.sections.ga_events'
+            tab: 'janvince.smallcontactform::lang.settings.tabs.ga'
+
+        ga_success_event_allow:
+            label: 'janvince.smallcontactform::lang.settings.ga.ga_success_event_allow'
+            span: left
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.ga'
+
+        ga_success_event_category:
+            label: 'janvince.smallcontactform::lang.settings.form_fields.event_category'
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.ga'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: ga_success_event_allow
+                condition: checked            
+    
+        ga_success_event_action:
+            label: 'janvince.smallcontactform::lang.settings.form_fields.event_action'
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.ga'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: ga_success_event_allow
+                condition: checked            
+    
+        ga_success_event_label:
+            label: 'janvince.smallcontactform::lang.settings.form_fields.event_label'
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.ga'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: ga_success_event_allow
+                condition: checked            
+    
 
         ## PRIVACY
 
