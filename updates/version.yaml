@@ -191,3 +191,4 @@
 1.42.0:
     - Added Google Analytics events after form is successfully sent
     - Do not populate redirection field code when redirection is not allowed
+1.43.0: !!! Rewritten component partials. No action is needed if you use plugin as is. But if you override component partials test them before update!

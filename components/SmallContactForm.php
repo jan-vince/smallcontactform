@@ -39,8 +39,7 @@ class SmallContactForm extends ComponentBase
         ];
     }
 
-    public function defineProperties()
-    {
+    public function defineProperties(){
 
         return [
 
@@ -204,40 +203,34 @@ class SmallContactForm extends ComponentBase
 
     public function onRun() {
 
-        $this->formDescription = $this->property('form_description');
-        $this->formRedirect = $this->property('redirect_url');
+      $this->page['currentLocale'] = App::getLocale();
+      
+      $this->page['formSentAlias'] = Session::get('formSentAlias', null);
+      $this->page['formError'] = Session::get('formError', null);
+      $this->page['formSuccess'] = Session::get('formSuccess', null);
 
-        $this->page['currentLocale'] = App::getLocale();
+      $this->formDescription = $this->property('form_description');
+      $this->formRedirect = $this->property('redirect_url');
 
-        if ( Session::get('flashSuccess') ) {
+      // Inject CSS assets if required
+      if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_css_assets')){
+        $this->addCss('/modules/system/assets/css/framework.extras.css');
+        $this->addCss('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+      }
 
-          $this->page['flashSuccess'] = Session::get('flashSuccess', $this->alias);
-
-        }
-
-        if (Session::get('formSuccessfullySent')) {
-
-          $this->page['formSuccessfullySent'] = true;
-        }
-
-        // Inject CSS assets if required
-        if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_css_assets')){
-          $this->addCss('/modules/system/assets/css/framework.extras.css');
-          $this->addCss('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-        }
-
-        // Inject JS assets if required
-        if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_js_assets')){
-          $this->addJs('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
-          $this->addJs('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
-          $this->addJs('/modules/system/assets/js/framework.js');
-          $this->addJs('/modules/system/assets/js/framework.extras.js');
-        }
+      // Inject JS assets if required
+      if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_js_assets')){
+        $this->addJs('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
+        $this->addJs('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
+        $this->addJs('/modules/system/assets/js/framework.js');
+        $this->addJs('/modules/system/assets/js/framework.extras.js');
+      }
 
     }
 
     public function onRender() {
 
+      // Component markup parameters are accesible only from onRender method!
       if($this->formDescription != $this->property('form_description') ) {
           $this->formDescriptionOverride = $this->property('form_description');
       }
@@ -332,11 +325,6 @@ class SmallContactForm extends ComponentBase
     $this->validationMessages = $validator->messages();
     $this->setPostData($validator->messages());
 
-    Session::forget('_flash_oc');
-    Session::forget('_flash');
-    Session::forget('flashSuccess');
-    Session::forget('flashError');
-
     if($validator->failed() or count($errors)){
 
       // Form main error msg (can be overriden by component property)
@@ -350,17 +338,26 @@ class SmallContactForm extends ComponentBase
 
       }
 
-      // validation error msg for Antispam field
+      // Validation error msg for Antispam field
       if( empty($this->postData[('_protect' . $this->alias)]['error']) && !empty($this->postData['_form_created']['error']) ) {
         $errors[] = ( Settings::getTranslated('antispam_delay_error_msg') ? Settings::getTranslated('antispam_delay_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder')));
       }
 
       Flash::error(implode(PHP_EOL, $errors));
-      Session::flash('flashSuccess', $this->alias);
-      $this->page['flashSuccess'] = $this->alias;
-      
-      Session::flash('flashError', true);
-      $this->page['flashError'] = true;
+            
+      if (Request::ajax()) {
+        
+        $this->page['formSentAlias'] = $this->alias;
+        $this->page['formError'] = true;
+        $this->page['formSuccess'] = null;
+
+      } else {
+        
+        Session::flash('formSentAlias', $this->alias);
+        Session::flash('formError', true);
+
+      }
+
 
     } else {
 
@@ -374,11 +371,6 @@ class SmallContactForm extends ComponentBase
         $successMsg = ( Settings::getTranslated('form_success_msg') ? Settings::getTranslated('form_success_msg') : e(trans('janvince.smallcontactform::lang.settings.form.success_msg_placeholder')) );
         
       }
-      
-      Flash::success($successMsg);
-
-      Session::flash('flashSuccess', $this->alias);
-      Session::flash('formSuccessfullySent', true);
 
       $message = new Message;
 
@@ -393,10 +385,24 @@ class SmallContactForm extends ComponentBase
       $message->sendNotificationEmail($this->postData, $this->getProperties(), $this->alias, $formDescription);
 
       /**
-       * Update data
+       * Flash messages
        */
-      $this->postData = [];
-      $this->page['flashSuccess'] = $this->alias;
+      Flash::success($successMsg);
+
+      if (Request::ajax()) {
+
+        $this->postData = [];
+        $this->page['formSentAlias'] = $this->alias;
+        $this->page['formSuccess'] = true;
+        $this->page['formError'] = null;
+
+      } else {
+
+        Session::flash('formSentAlias', $this->alias);
+        Session::flash('formSuccess', true);
+
+      }
+
 
       /**
        *  Redirects

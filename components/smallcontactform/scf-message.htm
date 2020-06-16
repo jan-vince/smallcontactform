@@ -1,15 +1,28 @@
-{% if formSuccessfullySent %}
 
-	{{ __SELF__.getGaSuccessEventHtmlCode(true)|raw }}
+{% if formSentAlias == __SELF__.alias %}
+
+	{% if formSuccess %}
+
+		{{ __SELF__.getGaSuccessEventHtmlCode(true)|raw }}
+
+		{% flash success %}
+
+			<div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+				{{ html_entity_decode(message)|nl2br }}
+			</div>
+
+		{% endflash %}
+
+	{% elseif formError %}
+
+		{% flash error %}
+
+			<div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+				{{ html_entity_decode(message)|nl2br }}
+			</div>
+
+		{% endflash %}
+
+	{% endif %}
 
 {% endif %}
-
-{% flash%}
-
-  {% if flashSuccess==__SELF__ %}
-  	<div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
-  		{{ html_entity_decode(message)|nl2br }}
-  	</div>
-  {% endif %}
-
-{% endflash %}

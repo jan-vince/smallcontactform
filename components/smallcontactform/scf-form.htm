@@ -1,4 +1,8 @@
-{% if flashError or (flashSuccess == false) or (flashSuccess!=__SELF__) or (flashSuccess==__SELF__ and settingsGet('form_hide_after_success', 0) == 0) %}
+{% if formSentAlias == __SELF__.alias and formError is empty and settingsGet('form_hide_after_success', 0) %}
+
+	{# no errors and set to hide after send #}
+
+{% else %}
 
 	{{ form_open(__SELF__.getFormAttributes) }}
 
