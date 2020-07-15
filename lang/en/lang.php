@@ -486,6 +486,9 @@ return [
         'notification_template' => 'Notification template',
         'notification_template_comment' => 'This will override notification email template (eg. janvince.smallcontactform::mail.notification)',
 
+        'notification_subject' => 'Notification subject',
+        'notification_template_comment' => 'Override email subject',
+
         'disable_autoreply' => 'Disable notification',
         'disable_autoreply_comment' => 'This will disable notification emails (overrides form settings)',
 
@@ -497,6 +500,9 @@ return [
 
         'autoreply_template' => 'Autoreply template',
         'autoreply_template_comment' => 'This will override autoreply email template (eg. janvince.smallcontactform::mail.autoreply)',
+
+        'autoreply_subject' => 'Autoreply email subject',
+        'autoreply_template_comment' => 'Override email subject',
 
       ]
 

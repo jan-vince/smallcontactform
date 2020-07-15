@@ -115,6 +115,14 @@ class SmallContactForm extends ComponentBase
                 'default'     => null,
                 'group'       => 'janvince.smallcontactform::lang.components.groups.override_notifications',
             ],
+            'notification_subject'      => [
+              'title'       => 'janvince.smallcontactform::lang.components.properties.notification_subject',
+              'description' => 'janvince.smallcontactform::lang.components.properties.notification_subject_comment',
+              'type'        => 'string',
+              'default'     => null,
+              'group'       => 'janvince.smallcontactform::lang.components.groups.override_notifications',
+            ],
+
 
             'disable_autoreply'      => [
               'title'       => 'janvince.smallcontactform::lang.components.properties.disable_autoreply',
@@ -140,6 +148,13 @@ class SmallContactForm extends ComponentBase
             'autoreply_template'      => [
                 'title'       => 'janvince.smallcontactform::lang.components.properties.autoreply_template',
                 'description' => 'janvince.smallcontactform::lang.components.properties.autoreply_template_comment',
+                'type'        => 'string',
+                'default'     => null,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.override_autoreply',
+            ],
+            'autoreply_subject'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.autoreply_subject',
+                'description' => 'janvince.smallcontactform::lang.components.properties.autoreply_subject_comment',
                 'type'        => 'string',
                 'default'     => null,
                 'group'       => 'janvince.smallcontactform::lang.components.groups.override_autoreply',

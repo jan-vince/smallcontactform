@@ -16,7 +16,7 @@ use View;
 use App;
 use System\Models\MailTemplate;
 use System\Classes\MailManager;
-
+use Twig;
 
 class Message extends Model
 {
@@ -217,12 +217,22 @@ class Message extends Model
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('autoreply_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
 
-        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendTo, $componentProperties){
+        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendTo, $componentProperties, $output){
 
             $message->to($sendTo);
 
-            if( Settings::getTranslated('email_subject') ){
-                $message->subject(Settings::getTranslated('email_subject'));
+            if (!empty($componentProperties['autoreply_subject'])) {
+                $message->subject(Twig::parse($componentProperties['autoreply_subject'],['fields' => $output]));
+                
+                \App::forgetInstance('parse.twig');
+                \App::forgetInstance('twig.environment');
+
+            } elseif (Settings::getTranslated('email_subject')) {
+                $message->subject(Twig::parse(Settings::getTranslated('email_subject'), ['fields' => $output]));
+
+                \App::forgetInstance('parse.twig');
+                \App::forgetInstance('twig.environment');
+
             }
 
             /**
@@ -366,7 +376,7 @@ class Message extends Model
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('notification_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
 
-        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties){
+        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties, $output){
 
             if( count($sendToAddressesValidated)>1 ) {
                 
@@ -377,6 +387,13 @@ class Message extends Model
                 $message->to($sendToAddressesValidated[0]);
             } else {
                 return;
+            }
+
+            if (!empty($componentProperties['notification_subject'])) {
+                $message->subject(Twig::parse($componentProperties['notification_subject'], ['fields' => $output]));
+
+                \App::forgetInstance('parse.twig');
+                \App::forgetInstance('twig.environment');
             }
 
             /**

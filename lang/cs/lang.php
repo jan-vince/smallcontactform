@@ -481,6 +481,9 @@ return [
           'notification_template' => 'Šablona notifikace',
           'notification_template_comment' => 'Přepíše šablonu notifikačního emailu',
 
+          'notification_subject' => 'Předmět notifikace',
+          'notification_template_comment' => 'Přepíše předmět emailu',
+
           'disable_autoreply' => 'Zakázat notifikace',
           'disable_autoreply_comment' => 'Zakáže odesílání notifikací',
 
@@ -491,7 +494,10 @@ return [
           'autoreply_address_from_name_comment' => 'Přepíše jméno zobrazené spolu s emailem OD',
 
           'autoreply_template' => 'Šablona automatické odpovědi',
-          'autoreply_template_comment' => 'Přepíše šablonu emailu autoamtické odpovědi',
+          'autoreply_template_comment' => 'Přepíše šablonu emailu automatické odpovědi',
+
+          'autoreply_subject' => 'Předmět automatické odpovědi',
+          'autoreply_template_comment' => 'Přepíše předmět emailu',
 
       ]
 

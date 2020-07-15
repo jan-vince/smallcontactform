@@ -322,7 +322,6 @@ Form alias: {{fields.form_alias}}
 Form description: {{fields.form_description}}
 ````
 
-
 > When you override form description in ````{% component form_description = 'My description' %}````, description will be added as a **hidden field** into a form. Do not use this to store private data as this is easily visible in page HTML code!
 
 #### Override notification email options
@@ -339,7 +338,8 @@ notification_address_to = 'sales@domain.com'
 notification_address_from = 'contactform@domain.com'
 notification_template = 'notification-sales'
 notification_template_en = 'notification-sales-en'
-notification_template_cs = 'notification-sales-cs
+notification_template_cs = 'notification-sales-cs'
+notification_subject = 'Notification sent by form {{ fields.form_alias }} on {{ "now"|date }}'
 ````
 
 > Local strings in `notification_template` canot be used in Twig!
@@ -360,7 +360,10 @@ autoreply_address_from_name_cs = 'Objednávky'
 autoreply_template = 'autoreply-order'
 autoreply_template_en = 'autoreply-order-en'
 autoreply_template_cs = 'autoreply-order-cs'
+autoreply_subject = 'Autoreply sent by form {{ fields.form_alias }} on {{ "now"|date }}'
 ````
+> Do you know that you can use form variables in an email template subject. In Settings > Mail templates create new template and set the Subject field to eg: `My form {{ fields.form_alias }}`.
+
 #### Disable some form fields
 You can disable some of defined form fields by passing their names in ````disable_fields```` component property.
 
