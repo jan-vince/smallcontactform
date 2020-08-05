@@ -196,3 +196,5 @@
     - Added component properties to override notification and autoreply email subject (with support for Twig variables)
 1.45.0:
     - Added German translation (thanks NiklasDah)
+1.46.0:
+    - Fixed backend validation for reCaptcha invisible
