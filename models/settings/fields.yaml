@@ -231,6 +231,58 @@ tabs:
                                     label: 'janvince.smallcontactform::lang.settings.form_fields.field_value_content'
                                     type: text
 
+                    field_custom_code:
+                        span: full
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.custom_code'
+                        comment: 'janvince.smallcontactform::lang.settings.form_fields.custom_code_comment'
+                        type: codeeditor
+                        size: large
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: type
+                            condition: value[custom_code]
+
+                    field_custom_code_twig:
+                        span: left
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.custom_code_twig'
+                        comment: 'janvince.smallcontactform::lang.settings.form_fields.custom_code_twig_comment'
+                        type: checkbox
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: type
+                            condition: value[custom_code]
+
+                    field_custom_code_line:
+                        span: full
+                        type: section
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: type
+                            condition: value[custom_code]
+
+                    field_custom_content:
+                        span: full
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.custom_content'
+                        comment: 'janvince.smallcontactform::lang.settings.form_fields.custom_content_comment'
+                        type: richeditor
+                        size: large
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: type
+                            condition: value[custom_content]
+
+                    field_custom_content_section:
+                        span: full
+                        type: section
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: type
+                            condition: value[custom_content]
 
                     field_styling:
                         label: 'janvince.smallcontactform::lang.settings.form_fields.field_styling'

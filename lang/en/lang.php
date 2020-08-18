@@ -268,6 +268,13 @@ return [
       'event_action' => 'Event action',
       'event_label' => 'Event label',
 
+      'custom_code' => 'Custom code',
+      'custom_code_comment' => 'This code will override built in field code. Use carefully!',
+      'custom_code_twig' => 'Allow Twig',
+      'custom_code_twig_comment' => 'If checked, Twig markup will be parsed.',
+      
+      'custom_content' => 'Custom content',
+      'custom_content_comment' => 'This content will be added to field.',
     ],
 
     'form_field_types' => [
@@ -276,6 +283,8 @@ return [
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
       'dropdown' => 'Dropdown',
+      'custom_code' => 'Custom code',
+      'custom_content' => 'Custom content',
     ],
 
     'form_field_validation' => [

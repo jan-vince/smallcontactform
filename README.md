@@ -133,6 +133,9 @@ When dropdown is selected there will be values/options repeater shown. You can a
 
 > Hint: you can add dropdown empty option by adding a value with empty ID.
 
+You can also use **Custom code** and have complete control of generated code.
+
+There is also a **Custom content** field to add formated content in place of a field.
 
 #### Field data validation
 
@@ -386,7 +389,19 @@ disable_autoreply = true
 
 ## HOWTO
 
-#### Add an empty option to dropdown field
+### Fight SPAM
+
+#### Prohibit sending URLs in a (message) field.
+
+* Use Custom rule
+* Add your validation error text
+* Use validation rule: `custom_not_regex`
+* Use validation: `/(http|https|ftp|ftps)\:\/\/?/`
+
+![Custom regex to prevent sending URLs](https://www.vince.cz/storage/app/media/OctoberCMS/scf-custom-regex-urls.png)
+
+
+### Add an empty option to dropdown field
 
 You can easily add an empty option with empty ID and some value.
 

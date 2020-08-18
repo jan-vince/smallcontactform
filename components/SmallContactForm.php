@@ -14,6 +14,7 @@ use Flash;
 use Form;
 use Log;
 use App;
+use Twig;
 
 class SmallContactForm extends ComponentBase
 {
@@ -572,6 +573,16 @@ class SmallContactForm extends ComponentBase
     $fieldType = Settings::getFieldTypes($fieldSettings['type']);
     $fieldRequired = $this->isFieldRequired($fieldSettings);
 
+    // If there is a custom code, return it only
+    if( !empty($fieldSettings['type']) and $fieldSettings['type'] == 'custom_code' and !empty($fieldSettings['field_custom_code']) ) {
+
+      if( !empty($fieldSettings['field_custom_code_twig']) ) {
+        return(Twig::parse($fieldSettings['field_custom_code']));
+      } else {
+        return($fieldSettings['field_custom_code']);
+      }
+    }
+
     $output = [];
 
     $wrapperCss = ( $fieldSettings['wrapper_css'] ? $fieldSettings['wrapper_css'] : $fieldType['wrapper_class'] );
@@ -594,7 +605,7 @@ class SmallContactForm extends ComponentBase
       }
 
       // Label as container
-      if( empty($fieldType['label']) ){
+      if( !empty($fieldSettings['label']) and empty($fieldType['label']) ){
         $output[] = '<label class="' . ( !empty($fieldSettings['label_css']) ? $fieldSettings['label_css'] : '' ) . '">';
       }
 
@@ -683,12 +694,17 @@ class SmallContactForm extends ComponentBase
         $output[] = Settings::getDictionaryTranslated($fieldSettings['label']);
       }
 
+      // If there is a custom content
+      if (!empty($fieldSettings['type']) and $fieldSettings['type'] == 'custom_content' and !empty($fieldSettings['field_custom_content'])) {
+        $output[] = $fieldSettings['field_custom_content'];
+      }
+
       if(!empty($fieldType['html_close'])){
         $output[] = '</' . $fieldType['html_close'] . '>';
       }
 
       // Label as container
-      if( empty($fieldType['label']) ){
+      if( !empty($fieldSettings['label']) and empty($fieldType['label']) ){
         $output[] = '</label>';
       }
 

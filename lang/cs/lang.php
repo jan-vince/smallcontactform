@@ -265,6 +265,14 @@ return [
       'event_action' => 'Akce události (event action)',
       'event_label' => 'Štítek události (event label)',
 
+      'custom_code' => 'Vlastní kód',
+      'custom_code_comment' => 'Vložený kód přepíše automaticky generovaný kód políčka formuláře. Používejte opatrně!',
+      'custom_code_twig' => 'Povolit Twig',
+      'custom_code_twig_comment' => 'Můžete povolit parset syntaxe jazyka Twig.',
+
+      'custom_content' => 'Vlastní obsah',
+      'custom_content_comment' => 'Obsah bude přidaný k políčku formuláře.',
+
     ],
 
     'form_field_types' => [
@@ -273,6 +281,8 @@ return [
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
       'dropdown' => 'Výběr (dropdown)',
+      'custom_code' => 'Vlastní kód',
+      'custom_content' => 'Vlastní obsah',
     ],
 
     'form_field_validation' => [

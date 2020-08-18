@@ -259,6 +259,28 @@ class Settings extends Model
         'html_close' => 'select',
       ],
 
+      'custom_code' => [
+        'html_open' => "div",
+        'label' => true,
+        'wrapper_class' => null,
+        'field_class' => null,
+        'inner_label' => false,
+        'attributes' => [
+        ],
+        'html_close' => "div",
+      ],
+
+      'custom_content' => [
+        'html_open' => "div",
+        'label' => true,
+        'wrapper_class' => null,
+        'field_class' => null,
+        'inner_label' => false,
+        'attributes' => [
+        ],
+        'html_close' => "div",
+      ],
+
     ];
 
     if($type){
