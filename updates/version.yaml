@@ -198,6 +198,6 @@
     - Added German translation (thanks NiklasDah)
 1.46.0:
     - Fixed backend validation for reCaptcha invisible
-1.5.0:
+1.50.0:
     - Added Custom code and Custom content field types
     - Updated README
