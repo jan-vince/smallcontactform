@@ -201,3 +201,5 @@
 1.47.0:
     - Added Custom code and Custom content field types
     - Updated README
+1.47.1:
+    - Fixed typo in README (wrong component redirection parameter name)
