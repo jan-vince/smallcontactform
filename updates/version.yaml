@@ -203,3 +203,5 @@
     - Updated README
 1.47.1:
     - Fixed typo in README (wrong component redirection parameter name)
+1.47.2:
+    - Fixed checkbox validation (thanks Chocofede)

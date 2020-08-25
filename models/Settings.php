@@ -243,7 +243,6 @@ class Settings extends Model
         'inner_label' => true,
         'attributes' => [
           'type' => 'checkbox',
-          'value' => 1,
         ],
         'html_close' => null,
       ],
