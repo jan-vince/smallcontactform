@@ -205,3 +205,5 @@
     - Fixed typo in README (wrong component redirection parameter name)
 1.47.2:
     - Fixed checkbox validation (thanks Chocofede)
+1.47.3:
+    - Removed unnecessarry name attribute from custom_content field

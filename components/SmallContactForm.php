@@ -618,9 +618,17 @@ class SmallContactForm extends ComponentBase
       // Field attributes
       $attributes = [
         'id' => $this->alias . '-' . $fieldSettings['name'],
-        'name' => $fieldSettings['name'],
-        'class' => ($fieldSettings['field_css'] ? $fieldSettings['field_css'] : $fieldType['field_class'] ),
       ];
+
+      $tagClass = $fieldSettings['field_css'] ? $fieldSettings['field_css'] : $fieldType['field_class'];
+
+      if(!empty($tagClass)) {
+        $attribute['class'] = $tagClass;
+      }
+
+      if(!empty($fieldType['use_name_attribute'])) {
+        $attributes['name'] = $fieldSettings['name'];
+      }
 
       if ( !empty($this->postData[$fieldSettings['name']]['value']) && empty($fieldType['html_close']) ) {
 
