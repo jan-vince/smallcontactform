@@ -623,7 +623,7 @@ class SmallContactForm extends ComponentBase
       $tagClass = $fieldSettings['field_css'] ? $fieldSettings['field_css'] : $fieldType['field_class'];
 
       if(!empty($tagClass)) {
-        $attribute['class'] = $tagClass;
+        $attributes['class'] = $tagClass;
       }
 
       if(!empty($fieldType['use_name_attribute'])) {

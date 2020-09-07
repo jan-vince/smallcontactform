@@ -207,3 +207,5 @@
     - Fixed checkbox validation (thanks Chocofede)
 1.47.3:
     - Removed unnecessarry name attribute from custom_content field
+1.47.4:
+    - Fixed typo in field attributes
