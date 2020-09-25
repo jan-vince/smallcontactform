@@ -211,3 +211,5 @@
     - Fixed typo in field attributes
 1.48.0:
     - Added option to set ReplyTo email address for autoreply emails
+1.48.1:
+    - Fixed autoreply email addresses checks

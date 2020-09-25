@@ -240,6 +240,7 @@ class Message extends Model
             * Component's property can override this
             */
             $fromAddress = null;
+            $fromAddressName = null;
 
             if( Settings::getTranslated('email_address_from') ) {
                 $fromAddress = Settings::getTranslated('email_address_from');
@@ -262,10 +263,10 @@ class Message extends Model
 
             if($validator->fails()){
                 Log::error('SMALL CONTACT FORM ERROR: Autoreply email address is invalid (' .$fromAddress. ')! System email address and name will be used.');
-                return;
+            } else {
+                $message->from($fromAddress, $fromAddressName);
             }
 
-            $message->from($fromAddress, $fromAddressName);
 
             /**
             * Reply To address
@@ -285,10 +286,9 @@ class Message extends Model
 
             if($validator->fails()){
                 Log::error('SMALL CONTACT FORM ERROR: Autoreply Reply To email address is invalid (' .$replyToAddress. ')! No Reply To header will be added.');
-                return;
+            } else {
+                $message->replyTo($replyToAddress);
             }
-
-            $message->replyTo($replyToAddress);
 
         });
 
