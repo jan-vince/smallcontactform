@@ -711,6 +711,18 @@ tabs:
                 field: allow_autoreply
                 condition: checked
 
+        email_address_replyto:
+            label: 'janvince.smallcontactform::lang.settings.email.address_replyto'
+            span: left
+            type: text
+            placeholder: 'janvince.smallcontactform::lang.settings.email.address_from_placeholder'
+            tab: 'janvince.smallcontactform::lang.settings.tabs.email'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: allow_autoreply
+                condition: checked
+
         email_subject:
             label: 'janvince.smallcontactform::lang.settings.email.subject'
             comment: 'janvince.smallcontactform::lang.settings.email.subject_comment'

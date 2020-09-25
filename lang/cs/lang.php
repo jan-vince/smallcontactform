@@ -300,6 +300,9 @@ return [
       'address_from_name' => 'Jméno odesílatele',
       'address_from_name_placeholder' => 'John Doe',
 
+      'address_replyto' => 'Adresa Odpovědět na',
+      'address_replyto_comment' => 'Odpověď na mail půjde na tuto adresu (REPLY-TO).',
+
       'subject' => 'Předmět emailu',
       'subject_comment' => 'Nastavte pouze pokud chcete přepsat předmět definovaný v šabloně (Nastavení > E-mailové šablony).',
 
@@ -502,6 +505,9 @@ return [
 
           'autoreply_address_from_name' => 'Jméno pro adresu OD',
           'autoreply_address_from_name_comment' => 'Přepíše jméno zobrazené spolu s emailem OD',
+
+          'autoreply_address_replyto' => 'Adresa ODPOVĚDĚT NA',
+          'autoreply_address_replyto_comment' => 'Přepíše adresu REPLY TO v automatické odpovědi po odeslání formuláře.',
 
           'autoreply_template' => 'Šablona automatické odpovědi',
           'autoreply_template_comment' => 'Přepíše šablonu emailu automatické odpovědi',

@@ -146,6 +146,13 @@ class SmallContactForm extends ComponentBase
                 'default'     => null,
                 'group'       => 'janvince.smallcontactform::lang.components.groups.override_autoreply',
             ],
+            'autoreply_address_replyto'      => [
+              'title'       => 'janvince.smallcontactform::lang.components.properties.autoreply_address_replyto',
+              'description' => 'janvince.smallcontactform::lang.components.properties.autoreply_address_replyto_comment',
+              'type'        => 'string',
+              'default'     => null,
+              'group'       => 'janvince.smallcontactform::lang.components.groups.override_autoreply',
+            ],
             'autoreply_template'      => [
                 'title'       => 'janvince.smallcontactform::lang.components.properties.autoreply_template',
                 'description' => 'janvince.smallcontactform::lang.components.properties.autoreply_template_comment',

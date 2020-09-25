@@ -213,7 +213,8 @@ Email can be send to form sender as confirmation.
 * You have to enter email address and name - it will be used as FROM field
 * Email subject can be manually added here (or edited in *Settings > Mail > Mail templates (code: janvince.smallcontactform::mail.autoreply)*)
 * Email TO address and name have to be assigned to form fields (in selections only corresponding field types are shown - if you don't see one, try to check it's type in Fields tab)
- * Message field can be also assigned (and will be saved separately into database)
+* Email REPLY TO address can be set
+* Message field can be also assigned (and will be saved separately into database)
 
 #### Allow notifications
 

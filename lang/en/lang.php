@@ -302,6 +302,9 @@ return [
       'address_from_name' => 'From address name',
       'address_from_name_placeholder' => 'John Doe',
 
+      'address_replyto' => 'Reply To address',
+      'address_replyto_comment' => 'Reply to mail will be send to this address.',
+
       'subject' => 'Email subject',
       'subject_comment' => 'Set only if you want other than defined in Settings > Mail templates.',
 
@@ -506,6 +509,9 @@ return [
 
         'autoreply_address_from_name' => 'Address (FROM) name',
         'autoreply_address_from_name_comment' => 'This will override email address name in autoreply email (if enabled in form settings)',
+
+        'autoreply_address_replyto' => 'Address REPLY TO',
+        'autoreply_address_replyto_comment' => 'This will override REPLY TO email address in autoreply email (if enabled in form settings)',
 
         'autoreply_template' => 'Autoreply template',
         'autoreply_template_comment' => 'This will override autoreply email template (eg. janvince.smallcontactform::mail.autoreply)',
