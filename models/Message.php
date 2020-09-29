@@ -282,14 +282,17 @@ class Message extends Model
                 $replyToAddress = $componentProperties['autoreply_address_replyto'];
             }
 
-            $validator = Validator::make(['email' => $replyToAddress], ['email' => 'required|email']);
+            if( $replyToAddress ) {
 
-            if($validator->fails()){
-                Log::error('SMALL CONTACT FORM ERROR: Autoreply Reply To email address is invalid (' .$replyToAddress. ')! No Reply To header will be added.');
-            } else {
-                $message->replyTo($replyToAddress);
+                $validator = Validator::make(['email' => $replyToAddress], ['email' => 'required|email']);
+
+                if($validator->fails()){
+                    Log::error('SMALL CONTACT FORM ERROR: Autoreply Reply To email address is invalid (' .$replyToAddress. ')! No Reply To header will be added.');
+                } else {
+                    $message->replyTo($replyToAddress);
+                }
+
             }
-
         });
 
     }

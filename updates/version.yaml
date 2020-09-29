@@ -213,3 +213,5 @@
     - Added option to set ReplyTo email address for autoreply emails
 1.48.1:
     - Fixed autoreply email addresses checks
+1.48.2:
+    - Fixed empty ReplyTo field error
