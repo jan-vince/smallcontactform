@@ -215,3 +215,5 @@
     - Fixed autoreply email addresses checks
 1.48.2:
     - Fixed empty ReplyTo field error
+1.48.3:
+    - Fixed getFieldHtmlCode method (thanks sdlb)
