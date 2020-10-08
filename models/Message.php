@@ -60,6 +60,8 @@ class Message extends Model
             return;
         }
 
+        Log::debug(url()->full());
+
         $output = [];
         $name_field_value = NULL;
         $email_field_value = NULL;
@@ -118,6 +120,7 @@ class Message extends Model
         $this->remote_ip = Request::ip();
         $this->form_alias = $formAlias;
         $this->form_description = $formDescription;
+        $this->url = url()->full();
         $this->save();
 
     }
@@ -217,7 +220,7 @@ class Message extends Model
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('autoreply_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
 
-        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendTo, $componentProperties, $output){
+        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendTo, $componentProperties, $output){
 
             $message->to($sendTo);
 
@@ -402,7 +405,7 @@ class Message extends Model
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('notification_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
 
-        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties, $output){
+        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties, $output){
 
             if( count($sendToAddressesValidated)>1 ) {
                 

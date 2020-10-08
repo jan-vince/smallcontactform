@@ -248,7 +248,9 @@ You can create your own email templates in *Settings > Mail > Mail templates* 
 
 Remember your email templates CODE and put in in Small Contact form email settings in *Settings > Small plugins > Contact form > Email tab*. For each language there can be specific template.
 
-There is ````{{fields}}```` array available inside of email templates.
+There are `{{fields}}` and `{{fieldsDetails}}` arrays available inside of email templates.
+
+You can also use `{{url}}` variable to get original request URL.
 
 *If your custom form field has name eg. 'email', you use it in template with ````{{fields.email}}````.*
 

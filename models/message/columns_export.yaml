@@ -43,3 +43,7 @@ columns:
     form_description:
         label: janvince.smallcontactform::lang.models.message.columns.form_description
         type: text
+
+    form_description:
+        label: janvince.smallcontactform::lang.models.message.columns.url
+        type: text

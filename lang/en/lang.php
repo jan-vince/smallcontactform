@@ -70,6 +70,7 @@ return [
         'form_description' => 'Description',
         'created_at' => 'Created at',
         'updated_at' => 'Updated at',
+        'url' => 'URL',
       ]
 
     ],
