@@ -217,3 +217,5 @@
     - Fixed empty ReplyTo field error
 1.48.3:
     - Fixed getFieldHtmlCode method (thanks sdlb)
+1.49.0:
+    - Fields forms in backend are now collapsed by default for better visibility
