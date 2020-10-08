@@ -268,7 +268,7 @@ class SmallContactForm extends ComponentBase
    * Form handler
    */
   public function onFormSend(){
-    
+
     /**
      * Validation
      */
@@ -381,6 +381,9 @@ class SmallContactForm extends ComponentBase
 
       }
 
+      // Fill hidden fields if request has errors to maintain
+      $this->formDescriptionOverride = post('_form_description');
+      $this->formRedirectOverride = post('_form_redirect');
 
     } else {
 
@@ -426,6 +429,15 @@ class SmallContactForm extends ComponentBase
 
       }
 
+      /**
+       * Keep properties overrides after Ajax request (onRender method is not called)
+       */
+      if (Request::ajax()) {
+
+        $this->formDescriptionOverride = post('_form_description');
+        $this->formRedirectOverride = post('_form_redirect');
+
+      }
 
       /**
        *  Redirects

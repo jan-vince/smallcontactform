@@ -218,4 +218,5 @@
 1.48.3:
     - Fixed getFieldHtmlCode method (thanks sdlb)
 1.49.0:
+    - Fixed missing description and redirect url after AJAX calls
     - Fields forms in backend are now collapsed by default for better visibility
