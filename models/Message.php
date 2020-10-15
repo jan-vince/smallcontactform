@@ -60,8 +60,6 @@ class Message extends Model
             return;
         }
 
-        Log::debug(url()->full());
-
         $output = [];
         $name_field_value = NULL;
         $email_field_value = NULL;
