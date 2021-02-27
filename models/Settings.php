@@ -263,6 +263,19 @@ class Settings extends Model
         'html_close' => 'select',
       ],
 
+      'file' => [
+        'html_open' => 'input',
+        'label' => true,
+        'wrapper_class' => 'form-group',
+        'field_class' => 'form-control',
+        'inner_label' => false,
+        'use_name_attribute' => true,
+        'attributes' => [
+          'type' => 'file',
+        ],
+        'html_close' => null,
+      ],
+
       'custom_code' => [
         'html_open' => "div",
         'label' => true,

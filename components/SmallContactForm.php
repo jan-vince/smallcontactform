@@ -402,13 +402,13 @@ class SmallContactForm extends ComponentBase
 
       // Store data in DB
       $formDescription = !empty($this->post['_form_description']) ? e($this->post['_form_description']) : $this->property('form_description');
-      $message->storeFormData($this->postData, $this->alias, $formDescription);
+      $messageObject = $message->storeFormData($this->postData, $this->alias, $formDescription);
 
       // Send autoreply
-      $message->sendAutoreplyEmail($this->postData, $this->getProperties(), $this->alias, $formDescription);
+      $message->sendAutoreplyEmail($this->postData, $this->getProperties(), $this->alias, $formDescription, $messageObject);
 
       // Send notification
-      $message->sendNotificationEmail($this->postData, $this->getProperties(), $this->alias, $formDescription);
+      $message->sendNotificationEmail($this->postData, $this->getProperties(), $this->alias, $formDescription, $messageObject);
 
       /**
        * Flash messages
@@ -540,6 +540,7 @@ class SmallContactForm extends ComponentBase
     $attributes = [];
 
     $attributes['request'] = $this->alias . '::onFormSend';
+    $attributes['files'] = true;
     
     // Disabled hard coded hash URL in 1.41.0 as dynamic redirect is now available
     // $attributes['url'] = '#scf-' . $this->alias;
@@ -551,7 +552,8 @@ class SmallContactForm extends ComponentBase
     if( Settings::getTranslated('form_allow_ajax', 0) ) {
 
       $attributes['data-request'] = $this->alias . '::onFormSend';
-      $attributes['data-request-validate'] = NULL;
+      $attributes['data-request-validate'] = 'data-request-validate';
+      $attributes['data-request-files'] = 'data-request-files';
       $attributes['data-request-update'] = "'". $this->alias ."::scf-message':'#scf-message-". $this->alias ."','". $this->alias ."::scf-form':'#scf-form-". $this->alias ."'";
 
     }

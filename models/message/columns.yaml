@@ -60,3 +60,8 @@ columns:
         searchable: true
         type: text
         invisible: true
+
+    uploads:
+        label: janvince.smallcontactform::lang.models.message.columns.files
+        type: scf_files_link
+        invisible: true

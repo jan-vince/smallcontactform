@@ -261,6 +261,9 @@ return [
       'textarea' => 'Textbereich',
       'checkbox' => 'Checkbox',
       'dropdown' => 'Dropdown-Menü',
+      'file' => 'File',
+      'custom_code' => 'Custom code',
+      'custom_content' => 'Custom content',
     ],
 
     'form_field_validation' => [

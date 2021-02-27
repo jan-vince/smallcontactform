@@ -28,6 +28,22 @@
 
 			<?php endforeach ?>
 
+            <?php if ($message->uploads): ?>
+
+                <tr>
+                    <th>Uploads</th>
+                    <td>
+                        <?php foreach($message->uploads as $upload) : ?>
+
+                            <a href="<?php echo( $upload->getPath() ) ?>" target="blank">
+                                <img src="<?php echo( $upload->getThumb(300,300) ) ?>">
+                            </a>
+
+                        <?php endforeach ?>
+                    </td>
+                </tr>
+            <?php endif ?>
+
                 <tr>
                     <th class="p-r-md"><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.remote_ip')) ); ?></th>
                     <td><?php if(!empty($message->remote_ip)) { echo($message->remote_ip); } ?></td>

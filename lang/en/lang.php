@@ -71,6 +71,7 @@ return [
         'created_at' => 'Created at',
         'updated_at' => 'Updated at',
         'url' => 'URL',
+        'files' => 'Files',
       ]
 
     ],
@@ -284,6 +285,7 @@ return [
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
       'dropdown' => 'Dropdown',
+      'file' => 'File',
       'custom_code' => 'Custom code',
       'custom_content' => 'Custom content',
     ],

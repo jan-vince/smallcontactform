@@ -175,6 +175,10 @@ return [
       'email' => 'Email',
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
+      'dropdown' => 'Dropdown',
+      'file' => 'File',
+      'custom_code' => 'Custom code',
+      'custom_content' => 'Custom content',
     ],
     'form_field_validation' => [
       'select' => '--- Vyberte pravidlo ---',

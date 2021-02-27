@@ -17,6 +17,8 @@ use App;
 use System\Models\MailTemplate;
 use System\Classes\MailManager;
 use Twig;
+use Input;
+use System\Models\File;
 
 class Message extends Model
 {
@@ -36,7 +38,10 @@ class Message extends Model
 
     protected $jsonable = ['form_data'];
 
-    
+    public $attachMany = [
+        'uploads' => 'System\Models\File',
+    ];
+
     /**
      * Scope new messages only
      */
@@ -67,6 +72,8 @@ class Message extends Model
 
         $formFields = Settings::getTranslated('form_fields');
 
+        $uploads = [];
+
         foreach($data as $key => $value) {
 
             // skip helpers
@@ -80,11 +87,31 @@ class Message extends Model
             }
 
             // skip non-defined fields
+            // store uploaded file -- currently only one file is supported
             $fieldDefined = null;
+            $fieldUpload = null;
             foreach( $formFields as $field) {
                 if( $field['name'] == $key) {
                     $fieldDefined = true;
+                    
+                    if($field['type'] == 'file') {
+                        $fieldUpload = true;
+                        
+                        if(!empty(Input::file($key))) {
+                            $file = new File;
+                            $file->data = (Input::file($key));
+                            $file->is_public = true;
+                            $file->save();
+                            $uploads[] = $file;
+                        }
+                    }
+                    
                 }
+            }
+
+            // skip uploads
+            if($fieldUpload){
+                continue;
             }
 
             if( !$fieldDefined ) {
@@ -121,12 +148,21 @@ class Message extends Model
         $this->url = url()->full();
         $this->save();
 
+        // Add files
+        if($uploads) {
+        
+            foreach($uploads as $upload) {
+                $this->uploads()->add($upload);
+            }
+        }
+
+        return $this;
     }
 
     /**
      * Build and send autoreply message
      */
-    public function sendAutoreplyEmail($postData, $componentProperties = [], $formAlias, $formDescription){
+    public function sendAutoreplyEmail($postData, $componentProperties = [], $formAlias, $formDescription, $messageObject){
 
         if(!Settings::getTranslated('allow_autoreply')) {
             return;
@@ -171,6 +207,10 @@ class Message extends Model
 
         foreach($formFields as $field) {
 
+            if(!empty($field['type'] and $field['type'] == 'file')) {
+                continue;
+            }
+
             $fieldValue = null;
 
             if( !empty( $postData[ $field['name'] ]['value'] ) ) {
@@ -189,6 +229,7 @@ class Message extends Model
 
         $output['form_description'] = $formDescription;
         $output['form_alias'] = $formAlias;
+        $output['uploads'] = $messageObject->uploads();
 
         $template = Settings::getTranslatedTemplates('en', App::getLocale(), 'autoreply');
 
@@ -217,9 +258,8 @@ class Message extends Model
         } elseif ( !empty($componentProperties[ ('autoreply_template_'.App::getLocale())]) and empty( MailTemplate::listAllTemplates()[ $componentProperties[ ('autoreply_template_'.App::getLocale())] ] ) ) {
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('autoreply_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
-
-        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendTo, $componentProperties, $output){
-
+        
+        Mail::{$method}($template, ['messageObject' => $messageObject, 'uploads' => $messageObject->uploads, 'fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendTo, $componentProperties, $output){
             $message->to($sendTo);
 
             if (!empty($componentProperties['autoreply_subject'])) {
@@ -301,7 +341,7 @@ class Message extends Model
     /**
      * Build and send notification message
      */
-    public function sendNotificationEmail($postData, $componentProperties = [], $formAlias, $formDescription){
+    public function sendNotificationEmail($postData, $componentProperties = [], $formAlias, $formDescription, $messageObject){
 
         if(!Settings::getTranslated('allow_notifications')) {
             return;
@@ -344,6 +384,10 @@ class Message extends Model
         $replyToName = null;
 
         foreach($formFields as $field) {
+
+            if(!empty($field['type'] and $field['type'] == 'file')) {
+                continue;
+            }
 
             $fieldValue = null;
 
@@ -402,8 +446,9 @@ class Message extends Model
         } elseif ( !empty($componentProperties[ ('notification_template_'.App::getLocale())]) and empty( MailTemplate::listAllTemplates()[ $componentProperties[ ('notification_template_'.App::getLocale())] ] ) ) {
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('notification_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
+        
 
-        Mail::{$method}($template, ['fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties, $output){
+        Mail::{$method}($template, ['messageObject' => $messageObject, 'uploads' => $messageObject->uploads, 'fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties, $output){
 
             if( count($sendToAddressesValidated)>1 ) {
                 

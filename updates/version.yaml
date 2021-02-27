@@ -225,3 +225,7 @@
     - scf_tables_04.php
 1.50.1:
     - Removed unnecessarry debug log
+1.51.0:
+    - Added support for (one or many) file uploads
+    - Fixed AJAX validation
+    - Updated README

@@ -257,6 +257,9 @@ return [
             'textarea' => 'Pole tekstowy',
             'checkbox' => 'Pole wyboru',
             'dropdown' => 'Lista rozwijalna',
+            'file' => 'File',
+            'custom_code' => 'Custom code',
+            'custom_content' => 'Custom content',
         ],
 
         'form_field_validation' => [

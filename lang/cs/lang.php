@@ -281,6 +281,7 @@ return [
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
       'dropdown' => 'Výběr (dropdown)',
+      'file' => 'Soubor',
       'custom_code' => 'Vlastní kód',
       'custom_content' => 'Vlastní obsah',
     ],

@@ -181,8 +181,17 @@ class Plugin extends PluginBase {
             'image_preview' => function($value) {
                 $width = Settings::get('records_list_preview_width') ? Settings::get('records_list_preview_width') : 50;
                 $height = Settings::get('records_list_preview_height') ? Settings::get('records_list_preview_height') : 50;
-
+                
                 if($value){ return "<img src='".$value->getThumb($width, $height)."' style='width: auto; height: auto; max-width: ".$width."px; max-height: ".$height."px'>"; }
+            },
+            'scf_files_link' => function($value){ 
+                if(!empty($value)) { 
+                    $output = [];
+                    foreach($value as $file) {
+                        $output[] = "<div><a class='btn btn-primary' href='".$file->getPath()."'>Open file</a></div>"; 
+                    }
+                    return implode('', $output);
+                }
             },
         ];
     }

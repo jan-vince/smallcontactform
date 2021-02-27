@@ -206,6 +206,10 @@ There are variables available in all email templates:
 * **fields** is array of [ 'field name' => 'post value' ]
 * **fieldsDetails** is array of [ 'field name' => ['name', 'value', 'type', ...] ]
 
+* **uploads** is array of uploads (of class `System\Models\File`)
+
+* **messageObject** is a model instance of a selected message
+
 #### Allow autoreply
 
 Email can be send to form sender as confirmation.
@@ -253,6 +257,15 @@ There are `{{fields}}` and `{{fieldsDetails}}` arrays available inside of email 
 You can also use `{{url}}` variable to get original request URL.
 
 *If your custom form field has name eg. 'email', you use it in template with ````{{fields.email}}````.*
+
+You can itterate over uploaded files with: 
+```
+{% for item in uploads %}
+    <a href="{{ item.getPath }}">Uploaded file</a>
+{% endfor %}
+```
+
+You can access model data with eg. `{{ messageObject.id }}`.
 
 ## GOOGLE ANALYTICS
 
