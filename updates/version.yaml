@@ -229,3 +229,5 @@
     - Added support for (one or many) file uploads
     - Fixed AJAX validation
     - Updated README
+1.51.1:
+    - Removed uploads array from default fields sent to autoreply template

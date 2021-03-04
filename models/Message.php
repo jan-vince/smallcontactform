@@ -229,7 +229,6 @@ class Message extends Model
 
         $output['form_description'] = $formDescription;
         $output['form_alias'] = $formAlias;
-        $output['uploads'] = $messageObject->uploads();
 
         $template = Settings::getTranslatedTemplates('en', App::getLocale(), 'autoreply');
 
