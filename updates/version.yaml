@@ -231,3 +231,5 @@
     - Updated README
 1.51.1:
     - Removed uploads array from default fields sent to autoreply template
+1.51.2:
+    - Fixed uploads field in email messages

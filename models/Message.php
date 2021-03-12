@@ -258,7 +258,16 @@ class Message extends Model
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('autoreply_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
         
-        Mail::{$method}($template, ['messageObject' => $messageObject, 'uploads' => $messageObject->uploads, 'fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendTo, $componentProperties, $output){
+        if(!empty($messageObject->uploads))
+        {
+            $uploads = $messageObject->uploads;
+        }
+        else
+        {
+            $uploads = [];
+        }
+
+        Mail::{$method}($template, ['messageObject' => $messageObject, 'uploads' => $uploads, 'fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendTo, $componentProperties, $output){
             $message->to($sendTo);
 
             if (!empty($componentProperties['autoreply_subject'])) {
@@ -446,8 +455,16 @@ class Message extends Model
             Log::error('SMALL CONTACT FORM: Missing defined email template: ' . $componentProperties[ ('notification_template_'.App::getLocale())] . '. ' . $template . ' template will be used!');
         }
         
+        if(!empty($messageObject->uploads))
+        {
+            $uploads = $messageObject->uploads;
+        }
+        else
+        {
+            $uploads = [];
+        }
 
-        Mail::{$method}($template, ['messageObject' => $messageObject, 'uploads' => $messageObject->uploads, 'fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties, $output){
+        Mail::{$method}($template, ['messageObject' => $messageObject, 'uploads' => $uploads, 'fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties, $output){
 
             if( count($sendToAddressesValidated)>1 ) {
                 
