@@ -233,3 +233,6 @@
     - Removed uploads array from default fields sent to autoreply template
 1.51.2:
     - Fixed uploads field in email messages
+1.51.3:
+    - Changed size of database column url (thanks zlobec)
+    - scf_tables_05.php
