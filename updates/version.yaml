@@ -236,3 +236,5 @@
 1.51.3:
     - Changed size of database column url (thanks zlobec)
     - scf_tables_05.php
+1.51.4:
+    - Fixed passive antispam delay validation

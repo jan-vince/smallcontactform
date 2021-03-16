@@ -310,18 +310,24 @@ class SmallContactForm extends ComponentBase
 
       if( !empty($this->post['_form_created']) ) {
 
-        $delay = ( Settings::getTranslated('antispam_delay') ? intval(Settings::getTranslated('antispam_delay')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'))) );
+        try {
+          $delay = ( Settings::getTranslated('antispam_delay') ? intval(Settings::getTranslated('antispam_delay')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'))) );
 
-        if(!$delay) {
-          $delay = 5;
+          if(!$delay) {
+            $delay = 5;
+          }
+
+          $formCreatedTime = strtr(Input::get('_form_created'), 'jihgfedcba', '0123456789');
+
+          $this->post['_form_created'] = intval($formCreatedTime) + $delay;
+
+          $this->validationRules['_form_created'] = 'numeric|max:' . time();
         }
-
-        $formCreatedTime = strtr(Input::get('_form_created'), 'jihgfedcba', '0123456789');
-
-        $this->post['_form_created'] = intval($formCreatedTime + $delay);
-
-        $this->validationRules['_form_created'] = 'numeric|max:' . time();
-
+        catch (\Exception $e)
+        {
+            Log::error($e->getMessage());
+            $errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder'));
+        }
       }
 
     }
