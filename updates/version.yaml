@@ -240,3 +240,5 @@
     - Fixed passive antispam delay validation
 1.52.0:
     - Changed reCaptcha validation to work with allow_url_fopen disabled
+1.52.1:
+    - Fixed project git files
