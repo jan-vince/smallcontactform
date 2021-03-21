@@ -238,3 +238,5 @@
     - scf_tables_05.php
 1.51.4:
     - Fixed passive antispam delay validation
+1.52.0:
+    - Changed reCaptcha validation to work with allow_url_fopen disabled

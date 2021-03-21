@@ -15,6 +15,8 @@ use Form;
 use Log;
 use App;
 use Twig;
+use ReCaptcha\ReCaptcha;
+
 
 class SmallContactForm extends ComponentBase
 {
@@ -333,16 +335,30 @@ class SmallContactForm extends ComponentBase
     }
 
     //  reCaptcha validation if enabled
-    if( Settings::getTranslated('add_google_recaptcha') ) {
-
+    if(Settings::getTranslated('add_google_recaptcha')) 
+    {
         try {
-            $response=json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".Settings::get('google_recaptcha_secret_key')."&response=".post('g-recaptcha-response')."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
-        } catch(\Exception $e) {
+            /**
+             * Text if allow_url_fopen is disabled
+             */
+            if (!ini_get('allow_url_fopen')) 
+            {
+              $recaptcha = new ReCaptcha(Settings::get('google_recaptcha_secret_key'), new \ReCaptcha\RequestMethod\SocketPost());
+            }
+            else {
+              // allow_url_fopen = On
+              $recaptcha = new ReCaptcha(Settings::get('google_recaptcha_secret_key'));
+            }
+
+            $response = $recaptcha->setExpectedHostname($_SERVER['SERVER_NAME'])->verify(post('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
+        } 
+        catch(\Exception $e) 
+        {
             Log::error($e->getMessage());
             $errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_placeholder'));
         }
 
-        if(empty($response['success'])) {
+        if(!$response->isSuccess()) {
             $errors[] = ( Settings::getTranslated('google_recaptcha_error_msg') ? Settings::getTranslated('google_recaptcha_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_placeholder')));
         }
 
