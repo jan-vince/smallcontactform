@@ -179,6 +179,11 @@ return [
     'ga' => [
       'ga_success_event_allow' => 'Zaznamenat událost po úspěšném odeslání formuláře',
 
+      'ga_success_event_gtag' => 'Použitá značka na webu',
+      'ga_success_event_gtag_empty_option' => 'Vyberte použitou značku',
+      'ga_success_event_gtag_ga' => 'analytics.js (starší)',
+      'ga_success_event_gtag_gtag' => 'gtag.js',
+
     ],
 
     'buttons' => [

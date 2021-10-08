@@ -184,6 +184,11 @@ return [
     'ga' => [
       'ga_success_event_allow' => 'Send event after successful sent',
 
+      'ga_success_event_gtag' => 'Global tag used on website',
+      'ga_success_event_gtag_empty_option' => 'Choose used tag',
+      'ga_success_event_gtag_ga' => 'analytics.js (old)',
+      'ga_success_event_gtag_gtag' => 'gtag.js',
+
     ],
 
     'buttons' => [

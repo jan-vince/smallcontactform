@@ -816,6 +816,18 @@ tabs:
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.ga'
 
+        ga_success_event_gtag:
+            label: 'janvince.smallcontactform::lang.settings.ga.ga_success_event_gtag'
+            span: left
+            type: dropdown
+            defaut: 'gtag'
+            cssClass: field-indent
+            emptyOption: 'janvince.smallcontactform::lang.settings.ga.ga_success_event_gtag_empty_option'
+            options:
+                gtag: 'janvince.smallcontactform::lang.settings.ga.ga_success_event_gtag_gtag'
+                ga: 'janvince.smallcontactform::lang.settings.ga.ga_success_event_gtag_ga'
+            tab: 'janvince.smallcontactform::lang.settings.tabs.ga'
+
         ga_success_event_category:
             label: 'janvince.smallcontactform::lang.settings.form_fields.event_category'
             type: text

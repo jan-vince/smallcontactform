@@ -909,11 +909,27 @@ class SmallContactForm extends ComponentBase
       'eventLabel' => ($this->property('ga_success_event_label') ? e($this->property('ga_success_event_label')) : Settings::getTranslated('ga_success_event_label')),
     ];
 
+    $attributesGtag = [
+      'event_category' => ($this->property('ga_success_event_category') ? e($this->property('ga_success_event_category')) : Settings::getTranslated('ga_success_event_category')),
+      'event_label' => ($this->property('ga_success_event_label') ? e($this->property('ga_success_event_label')) : Settings::getTranslated('ga_success_event_label')),
+    ];
+
     if($addScriptTag) {
       $output[] = "<script>";
     }
 
-    $output[] = "ga('send', { " . $this->formatAttributes($attributes, true) . " }); ";
+    switch(Settings::getTranslated('ga_success_event_gtag'))
+    {
+
+      case 'gtag':
+        $output[] = "gtag('".$attributes['eventAction']."', { event_category: '" . $attributesGtag['event_category'] . "', event_label: '". $attributesGtag['event_label'] ."' }); ";
+        break;
+
+      default:
+        $output[] = "ga('send', { " . $this->formatAttributes($attributes, true) . " }); ";
+        break;
+    }
+
 
     if ($addScriptTag) {
       $output[] = "</script>";
