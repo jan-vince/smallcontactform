@@ -249,3 +249,5 @@
 1.55.0:
     - Form notes will be saved to database with message
     - scf_tables_06.php
+1.55.1:
+    - Fixed migrations

@@ -11,7 +11,7 @@ class SmallContactFormTables_06 extends Migration
     {
         Schema::table('janvince_smallcontactform_messages', function($table)
         {
-            $table->text('form_notes', 2000)->nullable()->change();
+            $table->text('form_notes', 2000)->nullable();
         });
     }
 
