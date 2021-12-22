@@ -246,3 +246,6 @@
     - Added option to choose tag for Analytics event (analytics.js (oridinal) or gtag.js)
 1.54.0:
     - Added option to add notes for form
+1.55.0:
+    - Form notes will be saved to database with message
+    - scf_tables_06.php

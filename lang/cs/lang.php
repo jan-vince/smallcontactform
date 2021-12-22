@@ -68,6 +68,7 @@ return [
         'remote_ip' => 'IP odesílatele',
         'created_at' => 'Datum vytvoření',
         'updated_at' => 'Datum aktualizace',
+        'form_notes' => 'Notes',
       ]
 
     ],

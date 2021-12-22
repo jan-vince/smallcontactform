@@ -428,13 +428,12 @@ class SmallContactForm extends ComponentBase
       }
 
       $message = new Message;
+      $formNotes = ( $this->property('form_notes') ? $this->property('form_notes') : Settings::getTranslated('form_notes') );
 
       // Store data in DB
       $formDescription = !empty($this->post['_form_description']) ? e($this->post['_form_description']) : $this->property('form_description');
-      $messageObject = $message->storeFormData($this->postData, $this->alias, $formDescription);
+      $messageObject = $message->storeFormData($this->postData, $this->alias, $formDescription, $formNotes);
       
-      $formNotes = ( $this->property('form_notes') ? $this->property('form_notes') : Settings::getTranslated('form_notes') );
-
       // Send autoreply
       $message->sendAutoreplyEmail($this->postData, $this->getProperties(), $this->alias, $formDescription, $messageObject, $formNotes);
 

@@ -59,7 +59,7 @@ class Message extends Model
     }
 
 
-    public function storeFormData($data, $formAlias, $formDescription){
+    public function storeFormData($data, $formAlias, $formDescription, $formNotes){
 
         if(Settings::getTranslated('privacy_disable_messages_saving')) {
             return;
@@ -146,6 +146,7 @@ class Message extends Model
         $this->form_alias = $formAlias;
         $this->form_description = $formDescription;
         $this->url = url()->full();
+        $this->form_notes = $formNotes;
         $this->save();
 
         // Add files

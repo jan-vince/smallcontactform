@@ -72,6 +72,7 @@ return [
         'updated_at' => 'Updated at',
         'url' => 'URL',
         'files' => 'Files',
+        'form_notes' => 'Notes',
       ]
 
     ],

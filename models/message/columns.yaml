@@ -65,3 +65,9 @@ columns:
         label: janvince.smallcontactform::lang.models.message.columns.files
         type: scf_files_link
         invisible: true
+
+    form_notes:
+        label: janvince.smallcontactform::lang.models.message.columns.form_notes
+        searchable: true
+        type: text
+        invisible: true
