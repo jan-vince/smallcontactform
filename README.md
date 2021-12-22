@@ -103,6 +103,12 @@ If you want to insert assets by hand, you can do it this way (or similar):
 </html>
 ````
 
+#### Notes
+
+You can add your notes that can be displayed in mail templates. Field is accesiible with {{ form_notes }}.
+
+Form notes content can be overriden in component's properties.
+
 ### SEND BUTTON
 
 * You can set button class and text.

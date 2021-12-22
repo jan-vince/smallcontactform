@@ -120,6 +120,18 @@ tabs:
                 field: add_assets
                 condition: checked
 
+        section_notes:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
+        form_notes:
+            label: 'janvince.smallcontactform::lang.settings.form.notes'
+            comment: 'janvince.smallcontactform::lang.settings.form.notes_comment'
+            span: left
+            type: textarea
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
+
         ## BUTTONS
 
         send_btn_wrapper_css:

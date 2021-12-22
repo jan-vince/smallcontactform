@@ -222,6 +222,13 @@ class SmallContactForm extends ComponentBase
               'group'       => 'janvince.smallcontactform::lang.components.groups.override_ga',
             ],
 
+            'form_notes'      => [
+              'title'       => 'janvince.smallcontactform::lang.settings.form.notes',
+              'type'        => 'string',
+              'default'     => null,
+              'group'       => 'janvince.smallcontactform::lang.components.groups.override_notes',
+            ],
+
         ];
 
     }
@@ -425,12 +432,14 @@ class SmallContactForm extends ComponentBase
       // Store data in DB
       $formDescription = !empty($this->post['_form_description']) ? e($this->post['_form_description']) : $this->property('form_description');
       $messageObject = $message->storeFormData($this->postData, $this->alias, $formDescription);
+      
+      $formNotes = ( $this->property('form_notes') ? $this->property('form_notes') : Settings::getTranslated('form_notes') );
 
       // Send autoreply
-      $message->sendAutoreplyEmail($this->postData, $this->getProperties(), $this->alias, $formDescription, $messageObject);
+      $message->sendAutoreplyEmail($this->postData, $this->getProperties(), $this->alias, $formDescription, $messageObject, $formNotes);
 
       // Send notification
-      $message->sendNotificationEmail($this->postData, $this->getProperties(), $this->alias, $formDescription, $messageObject);
+      $message->sendNotificationEmail($this->postData, $this->getProperties(), $this->alias, $formDescription, $messageObject, $formNotes);
 
       /**
        * Flash messages

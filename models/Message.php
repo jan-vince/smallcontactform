@@ -162,7 +162,7 @@ class Message extends Model
     /**
      * Build and send autoreply message
      */
-    public function sendAutoreplyEmail($postData, $componentProperties = [], $formAlias, $formDescription, $messageObject){
+    public function sendAutoreplyEmail($postData, $componentProperties = [], $formAlias, $formDescription, $messageObject, $formNotes){
 
         if(!Settings::getTranslated('allow_autoreply')) {
             return;
@@ -267,7 +267,7 @@ class Message extends Model
             $uploads = [];
         }
 
-        Mail::{$method}($template, ['messageObject' => $messageObject, 'uploads' => $uploads, 'fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendTo, $componentProperties, $output){
+        Mail::{$method}($template, ['messageObject' => $messageObject, 'uploads' => $uploads, 'fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full(), 'form_notes' => $formNotes], function($message) use($sendTo, $componentProperties, $output){
             $message->to($sendTo);
 
             if (!empty($componentProperties['autoreply_subject'])) {
@@ -349,7 +349,7 @@ class Message extends Model
     /**
      * Build and send notification message
      */
-    public function sendNotificationEmail($postData, $componentProperties = [], $formAlias, $formDescription, $messageObject){
+    public function sendNotificationEmail($postData, $componentProperties = [], $formAlias, $formDescription, $messageObject, $formNotes){
 
         if(!Settings::getTranslated('allow_notifications')) {
             return;
@@ -464,7 +464,7 @@ class Message extends Model
             $uploads = [];
         }
 
-        Mail::{$method}($template, ['messageObject' => $messageObject, 'uploads' => $uploads, 'fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full()], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties, $output){
+        Mail::{$method}($template, ['messageObject' => $messageObject, 'uploads' => $uploads, 'fields' => $output, 'fieldsDetails' => $outputFull, 'url' => url()->full(), 'form_notes' => $formNotes], function($message) use($sendToAddressesValidated, $replyToAddress, $replyToName, $componentProperties, $output){
 
             if( count($sendToAddressesValidated)>1 ) {
                 

@@ -32,6 +32,7 @@ class Settings extends Model
         'ga_success_event_category',
         'ga_success_event_action',
         'ga_success_event_label',
+        'form_notes',
     ];
 
     public $requiredPermissions = ['janvince.smallcontactform.access_settings'];

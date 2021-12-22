@@ -244,3 +244,5 @@
     - Fixed project git files
 1.53.0:
     - Added option to choose tag for Analytics event (analytics.js (oridinal) or gtag.js)
+1.54.0:
+    - Added option to add notes for form

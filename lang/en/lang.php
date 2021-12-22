@@ -175,6 +175,9 @@ return [
 
       'form_ga_event_success' => 'GA event after successful sent',
 
+      'notes' => 'Notes',
+      'notes_comment' => 'You can add notes to display in mail messages.',
+
     ],
 
     'sections' => [
@@ -472,6 +475,7 @@ return [
           'override' => 'Override form settings',
           'override_redirect' => 'Override redirect settings',
           'override_ga' => 'Override Google Analytics settings',
+          'override_notes' => 'Override notes',
       ],
 
       'properties' => [

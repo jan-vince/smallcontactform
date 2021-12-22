@@ -170,6 +170,9 @@ return [
 
       'form_ga_event_success' => 'Událost po úspěšném odeslání',
 
+      'notes' => 'Poznámky',
+      'notes_comment' => 'Můžete přidat poznámky, které se pak zobrazí v mailových zprávách.',
+
     ],
     
     'sections' => [
@@ -466,6 +469,7 @@ return [
           'override' => 'Přepsat nastavení',
           'override_redirect' => 'Přepsat nastavení přesměrování',
           'override_ga' => 'Přepsat nastavení Google Analytics',
+          'override_notes' => 'Přepsat poznámky',
       ],
       
       'properties' => [
