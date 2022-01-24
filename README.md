@@ -186,7 +186,7 @@ Implementation of Google reCaptcha antispam protection.
 
 First you have to create new API keys pair in reCaptcha admin panel.
 
-Hit **Get reCAPTCHA** button on [reCaptcha wellcome page](https://www.google.com/recaptcha). Set label and check reCAPTCHA v2 option and hit button Register. Note that you will have to add `localhost` to allowed domains list if you want the recaptcha validation to work locally.
+Hit **Get reCAPTCHA** button on [reCaptcha wellcome page](https://www.google.com/recaptcha). Set label and check reCAPTCHA v2 option and hit button Register. Note that you will have to add `localhost` to the allowed domains list if you want the recaptcha validation to work locally.
 
 Copy Site key and Secret key to Contact Form's settings fields.
 
