@@ -251,3 +251,5 @@
     - scf_tables_06.php
 1.55.1:
     - Fixed migrations
+1.55.2:
+    - Added reCaptcha check (thanks @kavishdahekar)
