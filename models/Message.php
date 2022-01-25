@@ -350,7 +350,7 @@ class Message extends Model
     /**
      * Build and send notification message
      */
-    public function sendNotificationEmail($postData, $componentProperties = [], $formAlias, $formDescription, $messageObject, $formNotes){
+    public function sendNotificationEmail($postData, $componentProperties, $formAlias, $formDescription, $messageObject, $formNotes){
 
         if(!Settings::getTranslated('allow_notifications')) {
             return;
