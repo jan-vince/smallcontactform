@@ -23,6 +23,7 @@ class SmallContactForm extends ComponentBase
 
   private $validationRules;
   private $validationMessages;
+  private $validationReCaptchaServerName;
 
   private $postData = [];
   private $post;
@@ -282,6 +283,7 @@ class SmallContactForm extends ComponentBase
      * Validation
      */
     $this->setFieldsValidationRules();
+    $this->validationReCaptchaServerName = $_SERVER['SERVER_NAME'] == "127.0.0.1" ? "localhost" : $_SERVER['SERVER_NAME'];
     $errors = [];
 
     $this->post = Input::all();
@@ -357,7 +359,7 @@ class SmallContactForm extends ComponentBase
               $recaptcha = new ReCaptcha(Settings::get('google_recaptcha_secret_key'));
             }
 
-            $response = $recaptcha->setExpectedHostname($_SERVER['SERVER_NAME'])->verify(post('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
+            $response = $recaptcha->setExpectedHostname($this->validationReCaptchaServerName)->verify(post('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
         } 
         catch(\Exception $e) 
         {
