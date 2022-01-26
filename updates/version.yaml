@@ -253,3 +253,5 @@
     - Fixed migrations
 1.55.2:
     - Added reCaptcha check (thanks @kavishdahekar)
+1.55.3:
+    - Fixed PHP8 compatibility (thanks @kavishdahekar)
