@@ -255,3 +255,5 @@
     - Added reCaptcha check (thanks @kavishdahekar)
 1.55.3:
     - Fixed PHP8 compatibility (thanks @kavishdahekar)
+1.55.4:
+    - Removed unnecessary side panel (thanks @TimFoerster)
