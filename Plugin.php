@@ -89,17 +89,6 @@ class Plugin extends PluginBase {
                 'icon'        => 'icon-inbox',
                 'permissions' => ['janvince.smallcontactform.access_messages'],
                 'order'       => 990,
-
-                'sideMenu' => [
-                    'messages' => [
-                        'label'       => 'janvince.smallcontactform::lang.navigation.messages',
-                        'icon'        => 'icon-envelope-o',
-                        'url'         => Backend::url('janvince/smallcontactform/messages'),
-                        'permissions' => ['janvince.smallcontactform.access_messages']
-                    ],
-
-                ],
-
             ],
 
         ];
