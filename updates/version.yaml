@@ -257,3 +257,5 @@
     - Fixed PHP8 compatibility (thanks @kavishdahekar)
 1.55.4:
     - Removed unnecessary side panel (thanks @TimFoerster)
+1.55.5:
+    - Fixed gtag event code after form sent

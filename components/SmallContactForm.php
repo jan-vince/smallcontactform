@@ -932,7 +932,7 @@ class SmallContactForm extends ComponentBase
     {
 
       case 'gtag':
-        $output[] = "gtag('".$attributes['eventAction']."', { event_category: '" . $attributesGtag['event_category'] . "', event_label: '". $attributesGtag['event_label'] ."' }); ";
+        $output[] = "gtag('".$attributes['hitType']."', '".$attributes['eventAction']."', { event_category: '" . $attributesGtag['event_category'] . "', event_label: '". $attributesGtag['event_label'] ."' }); ";
         break;
 
       default:
