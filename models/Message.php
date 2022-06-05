@@ -163,7 +163,7 @@ class Message extends Model
     /**
      * Build and send autoreply message
      */
-    public function sendAutoreplyEmail($postData, $componentProperties = [], $formAlias, $formDescription, $messageObject, $formNotes){
+    public function sendAutoreplyEmail($postData, $componentProperties, $formAlias, $formDescription, $messageObject, $formNotes){
 
         if(!Settings::getTranslated('allow_autoreply')) {
             return;
