@@ -264,3 +264,5 @@
     - Fixed yaml for OC3 installation
 1.55.7:
     - Removed optional parametr in sendAutoreplyEmail (thanks @TimFoerster)
+1.56.0:
+    - Added Finnish language (thanks @mediaclinic)
