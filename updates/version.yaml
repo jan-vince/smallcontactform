@@ -262,3 +262,5 @@
     - Fixed gtag event code after form sent
 1.55.6:
     - Fixed yaml for OC3 installation
+1.55.7:
+    - Removed optional parametr in sendAutoreplyEmail (thanks @TimFoerster)
