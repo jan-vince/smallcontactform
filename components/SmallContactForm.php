@@ -28,6 +28,8 @@ class SmallContactForm extends ComponentBase
   private $postData = [];
   private $post;
 
+  private $defaultFieldValues = [];
+
   private $errorAutofocus;
 
   private $formDescription;
@@ -237,7 +239,7 @@ class SmallContactForm extends ComponentBase
     public function onRun() {
 
       $this->page['currentLocale'] = App::getLocale();
-      
+
       $this->page['formSentAlias'] = Session::get('formSentAlias', null);
       $this->page['formError'] = Session::get('formError', null);
       $this->page['formSuccess'] = Session::get('formSuccess', null);
@@ -344,13 +346,13 @@ class SmallContactForm extends ComponentBase
     }
 
     //  reCaptcha validation if enabled
-    if(Settings::getTranslated('add_google_recaptcha')) 
+    if(Settings::getTranslated('add_google_recaptcha'))
     {
         try {
             /**
              * Text if allow_url_fopen is disabled
              */
-            if (!ini_get('allow_url_fopen')) 
+            if (!ini_get('allow_url_fopen'))
             {
               $recaptcha = new ReCaptcha(Settings::get('google_recaptcha_secret_key'), new \ReCaptcha\RequestMethod\SocketPost());
             }
@@ -360,8 +362,8 @@ class SmallContactForm extends ComponentBase
             }
 
             $response = $recaptcha->setExpectedHostname($this->validationReCaptchaServerName)->verify(post('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
-        } 
-        catch(\Exception $e) 
+        }
+        catch(\Exception $e)
         {
             Log::error($e->getMessage());
             $errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_placeholder'));
@@ -398,15 +400,15 @@ class SmallContactForm extends ComponentBase
       }
 
       Flash::error(implode(PHP_EOL, $errors));
-            
+
       if (Request::ajax()) {
-        
+
         $this->page['formSentAlias'] = $this->alias;
         $this->page['formError'] = true;
         $this->page['formSuccess'] = null;
 
       } else {
-        
+
         Session::flash('formSentAlias', $this->alias);
         Session::flash('formError', true);
 
@@ -420,13 +422,13 @@ class SmallContactForm extends ComponentBase
 
       // Form main success msg (can be overriden by component property)
       if ($this->property('form_success_msg')) {
-        
+
         $successMsg = $this->property('form_success_msg');
-        
+
       } else {
-        
+
         $successMsg = ( Settings::getTranslated('form_success_msg') ? Settings::getTranslated('form_success_msg') : e(trans('janvince.smallcontactform::lang.settings.form.success_msg_placeholder')) );
-        
+
       }
 
       $message = new Message;
@@ -435,7 +437,7 @@ class SmallContactForm extends ComponentBase
       // Store data in DB
       $formDescription = !empty($this->post['_form_description']) ? e($this->post['_form_description']) : $this->property('form_description');
       $messageObject = $message->storeFormData($this->postData, $this->alias, $formDescription, $formNotes);
-      
+
       // Send autoreply
       $message->sendAutoreplyEmail($this->postData, $this->getProperties(), $this->alias, $formDescription, $messageObject, $formNotes);
 
@@ -473,7 +475,7 @@ class SmallContactForm extends ComponentBase
 
       /**
        *  Redirects
-       *  
+       *
        * Redirect to defined page or to prevent repeated sending of form
        * Clear data after success AJAX send
        */
@@ -492,13 +494,13 @@ class SmallContactForm extends ComponentBase
 
         // If redirection is allowed but no URL provided, just refresh (if not AJAX)
         if(empty($propertyRedirectUrl) and empty(Settings::getTranslated('redirect_url'))) {
-          
+
           Log::warning('SCF: Form redirect is allowed but no URL was provided!');
 
           if (!Request::ajax()) {
 
             return Redirect::refresh();
-            
+
           } else {
 
             return;
@@ -564,6 +566,25 @@ class SmallContactForm extends ComponentBase
     return $fields;
   }
 
+    /**
+     * Set default form field values that are shown if no user input was provided (e.g. prior to submitting).
+     * @param $defaultValues Associative array of field name => field default value
+     * @return void
+     */
+    public function setDefaultFieldValues($defaultValues = [])
+    {
+        $this->defaultFieldValues = $defaultValues;
+    }
+
+    /**
+     * Return the default form field values.
+     * @return array
+     */
+    public function getDefaultFieldValues()
+    {
+        return $this->defaultFieldValues;
+    }
+
   /**
    * Get form attributes
    */
@@ -573,10 +594,10 @@ class SmallContactForm extends ComponentBase
 
     $attributes['request'] = $this->alias . '::onFormSend';
     $attributes['files'] = true;
-    
+
     // Disabled hard coded hash URL in 1.41.0 as dynamic redirect is now available
     // $attributes['url'] = '#scf-' . $this->alias;
-    
+
     $attributes['method'] = 'POST';
     $attributes['class'] = null;
     $attributes['id'] = 'scf-form-id-' . $this->alias;
@@ -639,7 +660,7 @@ class SmallContactForm extends ComponentBase
     $output = [];
 
     $wrapperCss = ( $fieldSettings['wrapper_css'] ? $fieldSettings['wrapper_css'] : $fieldType['wrapper_class'] );
-    
+
     // Add wrapper error class if there are any
     if(!empty($this->postData[$fieldSettings['name']]['error'])){
       $wrapperCss .= ' has-error';
@@ -684,12 +705,13 @@ class SmallContactForm extends ComponentBase
         $attributes['name'] = $fieldSettings['name'];
       }
 
-      if ( !empty($this->postData[$fieldSettings['name']]['value']) && empty($fieldType['html_close']) ) {
-
-        if ($fieldSettings['type'] == 'checkbox') { 
+      $defaultFieldValue =
+          $this->postData[$fieldSettings['name']]['value'] ?? $this->defaultFieldValues[$fieldSettings['name']] ?? null;
+      if ($defaultFieldValue  && empty($fieldType['html_close']) ) {
+        if ($fieldSettings['type'] == 'checkbox') {
           $attributes['checked'] = null;
         } else {
-          $attributes['value'] = $this->postData[$fieldSettings['name']]['value'];
+          $attributes['value'] = $defaultFieldValue;
         }
       }
 
@@ -730,10 +752,10 @@ class SmallContactForm extends ComponentBase
       if( $fieldSettings['type'] == 'dropdown' && count($fieldSettings['field_values']) ) {
 
         $valuesCounter = 1;
-        
+
         foreach($fieldSettings['field_values'] as $fieldValue) {
 
-          if( !empty($this->postData[$fieldSettings['name']]['value']) && $this->postData[$fieldSettings['name']]['value'] == $fieldValue['field_value_id'] ){
+          if( $defaultFieldValue && $defaultFieldValue == $fieldValue['field_value_id'] ){
             $optionAttribute = 'selected';
           } else {
             $optionAttribute = null;
@@ -747,8 +769,8 @@ class SmallContactForm extends ComponentBase
 
       }
       // For pair tags insert value between
-      if(!empty($this->postData[$fieldSettings['name']]['value']) && !empty($fieldType['html_close'])){
-        $output[] = $this->postData[$fieldSettings['name']]['value'];
+      if($defaultFieldValue && !empty($fieldType['html_close'])) {
+        $output[] = $defaultFieldValue;
       }
 
       // For tags without label put text inline
@@ -1006,16 +1028,16 @@ class SmallContactForm extends ComponentBase
     $validationRules = [];
     $validationMessages = [];
     foreach($fieldsDefinition as $field){
-      
+
       if(!empty($field['validation'])) {
         $rules = [];
-        
+
         foreach($field['validation'] as $rule) {
-          
+
           if( $rule['validation_type']=='custom' && !empty($rule['validation_custom_type']) ){
 
             if(!empty($rule['validation_custom_pattern'])) {
-              
+
               switch ($rule['validation_custom_type']) {
 
                 /**
@@ -1034,11 +1056,11 @@ class SmallContactForm extends ComponentBase
                 break;
 
               }
-              
-              
-              
+
+
+
             } else {
-              
+
               $rules[] = $rule['validation_custom_type'];
 
             }
@@ -1046,16 +1068,16 @@ class SmallContactForm extends ComponentBase
             if(!empty($rule['validation_error'])){
 
               $validationMessages[($field['name'] . '.' . $rule['validation_custom_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
-            }  
+            }
 
           } else {
 
-            $rules[] = $rule['validation_type']; 
+            $rules[] = $rule['validation_type'];
 
             if(!empty($rule['validation_error'])){
 
               $validationMessages[($field['name'] . '.' . $rule['validation_type'] )] = Settings::getDictionaryTranslated($rule['validation_error']);
-            }  
+            }
         	}
         }
 
