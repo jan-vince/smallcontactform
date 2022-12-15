@@ -270,3 +270,5 @@
     - Fixed XSS vulnerability (thanks lex0r)
 1.57.0:
     - Updated OC3 compatibility
+1.58.0:
+    - Rewritten recaptcha implementation

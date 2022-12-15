@@ -587,6 +587,10 @@ class SmallContactForm extends ComponentBase
       $attributes['data-request-validate'] = 'data-request-validate';
       $attributes['data-request-files'] = 'data-request-files';
       $attributes['data-request-update'] = "'". $this->alias ."::scf-message':'#scf-message-". $this->alias ."','". $this->alias ."::scf-form':'#scf-form-". $this->alias ."'";
+      
+      if( Settings::get('add_google_recaptcha') ) {
+            $attributes['data-request-complete'] = "onloadCallback_" . $this->alias . '();';
+      }
 
     }
 
@@ -964,7 +968,7 @@ class SmallContactForm extends ComponentBase
 
     $output[] = '<div id="submit-wrapper-' . $this->alias . '" class="' . $wrapperCss . '">';
 
-      $output[] = '<button type="submit" data-attach-loading class="oc-loader ' . ( Settings::getTranslated('send_btn_css_class') ? Settings::getTranslated('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . (Settings::getTranslated('google_recaptcha_version') == 'v2invisible' ? ' g-recaptcha' : '') . '"'. (Settings::getTranslated('google_recaptcha_version') == 'v2invisible' ? (' data-sitekey="' . Settings::getTranslated('google_recaptcha_site_key') . '"') : '') . (Settings::getTranslated('google_recaptcha_version') == 'v2invisible' ? (' data-callback="onSubmit_' . $this->alias . '"') : '') . '>';
+      $output[] = '<button id="submit-button-' . $this->alias . '" type="submit" data-attach-loading class="oc-loader ' . ( Settings::getTranslated('send_btn_css_class') ? Settings::getTranslated('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . '"' . '>';
 
       if ($this->property('send_btn_label')) {
 

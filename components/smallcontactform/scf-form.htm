@@ -22,7 +22,7 @@
 
 			<div class="{{__SELF__.getReCaptchaWrapperClass()}}">
 
-				<div class="g-recaptcha" data-sitekey="{{ settingsGet('google_recaptcha_site_key') }}"></div>
+				<div id="g-recaptcha-{{ __SELF__.alias }}"></div>
 
 			</div>
 
@@ -32,30 +32,81 @@
 
 	{{ form_close() }}
 
-	{% if settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_scripts_allow') %}
-	
-		<script src='https://www.google.com/recaptcha/api.js{{ settingsGet("google_recaptcha_locale_allow") and currentLocale ? ("?hl="~currentLocale) }}' async defer></script>
+{% endif %}
 
-		{% if settingsGet('google_recaptcha_version') == 'v2invisible' %}
 
-			<script>
-				
-				function onSubmit_{{ __SELF__.alias }}(token) {
+{% if settingsGet('add_google_recaptcha') and settingsGet('google_recaptcha_scripts_allow') %}
 
-					return new Promise(function(resolve, reject) { 
+	{% put scripts %}
 
-						//Your code logic goes here
+		{% set apiParams = [] %}
 
-						document.getElementById("{{'scf-form-id-'~__SELF__.alias}}").submit();
-						resolve();
+		{% if settingsGet("google_recaptcha_locale_allow") and currentLocale %}
 
-					}); //end promise
-				}
-
-			</script>
+			{% set apiParams = apiParams|merge(['hl='~currentLocale]) %}
 
 		{% endif %}
 
-	{% endif %}
+		{% set apiParams = apiParams|merge(['onload=onloadCallback_'~__SELF__.alias]) %}
+		{% set apiParams = apiParams|merge(['render=explicit']) %}
+
+		<script src='https://www.google.com/recaptcha/api.js{{ apiParams|length ? '?' ~ apiParams|join('&') }}' async defer></script>
+
+	{% endput %}
+
+
+	{% put scripts %}
+
+	<script>
+
+		var onloadCallback_{{ __SELF__.alias }} = function() {
+
+			{% if settingsGet('google_recaptcha_version') == 'v2invisible' %}
+				grecaptcha.render('submit-button-{{ __SELF__.alias }}', 
+			{% else %}
+				grecaptcha.render('g-recaptcha-{{ __SELF__.alias }}',
+			{% endif %}
+
+				{
+					'sitekey' : '{{ settingsGet('google_recaptcha_site_key') }}',
+					'callback' : onSubmit_{{__SELF__.alias}}
+
+						{% if settingsGet('google_recaptcha_version') == 'v2invisible' %}
+							,
+							'size' : "invisible"
+						{% endif %}
+				}
+			);
+
+		};
+
+		var onresetCallback_{{ __SELF__.alias }} = function() {
+			grecaptcha.reset();
+		}
+
+		{% if settingsGet('form_allow_ajax') and settingsGet('google_recaptcha_version') == 'v2invisible' %}
+		
+			$('#scf-form-id-{{ __SELF__.alias }} button[type=submit]').click(function (event) {
+
+				grecaptcha.execute();
+
+			});
+
+		{% endif %}
+
+		function onSubmit_{{ __SELF__.alias }}(token) {
+
+			{% if settingsGet('form_allow_ajax') %}
+				$('#scf-form-id-{{ __SELF__.alias }} button[type=submit]').submit();
+			{% else %}
+				$('#scf-form-id-{{ __SELF__.alias }}').submit();
+			{% endif %}
+
+		}
+
+	</script>
+
+	{% endput %}
 
 {% endif %}
+
