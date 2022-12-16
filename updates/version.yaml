@@ -272,3 +272,5 @@
     - Updated OC3 compatibility
 1.58.0:
     - Rewritten recaptcha implementation
+1.59.0:
+    - Simplified recapchta code
