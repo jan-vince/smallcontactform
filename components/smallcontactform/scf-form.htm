@@ -54,7 +54,6 @@
 
 	{% endput %}
 
-
 	{% put scripts %}
 
 	<script>
@@ -77,7 +76,11 @@
 				$('#scf-form-id-{{ __SELF__.alias }} button[type=submit]').click(function (event) {
 
 					event.preventDefault();
-					grecaptcha.execute();
+
+					var formRecaptchaObject = document.getElementById('g-recaptcha-{{ __SELF__.alias }}');
+
+					grecaptcha.execute(formRecaptchaObject);
+					
 				});
 			{% endif %}
 
@@ -86,11 +89,9 @@
 
 		function onSubmit_{{ __SELF__.alias }}(token) {
 
-			{% if settingsGet('form_allow_ajax') %}
-				$('#scf-form-id-{{ __SELF__.alias }}').submit();
-			{% else %}
-				$('#scf-form-id-{{ __SELF__.alias }}').submit();
-			{% endif %}
+			$('form[id^="scf-form-id"]').each(function(){
+				$(this).submit();
+			});
 
 		}
 

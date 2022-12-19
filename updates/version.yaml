@@ -274,3 +274,5 @@
     - Rewritten recaptcha implementation
 1.59.0:
     - Simplified recapchta code
+1.59.1:
+    - Updated recaptcha invisible to support more forms on page
