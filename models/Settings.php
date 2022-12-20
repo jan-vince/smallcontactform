@@ -324,7 +324,7 @@ class Settings extends Model
 
     if ($pluginManager && !$pluginManager->disabled) {
 
-      $locales = \RainLab\Translate\Models\Locale::listEnabled();
+      $locales = \RainLab\Translate\Classes\Locale::listEnabled();
 
       return $locales;
 
