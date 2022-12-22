@@ -186,11 +186,23 @@ Implementation of Google reCaptcha antispam protection.
 
 First you have to create new API keys pair in reCaptcha admin panel.
 
-Hit **Get reCAPTCHA** button on [reCaptcha wellcome page](https://www.google.com/recaptcha). Set label and check reCAPTCHA v2 option and hit button Register. Note that you will have to add `localhost` to the allowed domains list if you want the recaptcha validation to work locally.
+Hit **Get reCAPTCHA** button on [reCaptcha wellcome page](https://www.google.com/recaptcha). Set label and check reCAPTCHA v2 (or v2 invisible) option and hit button Register.
 
 Copy Site key and Secret key to Contact Form's settings fields.
 
 If you want Contact Form to automatically include server scripts in your layout, check the button in Form settings.
+
+###### reCaptcha invisible
+
+If you use reCaptcha invisible and want to hide reCaptcha badge, you can add to your styles:
+```
+.grecaptcha-badge { 
+    visibility: hidden;
+}
+```
+
+But remember to add info about [Privacy policy](https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge.-what-is-allowed) near your contact form (or as a custom content field).
+
 
 #### Check sender's IP
 
