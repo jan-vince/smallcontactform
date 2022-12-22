@@ -278,3 +278,5 @@
     - Updated recaptcha invisible to support more forms on page
 1.59.2:
     - Fix for support more forms on page
+1.60.0:
+    - Fixed OCv2 compatibility (thanks @LZaplata)
