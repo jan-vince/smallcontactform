@@ -324,8 +324,22 @@ class Settings extends Model
 
     if ($pluginManager && !$pluginManager->disabled) {
 
-      $locales = \RainLab\Translate\Classes\Locale::listEnabled();
-
+      if( class_exists('\RainLab\Translate\Models\Locale') ) 
+      {
+          $locales = \RainLab\Translate\Models\Locale::listEnabled();
+      }
+      elseif( class_exists('\RainLab\Translate\Classes\Locale') )
+      {
+          $locales = \RainLab\Translate\Classes\Locale::listEnabled();
+      }
+      else
+      {
+          // English fallback
+          $locales = [
+              'en' => 'English',
+          ];
+      }
+      
       return $locales;
 
     } elseif( App::getLocale() ) {
