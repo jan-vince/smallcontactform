@@ -282,3 +282,5 @@
     - Fixed OCv2 compatibility (thanks @LZaplata)
 1.60.1:
     - Fixed OCv1 and OCv2 compatibility
+1.60.2:
+    - Fixed JS code for multiple form usage

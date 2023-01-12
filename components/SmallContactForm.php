@@ -833,8 +833,16 @@ class SmallContactForm extends ComponentBase
 
     $output[] = "
       <script>
-        document.getElementById('_protect-" . $this->alias . "').setAttribute('value', '');
-        document.getElementById('_protect-wrapper-" . $this->alias . "').style.display = 'none';
+        var protectedDivs = document.querySelectorAll('#_protect-" . $this->alias . "');
+        protectedDivs.forEach((item) => {
+          item.setAttribute('value', '');
+        });
+        
+        var wrapperDivs = document.querySelectorAll('#_protect-wrapper-" . $this->alias . "');
+        wrapperDivs.forEach((item) => {
+          item.style.display = 'none';
+        });
+        
       </script>
     ";
 
