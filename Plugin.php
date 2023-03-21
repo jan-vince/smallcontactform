@@ -12,7 +12,8 @@ use Log;
 
 
 use JanVince\SmallContactForm\Models\Settings;
-
+use JanVince\SmallContactForm\Rules\CustomNotRegexRule;
+use System;
 
 class Plugin extends PluginBase {
 
@@ -35,34 +36,16 @@ class Plugin extends PluginBase {
         ];
     }
 
+    public function register() {
+        if (version_compare(System::VERSION, '3.0.0', '>=')) {
+            $this->registerValidationRule('custom_not_regex', CustomNotRegexRule::class);
+        }
+    }
+
     public function boot() {
-
-        /**
-         * Custom Validator rules
-         */
-        Validator::extend('custom_not_regex', function ($attribute, $value, $parameters) {
-
-            if (is_array($parameters)) {
-                $param = $parameters[0];
-            } else {
-                $param = $parameters;
-            }
-
-            try {
-                $result = preg_match($param, $value);
-
-                if ($result === 1) {
-                    return false;
-                } else {
-                    return true;
-                }
-            } catch (\Exception $e) {
-                Log::error('Error in Small Contact Form custom_not_regex validation rule! ' . $e->getMessage());
-            }
-
-            return false;
-        });
-
+        if (version_compare(System::VERSION, '3.0.0', '<')) {
+            Validator::extend('custom_not_regex', CustomNotRegexRule::class);
+        }
     }
 
     public function registerSettings() {
