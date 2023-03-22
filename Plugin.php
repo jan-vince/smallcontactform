@@ -2,18 +2,11 @@
 
 namespace JanVince\SmallContactForm;
 
-use \Illuminate\Support\Facades\Event;
-use System\Classes\PluginBase;
-use System\Classes\PluginManager;
-use Config;
 use Backend;
 use Validator;
-use Log;
-
-
 use JanVince\SmallContactForm\Models\Settings;
 use JanVince\SmallContactForm\Rules\CustomNotRegexRule;
-use System;
+use System\Classes\PluginBase;
 
 class Plugin extends PluginBase {
 
@@ -36,14 +29,24 @@ class Plugin extends PluginBase {
         ];
     }
 
+    /**
+     * Register Plugin Hook
+     *
+     * @return void
+     */
     public function register() {
-        if (version_compare(System::VERSION, '3.0.0', '>=')) {
+        if (class_exists(\System::class) && version_compare(\System::VERSION, '3.0.0', '>=')) {
             $this->registerValidationRule('custom_not_regex', CustomNotRegexRule::class);
         }
     }
 
+    /**
+     * Boot Plugin Hook
+     *
+     * @return void
+     */
     public function boot() {
-        if (version_compare(System::VERSION, '3.0.0', '<')) {
+        if (!class_exists(\System::class) || (class_exists(\System::class) && version_compare(\System::VERSION, '3.0.0', '<'))) {
             Validator::extend('custom_not_regex', CustomNotRegexRule::class);
         }
     }

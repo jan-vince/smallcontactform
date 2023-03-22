@@ -19,6 +19,18 @@ class CustomNotRegexRule
     {
         $param = is_array($params) ? $params[0] : $params;
 
+        // Fallback solution to add ':regex' replacer on OCv1 installations
+        if (!class_exists(\System::class)) {
+            /** @var \October\Rain\Validation\Validator */
+            $validator = func_get_arg(3);
+            if (!array_key_exists('custom_not_regex', $validator->replacers)) {
+                $self = $this;
+                $validator->addReplacer('custom_not_regex', function ($message, $attribute, $rule, $parameters) use ($self) {
+                    return $self->replace($message, $attribute, $rule, $parameters);
+                });
+            }
+        }
+
         try {
             $result = preg_match($param, $value);
 
