@@ -8,7 +8,7 @@ class CustomNotRegexRule
 {
 
     /**
-     * Validate Rule
+     * Apply Validation Rule
      * 
      * @param string $attribute
      * @param mixed $value
@@ -25,8 +25,8 @@ class CustomNotRegexRule
             $validator = func_get_arg(3);
             if (!array_key_exists('custom_not_regex', $validator->replacers)) {
                 $self = $this;
-                $validator->addReplacer('custom_not_regex', function ($message, $attribute, $rule, $parameters) use ($self) {
-                    return $self->replace($message, $attribute, $rule, $parameters);
+                $validator->addReplacer('custom_not_regex', function () use ($self) {
+                    return call_user_func_array([$self, 'replace'], func_get_args());
                 });
             }
         }
@@ -47,7 +47,7 @@ class CustomNotRegexRule
     }
 
     /**
-     * Custom Validation Error Message
+     * Validation Error Message
      * 
      * @return string
      */
@@ -57,7 +57,7 @@ class CustomNotRegexRule
     }
 
     /**
-     * Replace Regex
+     * Replace Regex Placeholder
      *
      * @param string $message
      * @param string $attribute
