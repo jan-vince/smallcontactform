@@ -67,6 +67,10 @@ class CustomNotRegexRule
      */
     public function replace($message, $attribute, $rule, $parameters)
     {
+        // Laravel 5.5 Fallback solution for OCv1.0
+        if ($message === 'validation.custom_not_regex') {
+            $message = str_replace(':attribute', $attribute, $this->message());
+        }
         return str_replace(':regex', $parameters[0], $message);
     }
 
