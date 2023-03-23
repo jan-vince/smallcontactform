@@ -669,7 +669,7 @@ class SmallContactForm extends ComponentBase
 
       // Add help-block if there are errors
       if(!empty($this->postData[$fieldSettings['name']]['error'])){
-        $output[] = '<small class=" invalid-feedback">' . Settings::getDictionaryTranslated($this->postData[$fieldSettings['name']]['error']) . "</small>";
+        $output[] = '<small class=" invalid-feedback">' . $this->postData[$fieldSettings['name']]['error'] . "</small>";
       }
 
       // Field attributes

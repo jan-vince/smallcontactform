@@ -286,3 +286,5 @@
     - Fixed JS code for multiple form usage
 1.61.0:
     - Fixed custom validation rule (thanks @SamBrishes)
+1.62.0:
+    - Fixed error messages translation (thanks @massimomegistus)
