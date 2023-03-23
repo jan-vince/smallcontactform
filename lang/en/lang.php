@@ -156,6 +156,9 @@ return [
       'allow_ajax' => 'Enable AJAX',
       'allow_ajax_comment' => 'Allow AJAX with fallback for non JavaScript browsers',
 
+      'disable_plain_post' => 'Disable plain POST',
+      'disable_plain_post_comment' => 'Disable fallback to plain POST (can prevent some spammers)',
+
       'allow_confirm_msg' => 'Ask confirmation before form send',
       'allow_confirm_msg_comment' => 'Add confirm dialog before sending',
 

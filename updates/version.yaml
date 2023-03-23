@@ -288,3 +288,5 @@
     - Fixed custom validation rule (thanks @SamBrishes)
 1.62.0:
     - Fixed error messages translation (thanks @massimomegistus)
+1.63.0:
+    - Added option to disable PLAIN post when AJAX is enabled (thanks @TimFoerster)

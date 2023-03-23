@@ -151,6 +151,9 @@ return [
       'allow_ajax' => 'Povolit AJAX',
       'allow_ajax_comment' => 'Povolí AJAX, ale umožní fungování formuláře i na prohlížečích s vypnutým JavaScriptem',
 
+      'disable_plain_post' => 'Zakázat odeslání pomocí POST',
+      'disable_plain_post_comment' => 'Zakáže možnost odeslat formulář pomocí metody POST (může částečně chránit proti spamu)',
+
       'allow_confirm_msg' => 'Požadovat potvrzení před odesláním',
       'allow_confirm_msg_comment' => 'Zobrazí potvrzovací okno před odesláním formuláře',
 

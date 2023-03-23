@@ -57,6 +57,18 @@ tabs:
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.form'
 
+        form_disable_plain_post:
+            label: 'janvince.smallcontactform::lang.settings.form.disable_plain_post'
+            comment: 'janvince.smallcontactform::lang.settings.form.disable_plain_post_comment'
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: form_allow_ajax
+                condition: checked
+
         form_allow_confirm_msg:
             label: 'janvince.smallcontactform::lang.settings.form.allow_confirm_msg'
             comment: 'janvince.smallcontactform::lang.settings.form.allow_confirm_msg_comment'

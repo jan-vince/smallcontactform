@@ -280,6 +280,15 @@ class SmallContactForm extends ComponentBase
   public function onFormSend(){
 
     /**
+     * Do not allow plaint POST when AJAX is enabled and POST disabled in Settings
+     */
+
+    if(Settings::get('form_allow_ajax', null) and Settings::get('form_disable_plain_post', null) and !Request::ajax())
+    {
+      return Redirect::refresh();
+    }
+
+    /**
      * Validation
      */
     $this->setFieldsValidationRules();
