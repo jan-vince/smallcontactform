@@ -284,3 +284,5 @@
     - Fixed OCv1 and OCv2 compatibility
 1.60.2:
     - Fixed JS code for multiple form usage
+1.61.0:
+    - Fixed custom validation rule (thanks @SamBrishes)
