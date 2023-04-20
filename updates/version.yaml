@@ -291,4 +291,6 @@
 1.63.0:
     - Added option to disable PLAIN post when AJAX is enabled (thanks @TimFoerster)
 1.63.1:
-    - Fixed reCaptcha script
+    - Fixed reCaptcha script    
+1.63.2:
+    - Better invisible reCaptcha implementation

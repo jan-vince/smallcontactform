@@ -66,39 +66,41 @@
 
 						{% if settingsGet('google_recaptcha_version') == 'v2invisible' %}
 							,
-							'size' : "invisible"
-						{% endif %}
-
-						{% if settingsGet('google_recaptcha_version') == 'v2invisible' %}
-							,
+							'size' : "invisible",
 							'callback' : onSubmit_{{__SELF__.alias}}
-
 						{% endif %}
+						
 				}
 			);
-		};
 
-		{% if settingsGet('google_recaptcha_version') == 'v2invisible' %}
+			{% if settingsGet('google_recaptcha_version') == 'v2invisible' %}
 
-			$('#scf-form-id-{{ __SELF__.alias }} button[type=submit]').click(function (event) {
+				$('#scf-form-id-{{ __SELF__.alias }} button[type=submit]').click(function (event) {
 
-				event.preventDefault();
+					event.preventDefault();
 
-				var formRecaptchaObject = document.getElementById('g-recaptcha-{{ __SELF__.alias }}');
+					var formRecaptchaObject = document.getElementById('g-recaptcha-{{ __SELF__.alias }}');
 
-				grecaptcha.execute();
-				
-			});
-
-			function onSubmit_{{ __SELF__.alias }}(token) {
-
-				$('form[id^="scf-form-id"]').each(function(){
-					$(this).submit();
+					grecaptcha.execute();
+					
 				});
 
-			}
+				function onSubmit_{{ __SELF__.alias }}(token) {
 
-		{% endif %}
+					$('form[id^="scf-form-id"]').each(function(){
+
+						{% if settingsGet('form_allow_ajax', null) %}
+							$(this).request();
+						{% else %}
+							$(this).submit();
+						{% endif %}
+					});
+
+				}
+
+			{% endif %}
+			
+		};
 
 
 	</script>

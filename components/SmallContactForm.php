@@ -584,7 +584,9 @@ class SmallContactForm extends ComponentBase
     $attributes['files'] = true;
     
     // Disabled hard coded hash URL in 1.41.0 as dynamic redirect is now available
-    // $attributes['url'] = '#scf-' . $this->alias;
+    if ( empty(Settings::getTranslated('allow_redirect', null) ) ) {
+      $attributes['url'] = '#scf-' . $this->alias;
+    }
     
     $attributes['method'] = 'POST';
     $attributes['class'] = null;
