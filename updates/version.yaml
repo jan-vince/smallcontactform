@@ -290,3 +290,5 @@
     - Fixed error messages translation (thanks @massimomegistus)
 1.63.0:
     - Added option to disable PLAIN post when AJAX is enabled (thanks @TimFoerster)
+1.63.1:
+    - Fixed reCaptcha script
