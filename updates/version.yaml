@@ -294,3 +294,6 @@
     - Fixed reCaptcha script    
 1.63.2:
     - Better invisible reCaptcha implementation
+1.63.3:
+    - Fixed valid HTML for placeholders
+
