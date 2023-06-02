@@ -139,7 +139,7 @@ return [
 
     'form' => [
 
-      'css_class' => 'Lomakkeen CSS-luokat',
+      'css_class' => 'Lomakkeen CSS-luokka',
 
       'use_placeholders' => 'Käytä esimerkkitekstiä',
       'use_placeholders_comment' => 'Esimerkkiteksti näytetään kenttien otsikoiden sijasta',
@@ -245,7 +245,7 @@ return [
       'field_css_placeholder' => 'form-control',
 
       'label_css' => 'Label CSS-luokka',
-      'label_css_placeholder' => '',
+      'label_css_placeholder' => 'form-label',
 
       'field_validation' => 'Kentän validointi',
       'field_validation_comment' => 'Lisää kentän validointisäännöt',
@@ -428,12 +428,12 @@ return [
     'mapping' => [
 
       'hint' => [
-        'title' => 'Miksi mappaus?',
+        'title' => 'Miksi kohdentaminen?',
         'content' => '
         <p>Voit rakentaa oman lomakkeen omilla kentillä ja kenttätyypeillä.</p>
         <p>Järjestelmä kirjoittaa kaiken tiedon tietokantaan, mutta pikaselausta varten Nimi-, Sähköposti- ja Viesti-sarakkeet ovat erikseen näkyvissä viestilistauksessa.</p>
-        <p>Helpottaaksesi järjestelmää ymmärtämään kenttien riippuvuudet, sinun on mäpättävä ne manuaalisesti.</p>
-        <p><em>Näitä mäppäyksiä hyödynnetään myös autoreply-viesteissä, missä vähintään sähköpostikenttä on tärkeä.</em></p>
+        <p>Helpottaaksesi järjestelmää ymmärtämään kenttien riippuvuudet, sinun on kohdennettava ne manuaalisesti.</p>
+        <p><em>Näitä kohdennuksia hyödynnetään myös autoreply-viesteissä, missä vähintään sähköpostikenttä on tärkeä.</em></p>
         ',
       ],
 
@@ -456,7 +456,7 @@ return [
       'form' => 'Lomake',
       'buttons' => 'Lähetä-nappula',
       'form_fields' => 'Kentät',
-      'mapping' => 'Columns mapping',
+      'mapping' => 'Kenttien kohdistaminen',
       'email' => 'Sähköposti',
       'antispam' => 'Roskapostisuodatus',
       'privacy' => 'Yksityisyys',
