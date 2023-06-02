@@ -289,8 +289,8 @@ return [
     ],
 
     'form_field_types' => [
-      'text' => 'Teksi',
-      'email' => 'Email',
+      'text' => 'Teksti',
+      'email' => 'Sähköposti',
       'textarea' => 'Tekstialue',
       'checkbox' => 'Valintaruutu',
       'dropdown' => 'Pudotusvalikko',
