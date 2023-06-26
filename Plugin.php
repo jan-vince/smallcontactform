@@ -6,6 +6,7 @@ use Backend;
 use Validator;
 use JanVince\SmallContactForm\Models\Settings;
 use JanVince\SmallContactForm\Rules\CustomNotRegexRule;
+use JanVince\SmallContactForm\Classes\UnreadRecords;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase {
@@ -75,6 +76,7 @@ class Plugin extends PluginBase {
                 'icon'        => 'icon-inbox',
                 'permissions' => ['janvince.smallcontactform.access_messages'],
                 'order'       => 990,
+                'counter'      => UnreadRecords::getTotal(),
             ],
 
         ];
