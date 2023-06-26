@@ -296,4 +296,5 @@
     - Better invisible reCaptcha implementation
 1.63.3:
     - Fixed valid HTML for placeholders
-
+1.63.4:
+    - Added navigation item counter (thanks @ZhiweiWu0425)
