@@ -1,14 +1,21 @@
 <?php
-
 namespace JanVince\SmallContactForm\Classes;
 
 use JanVince\SmallContactForm\Models\Message;
 
 class UnreadRecords {
-//未读记录
-    public static function getTotal() {
-        $unread = Message::where('new_message', 1)->count();
-        return ($unread > 0) ? $unread : null;
+
+    public static function getTotal() 
+    {
+        $unread = null;
+
+        try {
+            $unread = Message::where('new_message', 1)->count();
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+        }
+
+        return $unread;
     }
 
 }

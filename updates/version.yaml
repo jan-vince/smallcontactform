@@ -298,3 +298,5 @@
     - Fixed valid HTML for placeholders
 1.63.4:
     - Added navigation item counter (thanks @ZhiweiWu0425)
+1.63.5:
+    - Fixed messages counter
