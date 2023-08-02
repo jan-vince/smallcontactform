@@ -300,3 +300,5 @@
     - Added navigation item counter (thanks @ZhiweiWu0425)
 1.63.5:
     - Fixed messages counter
+1.63.6:
+    - Fixed Bootstrap 5 validation classes

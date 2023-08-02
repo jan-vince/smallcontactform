@@ -609,10 +609,6 @@ class SmallContactForm extends ComponentBase
         $attributes['class'] .= Settings::getTranslated('form_css_class');
     }
 
-    if( !empty(Input::all()) ) {
-      $attributes['class'] .= ' was-validated';
-    }
-
     if( Settings::getTranslated('form_send_confirm_msg') and Settings::getTranslated('form_allow_confirm_msg') ) {
 
       $attributes['data-request-confirm'] = Settings::getTranslated('form_send_confirm_msg');
@@ -657,7 +653,7 @@ class SmallContactForm extends ComponentBase
     
     // Add wrapper error class if there are any
     if(!empty($this->postData[$fieldSettings['name']]['error'])){
-      $wrapperCss .= ' has-error';
+      $wrapperCss .= ' is-invalid';
     }
 
     $output[] = '<div class="' . $wrapperCss . '">';
