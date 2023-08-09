@@ -173,6 +173,10 @@ class Settings extends Model
     $output = [];
     $outputAll = [];
 
+    if(!is_array(Settings::getTranslated('form_fields', []))) {
+      return [];
+    }
+
     foreach (Settings::getTranslated('form_fields', []) as $field) {
 
             $fieldName = $field['name'] . ' ['. $field ['type'] . ']';

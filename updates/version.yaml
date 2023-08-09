@@ -302,3 +302,5 @@
     - Fixed messages counter
 1.63.6:
     - Fixed Bootstrap 5 validation classes
+1.63.7:
+    - Added check to empty form fields array
