@@ -89,8 +89,10 @@ return [
       'preview_title' => 'Contact form message',
       'preview_date' => 'From date:',
       'preview_content_title' => 'Content:',
-      'remote_ip' => 'Sent from ip',
+      'remote_ip' => 'Sent from IP',
       'export' => 'Export',
+      'file' => 'File',
+      'uploads' => 'Uploads'
     ],
 
     'index' => [

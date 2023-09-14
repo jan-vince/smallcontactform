@@ -84,11 +84,13 @@ return [
       'preview' => 'Náhled',
       'preview_title' => 'Zpráva z kontaktního formuláře',
       'preview_date' => 'Ze dne:',
-      'preview_content_title' => 'Obsah:',
-      'remote_ip' => 'odesláno z ip',
+      'preview_content_title' => 'Obsah',
+      'remote_ip' => 'Odesláno z IP',
       'form_alias' => 'Alias',
       'form_description' => 'Popisek',   
       'export' => 'Export', 
+      'file' => 'Soubor', 
+      'uploads' => 'Přílohy', 
     ],
 
     'index' => [

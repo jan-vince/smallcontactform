@@ -9,56 +9,78 @@
 
     <div class="preview">
 
-		<h3><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.preview_title')) ); ?></h3>
+        <div class="header">
 
-		<p><strong><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.preview_date')) ); ?></strong> <?php echo($message->created_at->format('j.n.Y H:i:s')); ?></p>
+		    <h2><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.preview_title')) ); ?></h2>
 
-		<br>
+		    <p><strong><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.preview_date')) ); ?></strong> <?php echo($message->created_at->format('j.n.Y H:i:s')); ?></p>
+        
+        </div>
 
-		<p><strong><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.preview_content_title')) ); ?></strong></p>
+        <div class="content" style="margin-top: 30px;">
 
-		<table>
+            <table class="table table-hover table-striped table-bordered">
 
-			<?php foreach($message->form_data as $key => $field) : ?>
+                <?php foreach($message->form_data as $key => $field) : ?>
 
-				<tr>
-					<th class="p-r-md" style="vertical-align: top;"><?php echo($key); ?></th>
-					<td><?php echo( nl2br(e($field)) ) ?></td>
-				</tr>
+                    <tr>
+                        <th class="p-r-md" style="vertical-align: top; width: 20%;"><?php echo($key); ?></th>
+                        <td><?php echo( nl2br(e($field)) ) ?></td>
+                    </tr>
 
-			<?php endforeach ?>
+                <?php endforeach ?>
 
-            <?php if ($message->uploads): ?>
+                <?php if ($message->uploads): ?>
 
-                <tr>
-                    <th>Uploads</th>
-                    <td>
-                        <?php foreach($message->uploads as $upload) : ?>
+                    <tr>
+                        <td colspan=2></td>
+                    </tr>
 
-                            <a href="<?php echo( $upload->getPath() ) ?>" target="blank">
-                                <img src="<?php echo( $upload->getThumb(300,300) ) ?>">
-                            </a>
+                    <tr>
+                        <th><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.uploads')) ); ?></th>
+                        <td>
 
-                        <?php endforeach ?>
-                    </td>
-                </tr>
-            <?php endif ?>
+                            <ul style="margin: 0;">
+                            <?php foreach($message->uploads as $upload) : ?>
+    
+                                <li>
+                                    <a href="<?php echo( $upload->getPath() ) ?>" target="blank">
+                                        <?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.file')) ); ?>
+                                    </a>
+                                </li>
 
-                <tr>
-                    <th class="p-r-md"><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.remote_ip')) ); ?></th>
-                    <td><?php if(!empty($message->remote_ip)) { echo($message->remote_ip); } ?></td>
+                            <?php endforeach ?>
 
-                <tr>
-                    <th class="p-r-md"><?php echo(e(trans('janvince.smallcontactform::lang.components.properties.form_description')) ); ?></th>
-                    <td><?php if(!empty($message->form_description)) { echo($message->form_description); } ?></td>
+                            </ul>
+                        </td>
+                    </tr>
+                <?php endif ?>
 
-		</table>
+                    <tr><td colspan=2></td></tr>
+                    
+                    <tr>
+                        <th class="p-r-md"><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.remote_ip')) ); ?></th>
+                        <td><?php if(!empty($message->remote_ip)) { echo($message->remote_ip); } ?></td>
 
-		<br>
+                    <tr>
+                        <th class="p-r-md"><?php echo(e(trans('janvince.smallcontactform::lang.components.properties.form_description')) ); ?></th>
+                        <td><?php if(!empty($message->form_description)) { echo($message->form_description); } ?></td>
 
-        <br>
+                    <tr>
+                        <th class="p-r-md">URL</th>
+                        <td><?php if(!empty($message->url)) { echo($message->url); } ?></td>
+
+                    <tr>
+                        <th class="p-r-md">Alias</th>
+                        <td><?php if(!empty($message->form_alias)) { echo($message->form_alias); } ?></td>
+
+            </table>
+
+        </div>
 
     </div>
+
+<br>
 
 <?php else: ?>
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
