@@ -306,3 +306,5 @@
     - Added check to empty form fields array
 1.64.0:
     - Simplified default mail views for EN and CS. Added demo CMS page for mail views testing.
+1.65.0:
+    - Updated Messages export
