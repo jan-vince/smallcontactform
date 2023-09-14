@@ -310,3 +310,5 @@
     - Updated Messages export
 1.65.1:
     - Hide fields with empty values in default mail views for autoreply
+1.65.2:
+    - Updated default mail views subjects
