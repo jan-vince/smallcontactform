@@ -12,11 +12,15 @@ subject = "Contact form autoreply (EN)"
 
         {% for field in fieldsDetails %}
 
-        <p>
-            <strong><small>{{ field.label }}</strong></small>
-            <br>
-            <small>{{ field.value|raw|nl2br }}<small>
-        </p>
+            {% if field.value %}
+
+                <p>
+                    <strong><small>{{ field.label }}</strong></small>
+                    <br>
+                    <small>{{ field.value|raw|nl2br }}<small>
+                </p>
+                
+            {% endif %}
 
         {% endfor %}
 

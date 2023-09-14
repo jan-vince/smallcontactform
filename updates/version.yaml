@@ -308,3 +308,5 @@
     - Simplified default mail views for EN and CS. Added demo CMS page for mail views testing.
 1.65.0:
     - Updated Messages export
+1.65.1:
+    - Hide fields with empty values in default mail views for autoreply
