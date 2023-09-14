@@ -1,71 +1,26 @@
-subject = "Potvrzení doručení zprávy z kontaktního formuláře"
+subject = "Contact form autoreply (CS)"
 ==
+<p>Dobrý den,
 
-Dobrý den,
-
-posíláme potvrzení přijetí vaší zprávy odeslané z kontaktního formuláře.
-
-{% if fields|length %}
-Vyplnil/a jste toto:
-
-<table border="0">
-
-	<tbody>
-
-        {% for field in fieldsDetails %}
-
-            {% if field.label == 'form_description' or field.label == 'form_alias' %}
-            {% else %}
-
-                <tr>
-                    <th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
-                    <td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
-                </tr>
-
-            {% endif %}
-
-        {% endfor %}
-
-	</tbody>
-
-</table>
-
-{% endif %}
-
-
-S pozdravem,
-
-Kontaktní formulář
-
-
-==
-
-<p>Dobrý den,</p>
-
-<p>posíláme potvrzení přijetí vaší zprávy odeslané z kontaktního formuláře.</p>
-
-{% if fields|length %}
-
-<br>
+<br>posíláme potvrzení o odeslání kontaktního formuláře.</p>
 
 <p>Vyplnil/a jste toto:</p>
 
-<table border="0">
+{% if fieldsDetails|length %}
 
-	<tbody>
+    {% partial 'panel' body %}
 
-		{% for field in fieldsDetails %}
+        {% for field in fieldsDetails %}
 
-			<tr>
-				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
-				<td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
-			</tr>
+        <p>
+            <strong><small>{{ field.label }}</strong></small>
+            <br>
+            <small>{{ field.value|raw|nl2br }}<small>
+        </p>
 
-		{% endfor %}
+        {% endfor %}
 
-	</tbody>
-
-</table>
+    {% endpartial %}
 
 {% endif %}
 

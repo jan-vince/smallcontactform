@@ -1,0 +1,54 @@
+title = "Mail tester"
+url = "/mailtest"
+layout = "default"
+is_hidden = 1
+==
+<?php
+
+use System\Classes\MailManager;
+use System\Models\MailLayout;
+use System\Models\MailTemplate;
+use JanVince\SmallContactForm\Models\Message;
+
+function onEnd() {
+
+    $message = Message::find(6);  // Change to any ID
+
+    $data = [
+        'subject' => 'Message from Contact Form',
+        'appName' => 'My site',
+        'messageObject' => $message,
+        'uploads' => $message->uploads,
+        'url' => $message->url,
+        'form_description' => $message->form_description,
+        'form_alias' => $message->form_alias,
+        'form_data' => $message->form_data,
+        'fieldsDetails' => [
+            0 => [
+                'label' => 'Name',
+                'value' => 'John Doe',
+            ],
+            1 => [
+                'label' => 'E-mail',
+                'value' => 'john@doe.com',
+            ],
+            2 => [
+                'label' => 'Message',
+                'value' => 'Lorem ipsum dolor sit <br>et amet',
+            ],
+        ]
+    ];
+
+    $layout = new MailLayout;
+    $layout->fillFromCode('default');
+
+    $template = new MailTemplate;
+    $template->layout = $layout;
+    $template->fillFromContent(File::get(base_path('plugins/janvince/smallcontactform/views/mail/notification.htm')));
+
+    return MailManager::instance()->renderTemplate($template, $data);
+
+}
+
+?>
+==

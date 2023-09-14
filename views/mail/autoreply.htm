@@ -1,72 +1,26 @@
-subject = "Contact form confirmation"
+subject = "Contact form autoreply (EN)"
 ==
+<p>Hello,
 
-Hello,
+<br>this is the confirmation message from the Contact Form.</p>
 
-this is a confirmation from Contact form.
+<p>You sent this:</p>
 
 {% if fieldsDetails|length %}
-You have sent this:
 
-<table border="0">
-
-    <tbody>
+    {% partial 'panel' body %}
 
         {% for field in fieldsDetails %}
 
-            {% if field.label == 'form_description' or field.label == 'form_alias' %}
-            {% else %}
-
-                <tr>
-                    <th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
-                    <td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
-                    <th>{{field.label}}</th>
-                </tr>
-
-            {% endif %}
+        <p>
+            <strong><small>{{ field.label }}</strong></small>
+            <br>
+            <small>{{ field.value|raw|nl2br }}<small>
+        </p>
 
         {% endfor %}
 
-    </tbody>
-
-</table>
-
-{% endif %}
-
-
-Best regards,
-
-Contact form
-
-
-==
-
-<p>Hello,</p>
-
-<p>this is a confirmation from Contact form.</p>
-
-{% if fieldsDetails|length %}
-
-<br>
-
-<p>You have sent this:</p>
-
-<table border="0">
-
-    <tbody>
-
-		{% for field in fieldsDetails %}
-
-			<tr>
-				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ field.label }}</th>
-				<td style="text-align: left;">{{ field.value|raw|nl2br }}</td>
-			</tr>
-
-		{% endfor %}
-
-    </tbody>
-
-</table>
+    {% endpartial %}
 
 {% endif %}
 
@@ -74,4 +28,4 @@ Contact form
 
 <p>Best regards,<br>
 
-Contact form</p>
+Contact Form</p>

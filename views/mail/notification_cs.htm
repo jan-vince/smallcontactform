@@ -1,71 +1,66 @@
-subject = "Oznámení o odeslání kontaktního formuláře"
+subject = "Contact form notification (CS)"
 ==
+<p>Dobrý den,
 
-Dobrý den,
+<br>toto je notifikace o odeslání zprávy z kontaktního formuláře.</p>
 
-toto je oznámení o odeslání kontaktního formuláře.
+<p>Data formuláře:</p>
 
-{% if fields|length %}
-Odeslaný obsah:
+{% if fieldsDetails|length %}
 
-<table border="0">
+    {% partial 'panel' body %}
 
-	<tbody>
+        {% for field in fieldsDetails %}
 
-		{% for key,value in fields %}
+        <p>
+            <strong><small>{{ field.label }}</strong></small>
+            <br>
+            <small>{{ field.value|raw|nl2br }}<small>
+        </p>
 
-			<tr>
-				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key|upper }}</th>
-				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
-			</tr>
-	
-		{% endfor %}
+        {% endfor %}
 
-	</tbody>
+		{% if uploads|length %}
 
-</table>
+			<p>
+				<strong><small>Nahrané soubory</strong></small>
+				<br>
+
+				{% for upload in uploads %}
+
+					<small><a href="{{ upload.getPath }}" target="_blank">Soubor {{ loop.index }}</a></small>
+
+					{{ loop.last is empty ? '<br>' }}
+
+				{% endfor %}
+
+			</p>
+
+
+		{% endif %}
+
+    {% endpartial %}
 
 {% endif %}
 
+	{% partial 'panel' body %}
 
-S pozdravem,
+        <p>
+            <strong><small>URL stránky</strong></small>
+            <br>
+            <small>{{ url }}<small>
+        </p>
 
-Kontaktní formulář
+        <p>
+            <strong><small>Alias formuláře</strong></small>
+            <br>
+            <small>{{ form_alias }}<small>
+        </p>
 
-
-==
-
-<p>Dobrý den,</p>
-
-<p>toto je oznámení o odeslání kontaktního formuláře.</p>
-
-{% if fields|length %}
-
-<br>
-
-<p>Odeslaný obsah:</p>
-
-<table border="0">
-
-	<tbody>
-
-		{% for key,value in fields %}
-
-			<tr>
-				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key|upper }}</th>
-				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
-			</tr>
-
-		{% endfor %}
-
-	</tbody>
-
-</table>
-
-{% endif %}
+	{% endpartial %}
 
 <br>
 
-<p>S pozdravem,<br>
+<p>Best regards,<br>
 
-Kontaktní formulář</p>
+Contact form</p>
