@@ -314,3 +314,5 @@
     - Updated default mail views subjects
 1.66.0:
     - Updated message preview page
+1.66.1:
+    - Fixed mail notification text for Czech language
