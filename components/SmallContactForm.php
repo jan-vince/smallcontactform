@@ -39,7 +39,8 @@ class SmallContactForm extends ComponentBase
     public function componentDetails() {
         return [
             'name'        => 'janvince.smallcontactform::lang.controller.contact_form.name',
-            'description' => 'janvince.smallcontactform::lang.controller.contact_form.description'
+            'description' => 'janvince.smallcontactform::lang.controller.contact_form.description',
+            'snippetAjax' => true
         ];
     }
 
