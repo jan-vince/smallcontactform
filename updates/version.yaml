@@ -316,3 +316,5 @@
     - Updated message preview page
 1.66.1:
     - Fixed mail notification text for Czech language
+1.66.2:
+    - Added snippetAjax option (thanks @DenSit-be)
