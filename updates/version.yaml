@@ -318,3 +318,5 @@
     - Fixed mail notification text for Czech language
 1.66.2:
     - Added snippetAjax option (thanks @DenSit-be)
+1.66.3:
+    - Fixed passive antispam validation (thanks @Quendi6)

@@ -819,7 +819,7 @@ class SmallContactForm extends ComponentBase
       // Field attributes
       $attributes = [
         'id' => '_protect-'.$this->alias,
-        'name' => '_protect',
+        'name' => '_protect-'.$this->alias,
         'class' => '_protect form-control',
         'value' => 'http://',
       ];
