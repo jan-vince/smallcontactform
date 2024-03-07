@@ -320,3 +320,5 @@
     - Added snippetAjax option (thanks @DenSit-be)
 1.66.3:
     - Fixed passive antispam validation (thanks @Quendi6)
+1.67.0:
+    - Updated mail templates for OC v3.6
