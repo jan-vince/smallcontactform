@@ -322,3 +322,5 @@
     - Fixed passive antispam validation (thanks @Quendi6)
 1.66.4:
     - Fixed pl language folder
+1.67.0:
+    - Updated mail templates for OC v3.6

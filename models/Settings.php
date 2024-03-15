@@ -367,91 +367,90 @@ class Settings extends Model
      */
     public static function getTranslatedTemplates($defaultLocale = 'en', $locale = NULL, $templateType = NULL) {
 
-        $enabledLocales = Settings::getEnabledLocales();
+      $enabledLocales = Settings::getEnabledLocales();
 
-        /**
-         * Templates map
-         * [locale] => [templateType] => [template]
-         */
-        $translatedTemplates = [
+      /**
+       * Templates map
+       * [locale] => [templateType] => [template]
+       */
+      $translatedTemplates = [
 
-            'en' => [
+          'en' => [
 
-                'autoreply' => [
-                    'janvince.smallcontactform::mail.autoreply' => 'janvince.smallcontactform::lang.mail.templates.autoreply',
-                ],
+              'autoreply' => [
+                  'janvince.smallcontactform::mail.autoreply',
+              ],
 
-                'notification' => [
-                    'janvince.smallcontactform::mail.notification' => 'janvince.smallcontactform::lang.mail.templates.notification',
-                ],
+              'notification' => [
+                  'janvince.smallcontactform::mail.notification',
+              ],
 
-            ],
+          ],
 
-            'cs' => [
+          'cs' => [
 
-                'autoreply' => [
-                    'janvince.smallcontactform::mail.autoreply_cs' => 'janvince.smallcontactform::lang.mail.templates.autoreply_cs',
-                ],
+              'autoreply' => [
+                  'janvince.smallcontactform::mail.autoreply_cs',
+              ],
 
-                'notification' => [
-                    'janvince.smallcontactform::mail.notification_cs' => 'janvince.smallcontactform::lang.mail.templates.notification_cs',
-                ],
+              'notification' => [
+                  'janvince.smallcontactform::mail.notification_cs',
+              ],
 
-            ],
+          ],
 
-            'es' => [
+          'es' => [
 
-                'autoreply' => [
-                    'janvince.smallcontactform::mail.autoreply_es' => 'janvince.smallcontactform::lang.mail.templates.autoreply_es',
-                ],
+              'autoreply' => [
+                  'janvince.smallcontactform::mail.autoreply_es',
+              ],
 
-                'notification' => [
-                    'janvince.smallcontactform::mail.notification_es' => 'janvince.smallcontactform::lang.mail.templates.notification_es',
-                ],
+              'notification' => [
+                  'janvince.smallcontactform::mail.notification_es',
+              ],
 
-            ],
+          ],
 
-        ];
+      ];
 
-        if( $locale and $templateType ) {
+      if( $locale and $templateType ) {
 
-            if( !empty($translatedTemplates[$locale]) and !empty($translatedTemplates[$locale][$templateType]) ) {
-                return key($translatedTemplates[$locale][$templateType]);
-            } elseif ( $defaultLocale and !empty($translatedTemplates[$defaultLocale]) and !empty($translatedTemplates[$defaultLocale][$templateType]) ) {
-                return key($translatedTemplates[$defaultLocale][$templateType]);
-            } else {
-                return NULL;
-            }
-
-
-
+        if( !empty($translatedTemplates[$locale]) and !empty($translatedTemplates[$locale][$templateType]) ) {
+            return array_shift($translatedTemplates[$locale][$templateType]);
+        } elseif ( $defaultLocale and !empty($translatedTemplates[$defaultLocale]) and !empty($translatedTemplates[$defaultLocale][$templateType]) ) {
+            return array_shift($translatedTemplates[$defaultLocale][$templateType]);
         } else {
+            return NULL;
+        }
 
-            $allEnabledTemplates = [];
+      } else {
 
-            foreach( $enabledLocales as $enabledLocaleKey => $enabledLocaleName ) {
+          $allEnabledTemplates = [];
 
-                if( !empty($translatedTemplates[$enabledLocaleKey]) ) {
+          foreach( $enabledLocales as $enabledLocaleKey => $enabledLocaleName ) {
 
-                    foreach( $translatedTemplates[$enabledLocaleKey] as $type ) {
+              if( !empty($translatedTemplates[$enabledLocaleKey]) ) {
 
-                        foreach( $type as $key => $value ) {
-                            $allEnabledTemplates[$key] = e(trans($value));
+                foreach( $translatedTemplates[$enabledLocaleKey] as $type ) {
 
-                        }
+                  foreach( $type as $key => $value ) {
 
-                    }
+                    $allEnabledTemplates[] = e(trans($value));
+
+                  }
 
                 }
 
-            }
+              }
 
-            return $allEnabledTemplates;
+          }
 
-        }
+          return $allEnabledTemplates;
 
-        return [];
+      }
 
-    }
+      return [];
+
+  }
 
 }
