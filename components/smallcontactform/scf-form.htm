@@ -1,8 +1,29 @@
+{% set showForm = 1 %}
+{% set hideFormVisually = 0 %}
+
 {% if formSentAlias == __SELF__.alias and formError is empty and settingsGet('form_hide_after_success', 0) %}
 
 	{# no errors and set to hide after send #}
+	{% set showForm = 0 %}
 
-{% else %}
+{% endif %}
+
+{% if formSentAlias == __SELF__.alias and formError is empty and (settingsGet('form_hide_after_success', 0) and settingsGet('form_hide_after_success_visually', 0) == 1) %}
+
+	{# no errors and set to hide only visually after send #}
+	{% set showForm = 1 %}
+	{% set hideFormVisually = 1 %}
+
+{% endif %}
+
+
+{% if showForm %} 
+
+	{% if hideFormVisually %}
+
+		<div id="scf-form-{{ __SELF__ }}-hidden" style="display: none;">
+
+	{% endif %}
 
 	{{ form_open(__SELF__.getFormAttributes) }}
 
@@ -31,6 +52,12 @@
 		{{ __SELF__.getSubmitButtonHtmlCode({})|raw }}
 
 	{{ form_close() }}
+
+	{% if hideFormVisually %}
+
+		</div>
+
+	{% endif %}
 
 {% endif %}
 

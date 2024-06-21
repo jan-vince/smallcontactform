@@ -170,6 +170,9 @@ return [
       'hide_after_success' => 'Hide form after successful send',
       'hide_after_success_comment' => 'Show only success message without form',
 
+      'hide_after_success_visually' => 'Hide only visually',
+      'hide_after_success_visually_comment' => 'Form will be rendered but inserted in hidden block',
+
       'add_assets' => 'Add assets',
       'add_assets_comment' => 'Automatically add necessary CSS and JS assets (more about assets in README.md file)',
 

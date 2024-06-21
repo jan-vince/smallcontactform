@@ -165,6 +165,9 @@ return [
       'hide_after_success' => 'Skrýt formulář po úspěšném odeslání',
       'hide_after_success_comment' => 'Po odeslání zobrazí pouze zprávu z potvrzením bez formuláře',
 
+      'hide_after_success_visually' => 'Skrýt jen vizuálně',
+      'hide_after_success_visually_comment' => 'Formulář bude vygenerován, ale vložen do skrytého bloku',
+
       'add_assets' => 'Přidat doplňky',
       'add_assets_comment' => 'Automaticky vloží potřebné CSS styly a JS skripty (Více informací je v souboru README.md)',
 

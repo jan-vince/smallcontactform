@@ -324,3 +324,5 @@
     - Updated mail templates for OC v3.6
 1.67.1:
     - Fixed pl language folder
+1.68.0:
+    - Added option to hide form only visually
