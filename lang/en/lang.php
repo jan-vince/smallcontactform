@@ -12,6 +12,8 @@ return [
     'access_settings' => 'Manage backend preferences',
     'delete_messages' => 'Delete stored messages',
     'export_messages' => 'Export messages',
+    'process_messages' => 'Mark messages as processed',
+    'edit_messages' => 'Edit stored messages',
   ],
 
   'navigation' => [
@@ -43,6 +45,9 @@ return [
       'mark_read' => 'Mark as read',
       'mark_read_confirm' => 'Really set selected messages as read?',
       'mark_read_success' => 'Successfully marked as read.',
+      'mark_processed' => 'Mark as processed',
+      'mark_processed_confirm' => 'Really set selected messages as processed?',
+      'mark_processed_success' => 'Successfully marked as processed.',
     ],
 
     'preview' => [
@@ -62,7 +67,8 @@ return [
         'name' => 'Name',
         'email' => 'Email',
         'message' => 'Message',
-        'new_message' => 'Status',
+        'new_message' => 'New',
+        'processed_message' => 'Processed',
         'new' => 'New',
         'read' => 'Read',
         'remote_ip' => 'Sender\'s IP',
@@ -72,8 +78,15 @@ return [
         'updated_at' => 'Updated at',
         'url' => 'URL',
         'files' => 'Files',
-        'form_notes' => 'Notes',
-      ]
+        'message_content' => 'Message content',
+        'form_description' => 'Form description',
+        'form_notes' => 'Form notes',
+      ],
+
+      'tabs' => [
+        'message' => 'Message',
+        'form' => 'Form data',
+      ],
 
     ],
 
@@ -85,6 +98,7 @@ return [
     'messages' => [
 
       'list_title' => 'Messages',
+      'update' => 'Update',
       'preview' => 'Preview',
       'preview_title' => 'Contact form message',
       'preview_date' => 'From date:',
@@ -97,6 +111,11 @@ return [
 
     'index' => [
       'unauthorized' => 'Unauthorized access',
+    ],
+
+    'update' => [
+      'message_status' => 'Message status',
+      'message_content' => 'Message content',
     ],
 
   ],
@@ -232,7 +251,7 @@ return [
     'form_fields' => [
       'prompt' => 'Add new form field',
 
-      'name' => 'FIELD NAME',
+      'name' => 'Field name',
       'name_comment' => 'Lower case without special characters (eg. name, email, home_address, ...)',
 
       'type' => 'Field type',

@@ -1,0 +1,16 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: janvince/smallcontactform::lang.categories.category
+form: ~/plugins/janvince/smallcontactform/models/message/fields.yaml
+modelClass: JanVince\SmallContactForm\Models\Message
+defaultRedirect: janvince/smallcontactform/messages
+
+# create:
+#     redirect: janvince/smallcontactform/messages/update/:id
+#     redirectClose: janvince/smallcontactform/messages
+
+update:
+    redirect: janvince/smallcontactform/messages
+    redirectClose: janvince/smallcontactform/messages

@@ -10,7 +10,12 @@ columns:
 
     new_message:
         label: janvince.smallcontactform::lang.models.message.columns.new_message
-        type: switch_icon_star
+        type: switch
+
+    processed_message:
+        label: janvince.smallcontactform::lang.models.message.columns.processed_message
+        type: switch
+        invisible: true
 
     created_at:
         label: janvince.smallcontactform::lang.models.message.columns.datetime

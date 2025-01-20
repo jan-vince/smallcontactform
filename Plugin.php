@@ -94,8 +94,16 @@ class Plugin extends PluginBase {
                 'label' => 'janvince.smallcontactform::lang.permissions.access_settings',
                 'tab' => 'janvince.smallcontactform::lang.plugin.name',
             ],
+            'janvince.smallcontactform.process_messages' => [
+                'label' => 'janvince.smallcontactform::lang.permissions.process_messages',
+                'tab' => 'janvince.smallcontactform::lang.plugin.name',
+            ],
             'janvince.smallcontactform.delete_messages' => [
                 'label' => 'janvince.smallcontactform::lang.permissions.delete_messages',
+                'tab' => 'janvince.smallcontactform::lang.plugin.name',
+            ],
+            'janvince.smallcontactform.edit_messages' => [
+                'label' => 'janvince.smallcontactform::lang.permissions.edit_messages',
                 'tab' => 'janvince.smallcontactform::lang.plugin.name',
             ],
             'janvince.smallcontactform.export_messages' => [

@@ -326,3 +326,8 @@
     - Fixed pl language folder
 1.68.0:
     - Added option to hide form only visually
+1.69.0:
+    - Added processed_message column to messages list
+    - Added message update page and preview
+    - Added messages list filters
+    - scf_tables_07.php

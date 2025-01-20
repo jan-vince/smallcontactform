@@ -20,10 +20,12 @@ class Messages extends Controller
 
     public $implement = [
         'Backend.Behaviors.ListController',
+        'Backend\Behaviors\FormController',
         'Backend.Behaviors.ImportExportController',
     ];
 
     public $listConfig = 'config_list.yaml';
+    public $formConfig = 'config_form.yaml';
 
     public $importExportConfig = 'config_export.yaml';
 
@@ -31,6 +33,44 @@ class Messages extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('JanVince.SmallContactForm', 'smallcontactform', 'messages');
+    }
+
+    public function update($recordId, $context = null)
+    {
+        parent::update($recordId, $context);
+
+        /**
+         * Mark message as read on opening
+         */
+        $message = Message::find( $recordId );
+
+        if ( $message ) {
+
+            $this->vars['message'] = $message;
+            $message->new_message = 0;
+            $message->save();
+
+        } else{
+
+            Flash::error( e( trans( 'janvince.smallcontactform::lang.controller.preview.record_not_found') ) );
+            return Redirect::to( Backend::url( 'janvince/smallcontactform/messages' ) );
+
+        }
+
+        $formSettings = Settings::instance();
+        
+        $this->vars['formFields'] = $formSettings->form_fields;
+        
+        $formFieldsDetails = [];
+        
+        foreach( $formSettings->form_fields as $field ) {
+          
+          $formFieldsDetails[$field['name']] = $field;
+          
+        }
+        
+        $this->vars['formFieldsDetails'] = $formFieldsDetails;
+
     }
 
   /**
@@ -148,6 +188,39 @@ class Messages extends Controller
             }
 
             Flash::success( e(trans('janvince.smallcontactform::lang.controller.scoreboard.mark_read_success')) );
+
+            return $this->listRefresh();
+
+        }
+
+    }
+
+    /**
+     * Mark messages as processed
+     * @param $record
+     */
+    public function onMarkProcessed(){
+
+        if (!$this->user->hasAccess('janvince.smallcontactform.process_messages')) {
+
+            Flash::error( e(trans('janvince.smallcontactform::lang.controllers.index.unauthorized')) );
+            return;
+
+        }
+
+        if ( ($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds) ) {
+
+            foreach ($checkedIds as $item) {
+                if (!$record = Message::find($item)) {
+                    continue;
+                }
+
+                $record->processed_message = 1;
+                $record->save();
+
+            }
+
+            Flash::success( e(trans('janvince.smallcontactform::lang.controller.scoreboard.mark_processed_success')) );
 
             return $this->listRefresh();
 
