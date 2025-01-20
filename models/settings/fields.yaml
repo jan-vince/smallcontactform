@@ -150,7 +150,7 @@ tabs:
         form_notes:
             label: 'janvince.smallcontactform::lang.settings.form.notes'
             comment: 'janvince.smallcontactform::lang.settings.form.notes_comment'
-            span: left
+            span: full
             type: textarea
             tab: 'janvince.smallcontactform::lang.settings.tabs.form'
 
