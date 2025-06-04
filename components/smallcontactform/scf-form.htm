@@ -87,7 +87,9 @@
 
 		var onloadCallback_{{ __SELF__.alias }} = function() {
 
-			grecaptcha.render('g-recaptcha-{{ __SELF__.alias }}',
+			var widgetId_{{ __SELF__.alias }};
+
+			widgetId_{{ __SELF__.alias }} = grecaptcha.render('g-recaptcha-{{ __SELF__.alias }}',
 				{
 					'sitekey' : '{{ settingsGet('google_recaptcha_site_key') }}'
 
@@ -106,22 +108,19 @@
 
 					event.preventDefault();
 
-					var formRecaptchaObject = document.getElementById('g-recaptcha-{{ __SELF__.alias }}');
-
-					grecaptcha.execute();
+					grecaptcha.execute(widgetId_{{ __SELF__.alias }});
 					
 				});
 
 				function onSubmit_{{ __SELF__.alias }}(token) {
 
-					$('form[id^="scf-form-id"]').each(function(){
+					var currentForm = $('#scf-form-id-{{ __SELF__.alias }}');
 
-						{% if settingsGet('form_allow_ajax', null) %}
-							$(this).request();
-						{% else %}
-							$(this).submit();
-						{% endif %}
-					});
+					{% if settingsGet('form_allow_ajax', null) %}
+						currentForm.request();
+					{% else %}
+						currentForm.submit();
+					{% endif %}
 
 				}
 

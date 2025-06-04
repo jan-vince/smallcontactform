@@ -331,3 +331,5 @@
     - Added message update page and preview
     - Added messages list filters
     - scf_tables_07.php
+1.69.1:
+    - Fixed reCaptcha invisible script for multiple forms
