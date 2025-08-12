@@ -31,6 +31,17 @@ tabs:
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.form'
 
+        form_hide_after_success_visually:
+            label: 'janvince.smallcontactform::lang.settings.form.hide_after_success_visually'
+            comment: 'janvince.smallcontactform::lang.settings.form.hide_after_success_visually_comment'
+            span: right
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+            trigger:
+                action: show
+                field: form_hide_after_success
+                condition: checked
+
         form_use_placeholders:
             label: 'janvince.smallcontactform::lang.settings.form.use_placeholders'
             comment: 'janvince.smallcontactform::lang.settings.form.use_placeholders_comment'
@@ -139,7 +150,7 @@ tabs:
         form_notes:
             label: 'janvince.smallcontactform::lang.settings.form.notes'
             comment: 'janvince.smallcontactform::lang.settings.form.notes_comment'
-            span: left
+            span: full
             type: textarea
             tab: 'janvince.smallcontactform::lang.settings.tabs.form'
 

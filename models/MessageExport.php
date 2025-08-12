@@ -20,10 +20,23 @@ class MessageExport extends ExportModel {
         $records = Message::all();
 
         $records->each(function($record) use ($columns) {
-
             $record->addVisible($columns);
         });
 
-        return $records->toArray();
+        $data = $records->toArray();
+
+        
+        foreach($data as $key => $items) {
+
+            foreach($items as $itemKey => $itemValue) {
+
+                if( is_array($itemValue) ) {
+                    $data[$key][$itemKey] = json_encode($itemValue);
+                }
+            }
+
+        }
+
+        return $data;
     }
 }

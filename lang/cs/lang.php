@@ -11,7 +11,9 @@ return [
     'access_messages' => 'Přístup k seznamu zpráv',
     'access_settings' => 'Přístup k nastavení',
     'delete_messages' => 'Smazat vybrané zprávy',
+    'edit_messages' => 'Upravit obsah zpráv',
     'export_messages' => 'Exportovat zprávy',
+    'process_messages' => 'Označit zprávy jako zpracované',
   ],
 
   'navigation' => [
@@ -43,6 +45,9 @@ return [
       'mark_read' => 'Označit jako přečtené',
       'mark_read_confirm' => 'Opravdu chcete vybrané zprávy označit jako přečtené?',
       'mark_read_success' => 'Zprávy byly označeny jako přečtené.',
+      'mark_processed' => 'Označit jako zpracované',
+      'mark_processed_confirm' => 'Opravdu chcete vybrané zprávy označit jako zpracované?',
+      'mark_processed_success' => 'Úspěšně označeno jako zpracované.',
     ],
 
     'preview' => [
@@ -62,14 +67,22 @@ return [
         'name' => 'Jméno',
         'email' => 'Email',
         'message' => 'Zpráva',
-        'new_message' => 'Stav',
+        'new_message' => 'Nová',
+        'processed_message' => 'Zpracovaná',
         'new' => 'Nová',
         'read' => 'Přečtená',
         'remote_ip' => 'IP odesílatele',
         'created_at' => 'Datum vytvoření',
         'updated_at' => 'Datum aktualizace',
-        'form_notes' => 'Notes',
-      ]
+        'message_content' => 'Obsah zprávy',
+        'form_description' => 'Popisek formuláře',
+        'form_notes' => 'Poznámky k formuláři',
+      ],
+
+      'tabs' => [
+        'message' => 'Zpráva',
+        'form' => 'Data formuláře',
+      ],
 
     ],
 
@@ -81,18 +94,26 @@ return [
     'messages' => [
 
       'list_title' => 'Zprávy',
+      'update' => 'Upravit',
       'preview' => 'Náhled',
       'preview_title' => 'Zpráva z kontaktního formuláře',
       'preview_date' => 'Ze dne:',
-      'preview_content_title' => 'Obsah:',
-      'remote_ip' => 'odesláno z ip',
+      'preview_content_title' => 'Obsah',
+      'remote_ip' => 'Odesláno z IP',
       'form_alias' => 'Alias',
       'form_description' => 'Popisek',   
       'export' => 'Export', 
+      'file' => 'Soubor', 
+      'uploads' => 'Přílohy', 
     ],
 
     'index' => [
       'unauthorized' => 'Neoprávněný přístup!',
+    ],
+
+    'update' => [
+      'message_status' => 'Stav zprávy',
+      'message_content' => 'Obsah zprávy',
     ],
 
   ],
@@ -163,6 +184,9 @@ return [
       'hide_after_success' => 'Skrýt formulář po úspěšném odeslání',
       'hide_after_success_comment' => 'Po odeslání zobrazí pouze zprávu z potvrzením bez formuláře',
 
+      'hide_after_success_visually' => 'Skrýt jen vizuálně',
+      'hide_after_success_visually_comment' => 'Formulář bude vygenerován, ale vložen do skrytého bloku',
+
       'add_assets' => 'Přidat doplňky',
       'add_assets_comment' => 'Automaticky vloží potřebné CSS styly a JS skripty (Více informací je v souboru README.md)',
 
@@ -222,7 +246,7 @@ return [
     'form_fields' => [
       'prompt' => 'Přidat nové pole formuláře',
 
-      'name' => 'NÁZEV POLE',
+      'name' => 'Název pole',
       'name_comment' => 'Malými písmeny bez diakritiky (např. jmeno, email, vase_poznamka, ...)',
 
       'type' => 'Typ pole',

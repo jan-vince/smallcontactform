@@ -14,7 +14,9 @@ title: "janvince.smallcontactform::lang.controllers.messages.list_title"
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
 
-recordUrl: 'janvince/smallcontactform/messages/preview/:id'
+recordUrl: 'janvince/smallcontactform/messages/update/:id'
+
+filter: $/janvince/smallcontactform/controllers/messages/config_filter.yaml
 
 # Records to display per page
 recordsPerPage: 20

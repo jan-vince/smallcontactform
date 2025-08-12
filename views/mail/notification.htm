@@ -1,71 +1,66 @@
 subject = "Contact form notification"
 ==
+<p>Hello,
 
-Hello,
+<br>this is a notification that a message has been sent from the Contact Form.</p>
 
-this is a notification from a Contact form.
+<p>Form data:</p>
 
-{% if fields|length %}
-Sent form content:
+{% if fieldsDetails|length %}
 
-<table border="0">
+    {% partial 'panel' body %}
 
-	<tbody>
+        {% for field in fieldsDetails %}
 
-		{% for key,value in fields %}
+        <p>
+            <strong><small>{{ field.label }}</strong></small>
+            <br>
+            <small>{{ field.value|raw|nl2br }}<small>
+        </p>
 
-			<tr>
-				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key|upper }}</th>
-				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
-			</tr>
+        {% endfor %}
 
-		{% endfor %}
+		{% if uploads|length %}
 
-	</tbody>
+			<p>
+				<strong><small>Uploaded files</strong></small>
+				<br>
 
-</table>
+				{% for upload in uploads %}
 
-{% endif %}
+					<small><a href="{{ upload.getPath }}" target="_blank">Upload {{ loop.index }}</a></small>
+
+					{{ loop.last is empty ? '<br>' }}
+
+				{% endfor %}
+
+			</p>
 
 
-Best regards,
+		{% endif %}
 
-Contact form
-
-
-==
-
-<p>Hello,</p>
-
-<p>this is a notification from a Contact form.</p>
-
-{% if fields|length %}
-
-<br>
-
-<p>Sent form content:</p>
-
-<table border="0">
-
-	<tbody>
-
-		{% for key,value in fields %}
-
-			<tr>
-				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key|upper }}</th>
-				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
-			</tr>
-
-		{% endfor %}
-
-	</tbody>
-
-</table>
+    {% endpartial %}
 
 {% endif %}
+
+	{% partial 'panel' body %}
+
+        <p>
+            <strong><small>Page URL</strong></small>
+            <br>
+            <small>{{ url }}<small>
+        </p>
+
+        <p>
+            <strong><small>Form alias</strong></small>
+            <br>
+            <small>{{ form_alias }}<small>
+        </p>
+
+	{% endpartial %}
 
 <br>
 
 <p>Best regards,<br>
 
-Contact form</p>
+Contact Form</p>

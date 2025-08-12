@@ -1,0 +1,77 @@
+# ===================================
+#  Fields Definitions
+# ===================================
+
+tabs:
+
+    fields:
+
+        _section1:
+            label: janvince.smallcontactform::lang.controllers.update.message_status
+            type: section
+            tab: janvince.smallcontactform::lang.models.message.tabs.message
+
+        new_message:
+            label: janvince.smallcontactform::lang.models.message.columns.new_message
+            type: checkbox
+            disabled: true
+            readOnly: true
+            hidden: true
+            tab: janvince.smallcontactform::lang.models.message.tabs.message
+
+        processed_message:
+            label: janvince.smallcontactform::lang.models.message.columns.processed_message
+            type: checkbox
+            tab: janvince.smallcontactform::lang.models.message.tabs.message
+            permissions: janvince.smallcontactform.process_messages
+
+        _section2:
+            label: janvince.smallcontactform::lang.controllers.update.message_content
+            type: section
+            cssClass: mt-3
+            tab: janvince.smallcontactform::lang.models.message.tabs.message
+
+        _message_content:
+            # label: janvince.smallcontactform::lang.models.message.columns.message_content
+            type: partial
+            path: $/janvince/smallcontactform/models/message/_message_content.htm
+            tab: janvince.smallcontactform::lang.models.message.tabs.message
+
+        created_at:
+            label: janvince.smallcontactform::lang.models.message.columns.datetime
+            type: datepicker
+            tab: janvince.smallcontactform::lang.models.message.tabs.form
+            permissions: janvince.smallcontactform.edit_messages
+
+        remote_ip:
+            label: janvince.smallcontactform::lang.models.message.columns.remote_ip
+            type: text
+            tab: janvince.smallcontactform::lang.models.message.tabs.form
+            permissions: janvince.smallcontactform.edit_messages
+
+        form_alias:
+            label: janvince.smallcontactform::lang.models.message.columns.form_alias
+            type: text
+            tab: janvince.smallcontactform::lang.models.message.tabs.form
+            permissions: janvince.smallcontactform.edit_messages
+
+        form_description:
+            label: janvince.smallcontactform::lang.models.message.columns.form_description
+            type: text
+            tab: janvince.smallcontactform::lang.models.message.tabs.form
+            permissions: janvince.smallcontactform.edit_messages
+
+        url:
+            label: janvince.smallcontactform::lang.models.message.columns.url
+            searchable: true
+            type: text
+            tab: janvince.smallcontactform::lang.models.message.tabs.form
+            permissions: janvince.smallcontactform.edit_messages
+
+        form_notes:
+            label: janvince.smallcontactform::lang.models.message.columns.form_notes
+            type: textarea
+            size: small
+            tab: janvince.smallcontactform::lang.models.message.tabs.form
+            permissions: janvince.smallcontactform.edit_messages
+

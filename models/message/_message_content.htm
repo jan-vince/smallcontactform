@@ -1,0 +1,90 @@
+    <div class="preview">
+
+        <div class="content" style="margin-top: 10px;">
+
+            <table class="table table-hover table-striped table-bordered">
+
+                <thead>
+
+                    <tr>
+                        <th class="p-r-md"><?php echo(trans('janvince.smallcontactform::lang.settings.form_fields.label')); ?></th>
+                        <th class="p-r-md"><?php echo(trans('janvince.smallcontactform::lang.models.message.columns.message_content')); ?></th>
+                    </tr>
+                
+                </thead>
+
+                <tbody>
+
+                <?php foreach($model->form_data as $key => $field) : ?>
+
+                    <tr>
+                        <td class="p-r-md" style="vertical-align: top; width: 20%;">    
+                            
+                            <?php if (isset($formFieldsDetails[$key])): ?>
+                                <?= $formFieldsDetails[$key]['label'] ?>
+                            <?php else: ?>
+                                <?= $key ?>
+                            <?php endif; ?>
+                        </td>
+
+                        <td><?php echo( nl2br(e($field)) ) ?></td>
+                    </tr>
+
+                <?php endforeach ?>
+
+                </tbody>
+
+            </table>
+
+            <?php if ($model->uploads->count()): ?>
+
+                <table class="table table-hover table-striped table-bordered" style="width: auto; margin-top: 30px;">
+
+                    <tr>
+                        <th><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.uploads')) ); ?></th>
+                        <td>
+
+                            <ul style="margin: 0;">
+                            <?php foreach($model->uploads as $upload) : ?>
+    
+                                <li>
+                                    <a href="<?php echo( $upload->getPath() ) ?>" target="blank">
+                                        <?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.file')) ); ?>
+                                    </a>
+                                </li>
+
+                            <?php endforeach ?>
+
+                            </ul>
+                        </td>
+                    </tr>
+            
+                </table>
+
+            <?php endif ?>
+
+            <table class="table table-hover table-striped table-bordered" style="width: auto; margin-top: 30px;">
+
+                    <tr>
+                        <th class="p-r-md"><?php echo(e(trans('janvince.smallcontactform::lang.controllers.messages.remote_ip')) ); ?></th>
+                        <td><?php if(!empty($model->remote_ip)) { echo($model->remote_ip); } ?></td>
+
+                    <tr>
+                        <th class="p-r-md"><?php echo(e(trans('janvince.smallcontactform::lang.components.properties.form_description')) ); ?></th>
+                        <td><?php if(!empty($model->form_description)) { echo($model->form_description); } ?></td>
+
+                    <tr>
+                        <th class="p-r-md">URL</th>
+                        <td><?php if(!empty($model->url)) { echo($model->url); } ?></td>
+
+                    <tr>
+                        <th class="p-r-md">Alias</th>
+                        <td><?php if(!empty($model->form_alias)) { echo($model->form_alias); } ?></td>
+
+            </table>
+
+
+
+        </div>
+
+    </div>

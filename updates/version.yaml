@@ -296,4 +296,40 @@
     - Better invisible reCaptcha implementation
 1.63.3:
     - Fixed valid HTML for placeholders
-
+1.63.4:
+    - Added navigation item counter (thanks @ZhiweiWu0425)
+1.63.5:
+    - Fixed messages counter
+1.63.6:
+    - Fixed Bootstrap 5 validation classes
+1.63.7:
+    - Added check to empty form fields array
+1.64.0:
+    - Simplified default mail views for EN and CS. Added demo CMS page for mail views testing.
+1.65.0:
+    - Updated Messages export
+1.65.1:
+    - Hide fields with empty values in default mail views for autoreply
+1.65.2:
+    - Updated default mail views subjects
+1.66.0:
+    - Updated message preview page
+1.66.1:
+    - Fixed mail notification text for Czech language
+1.66.2:
+    - Added snippetAjax option (thanks @DenSit-be)
+1.66.3:
+    - Fixed passive antispam validation (thanks @Quendi6)
+1.67.0:
+    - Updated mail templates for OC v3.6
+1.67.1:
+    - Fixed pl language folder
+1.68.0:
+    - Added option to hide form only visually
+1.69.0:
+    - Added processed_message column to messages list
+    - Added message update page and preview
+    - Added messages list filters
+    - scf_tables_07.php
+1.69.1:
+    - Fixed reCaptcha invisible script for multiple forms

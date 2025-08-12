@@ -4,7 +4,25 @@
 
 scopes:
 
+    new_message:
+        label: janvince.smallcontactform::lang.models.message.columns.new_message
+        type: switch
+        default: 0
+        conditions: 
+                - new_message <> true
+                - new_message = true
+
+    processed_message:
+        label: janvince.smallcontactform::lang.models.message.columns.processed_message
+        type: switch
+        default: 0
+        conditions: 
+                - processed_message <> true
+                - processed_message = true
+
     date:
-        label: janvince.smallcontactform::lang.controller.filter.columns.date
+        label: janvince.smallcontactform::lang.models.message.columns.datetime
         type: daterange
-        conditions: date >= ':after' AND date <= ':before'
+        firstDay: 1
+        conditions: created_at >= ':after' AND created_at <= ':before'
+

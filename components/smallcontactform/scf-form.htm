@@ -1,8 +1,29 @@
+{% set showForm = 1 %}
+{% set hideFormVisually = 0 %}
+
 {% if formSentAlias == __SELF__.alias and formError is empty and settingsGet('form_hide_after_success', 0) %}
 
 	{# no errors and set to hide after send #}
+	{% set showForm = 0 %}
 
-{% else %}
+{% endif %}
+
+{% if formSentAlias == __SELF__.alias and formError is empty and (settingsGet('form_hide_after_success', 0) and settingsGet('form_hide_after_success_visually', 0) == 1) %}
+
+	{# no errors and set to hide only visually after send #}
+	{% set showForm = 1 %}
+	{% set hideFormVisually = 1 %}
+
+{% endif %}
+
+
+{% if showForm %} 
+
+	{% if hideFormVisually %}
+
+		<div id="scf-form-{{ __SELF__ }}-hidden" style="display: none;">
+
+	{% endif %}
 
 	{{ form_open(__SELF__.getFormAttributes) }}
 
@@ -32,6 +53,12 @@
 
 	{{ form_close() }}
 
+	{% if hideFormVisually %}
+
+		</div>
+
+	{% endif %}
+
 {% endif %}
 
 
@@ -60,7 +87,9 @@
 
 		var onloadCallback_{{ __SELF__.alias }} = function() {
 
-			grecaptcha.render('g-recaptcha-{{ __SELF__.alias }}',
+			var widgetId_{{ __SELF__.alias }};
+
+			widgetId_{{ __SELF__.alias }} = grecaptcha.render('g-recaptcha-{{ __SELF__.alias }}',
 				{
 					'sitekey' : '{{ settingsGet('google_recaptcha_site_key') }}'
 
@@ -79,22 +108,19 @@
 
 					event.preventDefault();
 
-					var formRecaptchaObject = document.getElementById('g-recaptcha-{{ __SELF__.alias }}');
-
-					grecaptcha.execute();
+					grecaptcha.execute(widgetId_{{ __SELF__.alias }});
 					
 				});
 
 				function onSubmit_{{ __SELF__.alias }}(token) {
 
-					$('form[id^="scf-form-id"]').each(function(){
+					var currentForm = $('#scf-form-id-{{ __SELF__.alias }}');
 
-						{% if settingsGet('form_allow_ajax', null) %}
-							$(this).request();
-						{% else %}
-							$(this).submit();
-						{% endif %}
-					});
+					{% if settingsGet('form_allow_ajax', null) %}
+						currentForm.request();
+					{% else %}
+						currentForm.submit();
+					{% endif %}
 
 				}
 

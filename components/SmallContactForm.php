@@ -39,7 +39,8 @@ class SmallContactForm extends ComponentBase
     public function componentDetails() {
         return [
             'name'        => 'janvince.smallcontactform::lang.controller.contact_form.name',
-            'description' => 'janvince.smallcontactform::lang.controller.contact_form.description'
+            'description' => 'janvince.smallcontactform::lang.controller.contact_form.description',
+            'snippetAjax' => true
         ];
     }
 
@@ -609,10 +610,6 @@ class SmallContactForm extends ComponentBase
         $attributes['class'] .= Settings::getTranslated('form_css_class');
     }
 
-    if( !empty(Input::all()) ) {
-      $attributes['class'] .= ' was-validated';
-    }
-
     if( Settings::getTranslated('form_send_confirm_msg') and Settings::getTranslated('form_allow_confirm_msg') ) {
 
       $attributes['data-request-confirm'] = Settings::getTranslated('form_send_confirm_msg');
@@ -657,7 +654,7 @@ class SmallContactForm extends ComponentBase
     
     // Add wrapper error class if there are any
     if(!empty($this->postData[$fieldSettings['name']]['error'])){
-      $wrapperCss .= ' has-error';
+      $wrapperCss .= ' is-invalid';
     }
 
     $output[] = '<div class="' . $wrapperCss . '">';
@@ -822,7 +819,7 @@ class SmallContactForm extends ComponentBase
       // Field attributes
       $attributes = [
         'id' => '_protect-'.$this->alias,
-        'name' => '_protect',
+        'name' => '_protect-'.$this->alias,
         'class' => '_protect form-control',
         'value' => 'http://',
       ];
