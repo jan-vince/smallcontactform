@@ -24,9 +24,11 @@ class SmallContactFormTables_02 extends Migration
 
             Schema::table('janvince_smallcontactform_messages', function($table)
             {
+                $table->dropIndex('janvince_smallcontactform_messages_remote_ip_index');
                 $table->dropColumn('remote_ip');
             });
 
         }
     }
 }
+
