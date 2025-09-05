@@ -21,9 +21,6 @@
     "issues": "https://github.com/jan-vince/smallcontactform/issues"
   },
   "require": {
-    "php": ">=7.0",
-    "composer/installers": "~1.0",
-    "google/recaptcha": "^1.2@dev"
-  },
-  "minimum-stability": "dev"
+    "composer/installers": "~1.0"
+  }
 }

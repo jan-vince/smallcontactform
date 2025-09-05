@@ -333,3 +333,6 @@
     - scf_tables_07.php
 1.69.1:
     - Fixed reCaptcha invisible script for multiple forms
+1.70.0:
+    - Added OctoberCMS v4 compatibility
+    - Removed Google reCaptcha library dependency
