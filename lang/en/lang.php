@@ -259,6 +259,9 @@ return [
       'label' => 'Label',
       'label_placeholder' => 'Full name',
 
+      'hint' => 'Hint',
+      'hint_placeholder' => 'Text below field (eg. instructions)',
+
       'field_styling' => 'Custom CSS class',
       'field_styling_comment' => 'Change default Bootstrap styles',
 

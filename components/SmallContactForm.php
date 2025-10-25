@@ -830,7 +830,11 @@ class SmallContactForm extends ComponentBase
         $output[] = '</div>';
       }
 
-    $output[] = "</div>";
+      if(!empty($fieldSettings['hint'])){
+        $output[] = '<div class="form-text">' . $fieldSettings['hint'] . '</div>';
+      }
+      
+      $output[] = "</div>";
 
     return(implode('', $output));
 

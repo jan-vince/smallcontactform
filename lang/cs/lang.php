@@ -254,6 +254,9 @@ return [
       'label' => 'Popisek (label)',
       'label_placeholder' => 'Pole formuláře',
 
+      'hint' => 'Nápověda k poli',
+      'hint_placeholder' => 'Text pod polem (např. instrukce)',
+
       'field_styling' => 'Vlastní CSS třídy',
       'field_styling_comment' => 'Můžete přidat vlastní styly',
 

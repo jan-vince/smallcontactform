@@ -230,22 +230,30 @@ tabs:
             form:
                 fields:
                     name:
-                        span: full
+                        span: left
                         label: 'janvince.smallcontactform::lang.settings.form_fields.name'
                         comment: 'janvince.smallcontactform::lang.settings.form_fields.name_comment'
                         type: text
                         required: true
                         # cssClass: 'bg-info'
                     type:
-                        span: left
+                        span: right
                         label: 'janvince.smallcontactform::lang.settings.form_fields.type'
                         type: dropdown
                         required: true
                         # cssClass: field-indent
+
                     label:
-                        span: right
+                        span: left
                         label: 'janvince.smallcontactform::lang.settings.form_fields.label'
                         placeholder: 'janvince.smallcontactform::lang.settings.form_fields.label_placeholder'
+                        type: text
+                        # cssClass: field-indent
+
+                    hint:
+                        span: right
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.hint'
+                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.hint_placeholder'
                         type: text
                         # cssClass: field-indent
 
@@ -255,7 +263,7 @@ tabs:
                         span: full
                         type: repeater
                         style: collapsed
-                        # cssClass: field-indent
+                        cssClass: mt-2
                         trigger:
                             action: show
                             field: type
@@ -324,12 +332,10 @@ tabs:
                             field: type
                             condition: value[custom_content]
 
-                    autofocus:
-                        label: 'janvince.smallcontactform::lang.settings.form_fields.autofocus'
-                        comment: 'janvince.smallcontactform::lang.settings.form_fields.autofocus_comment'
+                    settings_section:
                         span: full
-                        type: checkbox
-                        # cssClass: field-indent
+                        type: section
+                        cssClass: mt-1 mb-2
 
                     field_validation:
                         label: 'janvince.smallcontactform::lang.settings.form_fields.field_validation'
@@ -386,10 +392,10 @@ tabs:
                     section_validation_end:
                         type: section
                         span: full
-                        cssClass: field-indent mb-3 mt-1
+                        cssClass: field-indent mb-3 mt-2
                         trigger:
                             action: show
-                            field: field_styling
+                            field: field_validation
                             condition: checked
 
                     field_styling:
@@ -415,7 +421,7 @@ tabs:
                         label: 'janvince.smallcontactform::lang.settings.form_fields.label_css'
                         placeholder: 'janvince.smallcontactform::lang.settings.form_fields.label_css_placeholder'
                         type: text
-                        cssClass: field-indent mb-2
+                        cssClass: field-indent
                         trigger:
                             action: show
                             field: field_styling
@@ -425,12 +431,28 @@ tabs:
                         span: right
                         label: 'janvince.smallcontactform::lang.settings.form_fields.field_css'
                         placeholder: 'janvince.smallcontactform::lang.settings.form_fields.field_css_placeholder'
-                        cssClass: field-indent mb-2
+                        cssClass: field-indent
                         type: text
                         trigger:
                             action: show
                             field: field_styling
                             condition: checked
+
+                    section_styling_end:
+                        type: section
+                        span: full
+                        cssClass: field-indent mb-3 mt-2
+                        trigger:
+                            action: show
+                            field: field_styling
+                            condition: checked
+
+                    autofocus:
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.autofocus'
+                        comment: 'janvince.smallcontactform::lang.settings.form_fields.autofocus_comment'
+                        span: full
+                        type: checkbox
+                        # cssClass: field-indent
 
 
         ## MAPPING
