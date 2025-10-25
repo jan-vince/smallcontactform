@@ -64,6 +64,7 @@ class Plugin extends PluginBase {
                 'keywords' => 'small contact form message recaptcha antispam',
                 'order' => 990,
                 'permissions' => ['janvince.smallcontactform.access_settings'],
+                'size' => 'adaptive',
             ]
         ];
     }

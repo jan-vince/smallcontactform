@@ -1,5 +1,7 @@
 fields: {  }
+
 tabs:
+    stretch: true
 
     fields:
 
@@ -433,21 +435,6 @@ tabs:
 
         ## MAPPING
 
-        autoreply_email_field:
-            label: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field'
-            commentHtml: true
-            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field_comment'
-            span: left
-            type: dropdown
-            tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
-            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field_empty_option'
-
-        partial_mapping:
-            type: partial
-            path: $/janvince/smallcontactform/models/settings/_mapping_help.htm
-            span: right
-            tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
-
         autoreply_name_field:
             label: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field'
             commentHtml: true
@@ -456,6 +443,15 @@ tabs:
             type: dropdown
             tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
             emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_name_field_empty_option'
+
+        autoreply_email_field:
+            label: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field'
+            commentHtml: true
+            comment: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field_comment'
+            span: left
+            type: dropdown
+            tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
+            emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_email_field_empty_option'
 
         autoreply_message_field:
             label: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field'
@@ -466,8 +462,16 @@ tabs:
             tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
             emptyOption: 'janvince.smallcontactform::lang.settings.email.autoreply_message_field_empty_option'
 
+        partial_mapping:
+            type: partial
+            path: $/janvince/smallcontactform/models/settings/_mapping_help.htm
+            span: left
+            cssClass: mt-3
+            tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
+
         partial_mapping_warning:
             type: partial
+            cssClass: mt-3
             path: $/janvince/smallcontactform/models/settings/_mapping_warning.htm
             span: right
             tab: 'janvince.smallcontactform::lang.settings.tabs.mapping'
