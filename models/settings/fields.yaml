@@ -239,13 +239,13 @@ tabs:
                         label: 'janvince.smallcontactform::lang.settings.form_fields.type'
                         type: dropdown
                         required: true
-                        cssClass: field-indent
+                        # cssClass: field-indent
                     label:
                         span: right
                         label: 'janvince.smallcontactform::lang.settings.form_fields.label'
                         placeholder: 'janvince.smallcontactform::lang.settings.form_fields.label_placeholder'
                         type: text
-                        cssClass: field-indent
+                        # cssClass: field-indent
 
                     field_values:
                         # label: 'janvince.smallcontactform::lang.settings.form_fields.validation'
@@ -253,7 +253,7 @@ tabs:
                         span: full
                         type: repeater
                         style: collapsed
-                        cssClass: field-indent
+                        # cssClass: field-indent
                         trigger:
                             action: show
                             field: type
@@ -275,7 +275,7 @@ tabs:
                         comment: 'janvince.smallcontactform::lang.settings.form_fields.custom_code_comment'
                         type: codeeditor
                         size: large
-                        cssClass: field-indent
+                        # cssClass: field-indent
                         trigger:
                             action: show
                             field: type
@@ -286,7 +286,7 @@ tabs:
                         label: 'janvince.smallcontactform::lang.settings.form_fields.custom_code_twig'
                         comment: 'janvince.smallcontactform::lang.settings.form_fields.custom_code_twig_comment'
                         type: checkbox
-                        cssClass: field-indent
+                        # cssClass: field-indent
                         trigger:
                             action: show
                             field: type
@@ -295,7 +295,7 @@ tabs:
                     field_custom_code_line:
                         span: full
                         type: section
-                        cssClass: field-indent
+                        # cssClass: field-indent
                         trigger:
                             action: show
                             field: type
@@ -307,7 +307,7 @@ tabs:
                         comment: 'janvince.smallcontactform::lang.settings.form_fields.custom_content_comment'
                         type: richeditor
                         size: large
-                        cssClass: field-indent
+                        # cssClass: field-indent
                         trigger:
                             action: show
                             field: type
@@ -316,75 +316,25 @@ tabs:
                     field_custom_content_section:
                         span: full
                         type: section
-                        cssClass: field-indent
+                        # cssClass: field-indent
                         trigger:
                             action: show
                             field: type
                             condition: value[custom_content]
 
-                    field_styling:
-                        label: 'janvince.smallcontactform::lang.settings.form_fields.field_styling'
-                        comment: 'janvince.smallcontactform::lang.settings.form_fields.field_styling_comment'
-                        span: left
-                        type: checkbox
-                        tab: 'janvince.smallcontactform::lang.settings.tabs.form_fields'
-                        cssClass: field-indent
-
                     autofocus:
                         label: 'janvince.smallcontactform::lang.settings.form_fields.autofocus'
                         comment: 'janvince.smallcontactform::lang.settings.form_fields.autofocus_comment'
-                        span: right
+                        span: full
                         type: checkbox
-                        tab: 'janvince.smallcontactform::lang.settings.tabs.form_fields'
-                        cssClass: field-indent
-
-                    wrapper_css:
-                        span: left
-                        label: 'janvince.smallcontactform::lang.settings.form_fields.wrapper_css'
-                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.wrapper_css_placeholder'
-                        type: text
-                        cssClass: field-indent
-                        trigger:
-                            action: show
-                            field: field_styling
-                            condition: checked
-
-                    label_css:
-                        span: left
-                        label: 'janvince.smallcontactform::lang.settings.form_fields.label_css'
-                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.label_css_placeholder'
-                        type: text
-                        cssClass: field-indent
-                        trigger:
-                            action: show
-                            field: field_styling
-                            condition: checked
-
-                    field_css:
-                        span: right
-                        label: 'janvince.smallcontactform::lang.settings.form_fields.field_css'
-                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.field_css_placeholder'
-                        type: text
-                        trigger:
-                            action: show
-                            field: field_styling
-                            condition: checked
-
-                    section_validation:
-                        type: section
-                        cssClass: field-indent
-                        trigger:
-                            action: show
-                            field: field_styling
-                            condition: checked
-
+                        # cssClass: field-indent
 
                     field_validation:
                         label: 'janvince.smallcontactform::lang.settings.form_fields.field_validation'
                         comment: 'janvince.smallcontactform::lang.settings.form_fields.field_validation_comment'
                         span: full
                         type: checkbox
-                        cssClass: field-indent
+                        # cssClass: field-indent
 
                     validation:
                         # label: 'janvince.smallcontactform::lang.settings.form_fields.validation'
@@ -430,6 +380,55 @@ tabs:
                                         action: show
                                         field: validation_type
                                         condition: value[custom]
+
+                    section_validation_end:
+                        type: section
+                        span: full
+                        cssClass: field-indent mb-3 mt-1
+                        trigger:
+                            action: show
+                            field: field_styling
+                            condition: checked
+
+                    field_styling:
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.field_styling'
+                        comment: 'janvince.smallcontactform::lang.settings.form_fields.field_styling_comment'
+                        span: full
+                        type: checkbox
+                        # cssClass: field-indent
+
+                    wrapper_css:
+                        span: full
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.wrapper_css'
+                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.wrapper_css_placeholder'
+                        type: text
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: field_styling
+                            condition: checked
+
+                    label_css:
+                        span: left
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.label_css'
+                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.label_css_placeholder'
+                        type: text
+                        cssClass: field-indent mb-2
+                        trigger:
+                            action: show
+                            field: field_styling
+                            condition: checked
+
+                    field_css:
+                        span: right
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.field_css'
+                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.field_css_placeholder'
+                        cssClass: field-indent mb-2
+                        type: text
+                        trigger:
+                            action: show
+                            field: field_styling
+                            condition: checked
 
 
         ## MAPPING
