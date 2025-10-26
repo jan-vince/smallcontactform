@@ -323,15 +323,6 @@ tabs:
                             field: type
                             condition: value[custom_content]
 
-                    field_custom_content_section:
-                        span: full
-                        type: section
-                        # cssClass: field-indent
-                        trigger:
-                            action: show
-                            field: type
-                            condition: value[custom_content]
-
                     settings_section:
                         span: full
                         type: section
