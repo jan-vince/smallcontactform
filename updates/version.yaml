@@ -336,6 +336,6 @@
 1.70.0:
     - Added OctoberCMS v4 compatibility
     - Removed Google reCaptcha library dependency
-1.17.0: 
+1.71.0: 
     - Reorganized fields for better usability
     - Added form fields hint text option
