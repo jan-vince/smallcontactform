@@ -245,6 +245,12 @@ class SmallContactForm extends ComponentBase
       $this->formDescription = $this->property('form_description');
       $this->formRedirect = $this->property('redirect_url');
 
+      // Never inject frontend framework assets in backend context because
+      // legacy framework scripts can overwrite backend `window.oc` helpers.
+      if (App::runningInBackend()) {
+        return;
+      }
+
       // Inject CSS assets if required
       if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_css_assets')){
         $this->addCss('/modules/system/assets/css/framework.extras.css');
