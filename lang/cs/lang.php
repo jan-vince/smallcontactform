@@ -320,6 +320,7 @@ return [
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
       'dropdown' => 'Výběr (dropdown)',
+      'checkbox_group' => 'Skupina checkboxů',
       'file' => 'Soubor',
       'custom_code' => 'Vlastní kód',
       'custom_content' => 'Vlastní obsah',

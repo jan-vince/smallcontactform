@@ -268,6 +268,18 @@ class Settings extends Model
         'html_close' => 'select',
       ],
 
+      'checkbox_group' => [
+        'html_open' => 'div',
+        'label' => true,
+        'wrapper_class' => 'form-group',
+        'field_class' => null,
+        'inner_label' => false,
+        'use_name_attribute' => false,
+        'attributes' => [
+        ],
+        'html_close' => 'div',
+      ],
+
       'file' => [
         'html_open' => 'input',
         'label' => true,

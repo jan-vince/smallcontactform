@@ -294,6 +294,7 @@ return [
       'textarea' => 'Tekstialue',
       'checkbox' => 'Valintaruutu',
       'dropdown' => 'Pudotusvalikko',
+      'checkbox_group' => 'Valintaruuturyhmä',
       'file' => 'Tiedosto',
       'custom_code' => 'Oma koodi',
       'custom_content' => 'Oma sisältö',
