@@ -65,7 +65,7 @@ return [
         'new_message' => 'Tila',
         'new' => 'Uusi',
         'read' => 'Luettu',
-        'remote_ip' => 'Lähettjän IP',
+        'remote_ip' => 'Lähettäjän IP',
         'form_alias' => 'Alias',
         'form_description' => 'Kuvaus',
         'created_at' => 'Luotu',
@@ -104,10 +104,10 @@ return [
     'templates' => [
 
       'autoreply' => 'Form autoreply message (English)',
-      'autoreply_fi' => 'Yhteydenoton automaattisen vastauksen viesti (Finnish)',
+      'autoreply_fi' => 'Yhteydenoton automaattisen vastauksen viesti (suomi)',
 
       'notification' => 'Form notification message (English)',
-      'notification_fi' => 'Yhteydenoton notifikaatioviesti (Finnish)',
+      'notification_fi' => 'Yhteydenoton notifikaatioviesti (suomi)',
 
     ]
 
@@ -294,6 +294,7 @@ return [
       'textarea' => 'Tekstialue',
       'checkbox' => 'Valintaruutu',
       'dropdown' => 'Pudotusvalikko',
+      'checkbox_group' => 'Valintaruuturyhmä',
       'file' => 'Tiedosto',
       'custom_code' => 'Oma koodi',
       'custom_content' => 'Oma sisältö',

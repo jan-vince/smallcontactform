@@ -114,26 +114,30 @@ class Message extends Model
                 continue;
             }
 
+            $fieldRawValue = (is_array($value) && array_key_exists('value', $value) ? $value['value'] : null);
+            $fieldValue = $this->normalizePostValue($fieldRawValue);
+            $fieldValuePlain = $this->flattenPostValue($fieldValue);
+
             if( !$fieldDefined ) {
-                Log::warning('SMALL CONTACT FORM WARNING: Found a non-defined field in sent data! Field name: ' . e($key) . ' and value: ' . e($value['value']) );
+                Log::warning('SMALL CONTACT FORM WARNING: Found a non-defined field in sent data! Field name: ' . e($key) . ' and value: ' . $fieldValuePlain );
                 continue;
             }
 
-            $output[$key] = e($value['value']);
+            $output[$key] = $fieldValue;
 
             // if email field is assigned in autoreply, save it separatelly
             if(empty($email_field_value) and $key == Settings::getTranslated('autoreply_email_field')){
-                $email_field_value = e($value['value']);
+                $email_field_value = $fieldValuePlain;
             }
 
             // if name field is assigned in autoreply, save it separatelly
             if(empty($name_field_value) and $key == Settings::getTranslated('autoreply_name_field')){
-                $name_field_value = e($value['value']);
+                $name_field_value = $fieldValuePlain;
             }
 
             // if message is assigned in autoreply, save it separatelly
             if(empty($message_field_value) and $key == Settings::getTranslated('autoreply_message_field')){
-                $message_field_value = e($value['value']);
+                $message_field_value = $fieldValuePlain;
             }
 
         }
@@ -185,7 +189,7 @@ class Message extends Model
 
         foreach($postData as $key => $field) {
             if($key == Settings::getTranslated('autoreply_email_field')){
-                $sendTo = $field['value'];
+                $sendTo = $this->flattenPostValue($this->normalizePostValue(($field['value'] ?? null)));
             }
         }
 
@@ -215,7 +219,7 @@ class Message extends Model
             $fieldValue = null;
 
             if( !empty( $postData[ $field['name'] ]['value'] ) ) {
-                $fieldValue = e( html_entity_decode( $postData[ $field['name'] ]['value']  ) );
+                $fieldValue = $this->flattenPostValue($this->normalizePostValue($postData[ $field['name'] ]['value']));
             } else {
                 $fieldValue = null;
             }
@@ -401,7 +405,7 @@ class Message extends Model
             $fieldValue = null;
 
             if( !empty( $postData[ $field['name'] ]['value'] ) ) {
-                $fieldValue = e( html_entity_decode( $postData[ $field['name'] ]['value']  ) );
+                $fieldValue = $this->flattenPostValue($this->normalizePostValue($postData[ $field['name'] ]['value']));
             } else {
                 $fieldValue = null;
             }
@@ -412,12 +416,12 @@ class Message extends Model
 
             // If email field is assigned, prepare for replyTo
             if(empty($replyToAddress) and $field['name'] == Settings::getTranslated('autoreply_email_field') and isset($postData[$field['name']]['value'])){
-                $replyToAddress = e( $postData[$field['name']]['value'] );
+                $replyToAddress = $this->flattenPostValue($this->normalizePostValue($postData[$field['name']]['value']));
             }
 
             // If name field is assigned, prepare for fromAddress
             if(empty($replyToName) and $field['name'] == Settings::getTranslated('autoreply_name_field') and isset($postData[$field['name']]['value'])){
-                $replyToName = e( $postData[$field['name']]['value'] );
+                $replyToName = $this->flattenPostValue($this->normalizePostValue($postData[$field['name']]['value']));
             }
 
             $output[ $field['name'] ] = $fieldValue;
@@ -520,6 +524,55 @@ class Message extends Model
             }
 
         });
+    }
+
+    /**
+     * Normalize stored post value to escaped scalar or escaped array.
+     *
+     * @param mixed $value
+     * @return mixed
+     */
+    private function normalizePostValue($value)
+    {
+        if (is_array($value)) {
+            $output = [];
+            foreach ($value as $item) {
+                if (is_array($item) || is_object($item)) {
+                    continue;
+                }
+                $output[] = e(html_entity_decode((string) $item));
+            }
+            return $output;
+        }
+
+        if ($value === null) {
+            return null;
+        }
+
+        return e(html_entity_decode((string) $value));
+    }
+
+    /**
+     * Convert scalar or array post value to plain string.
+     *
+     * @param mixed $value
+     * @return string|null
+     */
+    private function flattenPostValue($value)
+    {
+        if (is_array($value)) {
+            $filtered = [];
+            foreach ($value as $item) {
+                if ($item === '' || $item === null) {
+                    continue;
+                }
+                $filtered[] = $item;
+            }
+
+            return implode(', ', $filtered);
+        }
+
+        return $value;
     }
 
     /**

@@ -128,6 +128,22 @@ return [
 
   ],
 
+  'settings' => [
+
+    'form_field_types' => [
+      'text' => 'Szöveg',
+      'email' => 'Email',
+      'textarea' => 'Szövegmező',
+      'checkbox' => 'Jelölőnégyzet',
+      'dropdown' => 'Legördülő lista',
+      'checkbox_group' => 'Jelölőnégyzet-csoport',
+      'file' => 'Fájl',
+      'custom_code' => 'Egyedi kód',
+      'custom_content' => 'Egyedi tartalom',
+    ],
+
+  ],
+
   'components' => [
 
       'groups' => [

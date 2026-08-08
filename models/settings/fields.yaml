@@ -267,7 +267,7 @@ tabs:
                         trigger:
                             action: show
                             field: type
-                            condition: value[dropdown]
+                            condition: value[dropdown][checkbox_group]
                         form:
                             fields:
                                 field_value_id:

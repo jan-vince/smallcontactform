@@ -245,6 +245,12 @@ class SmallContactForm extends ComponentBase
       $this->formDescription = $this->property('form_description');
       $this->formRedirect = $this->property('redirect_url');
 
+      // Never inject frontend framework assets in backend context because
+      // legacy framework scripts can overwrite backend `window.oc` helpers.
+      if (App::runningInBackend()) {
+        return;
+      }
+
       // Inject CSS assets if required
       if(Settings::getTranslated('add_assets') && Settings::getTranslated('add_css_assets')){
         $this->addCss('/modules/system/assets/css/framework.extras.css');
@@ -723,6 +729,74 @@ class SmallContactForm extends ComponentBase
         $output[] = '<small class=" invalid-feedback">' . $this->postData[$fieldSettings['name']]['error'] . "</small>";
       }
 
+      // Custom renderer for checkbox group
+      if ($fieldSettings['type'] == 'checkbox_group') {
+
+        $selectedValues = [];
+        if (!empty($this->postData[$fieldSettings['name']]['value']) && is_array($this->postData[$fieldSettings['name']]['value'])) {
+          $selectedValues = array_map('strval', $this->postData[$fieldSettings['name']]['value']);
+        }
+
+        if (!empty($fieldSettings['field_values']) && is_array($fieldSettings['field_values'])) {
+
+          foreach($fieldSettings['field_values'] as $index => $fieldValue) {
+
+            if (empty($fieldValue['field_value_id']) && empty($fieldValue['field_value_content'])) {
+              continue;
+            }
+
+            $optionValue = (isset($fieldValue['field_value_id']) ? (string) $fieldValue['field_value_id'] : '');
+            $optionLabel = (isset($fieldValue['field_value_content']) ? $fieldValue['field_value_content'] : $optionValue);
+
+            $attributes = [
+              'id' => $this->alias . '-' . $fieldSettings['name'] . '-' . $index,
+              'type' => 'checkbox',
+              'name' => $fieldSettings['name'] . '[]',
+              'value' => $optionValue,
+              'class' => ( !empty($fieldSettings['field_css']) ? $fieldSettings['field_css'] : null ),
+            ];
+
+            if (in_array($optionValue, $selectedValues, true)) {
+              $attributes['checked'] = null;
+            }
+
+            // Browser-side required validation should not enforce all checkboxes in the group
+            if($fieldRequired && $index == 0){
+              $attributes['required'] = NULL;
+            }
+
+            // Autofocus only when no error
+            if(!empty($fieldSettings['autofocus']) && !Flash::error() && $index == 0){
+              $attributes['autofocus'] = NULL;
+            }
+
+            if(!empty($this->postData[$fieldSettings['name']]['error'])){
+              $attributes['class'] = trim($attributes['class'] . ' error is-invalid');
+
+              if(empty($this->errorAutofocus) && $index == 0){
+                $attributes['autofocus'] = NULL;
+                $this->errorAutofocus = true;
+              }
+            }
+
+            $output[] = '<div class="checkbox">';
+            $output[] = '<label for="' . $attributes['id'] . '">';
+            $output[] = '<input ' . $this->formatAttributes($attributes) . '> ';
+            $output[] = $optionLabel;
+            $output[] = '</label>';
+            $output[] = '</div>';
+          }
+        }
+
+        if(!empty($fieldSettings['hint'])){
+          $output[] = '<div class="form-text">' . $fieldSettings['hint'] . '</div>';
+        }
+
+        $output[] = "</div>";
+
+        return(implode('', $output));
+      }
+
       // Field attributes
       $attributes = [
         'id' => $this->alias . '-' . $fieldSettings['name'],
@@ -743,13 +817,15 @@ class SmallContactForm extends ComponentBase
 
         if ($fieldSettings['type'] == 'checkbox') { 
           $attributes['checked'] = null;
+        } elseif (is_array($this->postData[$fieldSettings['name']]['value'])) {
+          $attributes['value'] = implode(', ', $this->postData[$fieldSettings['name']]['value']);
         } else {
           $attributes['value'] = $this->postData[$fieldSettings['name']]['value'];
         }
       }
 
       // Placeholders if enabled
-      if(Settings::getTranslated('form_use_placeholders') and !in_array($fieldSettings['type'], ['checkbox', 'dropdown', 'custom_content'])){
+      if(Settings::getTranslated('form_use_placeholders') and !in_array($fieldSettings['type'], ['checkbox', 'dropdown', 'checkbox_group', 'custom_content'])){
         $attributes['placeholder'] = Settings::getDictionaryTranslated($fieldSettings['label']);
       }
 
@@ -802,7 +878,7 @@ class SmallContactForm extends ComponentBase
 
       }
       // For pair tags insert value between
-      if(!empty($this->postData[$fieldSettings['name']]['value']) && !empty($fieldType['html_close'])){
+      if(!empty($this->postData[$fieldSettings['name']]['value']) && !empty($fieldType['html_close']) && !is_array($this->postData[$fieldSettings['name']]['value'])){
         $output[] = $this->postData[$fieldSettings['name']]['value'];
       }
 
@@ -1144,12 +1220,32 @@ class SmallContactForm extends ComponentBase
     foreach( $this->fields() as $field){
 
       $this->postData[ $field['name'] ] = [
-        'value' => e(Input::get($field['name'])),
+        'value' => $this->sanitizeInputValue(Input::get($field['name'])),
         'error' => $validatorMessages->first($field['name']),
       ];
 
     }
 
+  }
+
+  /**
+   * Sanitize scalar or array input value
+   * @return mixed
+   */
+  private function sanitizeInputValue($value) {
+
+    if (is_array($value)) {
+      $output = [];
+      foreach ($value as $item) {
+        if (is_array($item) || is_object($item)) {
+          continue;
+        }
+        $output[] = e($item);
+      }
+      return $output;
+    }
+
+    return e($value);
   }
 
   /**
