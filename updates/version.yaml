@@ -339,3 +339,5 @@
 1.71.0: 
     - Reorganized fields for better usability
     - Added form fields hint text option
+1.71.1:
+    - Removed jQuery dependency from invisible reCAPTCHA handler

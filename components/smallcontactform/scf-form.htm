@@ -104,23 +104,25 @@
 
 			{% if settingsGet('google_recaptcha_version') == 'v2invisible' %}
 
-				$('#scf-form-id-{{ __SELF__.alias }} button[type=submit]').click(function (event) {
+				var currentForm_{{ __SELF__.alias }} = document.getElementById('scf-form-id-{{ __SELF__.alias }}');
 
-					event.preventDefault();
+				currentForm_{{ __SELF__.alias }}.querySelectorAll('button[type=submit]').forEach(function (button) {
 
-					grecaptcha.execute(widgetId_{{ __SELF__.alias }});
-					
+					button.addEventListener('click', function (event) {
+
+						event.preventDefault();
+
+						grecaptcha.execute(widgetId_{{ __SELF__.alias }});
+
+					});
+
 				});
 
 				function onSubmit_{{ __SELF__.alias }}(token) {
 
-					var currentForm = $('#scf-form-id-{{ __SELF__.alias }}');
-
-					{% if settingsGet('form_allow_ajax', null) %}
-						currentForm.request();
-					{% else %}
-						currentForm.submit();
-					{% endif %}
+					// requestSubmit() fires the submit event, which the AJAX framework
+					// handles for data-request forms; plain forms are submitted natively
+					currentForm_{{ __SELF__.alias }}.requestSubmit();
 
 				}
 
