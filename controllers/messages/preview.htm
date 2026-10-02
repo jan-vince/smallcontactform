@@ -25,7 +25,13 @@
 
                     <tr>
                         <th class="p-r-md" style="vertical-align: top; width: 20%;"><?php echo($key); ?></th>
-                        <td><?php echo( nl2br(e($field)) ) ?></td>
+                        <td>
+                            <?php if (is_array($field)): ?>
+                                <?php echo( nl2br(e(implode(', ', $field))) ) ?>
+                            <?php else: ?>
+                                <?php echo( nl2br(e($field)) ) ?>
+                            <?php endif; ?>
+                        </td>
                     </tr>
 
                 <?php endforeach ?>

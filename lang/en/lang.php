@@ -324,6 +324,7 @@ return [
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
       'dropdown' => 'Dropdown',
+      'checkbox_group' => 'Checkbox group',
       'file' => 'File',
       'custom_code' => 'Custom code',
       'custom_content' => 'Custom content',

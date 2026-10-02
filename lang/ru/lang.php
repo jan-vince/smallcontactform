@@ -203,6 +203,18 @@ return [
 
     ],
 
+    'form_field_types' => [
+      'text' => 'Текст',
+      'email' => 'Email',
+      'textarea' => 'Текстовая область',
+      'checkbox' => 'Флажок',
+      'dropdown' => 'Выпадающий список',
+      'checkbox_group' => 'Группа флажков',
+      'file' => 'Файл',
+      'custom_code' => 'Пользовательский код',
+      'custom_content' => 'Пользовательский контент',
+    ],
+
     'email' => [
       'address_from' => 'От адреса',
 

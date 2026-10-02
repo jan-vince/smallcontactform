@@ -176,6 +176,7 @@ return [
       'textarea' => 'Textarea',
       'checkbox' => 'Checkbox',
       'dropdown' => 'Dropdown',
+      'checkbox_group' => 'Skupina checkboxov',
       'file' => 'File',
       'custom_code' => 'Custom code',
       'custom_content' => 'Custom content',

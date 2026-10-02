@@ -297,6 +297,7 @@ return [
       'textarea' => '文本区',
       'checkbox' => '复选框',
       'dropdown' => '下拉菜单',
+      'checkbox_group' => '复选框组',
       'file' => '文件',
       'custom_code' => '自定义代码',
       'custom_content' => '自定义内容',

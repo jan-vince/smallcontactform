@@ -250,6 +250,7 @@ return [
       'textarea' => 'Aire de texte',
       'checkbox' => 'Case à cocher',
       'dropdown' => 'Dropdown',
+      'checkbox_group' => 'Groupe de cases à cocher',
       'file' => 'File',
       'custom_code' => 'Custom code',
       'custom_content' => 'Custom content',
