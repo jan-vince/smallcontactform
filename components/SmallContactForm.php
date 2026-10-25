@@ -15,6 +15,7 @@ use Form;
 use Log;
 use App;
 use Twig;
+use Config;
 
 
 class SmallContactForm extends ComponentBase
@@ -326,28 +327,20 @@ class SmallContactForm extends ComponentBase
 
     // Antispam validation if allowed
     if( Settings::getTranslated('add_antispam')) {
-      $this->validationRules[('_protect-' . $this->alias)] = 'size:0';
+      // Honeypot must be present (size rule alone is skipped for missing field)
+      $this->validationRules[('_protect-' . $this->alias)] = 'present|size:0';
 
-      if( !empty($this->post['_form_created']) ) {
+      $delay = ( Settings::getTranslated('antispam_delay') ? intval(Settings::getTranslated('antispam_delay')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'))) );
 
-        try {
-          $delay = ( Settings::getTranslated('antispam_delay') ? intval(Settings::getTranslated('antispam_delay')) : intval(e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_placeholder'))) );
+      if(!$delay) {
+        $delay = 5;
+      }
 
-          if(!$delay) {
-            $delay = 5;
-          }
+      // Missing, tampered or too fresh timestamp is rejected
+      $formCreatedTime = $this->getFormCreatedTime(Input::get('_form_created'));
 
-          $formCreatedTime = strtr(Input::get('_form_created'), 'jihgfedcba', '0123456789');
-
-          $this->post['_form_created'] = intval($formCreatedTime) + $delay;
-
-          $this->validationRules['_form_created'] = 'numeric|max:' . time();
-        }
-        catch (\Exception $e)
-        {
-            Log::error($e->getMessage());
-            $errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder'));
-        }
+      if( $formCreatedTime === null || ($formCreatedTime + $delay) > time() ) {
+        $errors[] = ( Settings::getTranslated('antispam_delay_error_msg') ? Settings::getTranslated('antispam_delay_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder')));
       }
 
     }
@@ -443,11 +436,6 @@ class SmallContactForm extends ComponentBase
 
         $errors[] = ( Settings::getTranslated('form_error_msg') ? Settings::getTranslated('form_error_msg') : e(trans('janvince.smallcontactform::lang.settings.form.error_msg_placeholder')));
 
-      }
-
-      // Validation error msg for Antispam field
-      if( empty($this->postData[('_protect' . $this->alias)]['error']) && !empty($this->postData['_form_created']['error']) ) {
-        $errors[] = ( Settings::getTranslated('antispam_delay_error_msg') ? Settings::getTranslated('antispam_delay_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_delay_error_msg_placeholder')));
       }
 
       Flash::error(implode(PHP_EOL, $errors));
@@ -841,6 +829,41 @@ class SmallContactForm extends ComponentBase
   }
 
   /**
+   * Generate signed form creation timestamp
+   * @return string
+   */
+  protected function makeFormCreatedToken(){
+
+    $time = time();
+
+    return $time . '.' . hash_hmac('sha256', $time . '|' . $this->alias, Config::get('app.key'));
+
+  }
+
+  /**
+   * Verify signed form creation timestamp
+   * @param $token
+   * @return int|null Timestamp or null if missing or tampered
+   */
+  protected function getFormCreatedTime($token){
+
+    if( !is_string($token) || substr_count($token, '.') !== 1 ) {
+      return null;
+    }
+
+    list($time, $signature) = explode('.', $token);
+
+    if( !ctype_digit($time) ) {
+      return null;
+    }
+
+    $expected = hash_hmac('sha256', $time . '|' . $this->alias, Config::get('app.key'));
+
+    return hash_equals($expected, $signature) ? intval($time) : null;
+
+  }
+
+  /**
    * Generate antispam field HTML code
    * @return string
    */
@@ -856,7 +879,7 @@ class SmallContactForm extends ComponentBase
 
       $output[] = '<label class="control-label">' . ( Settings::getTranslated('antispam_label') ? Settings::getTranslated('antispam_label') : e(trans('janvince.smallcontactform::lang.settings.antispam.antispam_label_placeholder'))  ) . '</label>';
 
-      $output[] = '<input type="hidden" name="_form_created" value="' . strtr(time(), '0123456789', 'jihgfedcba') . '">';
+      $output[] = '<input type="hidden" name="_form_created" value="' . $this->makeFormCreatedToken() . '">';
 
       // Add help-block if there are errors
       if(!empty($this->postData[('_protect'.$this->alias)]['error'])){

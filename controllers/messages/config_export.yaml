@@ -8,3 +8,4 @@ export:
     list: $/janvince/smallcontactform/models/message/columns_export.yaml
     redirect: /janvince/smallcontactform/messages
     fileName: scf-export.csv
+    permissions: janvince.smallcontactform.export_messages

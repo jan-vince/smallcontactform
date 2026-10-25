@@ -7,6 +7,10 @@ form: ~/plugins/janvince/smallcontactform/models/message/fields.yaml
 modelClass: JanVince\SmallContactForm\Models\Message
 defaultRedirect: janvince/smallcontactform/messages
 
+# Enforced by OC4 (OC1 relies on checks in controller)
+permissions:
+    modelDelete: janvince.smallcontactform.delete_messages
+
 # create:
 #     redirect: janvince/smallcontactform/messages/update/:id
 #     redirectClose: janvince/smallcontactform/messages
